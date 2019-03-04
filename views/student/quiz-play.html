@@ -1,0 +1,220 @@
+<div class="container">
+
+    <div class="row">
+        <div class="span12"><a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a></div>  
+    </div>
+
+
+    <div id="quizTimer">{{timeLeft}}</div>
+
+<div class="row box-style-one bbr-light">
+    <div class="span8">
+         <h2>Quiz:{{vm.quizData.quiz[0].title | titleCase}}</h2>
+    </div>
+
+    <div class="span4">
+
+        <h4 class="pull-right" ng-if="!vm.startReviewWizard">
+            <span ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques">Que.#:{{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}}</span>
+        </h4>
+
+        <h4 class="pull-right" ng-if="vm.startReviewWizard">
+            <span ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length">Review Questions : Que.#:{{vm.questionIndex + 1}} of {{vm.markedQuestions.length}}</span>
+        </h4>
+
+
+    </div>
+
+</div>
+
+
+
+
+    <div ng-repeat="item in vm.quizData.questions">
+
+
+        <div class="row" ng-if="$index == vm.questionIndex">
+
+            <div class="queDesc" style="padding-top: 20px; padding-bottom: 60px">
+                <span>Question # : {{vm.questionIndex + 1}}</span><p ng-bind-html="item.queDesc"></p>                  
+            </div>
+
+
+            <div class="row">
+                    <div class="span4">
+                        <p class="txt-highlight" style="border-bottom: 1px dotted #333">
+                            <span ng-if="item.type_id == 1">Select One Correct Option</span>
+                            <span ng-if="item.type_id == 2">True & False</span>
+                            <span ng-if="item.type_id == 3">Choose all which applies</span>
+                            <span ng-if="item.type_id == 4">Provide answer in text box</span>
+                        </p>
+                    </div>
+            </div>
+
+
+            <div class="row" ng-if="item.type_id == 4">
+                <div class="span12">
+                    <input type="text" name="answer" class="form-control w-100" ng-model="vm.quizData.questions[$index].answer">    
+                </div>
+                
+            </div>
+        
+            <div ng-if="item.type_id == 1 || item.type_id == 2"> 
+
+             <div class="row">
+
+                <div class="span12 que-line">
+                    <input type="radio" id="radio-1" class="radio-custom" name="answer" value="a" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-1" class="radio-custom-label">{{item.optionA}}</label>    
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="span12 que-line">
+                    <input type="radio" id="radio-2" class="radio-custom" name="answer" value="b" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-2" class="radio-custom-label">{{item.optionB}}</label>    
+                </div>
+
+            </div>
+            
+            <div class="row" ng-if="vm.activeQuestion.optionC != null && item.type_id != 2">
+
+                <div class="span12 que-line">
+                    <input type="radio" id="radio-3" class="radio-custom" name="answer" value="c" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-3" class="radio-custom-label">{{item.optionC}}</label>    
+                </div>
+
+
+            </div>
+            
+            <div class="row">
+                <div class="span12 que-line" ng-if="vm.activeQuestion.optionD != null && item.type_id != 2">
+
+                    <input type="radio" id="radio-4" class="radio-custom" name="answer" value="d" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-4" class="radio-custom-label">{{item.optionD}}</label>    
+
+
+                </div>
+            </div>
+
+            </div> <!-- radion single select -->
+
+
+
+             <div ng-if="item.type_id == 3"> 
+
+             <div class="row">
+
+                <div class="span12 que-line">
+                    <input type="checkbox" name="answer[]" id="checkbox-1" class="checkbox-custom" name="answer" value="a" ng-model="vm.quizData.questions[$index].answer.a">
+                    <label for="checkbox-1" class="checkbox-custom-label"> {{item.optionA}} </label>    
+                </div>
+
+
+            </div>
+            
+
+            <div class="row">
+
+                <div class="span12 que-line">
+                    
+                        <input type="checkbox" name="answer[]" id="checkbox-2" class="checkbox-custom" name="answer" value="b" ng-model="vm.quizData.questions[$index].answer.b">
+                        <label for="checkbox-2" class="checkbox-custom-label"> {{item.optionB}} </label>    
+                    
+                </div>
+            </div>
+            
+            <div class="row" ng-if="vm.activeQuestion.optionC != null">
+
+                <div class="span12 que-line">
+                    
+                        <input type="checkbox" name="answer[]" id="checkbox-3" class="checkbox-custom" name="answer" value="c" ng-model="vm.quizData.questions[$index].answer.c">
+                        <label for="checkbox-3" class="checkbox-custom-label"> {{item.optionC}} </label>    
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="span12 que-line" ng-if="vm.activeQuestion.optionD != null">
+                    <input type="checkbox" name="answer[]" id="checkbox-4" class="checkbox-custom" name="answer" value="d" ng-model="vm.quizData.questions[$index].answer.d">
+                    <label for="checkbox-4" class="checkbox-custom-label"> {{item.optionD}} </label>    
+                </div>
+            </div>
+
+            </div> <!-- radion single select -->
+
+
+
+            <div class="row" ng-if="!vm.startReviewWizard">
+                <div class="span6">
+                        <label class="checkbox pull-left">
+                            <input type="checkbox" name="review" value="1" ng-model="vm.quizData.questions[$index].marked">
+                            <strong> Mark for Review : <span class="c-red"> Marked ( {{vm.markedQuestions.length}} ) </span> | <span class="c-green">Answered ( {{vm.providedAnswers.length}} )</span> 
+                            </strong>
+                        </label>
+                    </div>
+            </div>
+            
+
+
+        </div>
+
+
+
+        
+        
+    </div>
+
+
+        <div class="row" style="margin-top: 20px;" ng-if="!vm.startReviewWizard">
+            <div class="span4">
+                
+                <a href="#" class="btn btn-default pull-left" ng-click="vm.preQuestion($index)" ng-if="vm.hasPre">&laquo; Previous</a>
+                <a href="#" class="btn btn-success pull-right" ng-click="vm.nextQuestion($index)" ng-if="vm.hasMore">Next &raquo; </a>
+                
+            </div>
+
+            <div class="span4">
+                
+                <a href="#" class="btn btn-success  pull-left" ng-if="vm.isLastQue" ng-click="vm.ansPrep()">End Quiz</a>               
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <a href="#" class="btn btn-danger pull-left" ng-if="vm.isReviewEnabled()" ng-click="vm.startReview()">Review Questions : ( {{vm.markedQuestions.length}} )</a>
+            </div>
+        </div>
+
+
+
+
+        <div class="row" style="margin-top: 20px;" ng-if="vm.startReviewWizard">
+
+            <div class="span12">
+                <strong> <span class="c-red"> <span class="c-green">Answered ( {{vm.providedAnswers.length}} )</span> </strong>
+            </div>
+            
+            <div class="span4">
+                <a href="#" class="btn btn-success  pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">Next &raquo;</a>
+                <a href="#" class="btn btn-success  pull-right" ng-if="vm.questionIndex + 1 > vm.markedQuestions.length" ng-click="vm.ansPrep()">End Quiz</a>               
+            </div>
+        </div>
+
+
+
+        <div ng-if="vm.answerAvailable">
+
+            
+            <h2>Please wait while your performance is being evaluated</h2>
+
+        </div>
+
+
+
+
+
+    </div><!-- end row-->
+
+
+</div><!-- end col right-->
+</div><!-- end container-->

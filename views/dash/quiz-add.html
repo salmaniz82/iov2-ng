@@ -1,0 +1,75 @@
+ <section class="span8">
+            <div class="col-right">
+
+                <div class="row">
+                    <div class="span4"><h3>Add Quiz</h3></div>
+                   
+                </div>
+
+
+
+                <form method="post" id="nquiz" name="nquiz" ng-submit="vm.saveQuiz()">
+
+
+                    <div class="row">
+                        <div class="span4">
+                            <select name="" id="exmlist" class="w-100" ng-model="vm.nquiz.category_id">
+                                <option ng-selected="1 == 1" selected disabled="true">Select Category</option>
+                                <option ng-repeat="cat in vm.catList" ng-value="cat.id">{{cat.tree}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span8">
+                            <input type="text" id="qtitle" name="qtitle" class="w-100" placeholder="Title" ng-model="vm.nquiz.title">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="span4">
+                            <div class="input-append w-100 pick-dt">
+                                <input type="text" id="ddate" class="w-90 dateinput" ng-value="vm.nquiz.startDateTime" name="sdate" placeholder="Start Date" ng-model="vm.nquiz.startDateTime">
+                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="span4">
+                            <div class="input-append pick-dt w-100">
+                                <input type="datetime" id="adate" class="w-90 dateinput" ng-value="vm.nquiz.endDateTime" name="edate" placeholder="End Date" ng-model="vm.nquiz.endDateTime">
+                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="span4">
+                            <input type="number" class="w-100" id="ttime" name="ttime" placeholder="Duration In Minutes" ng-model="vm.nquiz.duration">
+                        </div>
+                        <div class="span4">
+                            <input type="number" class="w-100" id="tques" name="tques" placeholder="Required No. of Questions" ng-model="vm.nquiz.noques">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span4">
+                            <input type="number" class="w-100" id="qpoints" name="qpoints" placeholder="Total  Points" ng-model="vm.nquiz.maxScore">
+                        </div>
+                        <div class="span4">
+                            <input type="number" class="w-100" id="qminpoint" name="qminpoint" placeholder="Passing Points" ng-model="vm.nquiz.minScore">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="span6">
+                            <button type="submit" class="btn btn-success btn-small"> Save </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>

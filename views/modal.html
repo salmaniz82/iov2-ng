@@ -1,0 +1,26 @@
+<section class="span8">
+<p ng-repeat="data in vm.dataList"><a href="#" class="btn btn-twitter btn-mini" ng-click="vm.launchModal($index)">{{data.email}}</a></p>
+	  <div class="cst-modal-container" ng-if="vm.modalOpen">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        <span style="font-weight: 600">Modal Test</span>
+
+		<i class="icon-remove pull-right" ng-click="vm.modalOpen = false"></i>
+
+      </div>
+      <div class="cst-modal-body">
+
+        <p>Email : {{vm.modalData.email}}</p>
+      	
+        <button class="btn btn-mini btn-success">Yes</button>
+        <button class="btn btn-mini btn-danger">No</button>
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
+
+</section>
+
+
+

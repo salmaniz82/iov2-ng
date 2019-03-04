@@ -1,0 +1,88 @@
+<section class="span8">
+            <div class="col-right">
+                
+                <div class="row">
+                    <div class="span4">
+                        <h3>Quiz</h3>
+                    </div>
+                    <div class="span4">
+                        <a ui-sref="dash.addQuiz()" class="btn pull-right btn-icon btn-success graphic-plus btn-small" title="Add Lesson">Add New Quiz</a>
+                    </div>
+                </div>
+
+                
+
+                <table class="table table-striped">
+
+
+
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Quiz Title</th>
+                        <th>Min / Max </th>
+                        <th>Duration</th>
+                        <th>Enrollment</th>
+                        <th>Status</th>
+                        <th>&nbsp;</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr ng-repeat="item in vm.dataList">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.title}}</td>
+                        <td>{{item.minScore}} / {{item.maxScore}}</td>
+                        <td>{{item.duration}} mins.</td>
+                        <td>
+                        <label class="switch switch-green">
+                                <input type="checkbox" class="switch-input" ng-model="item.enrollment" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="item.enrollment == '1'" ng-change="vm.toggleEnroll(item.id, item.enrollment)">
+                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+
+
+
+                        </td>
+                        <td>
+                        <label class="switch switch-green">
+                                <input type="checkbox" class="switch-input" ng-model="item.status" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="item.status == '1'" ng-change="vm.statusToggle(item.id, item.status)">
+                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+
+                        </td>
+
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-twitter btn-small btn-icon graphic-chevron-bottom" href="#"
+                                   data-toggle="dropdown">Menu</a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a ui-sref="exm.exam({'examID': item.id})"> Details </a>
+                                    <li><a href="modify-date-time.php"><i class="icon-time"></i>Modify Date/Time</a>
+                                    <li><a ui-sref="exm.editQuiz()"><i class="icon-gears"></i>Manage Quiz</a></li>
+                                    <li><a ui-sref="exm.quizWeightDistro()"><i class="icon-gears"></i>Weight Distribution</a></li>
+                                    <li><a ui-sref="exm.quizOverview()"><i class="icon-zoom-in"></i>Attempts Overview</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                  
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!-- end col right-->
+        </section>

@@ -1,0 +1,461 @@
+
+body {
+}
+
+#page-wrap {
+    width: 100%;
+    min-height: calc(100vh - 75px);
+    border-bottom: 1px solid transparent;
+}
+
+
+
+
+
+.pagination ul > li > a:hover, .pagination ul > .active a {
+    background-color: #B6D04A;
+}
+
+.brdr {
+    border: 1px solid red;
+}
+
+.bg-green {
+    background-color: #b6d04a;
+}
+
+.bg-aqua {
+    background-color: #00acee;
+}
+
+.bg-laveck {
+    background-color: #CDC1C5;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.w-45 {
+    width: 45% !important;
+}
+
+img.img-resp{
+    max-width: 100%;
+}
+
+.c-red {
+    color: rgba(255, 0, 0, 0.75) !important;
+}
+
+.c-green {
+    color: var(--greenLight) !important;
+}
+
+.c-blue {
+    color: #00ACEE !important;
+}
+.txt-black {
+    color: #333 !important;
+}
+
+img.img-center {
+   display: block;
+   margin: 0 auto;
+}
+
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    height: 50px;
+    float: left;
+}
+
+.input-append .add-on, .input-prepend .add-on {
+    background-color: #ececea;
+    border: none;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    height: 42px;
+    line-height: 24px;
+    min-width: 16px;
+    padding: 4px 5px;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    width: auto;
+}
+
+.container-sm {
+    width: 600px;
+    margin: 0 auto;
+}
+
+fieldset.cust-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.cust-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+legend + .control-group {
+    margin-top: 0px !important;
+}
+
+.control-group {
+    margin-bottom: 0px !important;
+}
+
+.rmBtn {
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+
+.addmore-btn {
+
+}
+
+.footerpush{
+    height: 5px;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none !important;
+}
+
+.col-right {
+    padding-top: 10px;
+}
+
+
+tbody.sld-content {
+    display: none;
+}
+
+tbody.sld-content.sld-active {
+    display: table-row-group;
+}
+
+
+tr.vam {
+    vertical-align: middle;
+}
+
+.w300px {
+    width: 300px;
+}
+
+html [class^="icon-"], html [class*=" icon-"], body [class^="icon-"], body [class*=" icon-"] {
+    vertical-align: middle !important;
+ }
+
+.course-filters .btn-small {
+    padding: 14px 8px;
+}
+
+span.timepicker-hour, span.timepicker-minute {
+    text-align: center;
+     display: inline-block;
+    width: 90px;
+}
+
+
+.promo-header{
+    background-image: url('/assets/images/landing1-f1427195380f8e71987de879c65a0fb4.jpg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;'
+    opacity: 1 !important;
+    transition: opacity 1s linear 0s;
+    width: 100%;
+}
+
+.bg-trans {
+    background-color: transparent !important;
+}
+
+.resend-tr {
+/*
+    display: none;
+    */
+}
+
+.bb1px {
+    border-bottom: 1px solid #333;
+}
+.bt1px {
+    border-top: 1px solid #333;
+}
+
+
+@media (max-width: 400px) {
+    table {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    body.courses {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .container   {
+        margin-left: 5px ;
+        margin-right: 5px;
+        padding-right: 5px;
+    }
+
+    .dropdown-menu {
+        left: -105px !important;
+    }
+
+}
+input[type="checkbox"]:checked:after {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+button, input[type=button], input[type=submit] {
+    -webkit-appearance:none !important;
+}
+
+
+.female-dark {
+    color: #ea4e44;
+}
+
+.female-light {
+    color: #ff4b44;
+}
+
+.male-dark {
+    color: #00acee;
+}
+
+.male-light{
+    color: #00b9ff;
+}
+
+
+/*flat circles*/
+
+.gf-bt-bg-red {
+    background-color: #e74b3c;
+}
+
+.gf-bt-bg-green {
+    background-color: #34b196;
+}
+
+p.flat-circle.red {
+    border-color: #e74b3c;
+    color: #e74b3c;
+}
+
+p.flat-circle.aqua {
+    border-color: #3996d2;
+    color: #3996d2;
+}
+
+p.flat-circle.green {
+      border-color: #34b196;
+      color: #34b196;
+  }
+
+p.flat-circle.purple {
+     border-color: #8f5aa0;
+     color: #8f5aa0;
+ }
+
+
+p.flat-circle {
+    float: left;
+    border: 10px solid transparent;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 10px;
+ }
+
+p.flat-circle span {
+    line-height: 20px;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.courses-list-item .body-wrapper .news-body {
+     padding: 10px;
+}
+
+.courses-list-item .body-wrapper .news-body + .card-footer ul li {
+    margin-left: 10px;
+}
+
+
+
+.cst-modal-container{
+  position:fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  top:0; bottom:0; left:0; right:0;
+  background-color: rgba(0,0,0,0.6);
+}
+.cst-modal-window{
+  background-color:#fff;
+  display:flex;
+  flex-direction:column;
+  width:500px;
+  height: auto;
+  box-shadow: 0 1rem 1rem rgba(0,0,0,0.2);
+  animation: blowUpModal 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.cst-modal-header{
+  padding:1rem;
+  font-family: sans-serif;
+  background-color: #0bc0cc;
+  color: #fff;
+}
+.cst-modal-body{
+  padding:1rem;
+  flex-size:1;
+}
+
+button{padding: 0.6rem 1rem; font-family: sans-serif; text-transform: uppercase; border: none; cursor: pointer;}
+
+@keyframes blowUpModal {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+figure.quiz-figure {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-variant: small-caps;
+    font-size: 11px;
+    display: inline-block;
+    max-width: 500px;
+}
+
+figure.quiz-figure img {
+    max-width: 100%;
+}
+
+.que-line {border-bottom: 1px solid #80808024; margin-bottom: 20px; padding-bottom: 20px;}
+
+
+.bbr-light {border-bottom: 1px solid #80808024}
+
+
+
+#quizTimer {
+    position: fixed;
+    top: 150px;
+    left: 20px;
+    display: block;
+    width: 5rem;
+    padding: 0px;
+    border: 1px solid #333;
+    font-size: 30px;
+    padding: 1rem 0.5rem;
+    text-align: center;
+}
+
+h3.page-title {
+    margin-top: 0px !important;
+}
+
+
+
+.queDesc p {
+    font-size: 1.2rem;
+    color: #000;
+}
+
+
+
+/* end only demo styles */
+
+.checkbox-custom, .radio-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.checkbox-custom, .checkbox-custom-label, .radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+    margin-left: -45px;
+}
+
+.checkbox-custom-label, .radio-custom-label {
+    position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+    transition: all .3s ease-in;
+}
+
+
+.radio-custom:checked + .radio-custom-label {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    background: var(--green);
+    color: #fff;
+}
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    color: #bbb;
+}
+

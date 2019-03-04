@@ -1,0 +1,85 @@
+<section class="span8">
+            <div class="col-right">
+                <h3>Users : </h3>
+
+                
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Firstname</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Locked</th>
+                        <th>loginAttempts</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.dataList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.role}}</td>
+                        <td>{{item.isLocked}}</td>
+                        <td>{{item.loginAttempts}}</td>
+                        
+                        <td>
+                            <label ng-if="item.role != 'admin'" class="switch switch-green">
+                                <input type="checkbox" class="switch-input" ng-model="item.status" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="item.status == '1'" ng-change="vm.statustoggle(item.id, item.status)">
+                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+
+                        </td>
+                        <td>
+                                <div class="btn-group">
+                                <a class="btn btn-twitter btn-small btn-icon graphic-chevron-bottom" href="#" data-toggle="dropdown">Actions</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Details</a></li>
+                                    <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
+                                </ul>
+                            </div>
+                            </td>
+                        </tr>
+
+
+
+
+                    
+                    </tbody>
+
+
+                </table>
+
+
+    <div class="cst-modal-container" ng-if="vm.modalOpen">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        <span style="font-weight: 600">Change Password</span>
+
+        <i class="icon-remove pull-right" ng-click="vm.modalOpen = false"></i>
+
+      </div>
+      <div class="cst-modal-body">
+
+        <p>Email : {{vm.modalData.email}} </p>
+        <div> <input type="password" name="password" placeholder="New Password" ng-model="vm.modalData.password"></div>
+        <div> <input type="password" name="password" placeholder="Confirm Password" ng-model="vm.modalData.cpassword"></div>
+        
+        <div>
+        <button class="btn btn-mini btn-success" ng-click="vm.udpatePassword()">Change</button>
+        <button class="btn btn-mini btn-danger" ng-click="vm.modalOpen = false">Cancle</button>    
+        </div>
+        
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
+
+            </div><!-- end col right-->
+        </section>

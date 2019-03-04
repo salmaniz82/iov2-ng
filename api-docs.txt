@@ -1,0 +1,20 @@
+select element from inspector and then type in developer console
+angular.element($0).scope()
+
+// Token Authentication Video from youtube for angular
+https://www.youtube.com/watch?v=kphEMt6szw8
+
+mangin roles based permission
+https://stackoverflow.com/questions/17209203/angularjs-protecting-routes-with-angularjs-depending-if-the-user-is-authorized
+
+mutiple modules in application
+------------------------------
+https://stackoverflow.com/questions/31508452/configure-ui-router-for-multiple-modules
+
+
+
+-------------------------------------------
+API DOCUMENTATION
+-------------------------------------------
+
+- LOGIN

@@ -1,0 +1,69 @@
+ <section class="span8">
+                
+                
+
+            <div class="col-right">
+
+                <h3>Enrollments</h3>
+
+                <p>Enter email to Enroll</p>
+
+                <form method="post" id="stenroll" name="stenroll" ng-submit="vm.quizEnroll()">
+                    <div class="row">
+                        <div class="span6">
+                            <input type="email" class="w-100" id="email" name="email" placeholder="Enter Email Address" ng-model="vm.nenroll.email">
+                        </div>
+
+                        <div class="span2">
+                            <input type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success btn-small">
+                        </div>
+                    </div>
+
+                </form>
+
+                <table class="table" ng-if="vm.dataList">
+                    <thead>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>DateEnrolled</th>
+                        <th>Attempts</th>
+                        <th>Retake</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="item in vm.dataList">
+
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.dateEnrolled}}</td>
+                            <td>{{item.attempts}}</td>
+                            <td>
+                                
+                                <label class="switch switch-green">
+                                <input type="checkbox" class="switch-input" ng-model="item.retake" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="item.retake == '1'" ng-change="vm.toggleRetake(item.id)">
+                                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                            </td>
+                            
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+                <div ng-if="vm.dataList == undefined">
+                    <p>Loading Enrollments ... </p>
+                </div>
+
+                <div ng-if="vm.dataList === false">
+                    <p>No candidates are enrolled for this quiz  ... </p>
+                </div>
+
+            </div>
+
+        </section>

@@ -1,0 +1,39 @@
+<section class="span8">
+            <div class="col-right">
+                <h3>Roles</h3>
+
+                
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.dataList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.role}}</td>
+                        </td>
+                        <td>
+                                <div class="btn-group">
+                                <a class="btn btn-twitter btn-small btn-icon graphic-chevron-bottom" href="#" data-toggle="dropdown">Actions</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Details</a></li>
+                                </ul>
+                            </div>
+                            </td>
+                        </tr>
+
+
+
+
+                    
+                    </tbody>
+
+
+                </table>
+
+        </div><!-- end col right-->
+        </section>

@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="row">
+
+        <div class="span3">&nbsp;</div>
+
+		<div class="span6 auth__root" style="border: 1px solid #ddd; margin-top: 50px;">
+
+			<div id="login-link">
+
+    <div class="modal-header modal-header-login">
+        
+        <h3 id="myModalLabel">Register</h3>
+        
+    </div>
+
+    <div class="modal-body">
+
+        
+
+        <form role="form" class="form" action="#" method="post">
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="floatlabel-wrapper">
+                        <input class="string input-xxlarge floatlabel" name="" placeholder="First Name" size="50" type="text" ng-model="vm.nuser.name">
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="floatlabel-wrapper">
+                        <input class="string email required input-xxlarge floatlabel" id="uemail" name="" placeholder="Email" size="50" type="email" ng-model="vm.nuser.email">
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="floatlabel-wrapper">
+                        <input class="string email required input-xxlarge floatlabel" id="pass1" name="" placeholder="Password" size="50" type="password" ng-model="vm.nuser.password">
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <div class="floatlabel-wrapper">
+                        <input class="string email required input-xxlarge floatlabel" id="pass2" name="" placeholder="Confirm Password" size="50" type="password" ng-model="vm.nuser.cpassword">
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+            <div class="row-fluid">
+                <div class="span6">
+                    <a ui-sref="ua.login()" data-dismiss="modal" data-toggle="modal" data-target="#forget-link" class="c-green">Login?</a>
+                </div>
+                <div class="span6">
+                    <div class="btn btn-success graphic-chevron-right btn-icon d-block" type="submit" ng-click="vm.register()"> Send </div>
+                </div>
+
+    </div>
+</form>
+            </div>
+</div>
+
+		</div>
+
+
+        <div class="span3">&nbsp;</div>
+		
+	</div>
+</div>
+
+

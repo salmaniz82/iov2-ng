@@ -1,0 +1,35 @@
+<section class="span8">
+
+    <div class="row">
+        <div class="span4">
+            <h3>Categories : </h3>
+            <a class="btn btn-info btn-mini" ui-sref="dash.cats()">List View</a>
+        </div>
+        
+    </div>
+
+    
+                <div class="col-right">
+
+              
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Category</th>
+                            
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr ng-repeat="item in vm.dataList">
+                            <td>{{item.id}}</td>
+                            <td>{{item.tree}}</td>
+                            
+                        </tr>
+
+                        </tbody></table>
+
+                </div><!-- end col right-->
+            </section>

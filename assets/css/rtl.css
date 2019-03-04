@@ -1,0 +1,62 @@
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+body {
+    /*font-family: Tahoma !important;*/
+    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif;
+}
+
+body {text-align: right;}
+
+
+[class^="icon-"], [class*=" icon-"] {
+    margin-left: 0.4em;
+}
+
+
+[class*="span"] {
+    float: right;
+    margin-left: 30px;
+    min-height: 1px;
+}
+
+
+.table th, .table td, table tr {
+    text-align: right;
+ /*   font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif; */
+}
+
+
+/* fixing align for middle radio and tick of the checkboxes */
+input[type="radio"]:after {
+    left: -7px;
+    top: 5px;
+}
+
+input[type="checkbox"]:after {
+    left: -5px;
+    top: 5px;
+
+}
+
+
+h1.c-profile, h2.c-profile, h3.c-profile, h4.c-profile, h5.c-profile, h6.c-profile, .group-actions.c-profile {
+     text-indent: 20px;
+}
+
+#course-list > h2 {
+    text-indent: 200px
+}
+
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+    float: right;
+    margin-left: 20px;
+}
+
+h4.que p span {
+    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif !important;
+}
+
+
+p, small, .small {
+    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif !important
+}

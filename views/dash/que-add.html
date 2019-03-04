@@ -1,0 +1,227 @@
+<section class="span8">
+            <div class="col-right">
+
+                <div class="row">
+                    <div class="span8"> <h3>Add Questions</h3> : {{vm.queType}} </div>
+                    
+
+
+
+                </div>
+
+                 <form method="post" id="qzques" name="qzques">
+
+                    <div class="row">
+                        <div class="span4">
+                                <select name="" id="exmlist" class="w-100" ng-model="vm.queCategory">
+                                
+                                <option selected disabled="true">Select Category</option>
+                            
+                                <option ng-repeat="cat in vm.globalList.cat" ng-value="cat.id">{{cat.tree}}</option>
+                            </select>
+
+                        </div>
+                        <div class="span4">
+                            <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
+                                    <option selected disabled="true">Select Section</option>
+                                    <option ng-value="95">General Section</option>
+                                    <option ng-repeat="section in vm.globalList.sections" ng-value="section.id"
+                                    ng-if="section.pcat_id == vm.queCategory">{{section.category}}</option>
+                                </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="span4">
+                            <select name="difficulty" id="difficulty" class="w-100" ng-model="vm.queType">
+                                <option selected disabled="true">Select Type</option>
+                                <option ng-repeat="type in vm.globalList.types" ng-value="type.id">{{type.typeEN}}</option>
+                                
+                            </select>
+                        </div>
+
+
+                        <div class="span4">
+                            <select name="level" id="level" class="w-100" ng-model="vm.queLevel">
+                                <option>Select Level</option>
+                                
+                                <option ng-repeat="level in vm.globalList.levels" ng-value="level.id">{{level.levelEN}}</option>
+
+                                
+                            </select>
+                        </div>
+                        
+                    </div>
+
+
+                        
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="span8">
+                            <label>Question Description</label>
+                            <textarea ng-model="vm.nque.queDesc" ckeditor></textarea>
+                            
+                        </div>
+                    </div>
+
+                        <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <div class="span2">
+                            <label>Add Images:</label>
+                        </div>
+                        <div class="span3">
+                            <span class="t-bold">Use Previous Images</span>
+                            <label class="switch switch-green">
+                                <input type="checkbox" class="switch-input">
+                                <span class="switch-label" data-on="ON" data-off="OFF"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div id="imgwrap">
+
+                        <div class="row imgCont">
+                            <div class="span4">
+                                <input type="text" name="figtxt" id="figtxt" class="span4" placeholder="Image Label">
+                            </div>
+
+                            <div class="span3">
+                                <div class="controls-actions">
+                                    <div class="fileupload">
+
+                            <span class="btn btn-icon btn-small graphic-chevron-left btn-file d-block">
+                            <span class="fileupload-new">Upload</span>
+                                <input id="user_avatar" name="file[]" type="file">
+                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--row imgCont-->
+
+                    </div>
+                    <!--img wrap-->
+
+
+                    <div class="row">
+
+                        <div class="span5">
+                            <div id="addbtn">
+                                <span class="icon-plus"></span><a href="#">Add More Images</a>
+                            </div>
+                            <!--addbtn-->
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="options_wrapper" ng-if="vm.queType != 4">
+                        
+                    
+                    <div class="row">
+                        <div class="span6">
+                            <label>Available Choices for Answers</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="span8">
+                            <input type="text" name="opta" id="opta" class="w-100" placeholder="A" ng-model="vm.nque.optionA">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span8">
+
+                            <input type="text" name="optb" id="optb" class="w-100" placeholder="B" ng-model="vm.nque.optionB">
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="vm.queType != 2">
+                        <div class="span8">
+
+                            <input type="text" name="optc" id="optc" class="w-100" placeholder="C" ng-model="vm.nque.optionC">
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="vm.queType != 2">
+                        <div class="span8">
+                            <input type="text" name="optd" id="optd" class="w-100" placeholder="D" ng-model="vm.nque.optionD">
+                        </div>
+                    </div>
+
+
+                    </div><!-- options wrapper -->
+
+
+                    <div class="row">
+                        <div class="span3">
+                            <select ng-if="vm.queType != 4 && vm.queType != 2 && vm.queType != 3" class="w-100" id="courseCat" name="courseCat" ng-model="vm.nque.answer">
+                                <option value="">Set Answer</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>    
+                                <option value="c">C</option>
+                                <option value="d">D</option>
+                            </select>
+
+                            <select ng-if="vm.queType == 2" class="w-100" id="queAnsTF" name="queAnsTF" ng-model="vm.nque.answer">
+                                <option value="">Set Answer</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>    
+                            </select>
+                        </div>
+
+                        
+
+                        <div class="span8" ng-if="vm.queType == 4">
+                            <input type="text" class="w-100" name="queAnswerTextBox" ng-model="vm.nque.answer" value="Set Answer">
+                        </div>
+
+
+                        <div class="span6" ng-if="vm.queType == 3">
+
+                            
+                                <label for="answerA" class="checkbox">
+                                    <input type="checkbox" ng-value="a" ng-model="vm.optAns.a"> A 
+                                </label>
+
+                                <label for="answerB" class="checkbox">
+                                    <input type="checkbox" ng-value="b"  ng-model="vm.optAns.b"> B 
+                                </label>
+
+                                <label for="answerC" class="checkbox">
+                                    <input type="checkbox" ng-value="c"  ng-model="vm.optAns.c"> C 
+                                </label>
+
+                                <label for="answerD" class="checkbox">
+                                    <input type="checkbox" ng-value="d" ng-model="vm.optAns.d"> D 
+                                </label>
+                            
+                                <p>Answer : {{vm.nque.optAns}}</p>
+                            
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="span7">
+                            <div id="que-save"  class="btn btn-success btn-small" ng-click="vm.saveQuestion('back')"> Save </div>
+                            <div id="que-save-add" class="btn btn-success btn-small" ng-click="vm.saveQuestion('more')"> Save & Add More</div>
+                        </div>
+                    </div>
+
+            </div>
+            </form>
+        </section>

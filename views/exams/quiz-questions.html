@@ -1,0 +1,83 @@
+ <section class="span8">
+            <div class="col-right">
+
+                <div class="row">
+                  
+                
+                <div class="span4">
+                  <h3 style="margin-top: 0px">Quiz Questions</h3>  
+                </div>
+
+                <div class="span4">
+                  <a class="btn btn-twitter btn-small pull-right" ui-sref="exm.addQuizQuestions({'examID': vm.examID})">Add New Questions</a>
+                </div>
+
+
+                </div>
+
+
+                
+
+                
+
+
+                <div ng-if="vm.enableAllocate">
+                    <p>No Question allocated for this quiz</p>                   
+                    <div class="btn btn-success btn-small" ng-click="vm.allocateQuestions()">Allocate Questions</div>
+
+                </div>
+
+                <div ng-if="vm.enableSynchronize">
+                    <p>New Questions Available would you like to synchronize</p>                   
+                    <div class="btn btn-success btn-small" ng-click="vm.processDoSyncronize()">Synchronize New Question</div>
+                </div>
+
+
+
+                <table class="table" ng-if="vm.dataList.status">
+                    <thead>
+                        <td>S.NO</td>
+                        <td>Questions</td>
+                        <td>Options</td>
+                        <th>Answer</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="item in vm.dataList.questions track by $index">
+
+                               <td>{{$index + 1}}</td>
+                               <td>
+                                <div>
+                                    Type : {{item.typeEN}}
+                                </div>
+                                <div>
+                                    Diff : {{item.levelEN}}
+                                    
+                                </div>
+                                <p ng-bind-html="item.queDesc">
+                                  
+                                </p>
+                               </td>
+
+                               <td>
+                                   <p ng-if="item.optionA != null">A : {{item.optionA}}</p>
+                                   <p ng-if="item.optionB != null">B : {{item.optionB}}</p>
+                                   <p ng-if="item.optionC != null">C : {{item.optionC}}</p>
+                                   <p ng-if="item.optionD != null">D : {{item.optionD}}</p>
+                               </td>
+
+                               
+                               <td>{{item.answer}}</td>
+                               <td>{{item.qqStatus}}</td>
+                               <td>menu</td>
+                            
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+        </section>

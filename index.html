@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html ng-app="io2v3" lang="{{lang}}" dir="{{ (lang == 'en') ? 'ltr' : 'rtl'}}" ng-controller="baseCtrl as base">
+<head>
+	<base href="/">	
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="D81B60"/>
+	<meta name="description" content="IO2 skills Assesment Software">
+	<link rel='shortcut icon' type='image/ico' href='/favicon.ico'/>
+	<link rel="icon" href="/favicon.ico">
+
+
+
+	<title> io2 V3 Application </title>
+
+	<style type="text/css">
+		.preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background: #fff;
+			z-index: 99999;
+		}
+
+		.preloader .preloader-gif {
+			display: block;
+			width: 80px;
+			height: 80px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -40px 0 0 -40px;
+			background: url('assets/images/spinner.svg') no-repeat;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.addEventListener("load", function(event) {
+    		console.log('load fired in js');
+		});
+
+		window.addEventListener("DOMContentLoaded", function(event) {
+    		console.log('content loaded fired in js');
+		});
+
+
+	</script>
+
+
+	<!-- io2 css -->
+
+
+	<link href="assets/css/unminify.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/css/switch.css" media="all" rel="stylesheet" type="text/css" />   
+    <link href="assets/css/bootstrap-datetimepicker.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/css/custom.css" media="all" rel="stylesheet" type="text/css" />
+
+    
+        <link ng-if="lang == 'ar'" type="text/css" rel="stylesheet" id="langStyles" ng-href="assets/css/rtl.css" media="screen,projection"/>
+	   
+	<!-- end io2 css -->
+
+	<link href="assets/css/dropzone.min.css" type="text/css" rel="stylesheet" />
+	<link href="assets/css/angular-notify-material.css" type="text/css" rel="stylesheet"/>
+
+	
+
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<script src="assets/js/libs/jquery.min.js"></script>
+	<script src="assets/js/libs/jquery.easing.js"></script>
+	
+	<script>if (window.module) module = window.module;</script>
+
+
+	<!-- Angular Libraries  -->
+
+	<!--
+	<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+	-->
+
+	<script type="text/javascript" src="assets/js/libs/angular1.5.0.js"></script>
+	<script type="text/javascript" src="assets/js/libs/angular-sanitize1.5.0.min.js"></script>
+
+	<!--
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.js"></script>
+
+	-->
+	
+
+	<script type="text/javascript" src="assets/js/libs/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="assets/js/libs/dropzone.min.js"></script>
+	
+
+
+	<!-- Load External Modules  -->
+	<script type="text/javascript" src="app/loadingModule.js"></script>
+	<script type="text/javascript" src="app/angular-notify.js"></script>
+	<!-- Angular APP  -->
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/routes.js"></script>
+
+	<!-- Angular Directives --> 
+
+	<script type="text/javascript" src="app/directives/back-button.js"></script>
+	<script type="text/javascript" src="app/directives/date-picker.js"></script>
+
+
+
+	<!-- 
+	<script type="text/javascript" src="app/directives/material-dropdown.js"></script>
+	<script type="text/javascript" src="app/directives/material-select.js"></script>
+	<script type="text/javascript" src="app/directives/static-link.js"></script>
+	<script type="text/javascript" src="app/directives/fileModel.js"></script>
+	<script type="text/javascript" src="app/directives/modal-trigger.js"></script>
+	
+	<script type="text/javascript" src="app/directives/time-picker.js"></script>
+	<script type="text/javascript" src="app/directives/client-email-auto.js"></script>
+	<script type="text/javascript" src="app/directives/side-nav.js"></script>
+	<script type="text/javascript" src="app/directives/dropzone-directive.js"></script>
+	<script type="text/javascript" src="app/directives/hd-carousel-slider.js"></script>
+
+	-->
+
+	<!-- Angular Services  --> 
+
+	<script type="text/javascript" src="app/services/logService.js"></script>
+	<script type="text/javascript" src="app/services/auth.js"></script>
+	<script type="text/javascript" src="app/services/langSer.js"></script>
+	<script type="text/javascript" src="app/services/mutipartForm.js"></script>	
+
+	<script type="text/javascript" src="app/services/quizPlay.js"></script>	
+
+	<!-- Angular Factory -->
+
+	<script type="text/javascript" src="app/factory/authInterceptor.js"></script>
+
+
+	<!-- Filters -->
+	<script type="text/javascript" src="app/filters/filters.js"></script>
+	<script type="text/javascript" src="app/filters/bindHtml.js"></script>
+
+	<!-- Angular Controllers -->
+
+	<script type="text/javascript" src="app/controllers/baseCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/coreCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/notifyCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/authAppCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/registerCtrl.js"></script>
+
+
+	<script type="text/javascript" src="app/controllers/logoutCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/homeCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/notFoundCtrl.js"></script>
+
+	<!-- dashboard controllers -->
+
+	<script type="text/javascript" src="app/controllers/dashboardCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/dashLandCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/addQuizCtrl.js"></script>
+
+
+	<script type="text/javascript" src="app/controllers/quepoolCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/queAddCtrl.js"></script>
+
+
+	<script type="text/javascript" src="app/controllers/usersCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/rolesCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/categoriesCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/catTreeCtrl.js"></script>
+
+
+	<script type="text/javascript" src="app/controllers/modalCtrl.js"></script>
+
+	<!-- teacher / admin exam controller  -->
+
+	
+	<script type="text/javascript" src="app/controllers/examMgmtAbstractCtrl.js"></script>	
+	<script type="text/javascript" src="app/controllers/examOverviewCtrl.js"></script>	
+
+
+	<script type="text/javascript" src="app/controllers/quizQuestionsCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/enrollCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/registerEnrollCtrl.js"></script>
+
+
+
+
+	<!-- student controllers  -->
+
+	<script type="text/javascript" src="app/controllers/stdCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/stdExamCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/stdQuizCtrl.js"></script>
+
+
+	<script type="text/javascript" src="app/controllers/quizAttemptCtrl.js"></script>
+
+
+</head>
+
+<body class="pages landing promo-page">
+
+	<div class="preloader">
+		<span class="preloader-gif"></span>
+	</div>
+
+	<div notifybar style="position:fixed;top:0;right:0; z-index: 9999"></div>
+	<div loading-status-message style="position:fixed; top: 50%; left: 50%; margin: -40px 0 0 -40px; display:none;">
+			<img src="assets/images/spinner.svg">	
+	</div>
+
+    	<ui-view autoscroll="true"></ui-view>
+
+<script type="text/javascript" src="assets/js/custom.js"></script>
+
+<script type="text/javascript">
+	window.addEventListener('load', function() {
+    	var preloaderElement = document.getElementsByClassName('preloader')[0];
+    	preloaderElement.style.display = 'none';
+    });
+</script>
+
+<!--
+	<script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+-->
+
+
+<script type="text/javascript" src="assets/js/libs/modernizr.js"></script>
+<script type="text/javascript" src="assets/js/libs/bootstrap.js"></script>
+<script type="text/javascript" src="assets/js/libs/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="assets/js/libs/bootstrap-datetimepicker.pt-BR.js"></script>
+<script type="text/javascript" src="assets/js/libs/float-label.js"></script>
+<script type="text/javascript" src="assets/js/libs/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="assets/js/libs/jquery.circliful.js"></script>
+<script type="text/javascript" src="plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="assets/js/libs/myscript.js"></script>
+<script type="text/javascript" src="app/directives/ckeditor.js"></script>
+</body>
+</html>

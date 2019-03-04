@@ -1,0 +1,51 @@
+<section class="span8">
+            <div class="col-right">
+                
+                <a ui-sref="dash.queadd()" class="btn pull-right btn-icon btn-success graphic-plus btn-small" title="Add Lesson">Add Questions</a>
+
+                <table class="table table-striped">
+
+                    <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Sections</th>
+                        <th>Count</th>   
+                        <th>Action</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                    <tr ng-repeat="item in vm.dataList">
+
+                        
+                        <td>{{item.category}}</td>
+                        <td>{{item.section}}</td>
+                        <td>{{item.noQues}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-twitter btn-small btn-icon graphic-chevron-bottom" href="#"
+                                   data-toggle="dropdown">Menu</a>
+
+                                <ul class="dropdown-menu">    
+                                    <li><a href="#">Add Questions</a></li>
+                                    <li><a ui-sref="dash.queSectionexplore()">Explore</a></li>
+                                </li>
+
+                                </ul>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                   
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!-- end col right-->
+        </section>

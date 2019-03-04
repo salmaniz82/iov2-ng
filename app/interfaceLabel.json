@@ -1,0 +1,11 @@
+{
+  "headerNavMenu" :  {
+    "vehicels": ['Vehical', 'المركبات'],
+    "clients": ['Clients', 'عملاء'],
+    'bookings' : ['Bookings', 'الحجوزات'],
+    'invoices': ['Invoices', 'الفواتير'],
+    'features' : ['Features', 'الميزات'],
+    'finance': ['Finance', 'المالية'],
+    'insurance': ['Insurance', 'تأمين']
+  }
+}

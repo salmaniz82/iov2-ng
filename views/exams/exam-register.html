@@ -1,0 +1,45 @@
+<section class="span8">
+            <div class="col-right">
+
+                    <h3>Register & Enroll</h3>
+
+                
+                <form method="post" id="stregister" name="stregister" ng-submit="vm.regEnroll()">
+
+               
+
+                    <div class="row">
+                        <div class="span4">
+                            <input type="text" class="w-100" id="name" name="name" placeholder="Enter First Name" ng-model="vm.re.name">
+                        </div>                       
+                    </div>
+
+                    <div class="row">
+                        <div class="span8">
+                            <input type="email" class="w-100" id="email" name="email" placeholder="Enter Email Address" ng-model="vm.re.email">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span4">
+                            <input type="password" class="w-100" id="password" name="fpass" placeholder="Password" ng-model="vm.re.password">
+                        </div>
+                        <div class="span4">
+                            <input type="password" class="w-100" id="cpass" name="cpass" placeholder="Confirm Password" ng-model="vm.nPass">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="span6">
+                            <input type="submit" id="sub-new-quiz" value="Save" class="btn btn-success btn-small">
+                            <input type="submit" id="sub-add-ques" value="Save & Add More" class="btn btn-success btn-small">
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+            </div>
+        </section>

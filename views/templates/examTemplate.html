@@ -1,0 +1,143 @@
+<div id="page-wrap">  
+<header class='main-header' id='header'>
+        <div class='navbar navbar-static-top main-menu'>
+            <div class='navbar-inner'>
+                <div class='container'>
+
+                    <div class='navbar-header'>
+                        <button  class='btn btn-navbar navbar-toggle btn-expand-menu' data-target='.main-menu-collapse, .user-menu-collapse' data-toggle='collapse' type='button'>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                        </button>
+
+                    <a href="/" class="brand">
+
+                        <img alt="Logo" ng-src="{{'assets/images/site_logo.png'}}" width="200" height="88"/>
+
+                        <!-- %span.navbar-text=" -->
+                    </a>
+
+                    <div class='menus-wrapper'>
+                        <nav class='nav-collapse collapse main-menu-collapse pull-left'>
+                            <ul class='nav' ng-if="base.isLoggedIn()">
+                                <li class="active">
+                                    <span class='indicator'></span>
+                                    <a ui-sref="dash.land()">Dashboard</a>
+                                </li> 
+                            </ul>
+                        </nav>
+                        <nav class='nav-collapse collapse user-menu-collapse pull-right'>
+                            <ul class='nav'>
+
+                                <li>
+                                    <span class='indicator'></span>
+                                    <a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a>
+                                </li>
+                               
+                                <!--end new lang-->
+
+                                <li class="btn-group" ng-show="base.isLoggedIn()">
+                                    <span class="indicator"></span>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon-user"></i>
+                                        hi, {{getAuthUsername()}}
+                                        <i class="icon-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+
+                                        <li>
+                                            <a href="index.php"><i class="icon-dashboard"></i>
+                                                Dashboard
+                                            </a></li>
+                                        <li>
+                                            <a href="profile.php"><i class="icon-user"></i>
+                                                My Profile
+                                            </a></li>
+
+                                        <li>
+                                            <a ui-sref="logout()"><i class="icon-signout"></i>
+                                                Logout
+                                            </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+
+    <div class="row">
+
+
+    <aside class="span4">
+    <div class="col-left">
+
+
+
+
+<div>
+
+    
+<div class="clearfix">&nbsp;</div>
+        <ul class="side-filters list-none">
+                
+            <li class=""><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
+            <li class=""><a ui-sref="exm.progress({'examID': absExamId})">Progress</a></li>
+            <li class=""><a ui-sref="exm.quiz({'examID': absExamId})">Quiz ?</a></li>
+
+
+            <li class=""><a ui-sref="exm.quizQuestions({'examID': absExamId})">Quiz Questions</a></li>
+
+
+            <li class=""><a ui-sref="exm.enroll({'examID': absExamId})">Enroll</a></li>
+            <li class=""><a ui-sref="exm.register({'examID': absExamId})">Register</a></li>
+            <li class=""><a ui-sref="exm.check()">Check</a></li>
+            <li class=""><a ui-sref="exm.notify()">NOtify</a></li>
+
+        </ul>
+</div> <!-- teacher control -->
+
+
+    </div><!--col-left-->
+
+</aside>
+
+<!-- inject content  -->
+<ui-view></ui-view>
+
+
+
+</div><!-- end row-->
+</div><!-- end container-->
+
+</div><!--page-wrap-->
+
+
+</div><!--page-wrap-->
+<footer class='main-footer' id='footer'>
+    <div class='quick-links navbar container'>
+        <div class='navbar-inner'>
+            <div class='row-fluid'>
+                <div class='span2'>
+                    <div class='fb-like pull-left margin-top-10' data-action='like' data-colorscheme='light' data-height='auto' data-href='https://www.facebook.com/iversity.org' data-layout='button_count' data-send='false' data-show-faces='true' data-width='auto'></div>
+                </div>
+                <div class='span10'>
+                    <ul class='nav pull-right'>
+                        <ul class='nav pull-right'>
+                        <li><a ui-sref="pub.about()">{{gval.about[langIndex()]}}</a></li>
+                        <li><a ui-sref="pub.tos()">{{gval.terms[langIndex()]}}</a></li>
+                        <li><a ui-sref="pub.pp()">{{gval.privacy[langIndex()]}}</a></li>
+                    </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
