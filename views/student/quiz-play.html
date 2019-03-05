@@ -22,7 +22,6 @@
             <span ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length">Review Questions : Que.#:{{vm.questionIndex + 1}} of {{vm.markedQuestions.length}}</span>
         </h4>
 
-
     </div>
 
 </div>
@@ -35,7 +34,7 @@
 
         <div class="row" ng-if="$index == vm.questionIndex">
 
-            <div class="queDesc" style="padding-top: 20px; padding-bottom: 60px">
+            <div class="queDesc noselect" style="padding-top: 20px; padding-bottom: 60px">
                 <span>Question # : {{vm.questionIndex + 1}}</span><p ng-bind-html="item.queDesc"></p>                  
             </div>
 
@@ -54,7 +53,7 @@
 
             <div class="row" ng-if="item.type_id == 4">
                 <div class="span12">
-                    <input type="text" name="answer" class="form-control w-100" ng-model="vm.quizData.questions[$index].answer">    
+                    <input type="text" autocomplete="off" autocorrect="off" name="answer" class="form-control w-100" ng-model="vm.quizData.questions[$index].answer">    
                 </div>
                 
             </div>
@@ -65,7 +64,7 @@
 
                 <div class="span12 que-line">
                     <input type="radio" id="radio-1" class="radio-custom" name="answer" value="a" ng-model="vm.quizData.questions[$index].answer">
-                    <label for="radio-1" class="radio-custom-label">{{item.optionA}}</label>    
+                    <label for="radio-1" class="radio-custom-label noselect">{{item.optionA}}</label>    
                 </div>
 
             </div>
@@ -73,16 +72,16 @@
 
             <div class="row">
 
-                <div class="span12 que-line">
+                <div class="span12 que-line noselect">
                     <input type="radio" id="radio-2" class="radio-custom" name="answer" value="b" ng-model="vm.quizData.questions[$index].answer">
-                    <label for="radio-2" class="radio-custom-label">{{item.optionB}}</label>    
+                    <label for="radio-2" class="radio-custom-label ">{{item.optionB}}</label>    
                 </div>
 
             </div>
             
             <div class="row" ng-if="vm.activeQuestion.optionC != null && item.type_id != 2">
 
-                <div class="span12 que-line">
+                <div class="span12 que-line noselect">
                     <input type="radio" id="radio-3" class="radio-custom" name="answer" value="c" ng-model="vm.quizData.questions[$index].answer">
                     <label for="radio-3" class="radio-custom-label">{{item.optionC}}</label>    
                 </div>
@@ -91,7 +90,7 @@
             </div>
             
             <div class="row">
-                <div class="span12 que-line" ng-if="vm.activeQuestion.optionD != null && item.type_id != 2">
+                <div class="span12 que-line noselect" ng-if="vm.activeQuestion.optionD != null && item.type_id != 2">
 
                     <input type="radio" id="radio-4" class="radio-custom" name="answer" value="d" ng-model="vm.quizData.questions[$index].answer">
                     <label for="radio-4" class="radio-custom-label">{{item.optionD}}</label>    
@@ -110,7 +109,7 @@
 
                 <div class="span12 que-line">
                     <input type="checkbox" name="answer[]" id="checkbox-1" class="checkbox-custom" name="answer" value="a" ng-model="vm.quizData.questions[$index].answer.a">
-                    <label for="checkbox-1" class="checkbox-custom-label"> {{item.optionA}} </label>    
+                    <label for="checkbox-1" class="checkbox-custom-label noselect"> {{item.optionA}} </label>    
                 </div>
 
 
@@ -122,7 +121,7 @@
                 <div class="span12 que-line">
                     
                         <input type="checkbox" name="answer[]" id="checkbox-2" class="checkbox-custom" name="answer" value="b" ng-model="vm.quizData.questions[$index].answer.b">
-                        <label for="checkbox-2" class="checkbox-custom-label"> {{item.optionB}} </label>    
+                        <label for="checkbox-2" class="checkbox-custom-label noselect"> {{item.optionB}} </label>    
                     
                 </div>
             </div>
@@ -132,7 +131,7 @@
                 <div class="span12 que-line">
                     
                         <input type="checkbox" name="answer[]" id="checkbox-3" class="checkbox-custom" name="answer" value="c" ng-model="vm.quizData.questions[$index].answer.c">
-                        <label for="checkbox-3" class="checkbox-custom-label"> {{item.optionC}} </label>    
+                        <label for="checkbox-3" class="checkbox-custom-label noselect"> {{item.optionC}} </label>    
                     
                 </div>
             </div>
@@ -140,7 +139,7 @@
             <div class="row">
                 <div class="span12 que-line" ng-if="vm.activeQuestion.optionD != null">
                     <input type="checkbox" name="answer[]" id="checkbox-4" class="checkbox-custom" name="answer" value="d" ng-model="vm.quizData.questions[$index].answer.d">
-                    <label for="checkbox-4" class="checkbox-custom-label"> {{item.optionD}} </label>    
+                    <label for="checkbox-4" class="checkbox-custom-label noselect"> {{item.optionD}} </label>    
                 </div>
             </div>
 
