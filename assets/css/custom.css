@@ -468,3 +468,11 @@ h3.page-title {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+
+#form-distro input[type="number"]:disabled {
+  background: #c1c2c157 !important;
+} 
+
+
+table.table.bordered td{ border: 1px solid #C1C2C1; }

@@ -61,7 +61,7 @@
 			<tr>	
 				<th>ID</th>
 				<th>Quiz</th>
-				<th>Max. / Min.</th>
+				<th>Min / Max</th>
 				<th>Duration</th>
 				
 				<th>&nbsp;</th>
@@ -73,7 +73,7 @@
 			<tr ng-repeat="quiz in vm.dataList.quiz">
 				<td>{{quiz.id}}</td>
 				<td>{{quiz.title}}</td>
-				<td>{{quiz.maxScore + ' / ' + quiz.minScore }}</td>
+				<td>{{quiz.minScore + ' / ' + quiz.maxScore}}</td>
 				<td>{{quiz.duration}} mins.</td>
 				
 				<td>

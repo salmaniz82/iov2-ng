@@ -1,4 +1,4 @@
- <section class="span8">
+ <section class="span9">
             <div class="col-right">
 
                 <div class="row">
@@ -11,6 +11,24 @@
                 <div class="span4">
                   <a class="btn btn-twitter btn-small pull-right" ui-sref="exm.addQuizQuestions({'examID': vm.examID})">Add New Questions</a>
                 </div>
+
+
+                </div>
+
+
+
+
+                <div class="row">
+                  <div class="span6">
+                    <select name="subjectFilter" ng-model="subjectSearch">
+                        <option value="">Show All</option>
+                        <option ng-repeat="sub in vm.dataList.qqSubjects" ng-value="sub.subjects">{{sub.subjects}}</option>   
+                    </select>
+                  </div>
+
+                  <div class="span6">
+                    <p>Filter : {{subjectSearch}}</p>
+                  </div>
 
 
                 </div>
@@ -46,7 +64,7 @@
 
                     <tbody>
 
-                        <tr ng-repeat="item in vm.dataList.questions track by $index">
+                        <tr ng-repeat="item in vm.dataList.questions | filter:{ subject: subjectSearch } track by $index ">
 
                                <td>{{$index + 1}}</td>
                                <td>

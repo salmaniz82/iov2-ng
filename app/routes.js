@@ -90,12 +90,6 @@
         })
 
 
-        .state('exm.quiz', {
-
-            url : '/exam-quiz/:examID',
-            templateUrl : 'views/exams/exam-quiz.html',
-  
-        })
 
 
 
@@ -129,6 +123,7 @@
 
             url : '/exam-progress/:examID',
             templateUrl : 'views/exams/exam-progress.html',
+            controller : 'quizProgressCtrl as vm'
             
         })
 
@@ -140,18 +135,24 @@
         })
 
         .state('exm.answer', {
-
-            url : '/exams/answer',
-            templateUrl : 'views/exams/answer-sheet.html'
-            
+            url : '/exams/answer/:examID/:attemptID',
+            templateUrl : 'views/exams/answer-sheet.html',
+            controller : 'quizAnswerInpectCtrl as vm'
         })
 
         .state('exm.consent', {
-
-            url : '/exams/consent.html',
-            templateUrl : 'views/exams/consent.html'
-            
+            url : '/exams/consent/:examID/:attemptID',
+            templateUrl : 'views/exams/consent.html',
+            controller : 'quizAnswerConsentCtrl as vm'           
         })
+
+        .state('exm.scorecard', {
+            url : '/exams/scorecard/:examID/:attemptID',
+            templateUrl : 'views/exams/scorecard.html',
+            controller : 'quizScoreCardCtrl as vm'           
+        })
+
+
 
 
         .state('exm.check', {
@@ -165,8 +166,9 @@
 
         .state('exm.quizWeightDistro', {
 
-            url : '/quiz-weight-distro',
-            templateUrl : 'views/exams/quiz-weight-distro.html'
+            url : '/quiz-weight-distro/:examID',
+            templateUrl : 'views/exams/quiz-weight-distro.html',
+            controller : 'quizWeightDistroCtrl as vm'
             
         })
 

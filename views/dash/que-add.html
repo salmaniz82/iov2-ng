@@ -1,4 +1,4 @@
-<section class="span8">
+<section class="span9">
             <div class="col-right">
 
                 <div class="row">
@@ -12,21 +12,31 @@
                  <form method="post" id="qzques" name="qzques">
 
                     <div class="row">
-                        <div class="span4">
-                                <select name="" id="exmlist" class="w-100" ng-model="vm.queCategory">
-                                
+                        <div class="span3">
+                            <select name="" id="exmlist" class="w-100" ng-model="vm.queCategory">    
                                 <option selected disabled="true">Select Category</option>
-                            
-                                <option ng-repeat="cat in vm.globalList.cat" ng-value="cat.id">{{cat.tree}}</option>
+                                <option ng-if="cat.pcat_id == null" ng-repeat="cat in vm.globalList.cat" ng-value="cat.id">{{cat.tree}}</option>
                             </select>
 
                         </div>
-                        <div class="span4">
+
+
+                        <div class="span3">
+
+                            <select name="" id="decipline" class="w-100" ng-model="vm.queDecipline">    
+                                <option selected disabled="true">Select Category</option>
+                                <option ng-repeat="cat in vm.globalList.cat" ng-if="vm.queCategory == cat.pcat_id" ng-value="cat.id">{{cat.tree}}</option>
+                            </select>
+                            
+                        </div>
+
+
+
+                        <div class="span3">
                             <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
                                     <option selected disabled="true">Select Section</option>
-                                    <option ng-value="95">General Section</option>
                                     <option ng-repeat="section in vm.globalList.sections" ng-value="section.id"
-                                    ng-if="section.pcat_id == vm.queCategory">{{section.category}}</option>
+                                    ng-if="section.pcat_id == vm.queDecipline">{{section.category}}</option>
                                 </select>
                         </div>
 

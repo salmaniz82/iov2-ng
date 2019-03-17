@@ -6,7 +6,71 @@
         var vm = this;
         vm.nquiz = {
             category_id : 'Select Category'
+            
+
         };
+
+        vm.desp;
+        vm.subdesp;
+        
+
+
+        vm.resetDecipline = function()
+        {
+           
+           vm.desp = [];
+           vm.subdesp = [];         
+
+           vm.nquiz.cleanDesp = [];
+           vm.nquiz.cleanSubDesp = [];  
+        };
+
+
+
+
+        vm.isMatchSubCat = function(catId)
+        {
+    
+            if(vm.nquiz.cleanDesp != undefined)
+            {
+                if(vm.nquiz.cleanDesp.indexOf(catId) != -1)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            else {
+                return false;
+            }
+
+        }
+
+
+        vm.cleanDesp = function(id)
+        {
+
+            
+            
+            var result = Object.keys(vm.desp).filter(function(x) { 
+                 return vm.desp[x] !== false; 
+            });
+
+            vm.nquiz.cleanDesp = result; 
+        }
+
+
+
+        vm.cleanSubDesp = function()
+        {
+            
+            var result = Object.keys(vm.subdesp).filter(function(x) { 
+                 return vm.subdesp[x] !== false; 
+            });
+
+            vm.nquiz.cleanSubDesp = result; 
+        }
+
 
         vm.fetchCategory = function()
         {
@@ -82,7 +146,7 @@
 
                 }
 
-                $http.post(allocateQuestionUrl).then(allocateSuccess, allocateError);
+             //   $http.post(allocateQuestionUrl).then(allocateSuccess, allocateError);
 
             }
 
@@ -94,6 +158,10 @@
             }
 
             var url = API_URL+'quiz';
+
+
+            nquiz.decipline = vm.cleanDesp();
+            nquiz.subdecipline =  vm.cleanSubDesp();
 
 
 

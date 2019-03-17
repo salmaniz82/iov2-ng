@@ -1,105 +1,106 @@
- <section class="span8">
+ <section class="span9">
             <div class="col-right">
-                <table class="table table-striped">
+                <table class="table table-condensed no-border w-50">
+
+                    
 
                     <tbody>
                     <tr>
-                        <td colspan="2"><h4>Quiz: Configuring windows server 2013</h4></td>
+                        <td colspan="2"><h3>{{vm.Quiz.title | titleCase}}</h3></td>
                     </tr>
                     <tr>
-                        <td>Required : <span id="req-que">60</span> Questions</td>
-                        <td>Total Points: <span id="quiz-points">120</span></td>
+                        <td>Total Questions Required</td>
+                        <td>
+                            <span id="req-que">{{vm.Quiz.noques}}</span> 
+                        </td> 
+
+                        <tr>
+                        <td>Points </td>
+                        <td>
+                            <span id="quiz-points">{{vm.Quiz.maxScore}}</span>
+                        </td>
                     </tr>
+
                     <tr>
-                        <td colspan="2">Entries : 300</td>
+                        <td>Active Allocated Questions:</td>
+                        <td>{{vm.Quiz.totalAvailable}}</td>
                     </tr>
                     </tbody>
                 </table>
 
+
+                
+
                 <div class="row">
                     <div class="span5"><span class="t-bold ">Calculated Values </span></div>
-                    <div class="span1 text-center"><span class="t-bold freqOut">feqtotal</span></div>
-                    <div class="span1 text-center"><span class="pointOut t-bold ">pointval</span></div>
-                    <div class="span1 text-center"><span class="tqueOut t-bold ">tqueOut</span></div>
+                    <div class="span1 text-center"><span class="tqueOut t-bold ">{{vm.Qtotal}}</span></div>
+                    <div class="span1 text-center"><span class="t-bold freqOut">{{vm.weightTotal}}</span></div>
+                    <div class="span1 text-center"><span class="pointOut t-bold ">{{vm.pointsTotal}}</span></div>
+                    
                 </div>
 
 
-                <form role="form">
+                <form role="form" id="form-distro">
 
-                    <div class="row" style="background-color: #e5e5e5">
-                        <div class="span4"><span class="t-bold ">Categories</span></div>
-                        <div class="span1"><span class="t-bold ">Count</span></div>
-                        <div class="span1 text-center"><span class="t-bold " title="Interation of question from this category">Weight</span></div>
-                        <div class="span1 text-center"><span class="t-bold ">Points</span></div>
+                    <div class="row">
+
+                        <div class="bg-success" style="font-size: 17px">
+                            
+                        
+                        <div class="span4"><span class="t-bold ">Sub-Discipline</span></div>
+                        <div class="span1"><span class="t-bold ">Allocated</span></div>
                         <div class="span1 text-center"><span class="t-bold ">Questions</span></div>
+                        <div class="span1 text-center"><span class="t-bold " title="Interation of question from this category">Weight%</span></div>
+                        <div class="span1 text-center"><span class="t-bold ">Points</span></div>
+
+                        </div>
+                        
                     </div>
 
-                    <div class="row">
-                        <div class="span4"><p>01 Server Installation</p></div>
-                        <div class="span1">45</span></div>
-                        <div class="span1"><input type="number" placeholder="&nbsp;" class="qfq" value="20"></div>
-                        <div class="span1  text-center"><span class="qpt">10</span></div>
+
+
+                    <div class="row" ng-repeat="item in vm.Distro" style="margin-top:10px">
+                        <div class="span4"><p>{{item.subjects}}  </p>
+                            
+                        </div>
+                        <div class="span1">( {{item.questions}} )</span>
+
+                        </div>
+
+                        <div>
+                            
+                        
                         <div class="span1  text-center">
-                            <input type="number"  class="noQue" placeholder="&nbsp;" value="10">
+                            <input ng-disabled="item.questions == 0" type="number"  class="noQue" ng-value="item.quePerSection" string-to-number ng-model="item.quePerSection" ng-change="vm.getTotal()">
                         </div>
+                        <div class="span1">
+                            <input ng-disabled="item.questions == 0" type="number" step="0.01" class="qfw" ng-value="0" string-to-number ng-model="item.weight" ng-change="vm.getTotal()">
+                        </div>
+                        <div class="span1  text-center">
+                            <input ng-disabled="item.questions == 0" type="number" class="qfq" ng-value="item.points" string-to-number ng-model="item.points" ng-change="vm.getTotal()">
+                        </div>
+
+                        </div>
+                        
+                        
+                        
                     </div>
 
-                    <div class="row">
-                        <div class="span4"><p>02 Configure Active Direcory</p></div>
-                        <div class="span1">47</div>
-                        <div class="span1"><input type="number" placeholder="&nbsp;" class="qfq" value="15"></div>
-                        <div class="span1 text-center"><span class="qpt">10</span></div>
-                        <div class="span1 text-center">
-                            <input type="number"  class="noQue" placeholder="&nbsp;" value="10">
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="span4"><p>03 Configure DHCP</p></div>
-                        <div class="span1">56</div>
-                        <div class="span1"><input type="number" placeholder="&nbsp;" class="qfq" value="20"></div>
-                        <div class="span1 text-center"><span class="qpt">10</span></div>
-                        <div class="span1 text-center">
-                            <input type="number"  class="noQue" placeholder="&nbsp;" value="10">
-                        </div>
-                    </div>
 
 
                     <div class="row">
-                        <div class="span4"><p>04 Configure DNS</p></div>
-                        <div class="span1">49</div>
-                        <div class="span1"><input type="number" placeholder="&nbsp;" class="qfq" value="15"></div>
-                        <div class="span1 text-center"><span class="qpt">10</span></div>
-                        <div class="span1 text-center">
-                            <input type="number"  class="noQue" value="10" placeholder="&nbsp;">
-                        </div>
+                    <div class="span12">
+                        <h3 class="c-red" ng-if="!vm.validDistro">Please match distribution as per quiz above</h3>
+                    </div>
                     </div>
 
-                    <div class="row">
-                        <div class="span4"><p>05 WDS Management</p></div>
-                        <div class="span1">63</div>
-                        <div class="span1"><input type="number" placeholder="&nbsp;" class="qfq" value="10"></div>
-                        <div class="span1 text-center"><span class="qpt">10</span></div>
-                        <div class="span1 text-center">
-                            <input type="number"  class="noQue" placeholder="&nbsp;" value="10">
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="span4"><p>06 Basic Networking</p></div>
-                        <div class="span1">40</div>
-                        <div class="span1"><input type="number" placeholder="&nbsp;" class="qfq" value="20"></div>
-                        <div class="span1 text-center"><span class="qpt">10</span></div>
-                        <div class="span1 text-center">
-                            <input type="number"  class="noQue" value="10" placeholder="&nbsp;" >
-                        </div>
-                    </div>
-
+                    
+                  
 
                     <div class="clearfix">&nbsp;</div>
-                    <div class="rowq">
-                        <button type="submit" value="save" class="btn btn-success btn-small" id="btnSum">Save</button>
+                    <div class="rowq" ng-if="vm.validDistro">
+                        <button class="btn btn-success btn-small" ng-click="vm.saveDistribution()">Save</button>
                     </div>
 
                 </form>

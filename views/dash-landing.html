@@ -1,4 +1,4 @@
-<section class="span8">
+<section class="span9">
             <div class="col-right">
                 
                 <div class="row">
@@ -64,10 +64,12 @@
                                    data-toggle="dropdown">Menu</a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a ui-sref="exm.exam({'examID': item.id})"> Details </a>
+                                    <li><a ui-sref="exm.exam({'examID': item.id})"> - Details </a>
+                                    <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
+                                    <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
                                     <li><a href="modify-date-time.php"><i class="icon-time"></i>Modify Date/Time</a>
                                     <li><a ui-sref="exm.editQuiz()"><i class="icon-gears"></i>Manage Quiz</a></li>
-                                    <li><a ui-sref="exm.quizWeightDistro()"><i class="icon-gears"></i>Weight Distribution</a></li>
+                                    <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"><i class="icon-gears"></i>Weight Distribution</a></li>
                                     <li><a ui-sref="exm.quizOverview()"><i class="icon-zoom-in"></i>Attempts Overview</a></li>
 
                                 </ul>

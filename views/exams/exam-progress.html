@@ -1,4 +1,4 @@
-   <section class="span8">
+   <section class="span9">
                 <div class="col-right">
 
                     <div class="clearfix"></div>
@@ -7,7 +7,7 @@
                     <div class="clearfix"></div>
                     <div class="row">
 
-                        <div class="span8">
+                        <div class="span9">
 
                             <table class="table table-striped">
 
@@ -15,83 +15,45 @@
                                 <tr>
 
                                     <th>Students</th>
-                                    <th>Enrolled Date</th>
-                                    <th>Completion Progress</th>
+                                    <th>Email</th>
+                                    <th>Attempts</th>
+                                    <th>Dated</th>
                                     <th>Score</th>
-                                    <th>Result Status</th>
+                                    <th>Percentage %</th>
+                                    <th>&nbsp;</th>
 
                                 </tr></thead>
 
                                 <tbody>
 
-                                <tr>
+                                <tr ng-repeat="item in vm.dataList.attempted">
 
-                                    <td><a ui-sref="exm.prog-detail()">Mark Twain</a></td>
-                                    <td>05-Dec-2013</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.email}}</td>
+                                    <td>{{item.attempts}}</td>
+                                    <td>{{item.attempted_at}}</td>
+                                    <td>{{item.score}}</td>
+                                    <td>{{item.per}}</td>
                                     <td>
-                                        <div class="progress">
-                                            <div class="bar" style="width: 100%;">100%</div>
-                                        </div>
-                                    </td>
-                                    <td>90</td>
-                                    <td><a href="#" class="btn btn-success btn-small" title="Changes Publsh Status">Publish</a></td>
+                                        
+                                        <div class="btn-group">
+                                <a class="btn btn-twitter btn-small btn-icon graphic-chevron-bottom" href="#"
+                                   data-toggle="dropdown">Menu</a>
 
-                                </tr>
-                                </tr>
-                                <tr>
+                                <ul class="dropdown-menu">
+                                    
+                                    <li><a ui-sref="exm.scorecard({'examID': item.quizId, 'attemptID': item.attemptId})"> - Score Sheet </a></li>
+                                    <li><a ui-sref="exm.consent({'examID': item.quizId, 'attemptID': item.attemptId})"> - Consent </a></li>
+                                    <li><a ui-sref="exm.answer({'examID': item.quizId, 'attemptID': item.attemptId})"> - Inpsect Answers </a></li>
 
-                                    <td><a ui-sref="exm.prog-detail()">Janet Hope</a></td>
-                                    <td>10-Dec-2013</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="bar" style="width: 80%;">80%</div>
-                                        </div>
+                                </ul>
+                            </div>
 
                                     </td>
-                                    <td>74</td>
-                                    <td><a href="#" class="btn btn-danger btn-small" title="Changes Publsh Status">Pending</a></td>
 
                                 </tr>
-                                <tr>
-
-                                    <td><a ui-sref="exm.prog-detail()">Tom Cruise</a></td>
-                                    <td>15-Dec-2013</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="bar" style="width: 50%;">50%</div>
-                                        </div>
-                                    </td>
-                                    <td>40</td>
-                                    <td><a href="#" class="btn btn-danger btn-small" title="Changes Publsh Status">Pending</a></td>
-
                                 </tr>
-                                <tr>
-
-                                    <td><a ui-sref="exm.prog-detail()">Bob Sinclair</a></td>
-                                    <td>20-Dec-2013</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="bar" style="width: 100%;">100%</div>
-                                        </div>
-                                    </td>
-                                    <td>95</td>
-                                    <td><a href="#" class="btn btn-success btn-small" title="Changes Publsh Status">Publish</a></td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td><a ui-sref="exm.prog-detail()">Bob John</a></td>
-                                    <td>25-Dec-2013</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="bar" style="width: 0%; color: #f00"></div>
-                                        </div>
-                                    </td>
-                                    <td>0</td>
-                                    <td><a href="#" class="btn btn-danger btn-small" title="Changes Publsh Status">Pending</a></td>
-
-                                </tr>
+                             
 
                                 </tbody></table>
                         </div>

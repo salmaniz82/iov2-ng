@@ -6952,7 +6952,7 @@ button.d-block {
 }
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
     background-color: #FFFFFF;
-    border: 1px solid var(--grey);
+    border: 1px solid 1px solid #C1C2C1;
     border-radius: 0;
     box-shadow: none;
     box-sizing: border-box;

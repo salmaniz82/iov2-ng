@@ -1,0 +1,63 @@
+<section class="span9">
+   <div class="col-right">
+      <h3>Score Card</h3>
+      <table class="table">
+         <tbody>
+            <tr>
+               <td>Exam</td>
+               <td>Management Skill Assessment Final</td>
+            </tr>
+            <tr>
+               <td>Quiz </td>
+               <td>English - الانجليزية</td>
+            </tr>
+            <tr>
+               <td>Student</td>
+               <td>Saleh  AlAqely</td>
+            </tr>
+            <tr>
+               <td>Date Performed:</td>
+               <td>26-December-2018</td>
+            </tr>
+         </tbody>
+      </table>
+
+
+
+      <table class="table">
+         <thead>
+            <tr>
+               <th>S.NO</th>
+               <th>Sub Disciplines</th>
+               <th>Max Score</th>
+               <th>Score Obtatined</th>
+               <th>Percentage</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            <tr ng-repeat="item in vm.dataList.scorecard">
+
+               <td>{{$index +1 }}</td>
+               <td>{{item.subjects}}</td>
+               <td>{{item.maxScore}}</td>
+               <td>{{item.actualScore}}</td>
+               <td>{{item.per}} % </td>
+               
+            </tr>
+
+            <tr style="font-weight: bold; background-color: var(--greyLight)">
+               <td colspan="2">Overall Performance</td>
+               <td>{{vm.dataList.maxTotal}}</td>
+               <td>{{vm.dataList.total}}</td>
+               <td>{{vm.dataList.overAllPer}} % </td>
+            </tr>
+         </tbody>
+      </table>
+
+
+      
+
+   </div>
+   <!-- end col right-->
+</section>
