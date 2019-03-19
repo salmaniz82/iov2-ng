@@ -2,17 +2,19 @@
             <div class="col-right">
 
                 <div class="row">
-                    <div class="span8"> <h3>Add Questions</h3> : {{vm.queType}} </div>
-                    
-
-
-
+                    <div class="span8"> <h3>Add Questions</h3> </div>
                 </div>
 
                  <form method="post" id="qzques" name="qzques">
 
+                    <div class="row pb-20">
+                        <div class="span9 bbr-light">
+                            <h4 class="c-green">Categorization</h4>    
+                        </div>
+                    </div>
+
                     <div class="row">
-                        <div class="span3">
+                        <div class="span4">
                             <select name="" id="exmlist" class="w-100" ng-model="vm.queCategory">    
                                 <option selected disabled="true">Select Category</option>
                                 <option ng-if="cat.pcat_id == null" ng-repeat="cat in vm.globalList.cat" ng-value="cat.id">{{cat.tree}}</option>
@@ -20,8 +22,13 @@
 
                         </div>
 
+                    </div>
 
-                        <div class="span3">
+
+                    <div class="row">
+
+
+                        <div class="span4">
 
                             <select name="" id="decipline" class="w-100" ng-model="vm.queDecipline">    
                                 <option selected disabled="true">Select Category</option>
@@ -32,14 +39,21 @@
 
 
 
-                        <div class="span3">
+                        <div class="span4">
                             <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
                                     <option selected disabled="true">Select Section</option>
                                     <option ng-repeat="section in vm.globalList.sections" ng-value="section.id"
-                                    ng-if="section.pcat_id == vm.queDecipline">{{section.category}}</option>
+                                    ng-if="section.pcat_id == vm.queDecipline && vm.queDecipline != null">{{section.category}}</option>
                                 </select>
                         </div>
 
+                    </div>
+
+
+                    <div class="row pb-20">
+                        <div class="span9 bbr-light">
+                            <h4 class="c-green">Type</h4>
+                        </div>
                     </div>
 
 
@@ -133,7 +147,7 @@
 
                     </div>
 
-                    <hr>
+                    <div class="bbr-light">&nbsp</div>
 
                     <div class="options_wrapper" ng-if="vm.queType != 4">
                         
@@ -176,8 +190,8 @@
 
 
                     <div class="row">
-                        <div class="span3">
-                            <select ng-if="vm.queType != 4 && vm.queType != 2 && vm.queType != 3" class="w-100" id="courseCat" name="courseCat" ng-model="vm.nque.answer">
+                        <div class="span4" ng-if="vm.queType != 4 && vm.queType != 2 && vm.queType != 3">
+                            <select  class="w-100" id="courseCat" name="courseCat" ng-model="vm.nque.answer">
                                 <option value="">Set Answer</option>
                                 <option value="a">A</option>
                                 <option value="b">B</option>    
@@ -185,22 +199,30 @@
                                 <option value="d">D</option>
                             </select>
 
-                            <select ng-if="vm.queType == 2" class="w-100" id="queAnsTF" name="queAnsTF" ng-model="vm.nque.answer">
+                        </div>
+
+
+                        <div class="span4" ng-if="vm.queType == 2">
+
+
+                            <select  class="w-100" id="queAnsTF" name="queAnsTF" ng-model="vm.nque.answer">
                                 <option value="">Set Answer</option>
                                 <option value="a">A</option>
                                 <option value="b">B</option>    
                             </select>
+
                         </div>
 
                         
 
                         <div class="span8" ng-if="vm.queType == 4">
-                            <input type="text" class="w-100" name="queAnswerTextBox" ng-model="vm.nque.answer" value="Set Answer">
+                            <input type="text" class="w-100" name="queAnswerTextBox" ng-model="vm.nque.answer" value="Set Answer placeholder="Enter Answer">
                         </div>
 
 
                         <div class="span6" ng-if="vm.queType == 3">
-
+                                
+                                <p>Answer : {{vm.nque.optAns}}</p>
                             
                                 <label for="answerA" class="checkbox">
                                     <input type="checkbox" ng-value="a" ng-model="vm.optAns.a"> A 
@@ -218,7 +240,7 @@
                                     <input type="checkbox" ng-value="d" ng-model="vm.optAns.d"> D 
                                 </label>
                             
-                                <p>Answer : {{vm.nque.optAns}}</p>
+                                
                             
                         </div>
 

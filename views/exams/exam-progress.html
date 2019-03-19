@@ -1,6 +1,10 @@
    <section class="span9">
                 <div class="col-right">
 
+                    <h3>Examine Quiz Progress</h3>
+
+                    <quiz-info-component param="vm.examID"></quiz-info-component>
+
                     <div class="clearfix"></div>
 
 
@@ -32,8 +36,8 @@
                                     <td>{{item.email}}</td>
                                     <td>{{item.attempts}}</td>
                                     <td>{{item.attempted_at}}</td>
-                                    <td>{{item.score}}</td>
-                                    <td>{{item.per}}</td>
+                                    <td>{{item.score | setDecimal:2}}</td>
+                                    <td>{{item.per | setDecimal:2}}</td>
                                     <td>
                                         
                                         <div class="btn-group">

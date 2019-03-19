@@ -63,14 +63,16 @@
                                 <td class="t-bold">Subdisciplines</td>
                                 <td class="t-bold">Points</td>
                                 <td class="t-bold">Questions</td>
-                                <td class="t-bold">Points Per Question</td>
+                                <td class="t-bold">Point Per Question</td>
+                                
                             </tr>
 
                             <tr ng-repeat="item in vm.Distro">
                                 <td>{{item.subjects}}</td>
                                 <td>{{item.points}}</td>
                                 <td>{{item.quePerSection}}</td>
-                                <td>{{item.points / item.quePerSection}}</td>
+                                <td ng-init="perQue = item.points / item.quePerSection">{{(perQue === perQue) ? perQue : 'Not Available'}}</td>
+                                
                             </tr>
 
                             

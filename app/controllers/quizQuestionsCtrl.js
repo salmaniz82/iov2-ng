@@ -19,6 +19,54 @@
 
 
 
+        vm.toggleqqStatus = function(itemId, qqStatus, subject_id)
+        {
+
+
+
+            var idx = $scope.$parent.base.getIndex(vm.dataList.questions, 'id', itemId);
+
+            var row = vm.dataList.questions[idx];
+
+
+            console.log(row);
+
+            
+            var qqStatusToggleUrl = API_URL+'quiz-question-status-toggle/'+vm.examID+'/'+subject_id;
+
+            $http({
+
+                url : qqStatusToggleUrl,
+                method: 'PUT',
+                data : {status: qqStatus, qqId: itemId}
+
+            }).then(
+
+                function(res) {
+
+
+                }, function(res){
+
+                    var notify = {
+                        type: 'error',
+                        title: 'Weight Distributon Violation : ' + res.data.subject,
+                        content: res.data.message,
+                        timeout: 8000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+                    row.qqStatus = (res.data.toggleRequest) ? "0" : "1";
+
+
+            });
+
+
+
+        };
+
+
+
         vm.fetchQuestionList = function()
         {
 

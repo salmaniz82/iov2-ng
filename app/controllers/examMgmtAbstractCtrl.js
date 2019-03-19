@@ -4,11 +4,8 @@
 
 
         var vm = this;
-
-        console.log('Exam Managment Abstract Controller is activated');
-
-
         $scope.absExamId = null;
+        $scope.masterQuizData = null;
 
 
     }]);

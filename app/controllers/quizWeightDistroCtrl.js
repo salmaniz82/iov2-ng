@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('quizWeightDistroCtrl', ['API_URL', '$scope', '$http', '$stateParams', function(API_URL, $scope, $http, $stateParams){
+    angular.module('io2v3').controller('quizWeightDistroCtrl', ['API_URL', '$scope', '$http', '$stateParams', 'quizDataService', function(API_URL, $scope, $http, $stateParams, quizDataService){
 
 
         var vm = this;
@@ -14,19 +14,12 @@
 
         // the distro information
 
-        var distroUrl = API_URL+'quiz/subjects/'+vm.examID;
 
-        $http.get(distroUrl).then(
+        quizDataService.getMasterQuiz(vm.examID).then(
 	    	function(res){
-
 	    		console.log(res);
-
 	    		vm.Quiz = res.data.quiz[0];
 	    		vm.Distro = res.data.quizBaseDistro;
-
-
-	    		
-
 	    		vm.getTotal();	
 
 	    	}, 

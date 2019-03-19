@@ -6,6 +6,8 @@
 
                 <h3>Enrollments</h3>
 
+                <quiz-info-component param="vm.examID"></quiz-info-component>
+
                 <p>Enter email to Enroll</p>
 
                 <form method="post" id="stenroll" name="stenroll" ng-submit="vm.quizEnroll()">
@@ -20,6 +22,8 @@
                     </div>
 
                 </form>
+
+
 
                 <table class="table" ng-if="vm.dataList">
                     <thead>

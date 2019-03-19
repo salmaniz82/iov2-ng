@@ -6,7 +6,7 @@
         var vm = this;
 
 
-        console.log('quiz controller');
+        console.log('quiz controller where is it');
 
         
 

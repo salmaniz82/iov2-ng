@@ -50,9 +50,10 @@
         })
 
         .state('exm', {
+            abstract: true,
             templateUrl : 'views/templates/examTemplate.html',
-            controller : 'examMgmtAbstractCtrl as exAbs', 
-            abstract: true
+            controller : 'examMgmtAbstractCtrl as exAbs'
+            
         })
 
         .state('exm.exam', {

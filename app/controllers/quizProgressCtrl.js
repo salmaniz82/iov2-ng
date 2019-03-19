@@ -11,24 +11,14 @@
 
         vm.dataList = null;
 
-
-
-
-
-
         var progressUrl = API_URL+'quiz/progress/'+vm.examID;
 
         $http.get(progressUrl).then(
 
         	function(res){
-
+                
         		vm.loadStatus = true;
-
-
                 vm.dataList = res.data;
-
-
-       			
 
         	}, 
 

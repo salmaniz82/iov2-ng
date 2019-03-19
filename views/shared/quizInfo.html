@@ -1,0 +1,40 @@
+<table class="table table-condensed no-border w-50">
+                    <tbody>
+                    <tr>
+                        <td colspan="2"><h4>Quiz : {{$ctrl.Quiz.title | titleCase}}</h4></td>
+                    </tr>
+
+                    <tr>    
+                        <td>Category</td>
+                        <td>{{$ctrl.Quiz.category}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Max. Score </td>
+                        <td>
+                            <span id="quiz-points">{{$ctrl.Quiz.maxScore}}</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Passing Score</td>
+                        <td>
+                            <span id="quiz-points">{{$ctrl.Quiz.minScore}}</span>
+                        </td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td>Questions</td>
+                        <td>
+                            <span id="req-que">{{$ctrl.Quiz.noques}}</span> 
+                        </td> 
+                    </tr>
+
+                    <tr>
+                        <td>Active Allocated Questions:</td>
+                        <td>{{$ctrl.Quiz.totalAvailable}}</td>
+                    </tr>
+                    </tbody>
+                </table>

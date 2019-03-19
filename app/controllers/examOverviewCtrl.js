@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('examOverviewCtrl', ['API_URL', '$scope', '$http', '$stateParams', function(API_URL, $scope, $http, $stateParams){
+    angular.module('io2v3').controller('examOverviewCtrl', ['API_URL', '$scope', '$http', '$stateParams', 'quizDataService', function(API_URL, $scope, $http, $stateParams, quizDataService){
 
 
         var vm = this;
@@ -9,16 +9,11 @@
         $scope.$parent.absExamId = $stateParams.examID;
 
 
+        vm.loadProgress = null;
 
 
-        
+        quizDataService.getMasterQuiz(vm.examID).then(
 
-
-        var distroUrl = API_URL+'quiz/subjects/'+vm.examID;
-
-
-
-        $http.get(distroUrl).then(
 	    	function(res){
 
 	    		console.log(res);
@@ -32,12 +27,11 @@
 	    	function(res){
 
 	    		console.log(res);
-
   	    		vm.loadProgress = false;
 
 	        });
 
-
+		
         
 
     }]);

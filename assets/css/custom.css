@@ -9,9 +9,6 @@ body {
 }
 
 
-
-
-
 .pagination ul > li > a:hover, .pagination ul > .active a {
     background-color: #B6D04A;
 }
@@ -367,6 +364,8 @@ figure.quiz-figure img {
 
 .bbr-light {border-bottom: 1px solid #80808024}
 
+.pb-20 {padding-bottom: 20px;}
+
 
 
 #quizTimer {
@@ -432,13 +431,13 @@ h3.page-title {
 .radio-custom:checked + .radio-custom-label {
     color: var(--green);
     font-weight: bold;
-    font-size: 1.1rem;
+    
 }
 
 .checkbox-custom:checked + .checkbox-custom-label {
     color: var(--green);
     font-weight: bold;
-    font-size: 1.1rem;
+    
 }
 
 

@@ -1,32 +1,9 @@
  <section class="span9">
             <div class="col-right">
-                <table class="table table-condensed no-border w-50">
 
-                    
+                 <h3>Weight Distribution</h3>   
 
-                    <tbody>
-                    <tr>
-                        <td colspan="2"><h3>{{vm.Quiz.title | titleCase}}</h3></td>
-                    </tr>
-                    <tr>
-                        <td>Total Questions Required</td>
-                        <td>
-                            <span id="req-que">{{vm.Quiz.noques}}</span> 
-                        </td> 
-
-                        <tr>
-                        <td>Points </td>
-                        <td>
-                            <span id="quiz-points">{{vm.Quiz.maxScore}}</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Active Allocated Questions:</td>
-                        <td>{{vm.Quiz.totalAvailable}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <quiz-info-component param="vm.examID"></quiz-info-component>
 
 
                 
