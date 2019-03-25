@@ -69,15 +69,18 @@
 
                             <tr ng-repeat="item in vm.Distro">
                                 <td>{{item.subjects}}</td>
-                                <td>{{item.points}}</td>
+                                <td>{{item.points | setDecimal:2 }}</td>
                                 <td>{{item.quePerSection}}</td>
-                                <td ng-init="perQue = item.points / item.quePerSection">{{(perQue === perQue) ? perQue : 'Not Available'}}</td>
-                                
+                                <td ng-init="perQue = item.points / item.quePerSection">
+                                    <span ng-if="perQue === perQue">
+                                        {{perQue | setDecimal:2 }}    
+                                    </span>
+                                    <span ng-if="perQue !== perQue" class="c-red">
+                                        N/A
+                                    </span>
+                                </td>
                             </tr>
 
-                            
-
-                           
                             </tbody></table>
                     </div>
 

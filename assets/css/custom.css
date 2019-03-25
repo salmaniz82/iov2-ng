@@ -446,10 +446,12 @@ h3.page-title {
     font-family: 'FontAwesome';
     background: var(--green);
     color: #fff;
+    margin-left: 10px;
 }
 
 .radio-custom + .radio-custom-label:before {
     border-radius: 50%;
+    margin-left: 10px;
 }
 
 .radio-custom:checked + .radio-custom-label:before {

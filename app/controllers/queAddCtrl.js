@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('queAddCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', function(API_URL, $scope, $http, $state, $stateParams){
+    angular.module('io2v3').controller('queAddCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizDataService', function(API_URL, $scope, $http, $state, $stateParams, quizDataService){
 
         var vm = this;
 
@@ -8,14 +8,36 @@
         if($stateParams.examID != undefined)
         {
 
+            vm.QuizPrivate = true;
+            
+
+            vm.examID = $stateParams.examID;
+            $scope.$parent.absExamId = $stateParams.examID;
+
+
+            quizDataService.getMasterQuiz(vm.examID).then(function(res) {
+
+                vm.quizData = res.data;
+                vm.queCategory = vm.quizData.quiz[0].category_id;
+
+
+            });
+
+            vm.queSection = "Select Section";
+
+
+        }
+
+        else {
+            vm.QuizPrivate = false;
+            vm.queCategory = "Select Category";
+            vm.queSection = "Select Section";
+
         }
 
 
         vm.saveReturn = false;
-
-        vm.queCategory = "Select Category";
         vm.queLevel = "Select Level";
-        vm.queSection = "Select Section";
         vm.queType = "Select Type";
 
         

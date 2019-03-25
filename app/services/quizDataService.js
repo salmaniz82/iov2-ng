@@ -10,7 +10,7 @@ angular.module('io2v3')
 			var quizPlayUrl = API_URL+'quiz/subjects/'+quiz_id;
 			return $http({
 
-				 cache: true,
+				 
 				 url : quizPlayUrl,
 				 method: 'GET'
 

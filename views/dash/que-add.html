@@ -4,6 +4,15 @@
                 <div class="row">
                     <div class="span8"> <h3>Add Questions</h3> </div>
                 </div>
+                
+
+                
+                        
+                        <quiz-info-component param="vm.examID"></quiz-info-component>
+                        
+                
+
+                
 
                  <form method="post" id="qzques" name="qzques">
 
@@ -12,6 +21,9 @@
                             <h4 class="c-green">Categorization</h4>    
                         </div>
                     </div>
+
+
+                    <div ng-if="!vm.QuizPrivate">
 
                     <div class="row">
                         <div class="span4">
@@ -44,6 +56,21 @@
                                     <option selected disabled="true">Select Section</option>
                                     <option ng-repeat="section in vm.globalList.sections" ng-value="section.id"
                                     ng-if="section.pcat_id == vm.queDecipline && vm.queDecipline != null">{{section.category}}</option>
+                                </select>
+                        </div>
+
+                    </div>
+
+                    </div> <!-- quiz private -->
+
+
+
+                    <div ng-if="vm.QuizPrivate" class="row">
+
+                        <div class="span4">
+                            <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
+                                    <option selected disabled="true">Select Section</option>
+                                    <option ng-repeat="section in vm.quizData.quizBaseDistro" ng-value="section.subject_id">{{section.subjects}}</option>
                                 </select>
                         </div>
 
