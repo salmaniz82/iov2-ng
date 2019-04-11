@@ -35,6 +35,7 @@
         <div class="row" ng-if="$index == vm.questionIndex">
 
             <div class="queDesc noselect" style="padding-top: 20px; padding-bottom: 60px">
+                <p>Subject : {{item.subDecipline}}</p>
                 <span>Question # : {{vm.questionIndex + 1}}</span><p ng-bind-html="item.queDesc"></p>                  
             </div>
 
@@ -161,31 +162,26 @@
 
         </div>
 
-
-
-        
-        
     </div>
 
 
         <div class="row" style="margin-top: 20px;" ng-if="!vm.startReviewWizard">
-            <div class="span4">
-                
-                <a href="#" class="btn btn-default pull-left" ng-click="vm.preQuestion($index)" ng-if="vm.hasPre"> <span class="icon-chevron-left"> </span> Previous</a>
-                <a href="#" class="btn btn-success pull-right" ng-click="vm.nextQuestion($index)" ng-if="vm.hasMore">Next <span class="icon-chevron-right"> </span> </a>
-                
+            <div class="span4" ng-if="vm.hasPre">
+                <a href="#" class="btn btn-default" ng-click="vm.preQuestion($index)" > <span class="icon-chevron-left"> </span> Previous</a>
             </div>
 
-            <div class="span4">
-                
-                <a href="#" class="btn btn-success  pull-left" ng-if="vm.isLastQue" ng-click="vm.ansPrep()">End Quiz</a>               
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                <a href="#" class="btn btn-danger pull-left" ng-if="vm.isReviewEnabled()" ng-click="vm.startReview()">Review Questions : ( {{vm.markedQuestions.length}} )</a>
+            <div class="span4" ng-if="vm.hasMore">
+                <a href="#" class="btn btn-success" ng-click="vm.nextQuestion($index)" >Next <span class="icon-chevron-right"> </span> </a>
+            </div>
+
+            <div class="span4" ng-if="vm.isLastQue">
+                <a href="#" class="btn btn-success"  ng-click="vm.ansPrep()">End Quiz</a>               
+            </div>
+
+            <div class="span4" ng-if="vm.isReviewEnabled()">
+                <a href="#" class="btn btn-danger" ng-click="vm.startReview()">Review Questions : ( {{vm.markedQuestions.length}} )</a>
             </div>
         </div>
-
-
-
 
         <div class="row" style="margin-top: 20px;" ng-if="vm.startReviewWizard">
 

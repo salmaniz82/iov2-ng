@@ -312,7 +312,9 @@
 		        if (diff <= 0) {
 
 			      //$timeout.cancle(toid);
-			      console.log('timer has ended');
+
+			      vm.manageTimeOutSubmission();
+
 			      return false;
 
 		        }else {
@@ -330,6 +332,236 @@
 		vm.startTimer(vm.durationMins);
 
 
+
+        vm.manageTimeOutSubmission = function()
+        {
+
+            console.log('manage timeout is triggered');
+            /*
+            1. no question were marked
+            2. marked length is present
+                2.a retian provided answer
+                2.b set u/a for not attempted
+            3   what if  
+
+            */
+
+            if(vm.markedQuestions.length == 0 && vm.providedAnswers.length == vm.quizData.quiz[0].noques)
+            {
+                /*
+                
+                ALL ATTEMPTED ZERO MARKED
+
+                */
+                vm.ansPrep();
+            }
+            else if(vm.markedQuestions.length == (vm.quizData.quiz[0].noques - vm.providedAnswers.length) && vm.providedAnswers.length != 0)
+            {               
+                
+                /*
+                SOME ATTEMPTED REMAINDER IN MARKED
+                */
+                vm.manageMarkedOnTimeOut();
+            }
+
+            else if (vm.markedQuestions.length == vm.quizData.quiz[0].noques && vm.providedAnswers.length == 0)
+            {
+                /*
+                ALL MARKED BUT ZERO PROVIDED AS ANSWER
+                */
+                vm.manageMarkedOnTimeOut();
+            }
+
+            else if (vm.markedQuestions.length == 0 && vm.providedAnswers.length ==0)
+            {
+                
+                /*
+                
+                ZERO ACTIVITY
+                NOT MARKED
+                NOT ASNWER
+
+                */
+                vm.manageNoActivtiyOnTimeOut();
+
+            }
+
+            else if (vm.markedQuestions.length == 0 && vm.providedAnswers.length != vm.quizData.quiz[0].noques)
+            {
+                /*                   
+                    NO MARKED
+                    SOME ANSWERED 
+                    SOME PENDING
+                */
+                vm.managePartiallyAnsweredNoMarked();
+
+            }
+
+            else if (vm.markedQuestions.length != 0 && vm.providedAnswers.length != vm.quizData.quiz[0].noques)
+            {
+
+                /*
+                most crucial
+                SOME MARKED
+                SOME ANSWERED
+                SOME PENDING
+                */
+
+                vm.manageTimoutAllAspect();
+
+
+            }
+
+
+            else {
+                console.log('marked length : ' + vm.markedQuestions.length);
+                console.log('answer : ' + vm.providedAnswers.length);
+                console.log('required questions quiz : ' + vm.quizData.quiz[0].noques);
+            }
+
+        };
+
+
+        vm.manageMarkedOnTimeOut = function()
+        {
+         
+            for(var key in vm.markedQuestions)
+            {
+                    var item = vm.markedQuestions[key];
+                    console.log(item);
+                    if(item.answer == undefined)
+                    {
+                        // item property is set
+                        item.answer = 'u/a';
+                    }
+
+                    vm.providedAnswers.push(item);
+              
+            }
+            vm.ansPrep();      
+
+        };
+
+        vm.manageNoActivtiyOnTimeOut = function()
+        {
+
+
+            vm.quizData.questions;
+
+            for(var key in vm.quizData.questions)
+            {
+                var item = vm.quizData.questions[key];
+                item.answer = 'u/a';
+                vm.providedAnswers.push(item);
+                
+
+            }
+
+
+            vm.ansPrep();
+
+        };
+
+
+        vm.managePartiallyAnsweredNoMarked = function()
+        {
+
+            var answerQuestionIDCollection = [];
+
+            /*
+                getting all questions_id which has already been answered in array
+            */
+
+
+            for(var key in vm.providedAnswers)
+            {
+                var item = vm.providedAnswers[key];
+                answerQuestionIDCollection.push(item.questionId);
+            }
+
+            
+
+            for(var key in vm.quizData.questions)
+            {
+                var item = vm.quizData.questions[key];
+                if(!answerQuestionIDCollection.includes(item.questionId))
+                {
+                    /*
+                    if already in answers than we don't need to include them again
+                    */
+                    if(item.answer == undefined) 
+                    {
+                        item.answer = 'u/a'
+                    }
+
+
+                    vm.providedAnswers.push(item);
+                }
+
+                
+            }
+
+            vm.ansPrep();
+
+        };
+
+
+
+        vm.manageTimoutAllAspect = function()
+        {
+
+
+            for(var key in vm.markedQuestions)
+            {
+                    var item = vm.markedQuestions[key];
+                    console.log(item);
+                    if(item.answer == undefined)
+                    {
+                        // item property is set
+                        item.answer = 'u/a';
+                    }
+
+                    vm.providedAnswers.push(item);
+              
+            }
+
+            var answerQuestionIDCollection = [];
+
+            /*
+                getting all questions_id which has already been answered in array
+            */
+
+
+            for(var key in vm.providedAnswers)
+            {
+                var item = vm.providedAnswers[key];
+                answerQuestionIDCollection.push(item.questionId);
+            }
+
+
+            for(var key in vm.quizData.questions)
+            {
+                var item = vm.quizData.questions[key];
+                if(!answerQuestionIDCollection.includes(item.questionId))
+                {
+                    /*
+                    if already in answers than we don't need to include them again
+                    */
+                    if(item.answer == undefined) 
+                    {
+                        item.answer = 'u/a'
+                    }
+
+
+                    vm.providedAnswers.push(item);
+                }
+
+                
+            }
+
+            vm.ansPrep();
+
+        };    
 
     }]);
 
