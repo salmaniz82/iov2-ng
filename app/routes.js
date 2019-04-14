@@ -261,6 +261,14 @@
 
         })
 
+        .state('dash.library', {
+
+            url : '/library',
+            templateUrl : 'views/dash/library.html',
+            controller : 'libraryCtrl as vm'
+
+        })
+
         .state('dash.modal', {
             url : '/modal',
             templateUrl : 'views/modal.html',

@@ -5,6 +5,72 @@
         var vm = this;
 
 
+        vm.showMediaLibrary = false;
+        vm.mediaLoaded = null;
+
+        vm.questionMedia = [];
+
+        
+
+
+        vm.addMediaToQuestion = function(item)
+        {
+
+            if(!vm.mediaAddedTolist(item.id))
+            {
+                vm.questionMedia.push(item);    
+            }
+
+        };
+
+        vm.mediaAddedTolist = function(itemid)
+        {
+
+            var idx = $scope.$parent.base.getIndex(vm.questionMedia, 'id', itemid);
+            if(idx == -1)
+            {
+                return false;
+            }
+
+            return true;
+
+        };
+
+
+        vm.unlinkFromLibrary = function(itemId)
+        {
+
+            var idx = $scope.$parent.base.getIndex(vm.questionMedia, 'id', itemId);
+
+
+            vm.questionMedia.splice(idx, 1);            
+
+        };
+
+
+        vm.enableLibrary = function()
+        {
+            vm.showMediaLibrary = true;            
+        };
+
+
+        vm.closeLibrary = function()
+        {
+
+            vm.showMediaLibrary = false;            
+
+        };
+
+
+        vm.removeMedia = function(index)
+        {
+
+            vm.questionMedia.splice(index, 1);
+
+
+        };
+
+
         if($stateParams.examID != undefined)
         {
 
@@ -132,13 +198,30 @@
         	vm.nque.level_id = vm.queLevel;
         	vm.nque.type_id = vm.queType;
 
+
+            
+
+            if(vm.questionMedia.length > 0)
+            {
+
+                vm.nque.mediaIds = [];
+
+                vm.questionMedia.forEach(function(item) {
+
+                    vm.nque.mediaIds.push(item.id);     
+
+                });
+
+
+
+            }
+
             if($stateParams.examID != undefined)
             {
                 vm.nque.quiz_id =  $stateParams.examID;               
             }
 
-
-        		console.log(vm.nque);
+        		
 
 
         	$http({
@@ -167,7 +250,94 @@
         }
 
 
+
+        vm.fetchMedia = function()
+        {
+
+            $http.get(API_URL+'media').then(
+
+                function(res) {
+
+                    vm.mediaLoaded = true;
+
+                    vm.mediaList = res.data.media;
+
+                }, 
+                function(res) {
+
+                    vm.mediaLoaded = false;
+
+                });
+
+        };
+
+
         vm.fetchGlobal();
+        vm.fetchMedia();
+
+
+        
+
+
+        vm.sendFile = function()
+        {
+
+            if($stateParams.examID != undefined)
+            {
+                vm.myFormData.category_id = vm.quizData.quiz[0].category_id;
+            }
+            else {
+
+                vm.myFormData.category_id = vm.queCategory;
+
+            }
+
+            var file = $scope.photo;
+            var uploadUrl = API_URL+'media';
+
+            var form_data = new FormData();
+            angular.forEach(file, function(file){
+                form_data.append('file', file);
+            });
+
+
+            var formpostdata = vm.myFormData;
+
+            for (var key in formpostdata) {
+                form_data.append(key, formpostdata[key]);
+            }
+
+            $http.post(uploadUrl, form_data,
+                {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined, 'Process-Data': false}
+            }).then(
+            function(res){
+
+                var lastItem = res.data.lastItem[0];
+                vm.mediaList.push(lastItem);
+
+            }, 
+
+            function(res){
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'Error',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                
+            });
+
+        };
+
+
+
+
 
     }]);
 

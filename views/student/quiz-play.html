@@ -40,6 +40,34 @@
             </div>
 
 
+
+            <div class="row" ng-if="item.media != undefined">
+
+
+
+                    <section class="span12">
+
+                        <figure class="quiz-figure" ng-repeat="media in item.media" ng-if="media.type == 'image'">
+                            <img ng-src="{{baseUrl + media.filepathurl}}">
+                            <figcaption>{{media.title}}</figcaption>
+                        </figure>
+
+
+                        <div class="video-wrapper" ng-repeat="media in item.media" ng-if="media.type == 'video'">
+                            
+                            <video width="640" height="360" controls>
+                              <source src="{{baseUrl + media.filepathurl | trustUrl}}" type="video/mp4">
+                               Your browser does not support the video tag.
+                            </video>
+
+                        </div>
+
+
+                    </section>
+                    
+                </div>
+
+
             <div class="row">
                     <div class="span4">
                         <p class="txt-highlight" style="border-bottom: 1px dotted #333">

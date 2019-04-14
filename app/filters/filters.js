@@ -8,6 +8,13 @@ angular.module('io2v3')
     })
 
 
+    .filter("trustUrl", ['$sce', function ($sce) {
+        return function (recordingUrl) {
+            return $sce.trustAsResourceUrl(recordingUrl);
+        };
+    }])
+
+
     .filter('setDecimal', function ($filter) {
     return function (input, places) {
         if (isNaN(input)) return input;

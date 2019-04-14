@@ -321,6 +321,15 @@ p.flat-circle span {
   box-shadow: 0 1rem 1rem rgba(0,0,0,0.2);
   animation: blowUpModal 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
+
+
+.cst-modal-window.large {
+
+  width:1200px !important;
+
+}
+
+
 .cst-modal-header{
   padding:1rem;
   font-family: sans-serif;
@@ -477,3 +486,29 @@ h3.page-title {
 
 
 table.table.bordered td{ border: 1px solid #C1C2C1; }
+
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.custom-upload-btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 0px;
+  font-size: 16px;
+  cursor: pointer !important;
+  
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

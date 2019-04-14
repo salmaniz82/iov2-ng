@@ -10,9 +10,14 @@
                     </div>
                 </div>
 
+
+                <div ng-if="vm.loadingStatus == null"> Loading Quiz </div>
+
+                <div ng-if="vm.loadingStatus == false" class="c-red"> You do not have any quiz at the moment </div>
+
                 
 
-                <table class="table table-striped">
+                <table class="table table-striped" ng-if="vm.loadingStatus == true">
 
 
 

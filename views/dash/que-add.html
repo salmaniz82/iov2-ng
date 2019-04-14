@@ -9,6 +9,18 @@
                 
                         
                         <quiz-info-component param="vm.examID"></quiz-info-component>
+
+
+                        <form>
+                            
+                        
+
+                        <div class="upload-btn-wrapper" ng-hide="1 == 1">
+                            <button class="custom-upload-btn">Choose File</button>
+                            <input type="file" name="file" file-input="photo">
+                        </div>
+
+                        </form>
                         
                 
 
@@ -62,8 +74,6 @@
                     </div>
 
                     </div> <!-- quiz private -->
-
-
 
                     <div ng-if="vm.QuizPrivate" class="row">
 
@@ -122,12 +132,14 @@
                         </div>
                     </div>
 
+
                         <div class="clearfix">&nbsp;</div>
-                    <div class="row">
+                    <div class="row" ng-if="1 != 1">
                         <div class="span2">
                             <label>Add Images:</label>
                         </div>
-                        <div class="span3">
+
+                        <div class="span3" >
                             <span class="t-bold">Use Previous Images</span>
                             <label class="switch switch-green">
                                 <input type="checkbox" class="switch-input">
@@ -138,50 +150,70 @@
                     </div>
                     <br>
 
-                    <div id="imgwrap">
-
-                        <div class="row imgCont">
-                            <div class="span4">
-                                <input type="text" name="figtxt" id="figtxt" class="span4" placeholder="Image Label">
-                            </div>
-
-                            <div class="span3">
-                                <div class="controls-actions">
-                                    <div class="fileupload">
-
-                            <span class="btn btn-icon btn-small graphic-chevron-left btn-file d-block">
-                            <span class="fileupload-new">Upload</span>
-                                <input id="user_avatar" name="file[]" type="file">
-                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--row imgCont-->
-
-                    </div>
-                    <!--img wrap-->
 
 
                     <div class="row">
 
                         <div class="span5">
-                            <div id="addbtn">
-                                <span class="icon-plus"></span><a href="#">Add More Images</a>
+                            <div id="addMediabtn">
+                                <span class="icon-plus"></span><a href="#" ng-click="vm.enableLibrary()">Add Media</a>
                             </div>
                             <!--addbtn-->
                         </div>
 
                     </div>
 
-                    <div class="bbr-light">&nbsp</div>
+                    <div class="row" ng-if="vm.questionMedia.length < 1 ">
+                        <div class="span9">
+                            <p>No media attached to question</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row" ng-if="vm.questionMedia.length > 0 ">
+                        <div class="span9">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Title</th>
+                                    <th>FilePath</th>
+                                    <th>Size</th>
+                                   <th>&nbsp;</th>                                   
+                                </tr>
+
+                                </thead>
+
+
+                                <tbody>
+                                    <tr ng-repeat="media in vm.questionMedia">
+                                        <td>{{media.type}}</td>
+                                        <td>{{media.title}}</td>
+                                        <td>{{media.filepathurl}}</td>
+                                        <td>{{media.size}}</td>
+                                        <td>
+                                            <a href="#" class="rmbtn" ng-click="vm.removeMedia($index)"><span class="c-red icon-remove-circle icon-2x vam"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="bbr-light">&nbsp;</div>
 
                     <div class="options_wrapper" ng-if="vm.queType != 4">
                         
                     
                     <div class="row">
                         <div class="span6">
-                            <label>Available Choices for Answers</label>
+                            <label>Set options</label>
                         </div>
                     </div>
 
@@ -284,3 +316,86 @@
             </div>
             </form>
         </section>
+
+
+
+
+    <div class="cst-modal-container" ng-show="vm.showMediaLibrary">
+    <div class="cst-modal-window large">
+      <div class="cst-modal-header">
+        <span style="font-weight: 600">Media Library</span>
+
+        <i class="icon-remove pull-right" ng-click="vm.closeLibrary()"></i>
+
+      </div>
+      <div class="cst-modal-body">
+
+
+        <form>
+            
+        
+
+
+        <div class="row">
+            <div class="span6">
+                <input type="text" name="title" class="w-100" placeholder="Media Title" ng-model="vm.myFormData.title">
+            </div>   
+            <div class="span2">
+                <div class="upload-btn-wrapper">
+                        <button class="custom-upload-btn">Choose File</button>
+                        <input type="file" name="file" file-input="photo">
+                </div>
+            </div>
+
+            <div class="span2">
+                <button type="submit" class="btn btn-primary btn-small" ng-click="vm.sendFile()">Upload</button>
+            </div>   
+        </div>
+
+
+        </form>
+
+
+        <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Preview</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="item in vm.mediaList">
+                            <td>
+                                
+                                <div ng-if="!vm.mediaAddedTolist(item.id)" class="btn btn-primary btn-mini" ng-click="vm.addMediaToQuestion(item)">Add</div>
+
+                                <div ng-if="vm.mediaAddedTolist(item.id)">
+                                    
+                                    <a href="#" class="rmbtn" ng-click="vm.unlinkFromLibrary(item.id)"><span class="c-red icon-remove-circle icon-2x vam"></span>Remove</a>
+
+                                </div>
+
+
+                            </td>
+                            <td>{{item.filepathurl}}</td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.size}}</td>    
+                       </tr>                   
+                    </tbody>
+                </table>
+        <div>
+        
+        <button class="btn btn-small btn-danger" ng-click="vm.closeLibrary()">Close</button>    
+        </div>
+        
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->

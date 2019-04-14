@@ -6,6 +6,9 @@
         var vm = this;
 
 
+        vm.loadingStatus = null;
+
+
 
 
         vm.fetchQuiz = function()
@@ -17,12 +20,16 @@
         	{
         		
                 vm.dataList = res.data.quiz;
+                vm.loadingStatus = true;    
+
+
         	}
 
         	function error(res)
         	{
 
         		vm.dataList = res.data.quiz;
+                vm.loadingStatus = false;
 
         	}
 

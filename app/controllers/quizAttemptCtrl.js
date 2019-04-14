@@ -12,6 +12,9 @@
         var attempt_id = $stateParams.attempt_id;
 
 
+        $scope.baseUrl = API_URL;
+
+
         vm.hasPre = false;
         vm.hasMore = true;
         vm.showEndQuiz = false;

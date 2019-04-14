@@ -1,0 +1,95 @@
+<section class="span9">
+            <div class="col-right">
+
+
+                <div class="row">
+                    <div class="span5">
+                    <h3>Media Library</h3>
+                </div>
+                    
+                </div>
+
+                <form>
+
+                <div class="row">
+
+
+
+
+                    <div class="span3">
+                        <select name="category_id" id="category_id" class="w-100" ng-model="vm.myFormData.category_id">
+                            <option ng-selected="vm.myFormData.category_id == undefined">Select Category</option>
+                            <option ng-repeat="cat in vm.categoryList" ng-value="cat.id">{{cat.name}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="span6">
+                        <input type="text" name="title" ng-model="vm.myFormData.title" placeholder="Title for attachment" class="w-100">
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="span3">
+
+                    
+                        
+
+                        <div class="upload-btn-wrapper">
+                        <button class="custom-upload-btn">Upload a file</button>
+                            <input type="file" name="file" file-input="photo">
+                        </div>
+
+                        </div>
+
+                        <div class="span6">
+                            <button type="submit" class="btn btn-primary btn-small" ng-click="vm.sendFile()">Save</button>    
+                        </div>
+                    
+                </div>
+
+                </form>
+
+
+
+                
+
+                <div ng-if="vm.loadingStatus == null">Loading Media</p></div>
+                <div class="c-red" ng-if="vm.loadingStatus == false">Cannot find existing media</div>
+               
+                <table class="table table-striped" ng-if="vm.loadingStatus == true">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Preview</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="item in vm.dataList">
+
+                            <td>{{item.id}}</td>
+                            <td>{{item.filepathurl}}</td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.size}}</td>
+
+                            
+                        </tr>
+                    
+                    </tbody>
+
+
+                </table>
+
+        </div><!-- end col right-->
+        </section>
