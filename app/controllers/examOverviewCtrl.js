@@ -31,6 +31,62 @@
 
 	        });
 
+
+        vm.toggleEnroll = function(itemId, value)
+        {
+
+
+            console.log('fired');
+            
+            var enrolltoggleUrl = API_URL+'quiz-enrollment-toggle/'+itemId;
+
+
+
+            $http({
+
+                url : enrolltoggleUrl,
+                method : 'PUT',
+                data : {'enrollment' : value}
+
+            }).then(successEnrollToggle, errorEnrollToggle);
+
+
+            function successEnrollToggle(res)
+            {
+                
+
+                var notify = {
+                        type: 'success',
+                        title: 'Enrollment',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            }
+
+            function errorEnrollToggle(res)
+            {
+                
+                var notify = {
+                        type: 'error',
+                        title: 'Enrollment',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+                    vm.Quiz.enrollment = !res.data.value;
+
+
+
+
+            }
+
+        };
+
+
 		
         
 

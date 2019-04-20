@@ -5,7 +5,7 @@
     </div>
 
 
-    <div id="quizTimer">{{timeLeft}}</div>
+    <div id="quizTimer" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</div>
 
 <div class="row box-style-one bbr-light">
     <div class="span8" style="margin-left: 0px;">
@@ -178,10 +178,11 @@
 
             <div class="row" ng-if="!vm.startReviewWizard">
                 <div class="span6">
-                        <label class="checkbox pull-left">
+                        <label class="checkbox pull-left kt-pulse">
                             <input type="checkbox" name="review" value="1" ng-model="vm.quizData.questions[$index].marked">
                             <strong> Mark for Review : <span class="c-red"> Marked ( {{vm.markedQuestions.length}} ) </span> | <span class="c-green">Answered ( {{vm.providedAnswers.length}} )</span> 
                             </strong>
+                            <span class="kt-pulse__ring" ng-if="vm.ShowPulse == true"></span>
                         </label>
                     </div>
             </div>

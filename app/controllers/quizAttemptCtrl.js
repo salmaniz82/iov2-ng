@@ -12,6 +12,12 @@
         var attempt_id = $stateParams.attempt_id;
 
 
+        vm.ShowPulse = false;
+
+
+        vm.TimeStatus = 'high';
+
+
         $scope.baseUrl = API_URL;
 
 
@@ -192,6 +198,9 @@
 
              if(!vm.validAnswer() && (vm.activeQuestion.marked == undefined || vm.activeQuestion.marked == false) )
              {
+
+               vm.ShowPulse = true;     
+
                 return false;
 
              }
@@ -202,12 +211,14 @@
                 if(markedIndex == -1)
                 {
                     vm.markedQuestions.push(vm.activeQuestion);  
+                    vm.ShowPulse = false;
                 } 
 
 
                 if(answerIndex != -1)
                 {
                     vm.providedAnswers.splice(answerIndex, 1);
+                    vm.ShowPulse = false;
                 }
 
              }
@@ -218,11 +229,13 @@
                if(answerIndex == -1)
                {
                     vm.providedAnswers.push(vm.activeQuestion);
+                    vm.ShowPulse = false;
                }
 
                if(markedIndex != -1)
                {
                     vm.markedQuestions.splice(markedIndex, 1);
+                    vm.ShowPulse = false;
                }
 
              }
@@ -345,6 +358,23 @@
 
 
                 var leftDurationSec = (minutes * 60) + seconds;
+
+                var percentLeft = Math.round(leftDurationSec / (parseInt(vm.quizData.quiz[0].duration) * 60) * 100);
+
+
+                if(percentLeft >= 70)
+                {
+                    vm.TimeStatus = 'high';
+                }
+                else if (percentLeft >= 50)
+                {
+                    vm.TimeStatus = 'med';
+                }
+                else {
+                    vm.TimeStatus = 'low';
+                }
+
+
                 localStorage.setItem('lastStoredDurationSeconds', leftDurationSec);
 
 
@@ -362,7 +392,7 @@
 
 		        if (diff <= 0) {
 
-			      //$timeout.cancle(toid);
+			      
 
 			      vm.manageTimeOutSubmission();
 

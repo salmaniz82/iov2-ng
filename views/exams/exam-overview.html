@@ -4,7 +4,10 @@
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="span6"><h3>{{vm.Quiz.title}}</h3></div>
-                    <div class="span3"><a ui-sref="exm.edit()" class="btn btn-warning  pull-right">Edit Course</a></div>
+                    <div class="span3">
+                        
+                        <a ui-sref="exm.edit()" class="btn pull-right btn-icon btn-warning icon-edit" title="Add Lesson">Edit Course</a>
+                    </div>
                 </div>
 
 
@@ -15,7 +18,7 @@
 
                             <tr>
                                 <td class="t-bold">Quiz Code</td>
-                                <td>ITAS101</td>
+                                <td><span class="c-red">ITAS101</span></td>
 
                                 <td class="t-bold">Last Date</td>
                                 <td>{{vm.Quiz.endDateTime}}</td>
@@ -30,15 +33,34 @@
                             </tr>
 
                             <tr>
-                                <td colspan="2"> &nbsp; </td>
+                                <td class="t-bold">                                   
+                                       Enrollment Status
+                                   </td>
+
+                                   <td> 
+
+                                    <span class="kt-switch kt-switch--icon">
+                                            <label>
+                                    <input type="checkbox" checked="checked" name="" ng-model="vm.Quiz.enrollment" ng-true-value="'1'" ng-false-value="'0'"
+                                         ng-checked="vm.Quiz.enrollment == '1'" ng-change="vm.toggleEnroll(vm.Quiz.id, vm.Quiz.enrollment)">
+                                    <span></span>
+
+                                    </label>
+                                    </span>
+                                   </td>
+                                   
+                                </td>
 
 
-                                <td class="t-bold"><a href="#" >Students Enrolled</a></td>
-                                <td>301</td>
+                                <td class="t-bold"><a href="#" >Student's Enrolled</a></td>
+                                <td><span class="c-red">301</span></td>
                             </tr>
 
                             <tr>
-                                <td colspan="4"><span class="t-bold">Course Venue: </span>Lorem ipsum dolor sit amet, Lorem ipsum </td>
+                                <td colspan="4"><span class="t-bold">Course Venue: </span>
+                                    <span class="c-red">Lorem ipsum dolor sit amet, Lorem ipsum </span>
+                                
+                            </td>
                             </tr>
 
 

@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('addquizCtrl', ['API_URL', '$scope', '$http', '$state', function(API_URL, $scope, $http, $state){
+    angular.module('io2v3').controller('addquizCtrl', ['API_URL', '$scope', '$http', '$state', '$timeout', function(API_URL, $scope, $http, $state, $timeout){
 
 
         var vm = this;
@@ -120,15 +120,26 @@
                 {
                     
                      var notify = {
-                        type: 'success',
+                        type: 'info',
                         title: 'Question Allocation',
                         content: res.data.message,
                         timeout: 5000 //time in ms
                     };
 
-                    $scope.$emit('notify', notify);
+                   vm.allocateInterval = $timeout(function() {
 
-                       $state.go('dash.land');
+                    
+
+                   }, 1000);     
+
+
+                   $scope.$emit('notify', notify);
+
+                   $timeout.cancel(vm.allocateInterval);
+
+                   $state.go('dash.land');
+
+                    
                    
                 }
 
@@ -146,7 +157,7 @@
 
                 }
 
-             //   $http.post(allocateQuestionUrl).then(allocateSuccess, allocateError);
+                $http.post(allocateQuestionUrl).then(allocateSuccess, allocateError);
 
             }
 
@@ -186,10 +197,7 @@
         };
 
 
-        console.log('add Quiz Ctrl');
         
-
-
     }]);
 
 })();

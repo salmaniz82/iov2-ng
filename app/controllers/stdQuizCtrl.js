@@ -20,7 +20,7 @@ location=no
 
 
         var vm = this;
-        vm.durationMins = .3;
+        vm.durationMins = 10;
 
         $scope.timeLeft = vm.durationMins+':00';
 

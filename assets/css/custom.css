@@ -384,11 +384,25 @@ figure.quiz-figure img {
     display: block;
     width: 5rem;
     padding: 0px;
-    border: 1px solid #333;
+    color: #ffffff;
     font-size: 30px;
     padding: 1rem 0.5rem;
     text-align: center;
 }
+
+
+#quizTimer.high {
+  background-color: var(--green);
+}
+
+#quizTimer.med {
+  background-color: var(--yellow);
+}
+
+#quizTimer.low {
+    background-color: var(--red);
+}
+
 
 h3.page-title {
     margin-top: 0px !important;
@@ -895,3 +909,59 @@ button.custom-upload-btn {
 .kt-switch.kt-switch--outline.kt-switch--danger input:checked ~ span:after {
   background-color: #fd397a;
   opacity: 1; }
+
+
+
+@-webkit-keyframes kt-pulse {
+  0% {
+    -webkit-transform: scale(0.1, 0.1);
+    opacity: 0.0; }
+  60% {
+    -webkit-transform: scale(0.1, 0.1);
+    opacity: 0.0; }
+  65% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.2, 1.2);
+    opacity: 0.0; } }
+
+@keyframes kt-pulse {
+  0% {
+    -webkit-transform: scale(0.1, 0.1);
+    opacity: 0.0; }
+  60% {
+    -webkit-transform: scale(0.1, 0.1);
+    opacity: 0.0; }
+  65% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale(1.2, 1.2);
+    opacity: 0.0; } }
+
+.kt-pulse {
+  position: relative; }
+  .kt-pulse .kt-pulse__ring {
+    display: block;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    -webkit-animation: kt-pulse 3.5s ease-out;
+    animation: kt-pulse 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(226, 4, 4);
+    top: -8px;
+    left: -10px;
+    }
+    @media screen\0 {
+      .kt-pulse .kt-pulse__ring {
+        top: 2px;
+        left: 2px; } }
+
+
+
+
