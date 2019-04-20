@@ -5,13 +5,13 @@
                   
                 
                 <div class="span6">
-                  <h3 style="margin-top: 0px">Quiz Questions</h3>  
+                  
                 </div>
 
 
 
                 <div class="span3">
-                  <a class="btn btn-twitter btn-small pull-right" ui-sref="exm.addQuizQuestions({'examID': vm.examID})">Add New Questions</a>
+                  <a class="btn btn-twitter pull-right" ui-sref="exm.addQuizQuestions({'examID': vm.examID})">Add Questions</a>
                 </div>
 
 
@@ -94,12 +94,17 @@
                                <td>{{item.answer}}</td>
                                <td>
                                   
-                                  <label class="switch switch-green">
-                                    <input type="checkbox" class="switch-input" ng-model="item.qqStatus" ng-true-value="'1'" ng-false-value="'0'"
+                                  
+
+
+
+                                <span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="item.qqStatus" ng-true-value="'1'" ng-false-value="'0'"
                                      ng-checked="item.qqStatus == '1'" ng-change="vm.toggleqqStatus(item.id, item.qqStatus, item.subject_id)">
-                                    <span class="switch-label" data-on="On" data-off="Off"></span>
-                                    <span class="switch-handle"></span>
-                                </label>
+                                <span></span>
+                              </label>
+                            </span>
 
                                </td>
                                <td>menu</td>

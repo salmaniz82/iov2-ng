@@ -40,14 +40,16 @@
                         
 
                         <div class="upload-btn-wrapper">
-                        <button class="custom-upload-btn">Upload a file</button>
+                        <button class="custom-upload-btn">
+                            
+                        Attach Media</button>
                             <input type="file" name="file" file-input="photo">
                         </div>
 
                         </div>
 
                         <div class="span6">
-                            <button type="submit" class="btn btn-primary btn-small" ng-click="vm.sendFile()">Save</button>    
+                            <button type="submit" class="btn btn-primary" ng-click="vm.sendFile()">Upload</button>    
                         </div>
                     
                 </div>
@@ -61,7 +63,7 @@
                 <div ng-if="vm.loadingStatus == null">Loading Media</p></div>
                 <div class="c-red" ng-if="vm.loadingStatus == false">Cannot find existing media</div>
                
-                <table class="table table-striped" ng-if="vm.loadingStatus == true">
+                <table class="table" ng-if="vm.loadingStatus == true">
                     <thead>
                     <tr>
                         <th>ID</th>

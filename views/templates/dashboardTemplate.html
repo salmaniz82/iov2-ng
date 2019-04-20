@@ -13,7 +13,7 @@
 
                     <a href="/" class="brand">
 
-                        <img alt="Logo" ng-src="{{'assets/images/site_logo.png'}}" width="200" height="88"/>
+                        <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/>
 
                         <!-- %span.navbar-text=" -->
                         
@@ -77,7 +77,7 @@
     <div class="row">
 
         <div class="span12" style="margin-top: 10px">
-            <div class="btn btn-small btn-icon graphic-chevron-left pull-left btn-default" back-button>Back</div>
+            <div class="btn btn-icon graphic-chevron-left pull-left btn-warning" back-button>Back</div>
         </div>
 
 
@@ -93,12 +93,12 @@
 
 <div class="clearfix">&nbsp;</div>
         <ul class="side-filters list-none">
-            <li><a ui-sref="dash.users()">Users</a></li>
-            <li><a ui-sref="dash.roles()">Roles</a></li>
-            <li><a ui-sref="dash.quePool()">Questions Pool</a></li>
-            <li><a ui-sref="dash.cats()">Categories</a></li>
-            <li><a ui-sref="dash.library()">Media Library</a></li>
-            <li><a ui-sref="dash.modal()">Modal Test</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.users()">Users</a></li>
+            <li ui-sref-active="active"> <a ui-sref="dash.roles()">Roles</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.quePool()">Questions Pool</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.cats()">Categories</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.library()">Media Library</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.modal()">Modal Test</a></li>
         </ul>
 </div> <!-- teacher control -->
 

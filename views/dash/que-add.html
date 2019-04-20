@@ -176,7 +176,7 @@
                                 <thead>
                                 <tr>
                                     <th>Type</th>
-                                    <th>Title</th>
+                                    <th>Label</th>
                                     <th>FilePath</th>
                                     <th>Size</th>
                                    <th>&nbsp;</th>                                   
@@ -188,12 +188,30 @@
                                 <tbody>
                                     <tr ng-repeat="media in vm.questionMedia">
                                         <td>{{media.type}}</td>
-                                        <td>{{media.title}}</td>
+
+
+                                        <td>
+
+                                            <span ng-if="!item.id.edit">
+                                                {{media.title}}
+                                            </span>
+
+                                            
+
+                                            <span ng-if="item.id.edit == true">
+                                                <input type="text" ng-model="media.title">
+                                            </span>
+
+                                            <a href="#" ng-click="item.id.edit = true"><span class="icon-edit-sign"></span></a>
+
+                                        </td>
                                         <td>{{media.filepathurl}}</td>
                                         <td>{{media.size}}</td>
                                         <td>
                                             <a href="#" class="rmbtn" ng-click="vm.removeMedia($index)"><span class="c-red icon-remove-circle icon-2x vam"></span></a>
                                         </td>
+
+                                        
                                     </tr>
                                 </tbody>
 
@@ -307,10 +325,17 @@
                     </div>
 
                     <div class="row">
-                        <div class="span7">
-                            <div id="que-save"  class="btn btn-success btn-small" ng-click="vm.saveQuestion('back')"> Save </div>
-                            <div id="que-save-add" class="btn btn-success btn-small" ng-click="vm.saveQuestion('more')"> Save & Add More</div>
+                        <div class="span4">
+                            <div id="que-save"  class="btn btn-success btn-block" ng-click="vm.saveQuestion('back')"> Save & Return </div>
+                            
                         </div>
+
+                        <div class="span4">
+                            <div id="que-save-add" class="btn btn-twitter btn-block" ng-click="vm.saveQuestion('more')"> Save & Continue</div>
+                        </div>
+
+
+
                     </div>
 
             </div>
@@ -328,7 +353,7 @@
         <i class="icon-remove pull-right" ng-click="vm.closeLibrary()"></i>
 
       </div>
-      <div class="cst-modal-body">
+      <div class="cst-modal-body" style="max-height: 500px; overflow: auto">
 
 
         <form>
@@ -341,14 +366,20 @@
                 <input type="text" name="title" class="w-100" placeholder="Media Title" ng-model="vm.myFormData.title">
             </div>   
             <div class="span2">
+                
+
                 <div class="upload-btn-wrapper">
-                        <button class="custom-upload-btn">Choose File</button>
-                        <input type="file" name="file" file-input="photo">
-                </div>
+                        <button class="custom-upload-btn">
+                            
+                        Attach Media</button>
+                            <input type="file" name="file" file-input="photo">
+                        </div>
+
+                
             </div>
 
             <div class="span2">
-                <button type="submit" class="btn btn-primary btn-small" ng-click="vm.sendFile()">Upload</button>
+                <button type="submit" class="btn btn-primary" ng-click="vm.sendFile()">Upload</button>
             </div>   
         </div>
 
@@ -356,12 +387,12 @@
         </form>
 
 
-        <table class="table table-striped">
+        <table class="table">
                     <thead>
                     <tr>
                         <th>Action</th>
                         <th>Preview</th>
-                        <th>Title</th>
+                        <th>Label</th>
                         <th>Category</th>
                         <th>Type</th>
                         <th>Size</th>
@@ -372,11 +403,17 @@
                         <tr ng-repeat="item in vm.mediaList">
                             <td>
                                 
-                                <div ng-if="!vm.mediaAddedTolist(item.id)" class="btn btn-primary btn-mini" ng-click="vm.addMediaToQuestion(item)">Add</div>
+                                <div ng-if="!vm.mediaAddedTolist(item.id)" ng-click="vm.addMediaToQuestion(item)">
 
+
+                                    <a href="#"><span class="c-green icon-circle-arrow-down vam"></span> Add</a>
+
+                                </div>
+
+                                
                                 <div ng-if="vm.mediaAddedTolist(item.id)">
                                     
-                                    <a href="#" class="rmbtn" ng-click="vm.unlinkFromLibrary(item.id)"><span class="c-red icon-remove-circle icon-2x vam"></span>Remove</a>
+                                    <a href="#" class="rmbtn" ng-click="vm.unlinkFromLibrary(item.id)"><span class="c-red icon-remove-circle vam"></span> Remove</a>
 
                                 </div>
 
@@ -392,7 +429,7 @@
                 </table>
         <div>
         
-        <button class="btn btn-small btn-danger" ng-click="vm.closeLibrary()">Close</button>    
+        <button class="btn btn-danger" ng-click="vm.closeLibrary()">Close</button>    
         </div>
         
       </div>

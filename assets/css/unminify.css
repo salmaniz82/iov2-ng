@@ -1,7 +1,7 @@
 :root {
     --grey: #898989;
     --yellow: #edbe40;
-    --blue: #40a2ed;
+    --blue: #5d78ff;    
     --red: #ed5140; 
     --green: #3db862;
 
@@ -12,7 +12,12 @@
     --greenLight: #3db862a6;
 
 
+    
+
+
     /*
+
+    --blue: #40a2ed;
         var(--greenLight)
     */
 
@@ -2522,7 +2527,7 @@ table {
     width: 100%;
 }
 .table th, .table td {
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid #cccccc2e;
     line-height: 24px;
     padding: 8px;
     text-align: left;
@@ -4068,6 +4073,7 @@ button.btn.btn-mini, input.btn.btn-mini[type="submit"] {
     margin-left: -20px;
     padding: 8px 20px;
     text-shadow: 0 1px 0 #FFFFFF;
+    margin-top: 40px !important;
 }
 .navbar .brand:hover, .navbar .brand:focus {
     text-decoration: none;
@@ -6547,7 +6553,7 @@ body.modal-merchant {
     font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: bold;
     line-height: 20px;
-    padding: 15px 40px;
+    padding: 12px 20px;
     text-shadow: none;
     text-transform: uppercase;
 }
@@ -6757,7 +6763,10 @@ body.modal-merchant {
     font-weight: 700;
     letter-spacing: 1px;
     outline: medium none;
-    padding: 15px 30px 15px 90px;
+    /*
+    padding: 15px 30px 15px 45px;
+    */
+    padding: 12px 20px 12px 35px;
     position: relative;
     text-transform: uppercase;
     transition: all 0.3s ease 0s;
@@ -6768,10 +6777,14 @@ body.modal-merchant {
     font-size: 110%;
     height: 100%;
     left: 0;
-    line-height: 3;
+    line-height: 2.5;
     position: absolute;
     top: 0;
+    /*
     width: 60px;
+    */
+
+    width: 30px;
 }
 .btn-icon:hover:before {
     background: none repeat scroll 0 0 rgba(51, 51, 48, 0);
@@ -6949,6 +6962,7 @@ button.d-block {
     border-spacing: 1px;
 }
 .table td {
+    vertical-align: middle;
 }
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
     background-color: #FFFFFF;
@@ -8691,7 +8705,7 @@ progress[value] {
     visibility: visible;
 }
 .side-filters li {
-    border-bottom: 1px solid #C1C2C1;
+    border-bottom: 1px solid #c1c2c13d;
 }
 .side-filters a {
     color: var(--grey);
@@ -8706,7 +8720,7 @@ progress[value] {
 
 }
 .side-filters a:hover {
-    background-color: var(--blueLight);
+    background-color: var(--green);
     color: #ffffff;
 
 }
@@ -8714,8 +8728,8 @@ progress[value] {
     color: var(--grey);
     line-height: 20px;
 }
-.side-filters .active {
-    background-color: var(--blue);
+.side-filters .active a {
+    background-color: var(--green);
     color: #ffffff;
 
 

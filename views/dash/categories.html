@@ -3,10 +3,10 @@
     <div class="row">
         <div class="span4">
             <h3>Categories : </h3>
-            <a class="btn btn-warning btn-small" ui-sref="dash.catree()">Tree View</a>
+            <a class="btn btn-warning" ui-sref="dash.catree()">Tree View</a>
         </div>
         <div class="span4">
-            <div ng-hide="vm.pageMode == 'new' || vm.pageMode == 'edit'" class="btn btn-success btn-small pull-right" ng-click="vm.pageMode = 'new'">Add New</div>
+            <div ng-hide="vm.pageMode == 'new' || vm.pageMode == 'edit'" class="btn btn-success pull-right" ng-click="vm.pageMode = 'new'">Add New</div>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
 
 
 
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>Id</th>
@@ -61,14 +61,18 @@
                             
                             
                             <td>
-                                <div class="btn-group">
-
-                                <a class="btn btn-twitter btn-mini " href="#" data-toggle="dropdown">&#8595; Actions</a>
+                                
+                            <div class="btn-group">
+                                <a class="btn btn-twitter btn-icon graphic-chevron-bottom" href="#" data-toggle="dropdown">Actions</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="vm.edit(item.id)">Edit</a></li>
                                     <li><a href="#" ng-click="vm.remove(item.id)">Remove</a></li>
                                 </ul>
                             </div>
+
+
+
+
                             </td>
                             
                         </tr>

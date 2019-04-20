@@ -77,7 +77,7 @@
 				<td>{{quiz.duration}} mins.</td>
 				
 				<td>
-					<a ng-if="quiz.validity == 'valid' && quiz.attempts == '0'" data-quizid="93" class="btn btn-small btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)">Start Quiz</a>
+					<a ng-if="quiz.validity == 'valid' && quiz.attempts == '0'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)">Start Quiz</a>
 					<div ng-if="quiz.validity == 'expired'" class="c-red">Date Expired</div>
 
 					<a ng-if="quiz.validity == 'valid' && quiz.attempts != '0' && quiz.retake == '0'" data-quizid="93" class="c-red" href="#" title="Initated but failed to proceed further or intererpted">Conflict</a>
@@ -126,7 +126,7 @@
 				<td>{{item.attempted_at}}</td>
 				<td>{{item.attempts}}</td>
 				<td>
-					<a ng-if="item.attempts != '0' && item.retake == '1'" class="btn btn-warning btn-small" href="#" ng-click="vm.launchQuizModal(item.id, true)">Retake</a>
+					<a ng-if="item.attempts != '0' && item.retake == '1'" class="btn btn-warning" href="#" ng-click="vm.launchQuizModal(item.id, true)">Retake</a>
 				</td>				
 			</tr>
 		</tbody>

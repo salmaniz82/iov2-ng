@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="span2">
-                            <input type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success btn-small">
+                            <input type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success">
                         </div>
                     </div>
 
@@ -47,12 +47,17 @@
                             <td>{{item.attempts}}</td>
                             <td>
                                 
-                                <label class="switch switch-green">
-                                <input type="checkbox" class="switch-input" ng-model="item.retake" ng-true-value="'1'" ng-false-value="'0'"
+                            <span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="item.retake" ng-true-value="'1'" ng-false-value="'0'"
                                      ng-checked="item.retake == '1'" ng-change="vm.toggleRetake(item.id)">
-                                <span class="switch-label" data-on="Yes" data-off="No"></span>
-                                <span class="switch-handle"></span>
-                            </label>
+                                <span></span>
+                              </label>
+                            </span>
+
+
+
+
                             </td>
                             
                         </tr>

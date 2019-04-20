@@ -10,6 +10,9 @@
 
         vm.questionMedia = [];
 
+
+        
+
         
 
 
@@ -208,7 +211,7 @@
 
                 vm.questionMedia.forEach(function(item) {
 
-                    vm.nque.mediaIds.push(item.id);     
+                    vm.nque.mediaIds.push(item);
 
                 });
 
@@ -239,6 +242,7 @@
         		console.log(res);
 
         		 vm.nque = {};
+                 vm.questionMedia = [];
         	}
 
         	function saveError(res)

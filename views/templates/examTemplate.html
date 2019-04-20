@@ -13,7 +13,7 @@
 
                     <a href="/" class="brand">
 
-                        <img alt="Logo" ng-src="{{'assets/images/site_logo.png'}}" width="200" height="88"/>
+                        <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/>
 
                         <!-- %span.navbar-text=" -->
                     </a>
@@ -87,14 +87,14 @@
 <div class="clearfix">&nbsp;</div>
         <ul class="side-filters list-none">
                 
-            <li class=""><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
-            <li class=""><a ui-sref="exm.progress({'examID': absExamId})">Progress</a></li>
-            <li class=""><a ui-sref="exm.quizQuestions({'examID': absExamId})">Questions</a></li>
-            <li class=""><a ui-sref="exm.quizWeightDistro({'examID': absExamId})">Weight Distribution</a></li>
-            <li class=""><a ui-sref="exm.enroll({'examID': absExamId})">Enroll</a></li>
-            <li class=""><a ui-sref="exm.register({'examID': absExamId})">Register</a></li>
-            <li class=""><a ui-sref="exm.check()">Check</a></li>
-            <li class=""><a ui-sref="exm.notify()">NOtify</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})">Progress</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})">Questions</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})">Weight Distribution</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})">Enroll</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})">Register</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.check()">Check</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.notify()">NOtify</a></li>
 
         </ul>
 </div> <!-- teacher control -->
