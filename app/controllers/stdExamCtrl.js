@@ -11,6 +11,11 @@
         vm.isInitiatStart = false;
 
 
+        
+
+        localStorage.removeItem('lastStoredDurationSeconds');
+
+
 
         vm.initiateQuiz = function(enroll_id)
         {

@@ -25,6 +25,9 @@
 
             var answerSaveUrl = API_URL+'std-patch-answers';
 
+            $timeout.cancel(vm.quizTimeInterval);
+            localStorage.removeItem('lastStoredDurationSeconds');
+
             $http({
                 url : answerSaveUrl,
                 method : 'POST',
@@ -281,15 +284,50 @@
         vm.checkNextPre();
 
 
+        vm.getLeftDurationInSeconds = function()
+        {
 
-        vm.durationMins = parseInt(vm.quizData.quiz[0].duration);
+            if(localStorage.hasOwnProperty('lastStoredDurationSeconds') && !isNaN(localStorage.getItem('lastStoredDurationSeconds')))
+            {
+                 
+                 return localStorage.getItem('lastStoredDurationSeconds');
 
-        $scope.timeLeft = vm.durationMins+':00';
+            }
+
+             return parseInt(vm.quizData.quiz[0].duration) * 60;
+
+
+        };
+
+
+        
+       
+
+
+        //vm.durationMins = parseInt(vm.quizData.quiz[0].duration);
+
+        var durationSeconds = vm.getLeftDurationInSeconds();
+
+        var startMinutes = (durationSeconds / 60) | 0;
+        var startSeconds = (durationSeconds % 60) | '00';
+
+        $scope.timeLeft = startMinutes+':'+startSeconds;
+
+
+        
+
 
         vm.startTimer = function (duration) {
 
 		// converting minutes to seconds
+        /*
 		duration =  duration * 60;       	
+        */
+
+
+        
+
+
 
 	    var start = Date.now(),
 	        diff,
@@ -305,10 +343,20 @@
 		        minutes = (diff / 60) | 0;
 		        seconds = (diff % 60) | 0;
 
+
+                var leftDurationSec = (minutes * 60) + seconds;
+                localStorage.setItem('lastStoredDurationSeconds', leftDurationSec);
+
+
+
 		        minutes = minutes < 10 ? "0" + minutes : minutes;
 		        seconds = seconds < 10 ? "0" + seconds : seconds;
 
 		        $scope.timeLeft = minutes + ":" + seconds; 
+
+
+                
+                
 
 		       // console.log($scope.timeLeft);
 
@@ -322,7 +370,7 @@
 
 		        }else {
 
-		        	$timeout(timer, 1000);
+		        vm.quizTimeInterval = $timeout(timer, 1000);
 
 		        }
 		    };
@@ -332,7 +380,7 @@
 		};
 
 		    
-		vm.startTimer(vm.durationMins);
+		vm.startTimer(durationSeconds);
 
 
 
