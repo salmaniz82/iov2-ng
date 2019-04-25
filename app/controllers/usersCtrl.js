@@ -11,6 +11,41 @@
         vm.modalData;
 
 
+        vm.permssionModal = false;
+
+
+        vm.loadPermissions = function(itemId)
+        {
+
+            
+            var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+            vm.modalData = vm.dataList[idx];
+
+
+                $http({
+                    method: 'GET',
+                    url : API_URL+'user-permissions/'+itemId,
+
+                })
+                .then(function(res){
+                        vm.userPermissions = res.data.userPermissions;
+                        vm.permssionModal = true;                       
+
+                        console.log(res.data);
+
+
+                }, function(res){
+
+                    console.log('failed');
+                });
+
+        };
+
+
+
+
+
+
         vm.launchModal = function(user_id)
 		{
 			

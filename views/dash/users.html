@@ -1,6 +1,6 @@
 <section class="span9">
             <div class="col-right">
-                <h3>Users : </h3>
+                
 
                 
 
@@ -47,6 +47,10 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Details</a></li>
                                     <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
+                                    <li><a href="#" ng-click="vm.loadPermissions(item.id)">Permissions</a></li>
+
+
+                                    
                                 </ul>
                             </div>
                             </td>
@@ -89,3 +93,54 @@
 
             </div><!-- end col right-->
         </section>
+
+
+
+
+        <div class="cst-modal-container" ng-show="vm.permssionModal">
+    <div class="cst-modal-window large">
+      <div class="cst-modal-header">
+        <span style="font-weight: 600">{{vm.modalData.name}} : Permissions</span>
+        <i class="icon-remove pull-right" ng-click="vm.permssionModal = false"></i>
+      </div>
+      <div class="cst-modal-body" style="max-height: 500px; overflow: auto">
+
+        <table class="table">
+            <tr>
+                <td>
+                    Email
+                </td>
+                <td>
+                    {{vm.modalData.email}}
+                </td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td>{{vm.modalData.role}}</td>
+            </tr>
+        </table>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Permission</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                <tr ng-repeat="per in vm.userPermissions">
+                    <td>{{$index + 1}}</td>
+                    <td>{{per.permission}}</td>
+                    <td>{{per.pStatus}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->

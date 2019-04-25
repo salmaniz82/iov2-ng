@@ -1,0 +1,60 @@
+<section class="span9">
+            <div class="col-right">
+
+
+                <div class="span9" ng-if="vm.pageMode == null">
+                    <p>Loading ... </p>
+                </div>
+
+                <div class="span9" ng-if="vm.pageMode == 'error'">
+                    <p class="c-red">Permission cannot be loaded </p>
+                </div>
+
+                <div class="span9">
+                    <div ng-if="vm.pageMode == 'list' || vm.pageMode == 'error'" ng-click="vm.pageMode = 'add'" class="btn pull-right btn-icon btn-success graphic-plus" title="Permission">Permissions</div>
+                </div>
+
+                <div class="row" ng-show="vm.pageMode == 'add'">
+
+                    <form class="form">
+                    <div class="span7">
+                        <input type="text" ng-model="vm.npermission.name" placeholder="Enter new Permission" class="w-100">
+                    </div>
+
+                    <div class="span2">
+                        <button class="btn btn-success btn-block" ng-click="vm.savePermission()">Save</button>
+                    </div>
+
+                    </form>
+                </div>
+
+                <table class="table" ng-if="vm.pageMode == 'list' || vm.pageMode == 'add'">
+                    <thead>
+                    <tr>
+                        <th>S.NO</th>
+                        <th>Permission</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.dataList.permissions">
+                        <td>{{$index + 1}}</td>
+                        <td>{{item.name}}</td>
+                        </td>
+                        <td>
+                                <div class="btn-group">
+                                <a class="btn btn-twitter btn-icon graphic-chevron-bottom" href="#" data-toggle="dropdown">Actions</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"> Inspect </a></li>
+                                </ul>
+                            </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+                
+
+        </div><!-- end col right-->
+        </section>

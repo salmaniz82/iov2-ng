@@ -91,9 +91,6 @@
         })
 
 
-
-
-
         .state('exm.enroll', {
 
             url : '/exam-enroll/:examID',
@@ -109,8 +106,6 @@
             controller : 'registerEnrollCtrl as vm'
             
         })
-
-
 
 
         .state('exm.editQuiz', {
@@ -261,6 +256,21 @@
 
         })
 
+        .state('dash.permission', {
+            url : '/permissions',
+            templateUrl : 'views/dash/permissions.html',
+            controller : 'permissionsCtrl as vm'
+        })
+
+        .state('dash.rolePermissions', {
+            url : '/role-permissions',
+            templateUrl : 'views/dash/role-permissions.html',
+            controller : 'rolePermissionsCtrl as vm'
+        })
+
+
+        
+
         .state('dash.library', {
 
             url : '/library',
@@ -367,8 +377,9 @@
 
                 }
 
-            }
-
+            },
+            authenticate : true,
+            roles : ['student']
         })
 
         

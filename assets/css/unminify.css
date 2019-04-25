@@ -8706,6 +8706,7 @@ progress[value] {
 }
 .side-filters li {
     border-bottom: 1px solid #c1c2c13d;
+    outline: none;
 }
 .side-filters a {
     color: var(--grey);
@@ -8717,11 +8718,13 @@ progress[value] {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
+    outline: none;
 
 }
 .side-filters a:hover {
-    background-color: var(--green);
-    color: #ffffff;
+    color: var(--green);
+    border-left: 5px solid var(--green);
+    outline: none;
 
 }
 .side-filters .description {
@@ -8729,10 +8732,12 @@ progress[value] {
     line-height: 20px;
 }
 .side-filters .active a {
-    background-color: var(--green);
-    color: #ffffff;
-
-
+    border-left: 5px solid var(--green);
+    color: var(--green);
+    outline: none;
+    text-decoration: none;
+    font-weight: bold;
+    
 }
 .hero-unit.inverted .preview-assessment-label {
     background-color: #A60E80;
