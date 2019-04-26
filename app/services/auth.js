@@ -1,6 +1,8 @@
 angular.module('io2v3')
 	.service('auth', function($http, API_URL) {
 
+		self = this;
+
 		this.login = function(creds)
 		{
 
@@ -54,5 +56,40 @@ angular.module('io2v3')
 		};
 
 
+		
+
+
+		this.userHasPermission = function(requiredPermission)
+		{
+
+
+
+				console.log(requiredPermission);
+
+
+
+				if(!self.isLoggedIn()){
+	            		return false;
+	        	}
+
+	        	var userPermissions = self.getUser()['permissions'];
+        		var found = false;
+
+
+        		angular.forEach(userPermissions, function(permission, index){
+
+            		if (requiredPermission.indexOf(permission) >= 0){
+
+            			console.log(permission);
+                		found = true;
+                		return;
+            		}                        
+        });
+         
+        return found;
+
+		};
+
+		
 		
 	});

@@ -379,7 +379,7 @@
 
             },
             authenticate : true,
-            roles : ['student']
+            roles : ['students']
         })
 
         

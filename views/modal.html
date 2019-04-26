@@ -1,4 +1,11 @@
 <section class="span8">
+
+<div>
+          checkmate
+          <span permissions="['user-add']"> user can add users  </span>
+        </div>
+
+
 <p ng-repeat="data in vm.dataList"><a href="#" class="btn btn-twitter btn-mini" ng-click="vm.launchModal($index)">{{data.email}}</a></p>
 	  <div class="cst-modal-container" ng-if="vm.modalOpen">
     <div class="cst-modal-window">
@@ -14,6 +21,12 @@
       	
         <button class="btn btn-mini btn-success">Yes</button>
         <button class="btn btn-mini btn-danger">No</button>
+
+
+        
+
+
+
       </div>
 
 

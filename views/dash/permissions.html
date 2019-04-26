@@ -3,7 +3,7 @@
 
 
                 <div class="span9" ng-if="vm.pageMode == null">
-                    <p>Loading ... </p>
+                    <p>Loading <img ng-src="{{'assets/images/'+'loadingdots.svg'}}"> </p>
                 </div>
 
                 <div class="span9" ng-if="vm.pageMode == 'error'">
@@ -12,6 +12,11 @@
 
                 <div class="span9">
                     <div ng-if="vm.pageMode == 'list' || vm.pageMode == 'error'" ng-click="vm.pageMode = 'add'" class="btn pull-right btn-icon btn-success graphic-plus" title="Permission">Permissions</div>
+
+                    
+
+
+                    
                 </div>
 
                 <div class="row" ng-show="vm.pageMode == 'add'">
