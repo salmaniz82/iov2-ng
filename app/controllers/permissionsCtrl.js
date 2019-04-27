@@ -57,10 +57,9 @@
                         type: 'success',
                         title: 'Success',
                         content: res.data.message,
-                        timeout: 50000 //time in ms
+                        timeout: 5000 //time in ms
                     };
                     $scope.$emit('notify', notify);
-
 
 
             },
@@ -72,7 +71,7 @@
                         type: 'error',
                         title: 'Operation Failed',
                         content: res.data.message,
-                        timeout: 50000 //time in ms
+                        timeout: 5000 //time in ms
                     };
                     $scope.$emit('notify', notify);
 

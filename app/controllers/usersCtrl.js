@@ -209,10 +209,50 @@
 
 
 
+        vm.resetUserPermissions = function(user_id, role_id)
+        {
+
+            var url = API_URL+'users-permissons/reset/'+user_id+'/'+role_id;
+
+
+            $http({
+
+                url : url,
+                method: 'PUT',
+                data : {}
+
+
+            }).then(
+
+            function(res){
+
+                var notify = {
+                            type: 'success',
+                            title: 'User Permissions',
+                            content: res.data.message,
+                            timeout: 3000 //time in ms
+                        };
+                         $scope.$emit('notify', notify);
+
+            }, 
+
+            function(res){
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'User Permission',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
 
 
 
+            });
 
+
+        };
 
 
     }]);

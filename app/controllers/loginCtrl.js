@@ -12,7 +12,7 @@
 
 
 		if(localStorage.getItem('auth_token'))
-		{
+		{			
 			$state.go('dash.land');
 		}
 
@@ -69,12 +69,7 @@
                         timeout: 3000 //time in ms
                     };
                     $scope.$emit('notify', notify);
-
 		};
-
-
-
-
 
 	});
 
