@@ -85,7 +85,41 @@
 
         };
 
-        
+
+        vm.edit = function(rolePermissionId, role_id, permission_id)
+        {
+
+
+
+        };
+
+
+        vm.remove = function(rolePermissionId, role_id, permission_id)
+        {
+            console.log('role id ' + role_id);
+            console.log('permission id ' + permission_id);
+
+             var url = API_URL+'role-permissions/'+rolePermissionId+'/'+role_id+'/'+permission_id;
+
+            $http({
+
+                url : url,
+                method: 'delete',
+                data: {role_id: role_id, permission_id: permission_id}
+
+            }).then(
+            function(res){
+
+                console.log('remove success');
+
+            },
+            function(res){
+
+                console.log('remove error');
+
+            });
+
+        };
 
 
         console.log('controller is activated');

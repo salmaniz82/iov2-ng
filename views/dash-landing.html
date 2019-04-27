@@ -29,7 +29,7 @@
                         <th>Duration</th>
                         <th>Enrollment</th>
                         <th>Status</th>
-                        <th>&nbsp;</th>
+                        <th>Actions</th>
 
                     </tr>
                     </thead>
@@ -73,18 +73,18 @@
                         </td>
 
                         <td>
-                            <div class="btn-group">
-                                <a class="btn btn-twitter btn-icon graphic-chevron-bottom" href="#"
-                                   data-toggle="dropdown">Menu</a>
+                            <div class="btn-group btn-more">
+                                <a class="btn" href="#"
+                                   data-toggle="dropdown">&nbsp;</a>
 
                                 <ul class="dropdown-menu">
                                     <li><a ui-sref="exm.exam({'examID': item.id})"> - Details </a>
                                     <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
                                     <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
-                                    <li><a href="modify-date-time.php"><i class="icon-time"></i>Modify Date/Time</a>
-                                    <li><a ui-sref="exm.editQuiz()"><i class="icon-gears"></i>Manage Quiz</a></li>
-                                    <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"><i class="icon-gears"></i>Weight Distribution</a></li>
-                                    <li><a ui-sref="exm.quizOverview()"><i class="icon-zoom-in"></i>Attempts Overview</a></li>
+                                    <li><a href="modify-date-time.php" class="c-red"> - Modify Date/Time</a>
+                                    <li><a ui-sref="exm.editQuiz()"> - Manage Quiz</a></li>
+                                    <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
+                                    <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
 
                                 </ul>
                             </div>

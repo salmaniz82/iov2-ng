@@ -47,6 +47,7 @@
                         <th>Role</th>
                         <th>Permission</th>
                         <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,6 +67,18 @@
                             </span>
                                 
                         </td>
+
+                        <td>
+                            <div class="btn-group btn-more">
+                                <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="vm.edit(item.id, item.role_id, item.permission_id)">Edit</a></li>
+                                    <li><a href="#" ng-click="vm.remove(item.id, item.role_id, item.permission_id)">Remove</a></li>
+                                </ul>
+                            </div>
+                        </td>
+
+
                         </tr>
 
                     </tbody>

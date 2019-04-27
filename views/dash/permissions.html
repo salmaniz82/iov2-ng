@@ -3,7 +3,7 @@
 
 
                 <div class="span9" ng-if="vm.pageMode == null">
-                    <p>Loading <img ng-src="{{'assets/images/'+'loadingdots.svg'}}"> </p>
+                    <p style="font-size: 20px" class="c-red">Loading ... </p>
                 </div>
 
                 <div class="span9" ng-if="vm.pageMode == 'error'">
@@ -13,10 +13,7 @@
                 <div class="span9">
                     <div ng-if="vm.pageMode == 'list' || vm.pageMode == 'error'" ng-click="vm.pageMode = 'add'" class="btn pull-right btn-icon btn-success graphic-plus" title="Permission">Permissions</div>
 
-                    
 
-
-                    
                 </div>
 
                 <div class="row" ng-show="vm.pageMode == 'add'">
@@ -38,6 +35,7 @@
                     <tr>
                         <th>S.NO</th>
                         <th>Permission</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,10 +44,11 @@
                         <td>{{item.name}}</td>
                         </td>
                         <td>
-                                <div class="btn-group">
-                                <a class="btn btn-twitter btn-icon graphic-chevron-bottom" href="#" data-toggle="dropdown">Actions</a>
+                                <div class="btn-group btn-more">
+                                <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#"> Inspect </a></li>
+                                    <li><a href="#"> Edit </a></li>
+                                    <li><a href="#"> Remove </a></li>
                                 </ul>
                             </div>
                             </td>

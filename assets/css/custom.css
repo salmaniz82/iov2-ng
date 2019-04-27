@@ -963,5 +963,19 @@ button.custom-upload-btn {
         left: 2px; } }
 
 
+.btn-group.btn-more {
+    
+    outline: none;
+}
+
+.btn-group.btn-more .btn {
+background-color: transparent;   
+outline: none;
+background-image : url('../images/more-vertical.svg');
+background-repeat: no-repeat;
+background-position: center;
+background-size: 28px;
+}
+
 
 
