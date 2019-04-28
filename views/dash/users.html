@@ -24,7 +24,9 @@
                         <td>{{item.name}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.role}}</td>
-                        <td>{{item.isLocked}}</td>
+                        <td><span ng-if="item.isLocked == 1" class="icon-lock c-red"></span>
+                            
+                        </td>
                         <td>{{item.loginAttempts}}</td>
                         
                         <td>
@@ -100,8 +102,8 @@
         <div class="cst-modal-container" ng-show="vm.permssionModal">
     <div class="cst-modal-window large">
       <div class="cst-modal-header">
-        <span style="font-weight: 600">{{vm.modalData.name}} : Permissions</span>
-        <i class="icon-remove pull-right" ng-click="vm.permssionModal = false"></i>
+        <span style="font-weight: 600">Permissions : {{vm.modalData.name}} </span>
+        <i class="icon-remove icon-2x pull-right" ng-click="vm.permssionModal = false"></i>
       </div>
       <div class="cst-modal-body" style="max-height: 500px; overflow: auto">
 
@@ -120,6 +122,30 @@
             </tr>
         </table>
 
+        
+
+
+        <div ng-if="vm.newCustomPermission == true" class="row" >
+            <form>
+                
+                <div class="span6">
+                    <select class="w-100" ng-init="vm.nctp = '-- Select Permission'" ng-model="vm.nctp" >
+
+                        <option ng-disabled="1 == 1">-- Select Permission</option>
+                        <option ng-repeat="cplist in vm.customPermissionList" ng-value="cplist.id">{{cplist.permission}}</option>
+                        
+                    </select>
+                </div>
+
+                <div class="span3">
+
+                    <div ng-click="vm.addNewUserPermission(vm.modalData.id)" class="btn btn-icon btn-success icon-plus ng-scope" title="Permission">Add</div>
+                    
+                </div>
+
+            </form>
+        </div>
+
 
         <table class="table">
             <thead>
@@ -135,7 +161,16 @@
                 <tr ng-repeat="per in vm.userPermissions">
                     <td>{{$index + 1}}</td>
                     <td>{{per.permission}}</td>
-                    <td>{{per.pStatus}}</td>
+                    <td>
+                        <span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="per.pStatus" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="per.pStatus == '1'" ng-change="vm.privatePermissionToggle(per.permission_id, per.user_id, per.pStatus)">
+                                <span></span>
+                              </label>
+                            </span>
+
+                    </td>
                 </tr>
             </tbody>
         </table>

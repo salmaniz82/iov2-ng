@@ -28,15 +28,38 @@
 
                 })
                 .then(function(res){
+
+
                         vm.userPermissions = res.data.userPermissions;
-                        vm.permssionModal = true;                       
+                        vm.permssionModal = true;  
+
+
+                        if(res.data.customPermissionList == false)
+                        {
+                            vm.newCustomPermission = false;
+                        }
+                        else {
+
+                            vm.newCustomPermission = true;
+
+                            vm.customPermissionList = res.data.customPermissionList;
+
+                        }                     
 
                         console.log(res.data);
 
 
                 }, function(res){
 
-                    console.log('failed');
+                    var notify = {
+                        type: 'error',
+                        title: 'User Permissions',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
                 });
 
         };
@@ -248,6 +271,119 @@
                     $scope.$emit('notify', notify);
 
 
+
+            });
+
+
+        };
+
+
+
+        vm.addNewUserPermission = function(user_id)
+        {
+
+            
+
+
+            if(isNaN(vm.nctp))
+            {
+                
+                var notify = {
+                        type: 'error',
+                        title: 'Validation',
+                        content: 'Missing Permission ID',
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                return false;
+
+            }
+
+
+            var url = API_URL+'user-permissions';
+
+
+            $http({
+
+                url : url,
+                method: 'POST',
+                data: {user_id : user_id, permission_id : vm.nctp}
+
+            }).then(
+            
+            function(res){
+
+                var notify = {
+                        type: 'success',
+                        title: 'User Permissions',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+                    
+                    vm.userPermissions.push(res.data.lastAdded[0]);
+
+
+            }, 
+
+            function(res){
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'User Permissions',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            });
+
+        };
+
+
+
+        vm.privatePermissionToggle = function(permissionID, user_id, pStatus)
+        {
+
+            var url = API_URL+'users-permissons/status-toggle/'+user_id+'/'+permissionID;
+
+            $http({
+
+                url : url,
+                method : 'PUT',
+                data : {pStatus: pStatus}
+
+            }).then(
+
+            function(res){
+
+
+                var notifyType = (res.data.permissionStatus == 0) ? 'warning' : 'success';
+
+
+                var notify = {
+                            type: notifyType,
+                            title: 'User Permissions',
+                            content: res.data.message,
+                            timeout: 3000 //time in ms
+                        };
+                         $scope.$emit('notify', notify);
+
+
+
+            }, 
+            function(res){
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'User Permission',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
 
             });
 

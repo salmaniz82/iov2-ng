@@ -86,10 +86,49 @@
         };
 
 
-        vm.edit = function(rolePermissionId, role_id, permission_id)
+        vm.statusToggle = function(id, permission_id, role_id, status)
         {
 
+            console.log(role_id);
 
+
+            var url = API_URL+'role-permissions';
+
+
+            $http({
+
+                url : url,
+                method: 'PUT',
+                data: {permission_id: permission_id, role_id: role_id, status: status}
+
+            }).then(statusTogglesuccess, statusToggleerror);
+
+
+            function statusTogglesuccess(res){
+
+
+                var notifyType  = (res.data.status == 1) ? 'success' : 'warning';
+                var notify = {
+                        type: notifyType,
+                        title: 'Role Permission',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+            }
+
+            function statusToggleerror(res)
+            {
+
+                var notifyType  = 'error';
+                var notify = {
+                        type: notifyType,
+                        title: 'Role Permission',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+            }
 
         };
 
@@ -98,6 +137,10 @@
         {
             console.log('role id ' + role_id);
             console.log('permission id ' + permission_id);
+
+
+             var idx = $scope.$parent.base.getIndex(vm.dataList.permissions, 'id', rolePermissionId);
+
 
              var url = API_URL+'role-permissions/'+rolePermissionId+'/'+role_id+'/'+permission_id;
 
@@ -110,12 +153,15 @@
             }).then(
             function(res){
 
-                console.log('remove success');
+                console.log('remove success');               
+                vm.dataList.permissions.splice(idx, 1);
 
             },
             function(res){
 
                 console.log('remove error');
+
+                
 
             });
 
