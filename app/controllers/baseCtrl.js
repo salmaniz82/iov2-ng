@@ -149,6 +149,34 @@
             }
         };
 
+        /*
+            return decoded string
+            usage from controller : $scope.$parent.base.decodeData(encodedString);
+        */
+
+
+        vm.inboundDecode = function(string)
+        {          
+            return JSON.parse(decodeURIComponent(atob(string)));
+
+        };
+
+
+        /*
+            return encoded string to send to server
+            usage from controller : $scope.$parent.base.encodeData(encodedString);
+        */
+
+
+        vm.outboundEncode = function(string) 
+        {
+
+            return encodeURIComponent(window.btoa(string));
+
+        };
+
+        
+
     });
 
 

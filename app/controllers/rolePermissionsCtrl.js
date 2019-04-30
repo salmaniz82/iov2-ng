@@ -158,20 +158,14 @@
 
             },
             function(res){
-
-                console.log('remove error');
-
                 
+                console.log('remove error');
 
             });
 
         };
 
-
         console.log('controller is activated');
-
-
-
 
     }]);
 

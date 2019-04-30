@@ -630,7 +630,7 @@
                     */
                     if(item.answer == undefined) 
                     {
-                        item.answer = 'u/a'
+                        item.answer = 'u/a';
                     }
 
 
