@@ -21,7 +21,7 @@
                                     <th>Students</th>
                                     <th>Email</th>
                                     <th>Attempts</th>
-                                    <th>Dated</th>
+                                    
                                     <th>Score</th>
                                     <th>Percentage %</th>
                                     <th>Actions</th>
@@ -32,10 +32,12 @@
 
                                 <tr ng-repeat="item in vm.dataList.attempted">
 
-                                    <td>{{item.name}}</td>
+                                    <td>{{item.name}}
+                                        <p><span class="icon-time c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
+                                    </td>
                                     <td>{{item.email}}</td>
                                     <td>{{item.attempts}}</td>
-                                    <td>{{item.attempted_at}}</td>
+                                    
                                     <td>{{item.score | setDecimal:2}}</td>
                                     <td>{{item.per | setDecimal:2}}</td>
                                     <td>

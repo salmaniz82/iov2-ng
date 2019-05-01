@@ -7,6 +7,12 @@
 
         vm.quizData = quizPlayData.data;
         vm.questionIndex = 0;
+
+        // new line added for decoding strings of object 
+        vm.quizData.questions = $scope.$parent.base.inboundDecode(vm.quizData.questions);
+
+
+
         vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
 
         var attempt_id = $stateParams.attempt_id;

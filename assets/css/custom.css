@@ -18,8 +18,8 @@ body {
 }
 
 .bg-green {
-    background-color: #b6d04a;
-}
+    background-color: var(--green);
+  }
 
 .bg-aqua {
     background-color: #00acee;
@@ -47,6 +47,10 @@ img.img-resp{
 
 .c-green {
     color: var(--greenLight) !important;
+}
+
+.c-pink {
+      color: var(--pink) !important; 
 }
 
 .c-blue {

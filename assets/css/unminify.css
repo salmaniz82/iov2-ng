@@ -5,11 +5,16 @@
     --red: #ed5140; 
     --green: #3db862;
 
+    --pink: #e91e63;
+
     --greyLight: rgba(0, 0, 0, 0.05);
     --yellowLight: #edbe40b5;
     --blueLight: #40a2edbf;
     --redLight: #ed5140b8; 
     --greenLight: #3db862a6;
+
+
+
 
 
     
@@ -8887,6 +8892,7 @@ input.referral-link-field:focus {
 }
 body.pages h3 {
     margin: 30px 0 15px;
+    padding: 20px 3px;
 }
 body.pages p, body.pages small, body.pages .small {
     margin: 0 0 5px;

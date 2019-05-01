@@ -4,8 +4,11 @@
 	.controller('modalCtrl', modalCtrl);
 
 
+	
 
-	function modalCtrl($state, $scope)
+
+
+	function modalCtrl($state, $scope, $http)
 	{
 		var vm = this;
 
@@ -30,7 +33,33 @@
 			console.log(vm.modalData);
 		}
 
+
+
+		$http.get('http://api.io2v3.dvp/test-enc-data').then(
+		function(res){
+			
+
+			console.log(res.data.users);
+			vm.encodedMessage = res.data.users;
+			vm.decodedMessage = $scope.$parent.base.inboundDecode(vm.encodedMessage);
+
+
+			console.log(vm.decodedMessage);
+
+
+
+		}, 
+		function(res){
+
+		});
+
+
+
 	}
+
+
+
+	
 
 
 
