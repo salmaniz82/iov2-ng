@@ -70,15 +70,18 @@
 		</thead>
 		<tbody>
 
-			<tr ng-repeat="quiz in vm.dataList.quiz">
+			<tr ng-repeat="quiz in vm.dataList.quiz track by $index">
 				<td>{{quiz.id}}</td>
 				<td>{{quiz.title}}</td>
 				<td>{{quiz.minScore + ' / ' + quiz.maxScore}}</td>
 				<td>{{quiz.duration}} mins.</td>
 				
 				<td>
-					<a ng-if="quiz.validity == 'valid' && quiz.attempts == '0'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="icon-time"></span>&nbsp; Start Quiz</a>
+					<a ng-if="quiz.validity == 'valid' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="icon-time"></span>&nbsp; Start Quiz</a>
 					<div ng-if="quiz.validity == 'expired'" class="c-red">Date Expired</div>
+
+					<div ng-if="quiz.schedule == 'countdown' && quiz.validity == 'valid'" ng-init="vm.showCountdown(quiz.id, dateEnrolled, quiz.dtsScheduled)">
+						<small class="c-pink">{{counter[quiz.id]}}</small></div>
 
 					<a ng-if="quiz.validity == 'valid' && quiz.attempts != '0' && quiz.retake == '0'" data-quizid="93" class="c-red" href="#" title="Initated but failed to proceed further or intererpted">Conflict</a>
 				</td>

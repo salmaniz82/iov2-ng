@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', '$scope', '$http', '$state', function(API_URL, $scope, $http, $state){
+    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', '$scope', '$http', '$state', '$interval', function(API_URL, $scope, $http, $state, $interval){
 
 
         var vm = this;
@@ -9,6 +9,8 @@
         vm.hasPendingQuiz = false;
         vm.hasAttemptedQuiz = false;
         vm.isInitiatStart = false;
+
+        $scope.counter = [];
 
 
         
@@ -124,6 +126,86 @@
         	method: 'GET'
 
         }).then(successFetchQuizList, errorFetchQuizList);
+
+
+
+        vm.showCountdown = function(quizId, dtEnrolled, dtsScheduled)
+        {
+
+
+
+        var enrolledDT =  new Date(dtEnrolled).getTime();    
+        var scheduleDT = new Date(dtsScheduled).getTime();
+        var currentDT = new Date().getTime();
+
+        if(scheduleDT > currentDT)
+        {
+
+            console.log('work for countdown');
+
+
+                var inc = 1;
+            
+
+            var countdownHandle = $interval(function(){
+
+
+            var now = new Date().getTime();
+
+            var distance = scheduleDT - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+            if(distance <= 0)
+            {
+                
+                $interval.cancel(countdownHandle);
+                var idx = $scope.$parent.base.getIndex(vm.dataList.quiz, 'id', quizId);
+                vm.dataList.quiz[idx].schedule = 'eligible';
+
+            }
+
+            
+
+                if(days == 0 && hours == 0)
+                {
+                    $scope.counter[quizId] = minutes + " mins " + seconds + " secs ";
+                }
+
+               else {
+
+                    $scope.counter[quizId] = days + " DD " + hours + " HH "
+                + minutes + " mm " + seconds + " ss ";
+
+                }
+
+                console.log(distance);
+
+            },1000);
+
+
+
+        }
+
+
+
+
+
+        /*    
+        var countdownHandle = $interval(function(){
+            //$interval.cancel(promise);
+            console.log('hello I am the countdown timer for the quiz' + quizId);
+        },1000);
+
+        */
+
+            
+        };
 
 
 
