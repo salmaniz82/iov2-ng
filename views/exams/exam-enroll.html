@@ -20,10 +20,7 @@
                             <input type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success">
                         </div>
                     </div>
-
                 </form>
-
-
 
                 <table class="table" ng-if="vm.dataList">
                     <thead>
@@ -31,7 +28,8 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>DateEnrolled</th>
+                        <th>Schedule Datetime</th>
+                        <th style="width: 10px">&nbsp;</th>
                         <th>Attempts</th>
                         <th>Retake</th>
                     </thead>
@@ -43,7 +41,22 @@
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.email}}</td>
-                            <td>{{item.dateEnrolled}}</td>
+                            <td>
+                             
+
+                                 
+                                <div class="input-append pick-dt w-100 pick-dt" ng-model="item.dtsScheduled">
+                                <input type="datetime" id="{{'adate'+item.id}}" class="w-90 dateinput" name="edate" placeholder="End Date" ng-value="item.dtsScheduled">
+                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                            </div>
+                            
+
+                            
+                            </div>
+                            </td>
+                            <td>
+                                <i class="icon-refresh c-blue" title="Push changes to server" ng-click="vm.updateScheduleDateTime(item.id, item.quiz_id, item.dtsScheduled)"></i>
+                            </td>
                             <td>{{item.attempts}}</td>
                             <td>
                                 

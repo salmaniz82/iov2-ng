@@ -33,12 +33,13 @@ $('input.floatlabel').floatlabel({
 });
 
 
-/*enable date time picker*/
+/*
+
 $('.datetimepicker').datetimepicker({
     format: 'yyyy-MM-dd hh:mm',
     pickDate: true,
     pickTime: true,
-    pick12HourFormat: false,   /* enables the 12-hour format time picker*/
+    pick12HourFormat: false,   
     pickSeconds: false,
     language: 'en'
 });
@@ -47,7 +48,7 @@ $('.pick-dt').datetimepicker({
     format: 'yyyy-MM-dd hh:mm',
     pickDate: true,
     pickTime: true,
-    pick12HourFormat: false,   /* enables the 12-hour format time picker*/
+    pick12HourFormat: false,   
     pickSeconds: false,
     language: 'en'
 });
@@ -56,22 +57,25 @@ $('.pick-dt').datetimepicker({
 $('.pick-date').datetimepicker({
      format: 'yyyy-MM-dd',
     pickTime: false,
-    /*     format: 'dd/MM/yyyy hh:mm', */
-    /*     format: 'yyyy-MM-dd', */
-    pick12HourFormat: false,   /* enables the 12-hour format time picker */
+    
+    pick12HourFormat: false,   
     pickSeconds: false,
     language: 'en'
 });
+
+
 
 
 $('.pick-time').datetimepicker({
     format: 'hh:mm',
     pickDate: false,
     pickTime: true,
-    pick12HourFormat: false,   /* enables the 12-hour format time picker */
+    pick12HourFormat: false,   
     pickSeconds: false,
     language: 'en'
 });
+
+*/
 
 var trgVal  = $('#itype');
 var examList = $('#selcExam');

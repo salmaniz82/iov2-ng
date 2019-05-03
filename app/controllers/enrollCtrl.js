@@ -17,8 +17,6 @@
 
 
 
-
-
         function successEnroll(res)
         {
             
@@ -135,6 +133,60 @@
 
 
         };
+
+
+        vm.updateScheduleDateTime = function(itemId, quizid, scheduleDateTime)
+        {
+
+
+            var Idx = parseInt($scope.$parent.base.getIndex(vm.dataList, 'id', itemId));
+            
+            var mewDatetime = document.getElementById('adate'+itemId).value;
+            
+            
+            $http({
+
+                url : API_URL+'enroll/schedule-datetime/'+itemId+'/'+quizid,
+                method : 'PUT',
+                data : {dtsScheduled: mewDatetime}
+
+            }).then(
+            function(res){
+
+
+
+                var notify = {
+                        type: 'success',
+                        title: 'Reschedule Success',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                
+
+            }, 
+
+            function(res){
+
+
+                    var notify = {
+                        type: 'error',
+                        title: 'Reschedule Failed',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                
+
+            });
+
+
+        };
+
+
+
 
 
 

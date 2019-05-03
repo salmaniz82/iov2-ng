@@ -68,14 +68,14 @@
 
                     <div class="row">
                         <div class="span4">
-                            <div class="input-append w-100 pick-dt">
-                                <input type="text" id="ddate" class="w-90 dateinput" ng-value="vm.nquiz.startDateTime" name="sdate" placeholder="Start Date" ng-model="vm.nquiz.startDateTime">
+                            <div class="input-append w-100 pick-dt" ng-model="vm.nquiz.startDateTime">
+                                <input type="text" id="ddate" class="w-90 dateinput" ng-value="vm.nquiz.startDateTime" name="sdate" placeholder="Start Date" >
                                 <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
                             </div>
                         </div>
 
                         <div class="span4">
-                            <div class="input-append pick-dt w-100">
+                            <div class="input-append pick-dt w-100 pick-dt" ng-model="vm.nquiz.startDateTime">
                                 <input type="datetime" id="adate" class="w-90 dateinput" ng-value="vm.nquiz.endDateTime" name="edate" placeholder="End Date" ng-model="vm.nquiz.endDateTime">
                                 <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
                             </div>

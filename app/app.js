@@ -2,7 +2,7 @@
 	
     function apiUrl()
     {
-      return (location.hostname == 'app.haladrive.com') ? 'https://api.haladrive.com' : 'http://api.io2v3.dvp/';
+      return (location.hostname == 'app.haladrive.com') ? 'https://api.iskillmetrics.com' : 'http://api.io2v3.dvp/';
     }
 
     angular.module('io2v3', ['ui.router', 'loadingStatus', 'angularNotify', 'ngSanitize'])
