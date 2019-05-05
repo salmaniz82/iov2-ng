@@ -15,13 +15,9 @@
                 </div>
 
 
-                </div>
-
+                 </div>
 
                 <quiz-info-component param="vm.examID"></quiz-info-component>
-
-
-
 
                 <div class="row">
                   <div class="span6">
@@ -36,10 +32,6 @@
                   
                 </div>
 
-
-                
-
-                
 
 
                 <div ng-if="vm.enableAllocate">
@@ -57,12 +49,12 @@
 
                 <table class="table" ng-if="vm.dataList.status">
                     <thead>
-                        <td>S.NO</td>
-                        <td>Questions</td>
-                        <td>Options</td>
+                        <th>#</th>
+                        <th style="width: 500px">Questions</th>
+                        <th>Difficulty</th>
                         <th>Answer</th>
                         <th>Status</th>
-                        
+                        <th title="x times appeared in exams"># Hits</th>
                     </thead>
 
                     <tbody>
@@ -71,27 +63,19 @@
 
                                <td>{{$index + 1}}</td>
                                <td>
-                                <div>
-                                    Type : {{item.typeEN}}
-                                </div>
-                                <div>
-                                    Diff : {{item.levelEN}}
-                                    
-                                </div>
+                                
                                 <p ng-bind-html="item.queDesc">
                                   
                                 </p>
                                </td>
 
                                <td>
-                                   <p ng-if="item.optionA != null">A : {{item.optionA}}</p>
-                                   <p ng-if="item.optionB != null">B : {{item.optionB}}</p>
-                                   <p ng-if="item.optionC != null">C : {{item.optionC}}</p>
-                                   <p ng-if="item.optionD != null">D : {{item.optionD}}</p>
+                                {{item.levelEN}}
                                </td>
 
                                
                                <td>{{item.answer}}</td>
+
                                <td>
 
                                 <span class="kt-switch kt-switch--icon">
@@ -101,6 +85,14 @@
                                 <span></span>
                               </label>
                             </span>
+
+                          </td>
+
+                          <td>
+                            <span ng-class="{'c-red': item.hits > 5}">
+                            {{item.hits}}
+                            </span>
+                          </td>
 
                             
                         </tr>

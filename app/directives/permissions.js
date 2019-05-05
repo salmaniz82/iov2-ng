@@ -22,7 +22,7 @@ function permissionDirective(auth)
                   
                 } else {
                   
-                    elem.hide();
+                    elem.remove();
 
 
                     console.log('no permission');

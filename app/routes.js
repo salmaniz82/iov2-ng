@@ -382,6 +382,13 @@
             roles : ['students']
         })
 
+        .state('newlayout', {
+
+            url: '/newlayout',
+            templateUrl: 'views/newlayout.html'
+
+        })
+
         
         .state('notfound', {
             url: '/notfound',

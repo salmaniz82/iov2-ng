@@ -39,10 +39,6 @@
                                 <span></span>
                               </label>
                             </span>
-
-
-
-
                         </td>
                         <td>
                                 <div class="btn-group btn-more">
@@ -52,6 +48,7 @@
                                     <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
                                     <li><a href="#" ng-click="vm.loadPermissions(item.id)">Permissions</a></li>
                                     <li><a href="#" ng-click="vm.resetUserPermissions(item.id, item.role_id)">Reset Permissions</a></li>
+                                    <li permissions="['delete-user']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red icon-warning-sign"></span> <span class="c-red">Delete User</span></a></li>
                                     
                                 </ul>
                             </div>
@@ -174,6 +171,44 @@
                 </tr>
             </tbody>
         </table>
+        
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
+
+
+  <div class="cst-modal-container" ng-if="vm.deleteConfirmModal == true">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        <span><span class="icon-exclamation c-red"> </span> <span>Delete Confirmation</span>
+
+        <i class="icon-remove pull-right" ng-click="vm.closeDeleteModal()"></i>
+
+      </div>
+      <div class="cst-modal-body">
+
+        <p class="c-red" style="font-weight: bold; font-size: 18px">Distructive operation, You are about to delete user and all information associated to this user</p>
+            
+
+            <p><label style="display: inline-block; width: 100px">id : </label>{{vm.xUSer.id}} </p>    
+            <p><label style="display: inline-block; width: 100px">Name : </label>{{vm.xUSer.name}} </p>    
+            <p><label style="display: inline-block; width: 100px">Email :</label>{{vm.xUSer.email}} </p>    
+            <p><label style="display: inline-block; width: 100px">Role :</label>{{vm.xUSer.role}} </p>    
+
+
+
+        <div>
+
+            <div>
+                <label><input type="checkbox" name="agree" ng-model="vm.proceedToX">Proceed to Delete</label>   
+            </div>
+
+        <button class="btn btn-danger" ng-if="vm.proceedToX" ng-click="vm.deleteUser(itemId = vm.xUSer.id)">Yes Delete</button>
+        <button class="btn btn-danger" ng-if="!vm.proceedToX" ng-click="vm.closeDeleteModal()">Cancel</button>   
+
+        </div>
         
       </div>
       

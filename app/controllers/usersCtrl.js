@@ -14,6 +14,28 @@
         vm.permssionModal = false;
 
 
+        vm.deleteConfirmModal = false;
+
+        vm.xUSer = null;
+
+        vm.launchDeleteConfirmation = function(itemId)
+        {
+
+            vm.deleteConfirmModal = true;
+            var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+            vm.xUSer = vm.dataList[idx];
+
+        };
+
+        vm.closeDeleteModal = function()
+        {
+
+            vm.deleteConfirmModal = false;
+            vm.xUSer = null;
+
+        }
+
+
         vm.loadPermissions = function(itemId)
         {
 
@@ -178,7 +200,7 @@
         {
 
         	var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', user_id);
-        	user_id;
+
 
         	$http({
         		method: 'PUT',
@@ -219,10 +241,15 @@
 	        	var notify = {
                         type: 'error',
                         title: 'Operation Failed',
-                        content: 'Unable to udpate user at this moment',
+                        content: res.data.message,
                         timeout: 3000 //time in ms
                     };
                     $scope.$emit('notify', notify);
+
+
+                    vm.dataList[idx].status = (userStatus == 1) ? '0' : '1';
+
+
 
 	        	
 
@@ -387,6 +414,31 @@
 
             });
 
+
+        };
+
+
+        vm.deleteUser = function(itemId)
+        {
+
+            $http({
+
+                url : API_URL+'users/'+itemId,
+                method: 'DELETE',
+                data : {}
+            }).then(
+
+            function(res){
+
+
+
+            }, 
+
+            function(res){
+
+
+
+            });
 
         };
 

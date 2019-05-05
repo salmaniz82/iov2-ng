@@ -42,9 +42,6 @@
                 {
                     
 
-                    console.log(res.data);
-
-
                     var notify = {
                         type: 'success',
                         title: 'Registration Successfull',
