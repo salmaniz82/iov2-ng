@@ -85,22 +85,39 @@
                 var expiredQuestion =  parseInt(vm.dataList.threshold.expired);
                 var quizThreshold = parseInt(vm.dataList.threshold.threshold);
 
+                $scope.threshold = quizThreshold;
+                $scope.Globalthreshold = parseInt(vm.dataList.globalThreshold);
+                $scope.gThresholdCount =  parseInt(vm.dataList.gThresholdCount);
+
+
                 if(expiredQuestion > 0)
                 {
 
                     var notify = {
-                    type: 'info',
+                    type: 'warning',
                     title: 'Threshold Limit',
                     content: 'Quiz threshold of ' + quizThreshold + ' reached by ' + expiredQuestion + ' questions, disable and use lower limit',
                     timeout: 16000 //time in ms
                 };
             
-
                  $scope.$emit('notify', notify);
 
                 }
 
 
+                if($scope.gThresholdCount > 0)
+                {
+
+                    var notify = {
+                    type: 'error',
+                    title: 'Global Threshold Limit',
+                    content: 'Global threshold of ' + $scope.Globalthreshold + ' reached by ' + $scope.gThresholdCount + ' questions, disable and use lower limit',
+                    timeout: 16000 //time in ms
+                };
+            
+                 $scope.$emit('notify', notify);          
+
+                }
 
 	        }
 

@@ -1115,6 +1115,53 @@ body {
   }
 
 
+.bg-red, .bg-dander {
+    background-color: var(--red) !important;
+}
+
+.bg-yellow, .bg-warning {
+   background-color: var(--yellow) !important; 
+}
+
+.bg-info, .bg-blue {
+   background-color: var(--blue) !important; 
+}
+
+.bg-success, .bg-green {
+   background-color: var(--green) !important; 
+}
+
+
+span.qqScope {
+    color: #fff;
+    font-size: 11px;
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: -42px;
+    padding: 0px 2px;
+    border-radius: 9%;
+    width: 33px;
+    height: 15px;
+    text-align: center;
+    line-height: 14px;
+}
+
+span.qqScope.public {
+  background-color: none; 
+  color: #333;
+  border: 1px solid #333;
+}
+
+span.qqScope.private {
+  background-color: var(--pink) !important; 
+}
+
+span.qqScope.local {
+  background-color: var(--blue) !important; 
+}
+
+
 
 
 

@@ -182,6 +182,7 @@
   <div class="cst-modal-container" ng-if="vm.deleteConfirmModal == true">
     <div class="cst-modal-window">
       <div class="cst-modal-header">
+        
         <span><span class="icon-exclamation c-red"> </span> <span>Delete Confirmation</span>
 
         <i class="icon-remove pull-right" ng-click="vm.closeDeleteModal()"></i>
@@ -190,9 +191,7 @@
       <div class="cst-modal-body">
 
         <p class="c-red" style="font-weight: bold; font-size: 18px">Distructive operation, You are about to delete user and all information associated to this user</p>
-            
-
-            <p><label style="display: inline-block; width: 100px">id : </label>{{vm.xUSer.id}} </p>    
+               
             <p><label style="display: inline-block; width: 100px">Name : </label>{{vm.xUSer.name}} </p>    
             <p><label style="display: inline-block; width: 100px">Email :</label>{{vm.xUSer.email}} </p>    
             <p><label style="display: inline-block; width: 100px">Role :</label>{{vm.xUSer.role}} </p>    
