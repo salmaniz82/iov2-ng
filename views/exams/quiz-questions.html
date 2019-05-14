@@ -1,21 +1,11 @@
- <section class="span9">
+ <section class="span9 bg-white">
             <div class="col-right">
 
-                <div class="row">
-                  
                 
-                <div class="span6">
                   
-                </div>
-
-
-
-                <div class="span3">
-                  <a class="btn btn-twitter pull-right" ui-sref="exm.addQuizQuestions({'examID': vm.examID})">Add Questions</a>
-                </div>
-
-
-                 </div>
+                  <a ui-sref="exm.addQuizQuestions({'examID': vm.examID})" class="btn pull-right btn-icon btn-success graphic-plus" title="Add Lesson" href="/que-add">Add Questions</a>
+                
+                 
 
                 <quiz-info-component param="vm.examID"></quiz-info-component>
 

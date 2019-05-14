@@ -1,4 +1,5 @@
 <div id="page-wrap">  
+    <div class="bg__root"></div> <!-- bgRoot -->
 <header class='main-header' id='header'>
         <div class='navbar navbar-static-top main-menu'>
             <div class='navbar-inner'>
@@ -16,6 +17,7 @@
                         <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/>
 
                         <!-- %span.navbar-text=" -->
+                        
                     </a>
 
                     <div class='menus-wrapper'>
@@ -27,17 +29,18 @@
                                 </li> 
                             </ul>
                         </nav>
-                        <nav class='nav-collapse collapse user-menu-collapse pull-right'>
+                    <nav class='nav-collapse collapse user-menu-collapse pull-right'>
                             <ul class='nav'>
 
                                 <li>
                                     <span class='indicator'></span>
                                     <a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a>
                                 </li>
-                               
+                                
                                 <!--end new lang-->
 
-                                <li class="btn-group" ng-show="base.isLoggedIn()">
+
+                                <li class="btn-group" ng-if="base.isLoggedIn()">
                                     <span class="indicator"></span>
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                         <i class="icon-user"></i>
@@ -56,7 +59,7 @@
                                             </a></li>
 
                                         <li>
-                                            <a ui-sref="logout()"><i class="icon-off"></i>
+                                            <a class="c-red" ui-sref="logout()"><i class="icon-off"></i>
                                                 Logout
                                             </a></li>
                                     </ul>
@@ -70,22 +73,22 @@
     </header>
 
 
-    <div class="container">
+    <div class="container examTemplateContainer">
 
     <div class="row">
 
+        <div class="span12" style="margin-top: 10px">
+            <div class="btn btn-icon graphic-chevron-left pull-left btn-warning" back-button>Back</div>
+        </div>
 
-    <aside class="span3">
+
+    <aside class="span3 bg-white">
     <div class="col-left">
-
-
-
-
 <div>
 
-    
 <div class="clearfix">&nbsp;</div>
-        <ul class="side-filters list-none">
+
+<ul class="side-filters list-none">
                 
             <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})">Progress</a></li>
@@ -97,6 +100,7 @@
             <li ui-sref-active="active"><a ui-sref="exm.notify()">NOtify</a></li>
 
         </ul>
+        
 </div> <!-- teacher control -->
 
 

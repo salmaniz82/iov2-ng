@@ -1,0 +1,461 @@
+<div class="bg__root"></div> <!-- bgRoot -->
+
+<div class="container">
+
+
+
+
+
+	<div class="wizardContainer">
+
+
+		<div class="stepper">
+
+
+			<ul class="stepperNav">
+
+						<li ng-class="{'active': stage == 1}">
+							
+							<div class="innerContents">
+								<div class="stageIndigator">1</div>
+								<a href="#" ng-click="stage = 1">Categorization</a><br />
+							</div>
+							
+						</li>
+
+						<li ng-class="{'active': stage == 2}">
+							<div class="innerContents">
+								<div class="stageIndigator">2</div>
+								<a href="#" ng-click="stage = 2">Particulars</a>
+							</div>	
+						</li>
+
+						<li ng-class="{'active': stage == 3}">
+							<div class="innerContents">
+							<div class="stageIndigator">3</div>
+							<a href="#" ng-click="stage = 3">Tenure</a>
+						</div>
+						</li>
+
+						<li ng-class="{'active': stage == 4}">
+							<div class="innerContents">
+							<div class="stageIndigator">3</div>
+							<a href="#" ng-click="stage = 4">Features</a>
+						</div>
+						</li>
+
+						<li ng-class="{'active': stage == 5}">
+							<div class="innerContents">
+							<div class="stageIndigator">5</div>
+							<a href="#" ng-click="stage = 5">Distributions</a>
+						</div>
+						</li>
+			</ul>
+			
+
+		</div>
+
+
+		
+
+		<div class="stages" class="ngswitch__root" ng-switch on="stage" ng-init="stage = 1">
+
+
+			<div class="stage-inner">
+
+			<div class="w-100" ng-switch-when="1">
+
+
+<section class="catSelectWrap wiz-contbox">	
+
+
+
+
+<ul class="tags level1">
+	<p class="catLabel">Category</p>
+	<li ng-repeat="cat in vm.categories" ng-if="cat.pcat_id == null" ng-class="{'active': cat.id == vm.parentId}" ng-click="vm.setParent(cat.id)">
+  	<a href="#" class="tag" >{{cat.category}}
+  		<span ng-class="{'icon-ok': cat.id == vm.parentId}"></span>
+  	</a>
+  </li>
+</ul>
+
+<ul class="tags level2" ng-if="vm.parentId">
+  		<p class="catLabel">Discipline</p>
+  		<li ng-repeat="subCat in vm.categories" ng-if="vm.parentId == subCat.pcat_id" ng-class="{'active': subCat.id == vm.subCategory}" ng-click="vm.setSubCategory(subCat.id)">
+  			<a href="#" class="tag" >
+  				<span class="{{ (subCat.id == vm.subCategory) ? 'icon-ok' : 'icon-circle-blank' }}"></span>
+  				{{subCat.category}}
+  				
+  			</a>
+  		</li>
+ </ul>
+
+
+
+
+
+	<ul class="tags level3" ng-if="vm.subCategory">
+			<p class="catLabel">Subdisciplines </p>
+			<li ng-repeat="subj in vm.categories" ng-if="vm.subCategory == subj.pcat_id" class="{{ (vm.isSubjectActive(subj.id)) ? 'active' : ''}}"
+			ng-click="vm.toggleSelectSubjects(subj.id)"
+			>
+				
+			<a href="#" class="tag" >
+
+				<span  class="{{ (vm.isSubjectActive(subj.id)) ? 'icon-ok' : 'icon-unchecked'}}" ></span>
+				{{subj.category}} 
+					
+			 </a>
+		</li>
+	</ul>
+
+
+
+
+
+
+
+</section><!-- catSelectWrap -->
+
+
+
+
+
+
+<div>
+
+		
+		
+		<div ng-if="vm.stepOneisValid()" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(2)" class="wiz-contbox">Next <span class="icon icon-arrow-right"></span></div>
+
+		<div class="clearfix"></div>
+	</div>
+
+
+				
+		
+
+			</div> <!-- stage 01 -->
+
+	<div class="w-100" ng-switch-when="2">
+
+
+		<div class="stage02-wrapper-inner wiz-contbox">	
+
+
+			<div class="formControlflexWrap">
+
+				<div class="flexFormLabel">
+					<label>Enter Title</label>
+				</div>
+
+				<div class="flexFormControl">
+
+					<input type="text" class="w-100" placeholder="Type Here ..." ng-model="vm.nQuiz.title">
+					
+				</div>		
+
+				
+			</div>
+
+
+			<div class="formControlflexWrap">
+
+				<div class="flexFormLabel">
+					
+					
+
+					<label>Duration Minutes {{vm.nQuiz.duration}} <span class="icon-question-sign">
+						<span class="label-info">How much time in minutes a candidate will have to answer all questions  </span>
+					</span></label>
+
+
+				</div>
+
+				<div class="flexFormControl slidecontainer">
+
+					<input type="range" min="5" max="120" step="5" class="slider w-100" ng-model="vm.nQuiz.duration">
+
+					<input type="text" class="w-100" placeholder="Type Here ..." ng-model="vm.nQuiz.duration">
+					
+				</div>		
+
+				
+			</div>
+
+
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					
+					
+
+					<label>No. of Questions : {{vm.nQuiz.reqQues}} <span class="icon-question-sign">
+						<span class="label-info">How many questions candidate will have  </span>
+					</span></label>
+
+
+				</div>
+
+				<div class="flexFormControl slidecontainer">
+					<input type="range" min="5" max="300" step="5" class="slider w-100" ng-model="vm.nQuiz.reqQues">
+				</div>			
+			</div>
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					
+
+					<label>Max Score : {{vm.nQuiz.maxScore}} <span class="icon-question-sign">
+						<span class="label-info">Total max. score for the quiz </span>
+					</span></label>
+				</div>
+
+				<div class="flexFormControl slidecontainer">
+					<input type="range" min="10" max="1000" step="5" class="slider w-100" ng-model="vm.nQuiz.maxScore">
+				</div>			
+			</div>
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					
+					
+
+
+					<label>Passing Score : {{vm.nQuiz.minScore}} <span class="icon-question-sign">
+						<span class="label-info">Min. Score bases on which candidate can be concluded as pass or fail </span>
+					</span></label>
+
+
+				</div>
+
+				<div class="flexFormControl slidecontainer">
+					<input type="range" min="10" max="{{(vm.nQuiz.maxScore * 80) /100}}" step="5" class="slider w-100" ng-model="vm.nQuiz.minScore">
+				</div>			
+			</div>
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Threshold : {{vm.nQuiz.threshold}} <span class="icon-question-sign">
+						<span class="label-info">Prevent questions to be used  </span>
+					</span></label>
+
+
+				</div>
+
+				<div class="flexFormControl slidecontainer">
+					<input type="range" min="5" max="1000" class="slider w-100" ng-model="vm.nQuiz.threshold">
+				</div>			
+			</div>
+
+		
+		</div> <!-- stage02-wrapper-inner wiz-contbox  -->
+
+
+	</div> <!-- stage 02  -->
+
+	<div class="w-100" ng-switch-when="3">
+
+		<div class="stage03-wrapper-inner wiz-contbox">
+
+			<div class="formControlflexWrap">
+
+				<div class="flexFormLabel">
+					<label>Start: Date & Time <span class="icon-question-sign"></span></label>
+				</div>
+
+				<div class="flexFormControl">
+
+					<div class="input-append w-50 pick-dt" ng-model="vm.nquiz.startDateTime">
+                                <input type="text" id="ddate" class="w-90 dateinput" ng-value="vm.nquiz.startDateTime" name="sdate" placeholder="Start Date" >
+                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                            </div>
+					
+				</div>		
+				
+			</div>
+
+
+			<div class="formControlflexWrap">
+
+				<div class="flexFormLabel">
+					<label>End: Date & Time <span class="icon-question-sign"></span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="input-append pick-dt w-50 pick-dt" ng-model="vm.nquiz.startDateTime">
+                                <input type="text" id="adate" class="w-90 dateinput" ng-value="vm.nquiz.endDateTime" name="edate" placeholder="End Date" ng-model="vm.nquiz.endDateTime">
+                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                            </div>
+				</div>		
+			
+			</div>
+
+		</div> 		
+		
+			
+
+		
+	</div>
+
+	<div class="w-100" ng-switch-when="4">
+		
+		<div class="stage04-wrapper-inner wiz-contbox">
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Unique Questions On Retake<span class="icon-question-sign"></span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="w-50">	
+						<span class="kt-switch kt-switch--icon" style="text-align: right">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.reTakeUnique" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.reTakeUnique == '1'"  class="" ng-change="vm.toggleFeatures('reTakeUnique')">
+                                <span></span>
+                              </label>
+                            </span>
+					</div>	
+				</div>		
+			</div>
+
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Difficulty Level Switch<span class="icon-question-sign"></span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="w-50">	
+						<span class="kt-switch kt-switch--icon" style="text-align: right">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.dls" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.dls == '1'"  class="" ng-change="vm.toggleFeatures('dls')">
+                                <span></span>
+                              </label>
+                            </span>
+					</div>	
+				</div>		
+			</div>
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Make Score Visible<span class="icon-question-sign"></span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="w-50">	
+						<span class="kt-switch kt-switch--icon" style="text-align: right">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.scoreVisible" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.scoreVisible == '1'"  class="" ng-change="vm.toggleFeatures('scoreVisible')">
+                                <span></span>
+                              </label>
+                            </span>
+					</div>	
+				</div>		
+			</div>
+
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Show Results Status<span class="icon-question-sign">
+						<span class="label-info">This is the information I would like to show to the user</span>
+					</span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="w-50">	
+						<span class="kt-switch kt-switch--icon" style="text-align: right">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.showResults" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.showResults == '1'"  class="" ng-change="vm.toggleFeatures('showResults')">
+                                <span></span>
+                              </label>
+                            </span>
+					</div>	
+				</div>		
+			</div>
+
+		</div> 
+
+
+
+	</div>
+
+	<div class="w-100" ng-switch-when="5">
+
+
+	<div class="stage05-wrapper-inner wiz-contbox">
+
+		<div class="formControlflexWrap">
+
+				<div class="flexFormLabel">
+					Required Questions
+				</div>
+
+				<div class="flexFormControl">
+					{{vm.nQuiz.reqQues}}
+				</div>
+		</div>
+
+
+		<div class="formControlflexWrap">
+
+				<div class="flexFormLabel">
+					Score
+				</div>
+
+				<div class="flexFormControl">
+					{{vm.nQuiz.maxScore}}
+				</div>
+		</div>
+
+
+		<div class="formControlflexWrap" ng-repeat="subject in vm.chosenSubjects">
+
+				<div class="flexFormLabel">
+					{{subject.category}}
+				</div>
+
+				<div class="flexFormControl">
+					questions / Score
+				</div>
+		</div>
+
+		
+
+
+
+	</div>
+
+	<div class="w-100" ng-switch-default>
+		<p>No State is selected, select one</p>
+	</div>
+
+
+
+	<div class="w-50 hidden">
+		
+		<div class="btn btn-success std">Add New</div>
+		<div class="btn btn-info std"><span class="icon icon-save"></span>Save</div>
+		<div class="btn btn-twitter std">Update</div>
+		<div class="btn btn-danger std">Edit</div>
+	</div>
+
+
+	</div> <!-- stage inner  -->
+			
+
+		</div> <!-- stages -->
+
+
+
+		
+	</div>
+	
+		
+
+
+</div>
+
+
+

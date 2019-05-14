@@ -37,5 +37,5 @@ angular.module('io2v3')
             return timeSince(attemptedDate);
             
 
-        };
+        }
     });

@@ -5240,6 +5240,7 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
     content: "";
     display: table;
     line-height: 0;
+    
 }
 .clearfix:after {
     clear: both;

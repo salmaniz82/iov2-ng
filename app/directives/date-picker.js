@@ -17,6 +17,7 @@
                 pick12HourFormat: false,   
                 pickSeconds: false,
                 language: 'en',
+                
 
                     onSelect: function(dateText) {
                       scope.$apply(function() {

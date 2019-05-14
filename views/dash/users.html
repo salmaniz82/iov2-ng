@@ -200,12 +200,17 @@
 
         <div>
 
-            <div>
+
+
+            <div class="pull-left">
                 <label><input type="checkbox" name="agree" ng-model="vm.proceedToX">Proceed to Delete</label>   
             </div>
 
-        <button class="btn btn-danger" ng-if="vm.proceedToX" ng-click="vm.deleteUser(itemId = vm.xUSer.id)">Yes Delete</button>
-        <button class="btn btn-danger" ng-if="!vm.proceedToX" ng-click="vm.closeDeleteModal()">Cancel</button>   
+            <div class="pull-right">
+                <button class="btn btn-danger" ng-if="vm.proceedToX" ng-click="vm.deleteUser(itemId = vm.xUSer.id)">
+                    <span class="icon-warning-sign"></span>
+                Delete</button>
+            </div>
 
         </div>
         

@@ -17,6 +17,10 @@ body {
     border: 1px solid red;
 }
 
+.bg-white {
+  background-color: #fff !important;
+}
+
 .bg-green {
     background-color: var(--green);
   }
@@ -31,6 +35,10 @@ body {
 
 .w-90 {
     width: 90% !important;
+}
+
+.w-50 {
+    width: 50% !important;
 }
 
 .w-45 {
@@ -335,15 +343,25 @@ p.flat-circle span {
 .cst-modal-header{
   padding:1.5rem;
   font-family: sans-serif;
-  background-color: var(--yellow);
-  color: #fff;
+  color: #333;
 }
 
 
 .cst-modal-header span {
   font-size: 18px;
-  color: #fff;
+  color: #333;
 }
+
+
+.cst-modal-header::after {
+  content: "";
+  width : 100%;
+  display: inline-block;
+  border-bottom: 1px solid #c1c1c1;
+
+}
+
+.icon-remove {cursor: pointer}
 
 
 .cst-modal-body{
@@ -549,7 +567,8 @@ button.custom-upload-btn {
 
 .kt-switch {
   display: inline-block;
-  font-size: 1rem; }
+  font-size: 1rem;
+  vertical-align: middle; }
   .kt-switch input:empty {
     margin-left: -999px;
     height: 0;
@@ -1149,20 +1168,328 @@ span.qqScope {
 
 span.qqScope.public {
   background-color: none; 
-  color: #333;
-  border: 1px solid #333;
+  color: #c1c1c1;
+  border: 1px solid #c1c1c1;
 }
 
 span.qqScope.private {
-  background-color: var(--pink) !important; 
+  color: #fff; 
+  background-color: var(--pink) !important;
+  border: 1px solid var(--pink);
 }
 
 span.qqScope.local {
+  color: #fff; 
   background-color: var(--blue) !important; 
+  border: 1px solid var(--blue);
+}
+
+
+
+ul.stepperNav {
+  list-style:none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.stepperNav li {
+  flex: 1;
+  text-align: center;
+  width: 150px;
+  height: 75px;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  
+  opacity: 0.9;
+  transition: all 0.3s ease-out;
+  
 }
 
 
 
 
+.stepperNav li .stageIndigator {
+    width: 30px;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: var(--greyLight);
+    color: var(--blue);   
+    font-weight: 800; font-size: 14px;
+    display: inline-block;
 
+}
+
+.stepperNav li.active .stageIndigator {
+    background-color: var(--blue);
+    color: #fff;
+}
+
+.stepperNav li a {
+  font-size: 17px;
+  outline: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #9a9494;
+  font-weight: 800;
+}
+
+
+.stepperNav li:hover {
+  
+}
+
+.stepperNav li.active {
+    opacity: 1 !important;
+    background-color: #ffffff;
+}
+
+
+.stepperNav li .innerContents {
+    transform: translateY(100%);
+}
+
+
+
+.stepperNav li.active a {
+
+  color: var(--blue);
+
+}
+
+  
+
+
+
+
+.wizardContainer {
+  margin-top: 50px;
+}
+
+.wizardContainer .stepper {
+
+display: block;
+
+}
+
+
+.wizardContainer .stages {
+  flex: 1;
+  background-color: #fff;
+}
+
+
+.wizardContainer .fxCol {
+  padding: 10px;
+}
+
+.bg__root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 100vh;
+    z-index: -99999;
+    overflow: hidden;
+}
+
+
+.stages .stage-inner {
+  padding: 20px;
+}
+
+
+
+.btn.std {
+  width: 100px;
+}
+
+
+ul.tags {
+  list-style: none;
+  margin-right: 50px;
+}
+
+ul.tags li {
+  border-bottom: 1px solid #c1c1c1;
+  padding: 10px 5px;
+}
+
+
+ul.tags li.active a {
+  color: var(--green);
+  font-weight:  600;
+}
+
+ul.tags li a {
+  color: #333333;
+  letter-spacing: 1px;
+  font-weight: normal;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+ul.tags li a:focus {
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+
+
+p.catLabel {
+  color: var(--yellow);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 150px;
+  border-bottom: 1px solid var(--yellow);
+  font-weight: bold;
+}
+
+
+
+section.catSelectWrap {
+
+  display: flex;
+
+
+  
+}
+
+
+.wiz-contbox {
+
+  width: 960px;
+  margin: 0 auto;
+
+}
+
+.d-inlineBlock {
+  display: inline-block;
+}
+
+
+.formControlflexWrap {
+  display: flex;
+  margin-bottom: 30px;
+  align-items: baseline;
+}
+
+.formControlflexWrap .flexFormLabel {
+  flex: 1;
+}
+
+.formControlflexWrap .flexFormControl {
+  flex: 2;
+}
+
+.formControlflexWrap .flexFormLabel, .formControlflexWrap .flexFormControl {
+  height: 50px;
+
+}
+
+
+.formControlflexWrap .flexFormLabel label {
+  font-weight: normal;
+  font-size: 18px;
+  color: var(--grey);
+}
+
+
+
+.formControlflexWrap .flexFormControl input[type="text"] 
+{
+
+  border: none;
+    outline: none;
+    border-bottom: 1px solid #c1c1c17d;
+    font-size: 18px;
+    box-shadow: none;
+
+}
+
+.formControlflexWrap .flexFormControl .kt-switch {
+  margin-left: 100px;
+}
+
+
+
+
+.clrFix::after{
+  content: '';
+  display: table;
+  height: 0px;
+  clear: both;
+  zoom: 1;
+}
+
+
+.flexFormLabel .icon-question-sign {
+  position: relative;
+}
+
+.flexFormLabel .icon-question-sign:hover {
+  color: var(--green);
+}
+
+.icon-question-sign .label-info {
+    position: absolute;
+    top: 22px;
+    left: 10px;
+    background-color: #333;
+    color: #f1f1f1;
+    display: inline-block;
+    padding: 10px;
+    font-size: 14px;
+    width: 200px;
+    z-index: 1000;
+    border-radius: 8px;
+    font-family: 'proxima-nova';
+    opacity: 0px;
+    display: none;
+    transition: all 0.5s ease-in;
+}
+
+
+.icon-question-sign .label-info::before {
+  left: 100%;
+  top: 50%;
+  border: 1px solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  pointer-events: none;
+  border-left-color: #333;
+  border-right-color: #333;
+  
+}
+
+
+.icon-question-sign:hover .label-info {
+  display: inline-block;
+  opacity: 1;
+}
+
+
+
+.examTemplateContainer {
+  padding-top: 25px;
+  padding-bottom: 50px;
+}
+
+
+
+.wizardContainer.compactInpage {
+  width: 900px;
+}
+
+
+.span9.bg-white .col-right {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 

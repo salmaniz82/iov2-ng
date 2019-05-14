@@ -23,28 +23,36 @@
         {
           
             vm.isInitiatStart = true;
-
-
             /*
-
             var popup = window.open("http://localhost:8000/quiz-assement/177/24", "myPopup", 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=800,height=600')
-
             */
 
             $http({
                 url : API_URL+'std-quiz-initiate',
                 method : 'POST',
                 data : {'enroll_id' : enroll_id}
-
             }).then(function(res){
 
-                var attempt_id = res.data.attempt_id;
+                if(res.data.type == 'static')
+                {
+                    var attempt_id = res.data.attempt_id;
+                    var stateargs = {'attempt_id' : attempt_id, 'quiz_id': vm.actQuiz.id};
+                    console.log(stateargs);
+                    $state.go('quizPlay', stateargs);
+                }
 
-                var stateargs = {'attempt_id' : attempt_id, 'quiz_id': vm.actQuiz.id};
+                else if (res.data.type == 'dls')
+                {
 
-                console.log(stateargs);
+                    $state.go('quizPlayDLS');
+                }
 
-                $state.go('quizPlay',stateargs);
+                else {
+
+                    console.log('quiz type is unknown');
+
+                }
+                
 
             },
             function(res){

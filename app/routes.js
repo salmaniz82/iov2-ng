@@ -373,7 +373,7 @@
                    
                     var attempt_id = $stateParams.attempt_id;
                     var quiz_id = $stateParams.quiz_id;
-                    return quizPlay.prepQuizQuestion(quiz_id, quiz_id);
+                    return quizPlay.prepQuizQuestion(quiz_id, attempt_id);
 
                 }
 
@@ -382,10 +382,59 @@
             roles : ['students']
         })
 
+
+        .state('quizPlayDLS', {
+
+            url : '/quiz-assessment/dls',
+            templateUrl : 'views/student/dynamic-quiz.html'
+
+        })
+
         .state('newlayout', {
 
             url: '/newlayout',
             templateUrl: 'views/newlayout.html'
+
+        })
+
+
+        .state('exm.quizWizard', {
+
+            url : '/quiz-wz-compact',
+            templateUrl : 'views/quiz-wizard-compact.html',
+
+            controller : 'newQuizWizardCtrl as vm',
+
+            resolve : {
+
+                wizardPreset : function(quizWizardService)
+                {
+
+                   return quizWizardService.getPresetValues();     
+                }
+
+            }
+
+
+        })
+
+
+
+        .state('pub.quizWizard', {
+
+            url : '/new-quiz-wizard',
+            templateUrl : 'views/new-quiz-wizard.html',
+            controller : 'newQuizWizardCtrl as vm',
+
+            resolve : {
+
+                wizardPreset : function(quizWizardService)
+                {
+
+                   return quizWizardService.getPresetValues();     
+                }
+
+            }
 
         })
 
