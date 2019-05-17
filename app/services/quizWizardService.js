@@ -19,4 +19,18 @@ angular.module('io2v3')
 		};
 
 
+		this.loadPreDistributionInfo = function(dataPayload)
+		{
+	
+			var url = API_URL+'quizwizardsubjects';
+
+			return $http({
+				 url : url,
+				 method: 'POST',
+				 data: dataPayload
+			});
+
+		};
+
+
 	});

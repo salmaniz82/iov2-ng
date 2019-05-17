@@ -47,7 +47,7 @@
 						<li ng-class="{'active': stage == 5}">
 							<div class="innerContents">
 							<div class="stageIndigator">5</div>
-							<a href="#" ng-click="stage = 5">Distributions</a>
+							<a href="#" ng-click="vm.activateDistroState()">Distributions</a>
 						</div>
 						</li>
 			</ul>
@@ -58,7 +58,7 @@
 
 		
 
-		<div class="stages" class="ngswitch__root" ng-switch on="stage" ng-init="stage = 1">
+		<div class="stages" class="ngswitch__root" ng-switch on="stage" ng-init="stage = 2">
 
 
 			<div class="stage-inner">
@@ -163,43 +163,27 @@
 			<div class="formControlflexWrap">
 
 				<div class="flexFormLabel">
-					
-					
-
-					<label>Duration Minutes {{vm.nQuiz.duration}} <span class="icon-question-sign">
+					<label>Duration Minutes : <span class="icon-question-sign">
 						<span class="label-info">How much time in minutes a candidate will have to answer all questions  </span>
 					</span></label>
-
-
 				</div>
 
-				<div class="flexFormControl slidecontainer">
-
-					<input type="range" min="5" max="120" step="5" class="slider w-100" ng-model="vm.nQuiz.duration">
-
-					<input type="text" class="w-100" placeholder="Type Here ..." ng-model="vm.nQuiz.duration">
-					
-				</div>		
-
-				
+				<div class="flexFormControl">
+					<input type="text" class="w-50" placeholder="Duration" ng-model="vm.nQuiz.duration">
+				</div>					
 			</div>
-
-
 
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
-					
-					
 
-					<label>No. of Questions : {{vm.nQuiz.reqQues}} <span class="icon-question-sign">
+					<label>No. of Questions : <span class="icon-question-sign">
 						<span class="label-info">How many questions candidate will have  </span>
 					</span></label>
 
-
 				</div>
 
-				<div class="flexFormControl slidecontainer">
-					<input type="range" min="5" max="300" step="5" class="slider w-100" ng-model="vm.nQuiz.reqQues">
+				<div class="flexFormControl">
+					<input type="text" class="w-50" ng-model="vm.nQuiz.noQues">
 				</div>			
 			</div>
 
@@ -207,47 +191,32 @@
 				<div class="flexFormLabel">
 					
 
-					<label>Max Score : {{vm.nQuiz.maxScore}} <span class="icon-question-sign">
+					<label>Max Score :  <span class="icon-question-sign">
 						<span class="label-info">Total max. score for the quiz </span>
 					</span></label>
 				</div>
 
-				<div class="flexFormControl slidecontainer">
-					<input type="range" min="10" max="1000" step="5" class="slider w-100" ng-model="vm.nQuiz.maxScore">
+				<div class="flexFormControl">
+					<input type="text" class="w-50" ng-model="vm.nQuiz.maxScore">
 				</div>			
 			</div>
 
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
 					
-					
-
-
-					<label>Passing Score : {{vm.nQuiz.minScore}} <span class="icon-question-sign">
+					<label>Passing Score :  <span class="icon-question-sign">
 						<span class="label-info">Min. Score bases on which candidate can be concluded as pass or fail </span>
 					</span></label>
 
 
 				</div>
 
-				<div class="flexFormControl slidecontainer">
-					<input type="range" min="10" max="{{(vm.nQuiz.maxScore * 80) /100}}" step="5" class="slider w-100" ng-model="vm.nQuiz.minScore">
+				<div class="flexFormControl">
+					<input type="text" class="w-50" ng-model="vm.nQuiz.minScore">
 				</div>			
 			</div>
 
-			<div class="formControlflexWrap">
-				<div class="flexFormLabel">
-					<label>Threshold : {{vm.nQuiz.threshold}} <span class="icon-question-sign">
-						<span class="label-info">Prevent questions to be used  </span>
-					</span></label>
-
-
-				</div>
-
-				<div class="flexFormControl slidecontainer">
-					<input type="range" min="5" max="1000" class="slider w-100" ng-model="vm.nQuiz.threshold">
-				</div>			
-			</div>
+			
 
 		
 		</div> <!-- stage02-wrapper-inner wiz-contbox  -->
@@ -305,7 +274,7 @@
 
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
-					<label>Unique Questions On Retake<span class="icon-question-sign"></span></label>
+					<label>Unique Questions On Retake <span class="icon-question-sign"></span></label>
 				</div>
 
 				<div class="flexFormControl">
@@ -323,7 +292,7 @@
 
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
-					<label>Difficulty Level Switch<span class="icon-question-sign"></span></label>
+					<label>Difficulty Level Switch <span class="icon-question-sign"></span></label>
 				</div>
 
 				<div class="flexFormControl">
@@ -340,7 +309,7 @@
 
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
-					<label>Make Score Visible<span class="icon-question-sign"></span></label>
+					<label>Make Score Visible <span class="icon-question-sign"></span></label>
 				</div>
 
 				<div class="flexFormControl">
@@ -358,7 +327,7 @@
 
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
-					<label>Show Results Status<span class="icon-question-sign">
+					<label>Show Results Status <span class="icon-question-sign">
 						<span class="label-info">This is the information I would like to show to the user</span>
 					</span></label>
 				</div>
@@ -368,6 +337,44 @@
 						<span class="kt-switch kt-switch--icon" style="text-align: right">
                               <label>
                                 <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.showResults" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.showResults == '1'"  class="" ng-change="vm.toggleFeatures('showResults')">
+                                <span></span>
+                              </label>
+                            </span>
+					</div>	
+				</div>		
+			</div>
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Standard Gradings <span class="icon-question-sign">
+						<span class="label-info"> This will show standards grading based on percentage </span>
+					</span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="w-50">	
+						<span class="kt-switch kt-switch--icon" style="text-align: right">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.showGradings" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.showGradings == '1'"  class="" ng-change="vm.toggleFeatures('showGradings')">
+                                <span></span>
+                              </label>
+                            </span>
+					</div>	
+				</div>		
+			</div>
+
+			<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Show Scale GPA <span class="icon-question-sign">
+						<span class="label-info"> This will show GPA scale based on percentage </span>
+					</span></label>
+				</div>
+
+				<div class="flexFormControl">
+					<div class="w-50">	
+						<span class="kt-switch kt-switch--icon" style="text-align: right">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.nQuiz.showGPA" ng-true-value="'1'" ng-false-value="'0'" ng-checked="vm.nQuiz.showGPA == '1'"  class="" ng-change="vm.toggleFeatures('showGPA')">
                                 <span></span>
                               </label>
                             </span>
@@ -393,7 +400,7 @@
 				</div>
 
 				<div class="flexFormControl">
-					{{vm.nQuiz.reqQues}}
+					{{vm.nQuiz.noQues}}
 				</div>
 		</div>
 
@@ -409,15 +416,32 @@
 				</div>
 		</div>
 
+		<div class="formControlflexWrap">
+				<div class="flexFormLabel">
+					<label>Threshold : {{vm.nQuiz.threshold}} <span class="icon-question-sign">
+						<span class="label-info"> Prevent global questions to be allocated which has highier threshold then define here. </span>
+					</span></label>
 
-		<div class="formControlflexWrap" ng-repeat="subject in vm.chosenSubjects">
+
+				</div>
+
+				<div class="flexFormControl" ng-init="vm.nQuiz.threshold = 500">
+					<input type="range" class="w-100" min="500" max="1000" ng-model="vm.nQuiz.threshold" ng-change="vm.activateDistroState()"
+					ng-model-options="{debounce: 750}">
+				</div>			
+			</div>
+
+
+		<div class="formControlflexWrap" ng-repeat="distro in vm.preDistro">
 
 				<div class="flexFormLabel">
-					{{subject.category}}
+					<label class="t-bold">
+					{{distro.subject}}
+					</label>
 				</div>
 
 				<div class="flexFormControl">
-					questions / Score
+					{{distro.questions}}
 				</div>
 		</div>
 

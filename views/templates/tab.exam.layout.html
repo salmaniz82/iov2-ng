@@ -1,0 +1,95 @@
+  <section class="hbox stretch parent">
+
+    <aside class="aside-sm bg-white border-right">
+      <a href="/" class="nav-brand" data-toggle="fullscreen">iSkillMetrics</a>
+
+      <ul id="top-menu"> 
+            <li ui-sref-active="active"><a ui-sref="dash.land()">Dashboard</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})">Progress</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})">Questions</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})">Weight Distribution</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})">Enroll</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})">Register</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.check()">Check</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.notify()">NOtify</a></li>
+            
+      </ul>
+    </aside>
+
+    <section class="content">
+      
+      <section class="vbox">
+        
+        <header class="bg-white border-bottom">
+
+
+          <nav class='nav-collapse collapse user-menu-collapse pull-right'>
+                            <ul class='nav'>
+
+                                <li>
+                                    <span class='indicator'></span>
+                                    <a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a>
+                                </li>
+                                
+                                <!--end new lang-->
+
+
+                                <li class="" ng-if="base.isLoggedIn()">
+                                    <span class="indicator"></span>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon-user"></i>
+                                        hi, {{getAuthUsername()}}
+                                        <i class="icon-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+
+                                        <li>
+                                            <a href="index.php"><i class="icon-dashboard"></i>
+                                                Dashboard
+                                            </a></li>
+                                        <li>
+                                            <a href="profile.php"><i class="icon-user"></i>
+                                                My Profile
+                                            </a></li>
+
+                                        <li>
+                                            <a ui-sref="logout()"><i class="icon-off"></i>
+                                                Logout
+                                            </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+
+
+          
+        </header>
+
+        <section class="scrollable wrapper">         
+
+            <div id="page-wrap" class="tab-layout">
+          
+            <section class="hbox pageContentWrapper">
+
+
+              <ui-view>
+
+               
+            </section>
+
+
+          
+
+          </div>  <!-- tabLayout -->
+
+          <footer id="tabLayoutFooter" class="bg-white t-center border-top">@ Copyrights 2019 all rights reserved : Build with <span class="icon-heart c-pink"></span> Privacy Policy | About | Terms of Service </footer>
+        </section>
+      </section>
+
+    </section>
+    
+  </section>
+
+
+  

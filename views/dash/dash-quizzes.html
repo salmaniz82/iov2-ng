@@ -1,0 +1,116 @@
+<section class="span9 bg-white border-all">
+            <div class="col-right">
+                
+                <div class="row">
+                    <div class="span4">
+                        <h3>Quiz</h3>
+                    </div>
+                    <div class="">
+
+                        <div>
+                            <a ui-sref="dash.addQuiz()" class="btn pull-right btn-success" title="Add Lesson"><span class="icon-plus"></span>Quiz</a>    
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div>
+                            <a ui-sref="dash.quizWizard()" class="btn pull-right btn-success" title="Add Lesson"><span class="icon-plus"></span>Quiz Wz</a>    
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+
+
+                <div ng-if="vm.loadingStatus == null"> Loading Quiz </div>
+
+                <div ng-if="vm.loadingStatus == false" class="c-red"> You do not have any quiz at the moment </div>
+
+                
+
+                <table class="table" ng-if="vm.loadingStatus == true">
+
+
+
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Quiz Title</th>
+                        <th>Min / Max </th>
+                        <th>Duration</th>
+                        <th>Enrollment</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr ng-repeat="item in vm.dataList">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.title}}</td>
+                        <td>{{item.minScore}} / {{item.maxScore}}</td>
+                        <td>{{item.duration}} mins.</td>
+                        <td>
+                        
+
+
+
+                            <span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="item.enrollment" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="item.enrollment == '1'" ng-change="vm.toggleEnroll(item.id, item.enrollment)">
+                                <span></span>
+                              </label>
+                            </span>
+
+
+
+                        </td>
+                        <td>
+                        
+
+
+                            <span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="item.status" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="item.status == '1'" ng-change="vm.statusToggle(item.id, item.status)">
+                                <span></span>
+                              </label>
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <div class="btn-group btn-more">
+                                <a class="btn" href="#"
+                                   data-toggle="dropdown">&nbsp;</a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a ui-sref="exm.exam({'examID': item.id})"> - Details </a>
+                                    <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
+                                    <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
+                                    <li><a href="modify-date-time.php" class="c-red"> - Modify Date/Time</a>
+                                    <li><a ui-sref="exm.editQuiz()"> - Manage Quiz</a></li>
+                                    <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
+                                    <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                  
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!-- end col right-->
+        </section>

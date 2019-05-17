@@ -1493,3 +1493,69 @@ section.catSelectWrap {
   padding-right: 10px;
 }
 
+
+.compactWizardNavigation ul {
+
+  list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.compactWizardNavigation ul li {
+
+    flex: 1;
+    text-align: center;
+    width: 150px;
+    height: 75px;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    opacity: 0.9;
+    transition: all 0.3s ease-out;
+
+}
+
+
+.compactWizardNavigation ul li.active {
+    
+    opacity: 1 !important;
+    background-color: #ffffff;
+
+}
+
+
+.compactWizardNavigation li.active .stageIndigator {
+    background-color: var(--blue);
+    color: #fff;
+}
+
+
+.compactWizardNavigation li.active .innerContents a {
+  color: var(--blue);
+}
+
+.compactWizardNavigation li .innerContents a {
+
+  font-size: 17px;
+    outline: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #9a9494;
+    font-weight: 800;
+
+}
+
+.compactWizardNavigation li .stageIndigator {
+    width: 30px;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: var(--greyLight);
+    color: var(--blue);
+    font-weight: 800;
+    font-size: 14px;
+    display: inline-block;
+
+  }
+

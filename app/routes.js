@@ -51,7 +51,7 @@
 
         .state('exm', {
             abstract: true,
-            templateUrl : 'views/templates/examTemplate.html',
+            templateUrl : 'views/templates/tab.exam.layout.html',
             controller : 'examMgmtAbstractCtrl as exAbs'
             
         })
@@ -187,7 +187,7 @@
 
 
         .state('dash', {
-            templateUrl : 'views/templates/dashboardTemplate.html',
+            templateUrl : 'views/templates/tab.layout.html',
             abstract: true
         })
 
@@ -198,6 +198,16 @@
             url : '/dashboard',
             templateUrl: 'views/dash-landing.html',
             controller : 'dashLandCtrl as vm',
+            authenticate: true,
+            roles : ['admin', 'entity', 'contributor']
+        })
+
+
+        .state('dash.quizzes', {
+
+            url : '/quizzes',
+            templateUrl: 'views/dash/dash-quizzes.html',
+            controller : 'dashQuizzesCtrl as vm',
             authenticate: true,
             roles : ['admin', 'entity', 'contributor']
         })
@@ -398,29 +408,7 @@
         })
 
 
-        .state('exm.quizWizard', {
-
-            url : '/quiz-wz-compact',
-            templateUrl : 'views/quiz-wizard-compact.html',
-
-            controller : 'newQuizWizardCtrl as vm',
-
-            resolve : {
-
-                wizardPreset : function(quizWizardService)
-                {
-
-                   return quizWizardService.getPresetValues();     
-                }
-
-            }
-
-
-        })
-
-
-
-        .state('pub.quizWizard', {
+        .state('dash.quizWizard', {
 
             url : '/new-quiz-wizard',
             templateUrl : 'views/new-quiz-wizard.html',
@@ -435,6 +423,14 @@
                 }
 
             }
+
+        })
+
+
+        .state('tabtest', {
+
+            url : '/tabtest',
+            templateUrl: 'views/templates/tab.layout.html'
 
         })
 

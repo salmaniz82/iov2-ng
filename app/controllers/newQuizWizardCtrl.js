@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('newQuizWizardCtrl', ['API_URL', '$scope', '$http', '$stateParams', 'wizardPreset', function(API_URL, $scope, $http, $stateParams, wizardPreset){
+    angular.module('io2v3').controller('newQuizWizardCtrl', ['API_URL', '$scope', '$http', '$stateParams', 'wizardPreset', 'quizWizardService', function(API_URL, $scope, $http, $stateParams, wizardPreset, quizWizardService){
 
 
         var vm = this;
@@ -27,6 +27,10 @@
         vm.nQuiz.dls = 0;
 
         vm.nQuiz.scoreVisible = 0;
+
+        vm.nQuiz.showGradings = 0;
+
+        vm.nQuiz.showGPA = 0;
         
         vm.chosenSubjects = [];
 
@@ -114,6 +118,9 @@
 
         };
 
+
+
+
         
 
 
@@ -172,6 +179,77 @@
 			$scope.stage = stepNo;	        		
 
         };
+
+
+
+        vm.activateDistroState = function()
+        {
+
+
+            if(vm.subjectIds.length == 0)
+            {
+                 var notify = {
+                        type: 'error',
+                        title: 'Categorization',
+                        content: 'Select all 3 levels in category',
+                        timeout: 8000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                    $scope.stage = 1;
+
+                    return false;
+            }
+
+
+            var dataPayload = {
+
+               threshold : vm.nQuiz.threshold,
+               subject_ids : vm.subjectIds 
+
+            };
+
+
+            quizWizardService.loadPreDistributionInfo(dataPayload).then(
+
+                function(res){
+
+                    if(res.data.distro != undefined && res.data.distro.length != 0)
+                    {
+
+
+                        vm.preDistro = res.data.distro;
+
+                        if($scope.stage != 5) 
+                        {
+                           $scope.stage = 5;     
+                        }
+
+
+
+                    }
+                    else {
+
+                        
+
+                    }
+
+
+                    
+
+                }, 
+
+                function(res){
+
+                    console.log('cannot move the state at this point');
+
+                });
+
+
+
+
+        };
+
 
         
 

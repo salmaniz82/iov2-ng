@@ -84,11 +84,11 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
         setTimeout(function() {
 
-          //  $window.scrollTo(0, 0);
+         //   $window.scrollTo(0, 0);
 
-            console.log('attempt to chate the page offet');
+            console.log('page has finised loading');
 
-        }, 30);
+        }, 3000);
 
 
 
