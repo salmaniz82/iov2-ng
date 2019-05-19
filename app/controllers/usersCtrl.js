@@ -10,13 +10,77 @@
 
         vm.modalData;
 
-
         vm.permssionModal = false;
 
 
         vm.deleteConfirmModal = false;
 
         vm.xUSer = null;
+
+        vm.nUser = {};
+
+
+        vm.addUser = false;
+
+
+        vm.addNewUser = function()
+        {
+
+
+            var url = API_URL+'users';
+
+                $http({
+
+                    url : url,
+                    method: 'POST',
+                    data : vm.nUser
+
+                }).then(registerSuccess, registerError);
+
+
+                function registerSuccess(res)
+                {
+
+                    
+
+
+
+                    var notify = {
+                        type: 'success',
+                        title: 'Operation Successfull',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                    vm.addUser = false;
+                    vm.nUser = {};
+
+                    vm.dataList.push(res.data.lastCreatedUser[0]); 
+
+
+                }
+
+                function registerError(res)
+                {
+
+
+                        var notify = {
+                        type: 'error',
+                        title: 'User Creations Failed',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                }
+
+            
+        };
+
+
+
+
 
         vm.launchDeleteConfirmation = function(itemId)
         {
@@ -182,9 +246,8 @@
         	if(res.data.status == true)
         	{
         		vm.dataList = res.data.users;
+                vm.roles = res.data.roles;
         	}
-
-
 
         }, function(res){
 

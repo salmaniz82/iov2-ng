@@ -189,4 +189,81 @@ footer#tabLayoutFooter {
 }
 
 
+h2.form-heading {
+  color: #ccc;
+}
+
+
+/* float labels  */
+
+
+form.floatable .field-wrap {
+  position: relative;
+  height: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+
+form.floatable .float-field {
+  position: absolute;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #d5d5db;
+  color: #454553;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  text-indent: 20px;
+  box-shadow: none;
+  outline: none;
+}
+
+
+form.floatable select{
+  border: none;
+  border-bottom: 1px solid #d5d5db;
+}
+
+form.floatable select:focus{
+  
+  box-shadow: none;
+  outline: none;
+}
+
+form.floatable .float-field:valid + label.placeholder,
+form.floatable .float-field:focus + label.placeholder {
+  -webkit-transform: translate3d(0, -20px, 0);
+          transform: translate3d(0, -20px, 0);
+          box-shadow: none;
+          outline: none;
+          color: var(--blue);
+}
+
+form.floatable .placeholder {
+  font-family: 'Lato', sans-serif;
+  position: absolute;
+  font-size: 12px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  color: #c2c2c6;
+  text-transform: uppercase;
+  text-indent: 20px;
+  font-weight: 500;
+}
+
+form.floatable .float-field:invalid:focus {
+    border-color: var(--blue);
+    box-shadow: none;
+}
+
+form.floatable  .float-error {
+  color: var(--pink);
+  font-weight: 800;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 4px;
+}
+
 

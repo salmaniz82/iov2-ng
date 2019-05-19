@@ -17,6 +17,10 @@ body {
     border: 1px solid red;
 }
 
+.bg-azureDark {
+  background-color: var(--azureDark);
+}
+
 .bg-white {
   background-color: #fff !important;
 }

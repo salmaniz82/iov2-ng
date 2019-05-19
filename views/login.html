@@ -17,33 +17,41 @@
 
         
 
-        <form role="form" class="form" method="post">
+        <form role="form" class="floatable" method="post">
+
+
+            <div class="field-wrap">
+
+                <div class="field-wrap">
+                    <input type="text" name="password" class="float-field w-100" ng-model="vm.creds.email" required>
+                    <label class="placeholder">email</label>
+                </div>         
+            </div>
+
+
+            <div class="field-wrap">
+                    <input type="password" name="password" class="float-field w-100" ng-model="vm.creds.password" required>
+                    <label class="placeholder">password</label>
+               </div>
             
 
-            <div class="control-group email required">
-                <div class="controls">
-                    <div class="floatlabel-wrapper">
-                        <label for="session_email1">Email</label>
-                        <input class="string email required input-xxlarge floatlabel" placeholder="Email" size="50" type="email" ng-model="vm.creds.email"></div>
-                </div>
-            </div>
-            <div class="control-group password required">
-                <div class="controls">
-                    <div class="floatlabel-wrapper">
-                        <label for="session_password1">Password</label>
-                        <input class="password required input-xxlarge floatlabel" placeholder="Password" size="50" type="password" ng-model="vm.creds.password"></div></div>
-            </div>
+            
 
             <div class="row-fluid">
+
                 <div class="span6">
                     <a ui-sref="ua.forget()" data-dismiss="modal" data-toggle="modal" data-target="#forget-link" class="c-red">Forgot password?</a>
                 </div>
+
                 <div class="span6">
                     <button class="btn btn-primary graphic-chevron-right btn-icon d-block" data-disable-with="Login" ng-click="vm.login()"> Login </button>
                 </div>
 
-    </div>
+            </div>
 </form>
+
+
+
             </div>
 </div>
 
