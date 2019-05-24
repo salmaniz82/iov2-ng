@@ -1,0 +1,97 @@
+<section class="hbox">
+
+
+	<aside class="bg-white border-all" ng-if="vm.loading == null">
+		<div style="padding: 10px;">
+			<p>Loading Please Wait ...</p>
+		</div>	
+	</aside>
+
+	<aside class="bg-white border-all" ng-if="vm.loading == false">
+		<div style="padding: 10px;">
+			<p class="c-red">Cannot load questions</p>
+		</div>	
+	</aside>
+
+
+	<aside ng-if="vm.loading == true">
+
+		  <div class="bg-white border-all" style="margin-bottom: 20px;"> 
+
+<div class="row-fluid"> 
+
+
+        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
+            
+        <a class="btn btn-twitter btn-block" ui-sref="dash.queadd()"> <span class="icon-plus"></span> Questions </a>
+
+        </div>
+
+</div>  
+
+</div>
+
+
+
+		<div style="padding: 10px;" class="bg-white border-all">
+			<table class="table">
+				<thead>
+					<tr>
+					<th>S.NO</th>
+					<th>Category</th>
+					<th>Sub Deciplines</th>
+					<th>Description</th>
+					<th>Answer</th>
+					<th>Level</th>
+					<th>Type</th>
+					<th>Status</th>
+					<th>Hits</th>
+					<th>Scope</th>
+					<th>&nbsp;</th>
+					</tr>
+				</thead>
+
+
+				<tbody>
+
+					<tr ng-repeat="que in vm.questions">
+						
+					
+					<td>{{$index+1}}</td>
+					<td>{{que.category}}</td>
+					<td>{{que.subject}}</td>
+					<td>
+
+						<p ng-bind-html="que.queDesc">
+							
+						</p>
+
+					
+					<td>{{que.answer}}</td>
+					<td>{{que.levelEN}}</td>
+					<td>{{que.typeEN}}</td>
+					
+					<td>{{que.status}}</td>
+					<td>{{que.hits}}</td>
+					<td><span class="status" ng-class="{'finished': que.scope == 'public', 'working': que.scope == 'local', 'initiated': que.scope == 'private' }">{{que.scope}}</span></td>
+
+					<td>
+						<div class="btn-group btn-more">
+                                <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Preview</a></li>
+                                    
+                                    
+                                    
+                                </ul>
+                            </div>
+					</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</aside>
+
+
+</section>	

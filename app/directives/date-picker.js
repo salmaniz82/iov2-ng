@@ -18,10 +18,10 @@
                 pickSeconds: false,
                 language: 'en',
                 
-
                     onSelect: function(dateText) {
                       scope.$apply(function() {
                         ngModel.$setViewValue(dateText);
+
                     });
                  }
                 
@@ -36,8 +36,8 @@
 
 
 
-/*
 
+/*
 angular.module('io2v3').directive('pickDt', function() {
   return {
     restrict: 'C',
@@ -54,12 +54,40 @@ angular.module('io2v3').directive('pickDt', function() {
     }
   };
 });
+
 */
 
+/*
+angular.module('io2v3')
+
+    .directive('pickDt', function() {
+
+        return {
+
+            restrict: 'C',
+            link: function(scope, ele, attr, ngModel)
+            {
+                ele.datetimepicker({
+                format: 'yyyy-MM-dd hh:mm',
+                pickDate: true,
+                pickTime: true,
+                pick12HourFormat: true,   
+                pickSeconds: false,
+                language: 'en',
+                change : function(e) {
+
+                    console.log('dp check in');
 
 
+                }
+
+                });
+            }
+
+        };
 
 
+    });
 
-
+*/
 

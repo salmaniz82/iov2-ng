@@ -65,6 +65,15 @@ img.img-resp{
       color: var(--pink) !important; 
 }
 
+.c-dull {
+      color: rgba(155, 155, 155, 0.5) !important; 
+}
+
+.c-yellow, .c-warning  {
+      color: var(--yellow) !important; 
+}
+
+
 .c-blue {
     color: #00ACEE !important;
 }
@@ -1498,68 +1507,131 @@ section.catSelectWrap {
 }
 
 
-.compactWizardNavigation ul {
-
-  list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.compactWizardNavigation ul li {
-
-    flex: 1;
-    text-align: center;
-    width: 150px;
-    height: 75px;
-    box-sizing: border-box;
-    border-collapse: collapse;
-    opacity: 0.9;
-    transition: all 0.3s ease-out;
-
+#dashGrid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-auto-rows: minmax(250px, auto);
+  grid-gap: 15px;
 }
 
 
-.compactWizardNavigation ul li.active {
-    
-    opacity: 1 !important;
-    background-color: #ffffff;
+
+
+.gridItems.one {
+
+  grid-column: 1 / 8;
+  
+}
+
+.gridItems.two {
+
+  grid-column: 8 / 11;
+
+}
+
+.gridItems.three {
+
+  grid-column: 11 / -1;
+  grid-row: 1 / 3;
+  
+}
+
+
+.gridItems.four {
+
+  grid-column: 1 / 5;
+  
+}
+
+.gridItems.five {
+
+  grid-column: 5 / 11;
+  grid-row: 2 / 4;
+  
+}
+
+.gridItems.six {
+
+  grid-column: 1 / 5;
+  grid-row: 3 / 4;
+  
+}
+
+.gridItems.seven {
+  grid-column: 1 / 5; 
+}
+
+.gridItems.eight {
+  grid-column: 5 / 8; 
+}
+
+
+.gridItems.nine {
+  grid-column: 8 / 11; 
+}
+
+.gridItems.ten {
+  grid-column: 11 / -1;
+  grid-row: 3 / 5; 
+}
+
+#dashGrid .gridItems {
+
+  background-color: white;
+  /*
+  border-radius: 8px;
+  */
+  border: 1px solid #80808033;
+  transition: all 0.5s ease-in;
+  padding: 10px;
+
 
 }
 
 
-.compactWizardNavigation li.active .stageIndigator {
-    background-color: var(--blue);
-    color: #fff;
+#dashGrid .gridItems:hover {
+  border: 1px solid #ebeef2;
+  box-shadow: 0 0 16px rgba(87,86,90,.08);
+}
+
+.gridItems h3 {
+  padding: 0px;
+  margin: 0px;
+
 }
 
 
-.compactWizardNavigation li.active .innerContents a {
+
+span.status {
+  display: inline-block;
+  padding: 5px 5px;
+  box-shadow: none;
+  outline: none;
+  font-weight: 800;
+  font-size: 12px;
+  width: 70px;
+
+}
+
+
+span.status.working {
   color: var(--blue);
+  background-color: #85dff75c;
 }
 
-.compactWizardNavigation li .innerContents a {
-
-  font-size: 17px;
-    outline: none;
-    text-decoration: none;
-    text-transform: capitalize;
-    color: #9a9494;
-    font-weight: 800;
-
+span.status.finished {
+  color: var(--green);
+  background-color: #3db8623b;
 }
 
-.compactWizardNavigation li .stageIndigator {
-    width: 30px;
-    border-radius: 4px;
-    margin-right: 10px;
-    background-color: var(--greyLight);
-    color: var(--blue);
-    font-weight: 800;
-    font-size: 14px;
-    display: inline-block;
 
-  }
+span.status.initiated {
+  color: var(--yellow);
+  background-color: #edbe4038;
+}
+
+span.status.terminated {
+  color: var(--red);
+  background-color: #ed514059;
+}
 

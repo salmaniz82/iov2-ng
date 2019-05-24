@@ -6,6 +6,9 @@
         var vm = this;
 
 
+        vm.loadingStatus = null;
+
+
         vm.modalOpen = false;
 
         vm.modalData;
@@ -247,12 +250,13 @@
         	{
         		vm.dataList = res.data.users;
                 vm.roles = res.data.roles;
+
+                vm.loadingStatus = true;
         	}
 
         }, function(res){
 
-
-        	console.log('failed');
+        	vm.loadingStatus = false;
 
         });
 

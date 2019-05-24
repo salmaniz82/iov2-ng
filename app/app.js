@@ -19,7 +19,7 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
         
 
-        $window.scrollTo(0, 0);
+       // $window.scrollTo(0, 0);
 
 
         if(toState.authenticate == true)
@@ -79,8 +79,8 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
         
 
 
-        
-
+                
+          /*  
 
         setTimeout(function() {
 
@@ -89,6 +89,8 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
             console.log('page has finised loading');
 
         }, 3000);
+
+        */
 
 
 

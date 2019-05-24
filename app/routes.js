@@ -244,6 +244,12 @@
             controller : 'quepoolCtrl as vm'
         })
 
+        .state('dash.questions', {
+            url : '/questions',
+            templateUrl: 'views/dash/questions.html',
+            controller : 'questionsCtrl as vm'
+        })
+
         .state('dash.queadd', {
             url : '/que-add',
             templateUrl: 'views/dash/que-add.html',
@@ -423,6 +429,14 @@
                 }
 
             }
+
+        })
+
+
+        .state('dash.admindashboard', {
+
+            url : '/dashboard',
+            template : 'admin dasboard is herer'
 
         })
 

@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <section class="hbox">
 
 
@@ -26,7 +21,21 @@
 </div>
 
 
-<section class="bg-white border-all">
+<div ng-if="vm.loadingStatus == null" class="bg-white border-all">
+
+    <h2 class="t-center t-grey">Loading please wait ...</h2>  
+
+</div>
+
+
+<section ng-if="vm.loadingStatus == false">
+
+    <h2 class="t-red t-center">Opp! something went wrong please check internet connections</h2>
+    
+</section>
+
+
+<section class="bg-white border-all" ng-if="vm.loadingStatus == true">
             <div class="col-right">
                 
 

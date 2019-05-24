@@ -1,35 +1,56 @@
-<section class="span9 bg-white border-all">
+<section class="hbox">
+    
+
+    <aside>
+
+
+
+
+
+        <div ng-if="vm.loadingStatus == false"> 
+                    <h2 class="t-center">
+                        There are no quiz added yet please add one.
+                   </h2>
+        </div>
+        
+
+
+    
+
+
+        <div class="bg-white border-all" style="margin-bottom: 20px;"> 
+
+<div class="row-fluid"> 
+
+
+        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
+            
+        <a class="btn btn-twitter btn-block" ui-sref="dash.quizWizard()"> <span class="icon-plus"></span> Add Quiz </a>
+
+        </div>
+
+</div>  
+
+</div>
+
+
+
+</section>
+
+
+
+<div ng-if="vm.loadingStatus == null" class="bg-white border-all">
+
+<h2 class="t-center t-grey">Loading please wait ...</h2>  </div>
+
+
+
+
+<section class="bg-white border-all" ng-if="vm.loadingStatus == true">
             <div class="col-right">
                 
-                <div class="row">
-                    <div class="span4">
-                        <h3>Quiz</h3>
-                    </div>
-                    <div class="">
 
-                        <div>
-                            <a ui-sref="dash.addQuiz()" class="btn pull-right btn-success" title="Add Lesson"><span class="icon-plus"></span>Quiz</a>    
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div>
-                            <a ui-sref="dash.quizWizard()" class="btn pull-right btn-success" title="Add Lesson"><span class="icon-plus"></span>Quiz Wz</a>    
-                        </div>
-                        
-                    </div>
-
-                    
-                </div>
-
-
-                <div ng-if="vm.loadingStatus == null"> Loading Quiz </div>
-
-                <div ng-if="vm.loadingStatus == false" class="c-red"> You do not have any quiz at the moment </div>
-
-                
-
-                <table class="table" ng-if="vm.loadingStatus == true">
+                <table class="table" >
 
 
 
@@ -114,3 +135,7 @@
             </div>
             <!-- end col right-->
         </section>
+
+
+
+        </aside>
