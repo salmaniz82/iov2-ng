@@ -44,6 +44,7 @@
                         <th>Difficulty</th>
                         <th>Answer</th>
                         <th>Status</th>
+                        <th>Scope</th>
                         <th title="x times appeared in exams"># Hits</th>
                     </thead>
 
@@ -52,12 +53,8 @@
                         <tr ng-repeat="item in vm.dataList.questions | filter:{ subject: subjectSearch } track by $index ">
 
                                <td>{{$index + 1}}</td>
-                               <td style="position: relative">
+                               <td>
 
-                                <span ng-if="item.scope == 'public'" class="qqScope public">{{item.scope}}</span>
-
-                                <span class="qqScope {{(item.scope == 'private' ? 'private' : 'local')}}" ng-if="item.scope != 'public'">{{item.scope}}</span>
-                                
                                 <p ng-bind-html="item.queDesc">
                                   
                                 </p>
@@ -80,6 +77,10 @@
                               </label>
                             </span>
 
+                          </td>
+
+                          <td>
+                            <span class="status" ng-class="{'finished': item.scope == 'private', 'working': item.scope == 'public', 'initiated': item.scope == 'linked' }">{{item.scope}}</span>
                           </td>
 
                           <td>

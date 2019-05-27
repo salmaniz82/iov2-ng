@@ -73,6 +73,10 @@ img.img-resp{
       color: var(--yellow) !important; 
 }
 
+.c-grey {
+  color: var(--grey);
+}
+
 
 .c-blue {
     color: #00ACEE !important;
@@ -718,7 +722,7 @@ button.custom-upload-btn {
   background-color: #e8ebf1; }
 
 .kt-switch input:checked ~ span:after {
-  background-color: var(--green);
+  background-color: var(--greenLight);
   color: #ffffff; }
 
 .kt-switch input[disabled] {
@@ -1321,6 +1325,7 @@ display: block;
   width: 100px;
 }
 
+ul.tags.level1 {margin-left: 0px;}
 
 ul.tags {
   list-style: none;
@@ -1634,4 +1639,125 @@ span.status.terminated {
   color: var(--red);
   background-color: #ed514059;
 }
+
+.mb-20{
+  margin-bottom: 20px;
+}
+
+.mb-15{
+  margin-bottom: 15px;
+}
+
+.dfx-center-xy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dfx-center-x {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.dfx-center-y {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+}
+
+
+#questionsSEttingsWrapper.activated {
+
+  transform: translate3d(-550px, 0, 0);
+
+}
+
+#questionsSEttingsWrapper {
+  width: 600px;
+  position: fixed;
+  right: -600px;
+  top: 100px;
+  z-index: 99999;
+  transition: all 0.5s ease-in;
+}
+
+#questionsSEttingsWrapper .settingsArea {
+  padding: 10px;
+}
+
+#questionsSEttingsWrapper .stateicon {position: relative}
+
+
+#questionsSEttingsWrapper .stateicon .togglerButton {
+    position: absolute;
+    top: 45px;
+    left: -42px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-right: none;
+    font-size: 1.3rem;
+}
+
+#questionsSEttingsWrapper .togglerButton .far {
+
+  transition: all .5s ease-out;
+  color: var(--green);
+
+}
+
+
+#questionsSEttingsWrapper.activated .togglerButton .far{
+  transform: rotate(180deg);
+  color: var(--yellow);
+}    
+
+.quiztitlefilter {
+  position: absolute;
+  position: absolute;
+  top: 43px;
+}
+
+
+#bg__siteBackgrondImage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-image: url('/assets/images/site_background__root.jpg');
+  background-repeat: no-repeat;
+  z-index: -999999999;
+
+
+}
+
+
+.loginInerWrapper {
+  background-color: rgba(255,255,255,0.65);
+  padding: 40px;
+  border-radius: 8px;
+  min-width: 500px;
+
+  width: 800px;
+  margin: 0 auto;
+
+}
+
+
+#login__root {
+
+
+display: flex;
+    height: 100vh;
+    align-items: center;
+
+}    
+
 

@@ -10,6 +10,8 @@
 
         vm.questionMedia = [];
 
+        $scope.$parent.base.pageUrl = $state.current.url; 
+
 
         
 

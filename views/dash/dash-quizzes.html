@@ -15,23 +15,63 @@
         
 
 
+    <!-- 
+
+
+        bg-white border-all
+
+
+     -->
+
+
+        
+
+<div class="grid12Col gap10 mb-15"> 
+
+
     
 
 
-        <div class="bg-white border-all" style="margin-bottom: 20px;"> 
 
-<div class="row-fluid"> 
+        <div class="gc-1-8 bg-white border-all" ng-if="vm.loadingStatus == true">
+
+        <div class="customInner" style="margin: 20px; padding-right: 30px;">
+
+            <form class="floatable w-80">
+
+                <div class="field-wrap">
+                    <span class="icon-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.titleFitler">
+                    <label for="title-filter" class="placeholder">Filter By Title</label>
+                </div>
+                
+            </form>
 
 
-        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
+        
+        </div>
+
             
-        <a class="btn btn-twitter btn-block" ui-sref="dash.quizWizard()"> <span class="icon-plus"></span> Add Quiz </a>
+
+            
 
         </div>
 
+        <div class="gc-9-12 bg-white border-all dfx-center-xy">
+
+                <a class="btn btn-twitter" style="width: 200px;" ui-sref="dash.quizWizard()"> <span class="icon-plus"></span> Add Quiz </a>
+
+        </div>
+
+        
+            
+        
+
+        
+
 </div>  
 
-</div>
+
 
 
 
@@ -69,7 +109,7 @@
 
                     <tbody>
 
-                    <tr ng-repeat="item in vm.dataList">
+                    <tr ng-repeat="item in vm.dataList | filter:{ title: vm.titleFitler }">
 
                         <td>{{item.id}}</td>
                         <td>{{item.title}}</td>

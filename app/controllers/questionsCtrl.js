@@ -5,7 +5,42 @@
 
         var vm = this;
 
-        console.log('master questions controller is activated');
+
+        vm.togglers = false;
+
+        
+
+        $scope.$parent.base.pageUrl = $state.current.url; 
+
+
+        $scope.fields = [
+
+        {'cat': false},
+        {'decip': false},
+        {'author': false},
+        {'dated': false},
+        {'desc': true},
+        {'answer': false},
+        {'diff': false},
+        {'type': false},
+        {'hits': false},
+        {'scope': true},
+        
+        {'description': false},
+        {'hits': false},
+        {'status': false}
+        ];
+
+
+        vm.toggleFields = function(field, index)
+        {
+
+          $scope.fields[index].field  =! $scope.fields[index].field;
+
+
+          console.log($scope.fields[index].field);
+
+        };
 
 
 
@@ -16,11 +51,19 @@
 
         	function(res) {
 
-        		vm.loading = true;
+                if(res.status == 200)
+                {
+                    vm.loading = true;
+                    vm.dataList = res.data;
+                    vm.questions = vm.dataList.questions;
+                }
 
-        		vm.dataList = res.data;
+        		
 
-        		vm.questions = vm.dataList.questions;
+                if(res.status == 204)
+                {
+                    vm.loading = 'no contents';
+                }
 
         	},
 

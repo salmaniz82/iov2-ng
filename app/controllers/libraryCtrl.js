@@ -1,12 +1,14 @@
 (function() {
 
-    angular.module('io2v3').controller('libraryCtrl', ['API_URL', '$scope', '$http', '$stateParams', function(API_URL, $scope, $http, $stateParams){
+    angular.module('io2v3').controller('libraryCtrl', ['API_URL', '$scope', '$http', '$stateParams', '$state', function(API_URL, $scope, $http, $stateParams, $state){
 
 
         var vm = this;
 
 
         vm.loadingStatus = null;
+
+        $scope.$parent.base.pageUrl = $state.current.url; 
 
 
         vm.myFormData = {

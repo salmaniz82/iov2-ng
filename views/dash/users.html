@@ -27,6 +27,12 @@
 
 </div>
 
+<div ng-if="vm.loadingStatus == 'no contents'" class="bg-white border-all">
+
+    <h2 class="t-center t-grey">No users created yet!</h2>  
+
+</div>
+
 
 <section ng-if="vm.loadingStatus == false">
 
@@ -85,7 +91,7 @@
                                     <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
                                     <li><a href="#" ng-click="vm.loadPermissions(item.id)">Permissions</a></li>
                                     <li><a href="#" ng-click="vm.resetUserPermissions(item.id, item.role_id)">Reset Permissions</a></li>
-                                    <li permissions="['delete-user']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red icon-warning-sign"></span> <span class="c-red">Delete User</span></a></li>
+                                    <li permissions="['user-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red icon-warning-sign"></span> <span class="c-red">Delete User</span></a></li>
                                     
                                 </ul>
                             </div>

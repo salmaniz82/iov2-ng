@@ -8,9 +8,9 @@
       
 
       <ul id="top-menu"> 
-            <li ui-sref-active="active"><a ui-sref="dash.land()">Dashboard</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.land()"><i class="fab fa-buromobelexperte"></i> Dashboard</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})">Progress</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-certificate"></i> Progress</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})">Questions</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})">Weight Distribution</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})">Enroll</a></li>
@@ -28,27 +28,25 @@
         <header class="bg-white border-bottom">
 
 
-          <nav class='nav-collapse collapse user-menu-collapse pull-right'>
-                            <ul class='nav'>
+            <div class="flexTabHeader">
+                <div><span class="icon-home icon-2x"></span></div>
+                
+                <div class="flexTabHeader__InnerRightWrapper">
+                     
+                    <div>&nbsp;</div>   
+                    <div class="langCont">
+                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
+                    <div>
 
-                                <li>
-                                    <span class='indicator'></span>
-                                    <a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a>
-                                </li>
-                                
-                                <!--end new lang-->
-
-
-                                <li class="" ng-if="base.isLoggedIn()">
-                                    <span class="indicator"></span>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="icon-user"></i>
-                                        hi, {{getAuthUsername()}}
+                        <div class="btn-group topUserDrop">
+                                <a class="btn" href="#" data-toggle="dropdown">
+                                    <i class="icon-user c-green"></i>
+                                        {{getAuthUsername()}}
                                         <i class="icon-caret-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
+                                </a>
+                                <ul class="dropdown-menu">
 
-                                        <li>
+                                    <li>
                                             <a href="index.php"><i class="icon-dashboard"></i>
                                                 Dashboard
                                             </a></li>
@@ -61,13 +59,17 @@
                                             <a ui-sref="logout()"><i class="icon-off"></i>
                                                 Logout
                                             </a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
+                                    
+                                    
+                                    
+                                </ul>
+                        
+                    </div>
 
+                </div>
+            </div>
+        </div>
 
-          
         </header>
 
         <section class="scrollable wrapper">         

@@ -1,10 +1,17 @@
 (function(){
 	angular.module('io2v3')
-	.controller('baseCtrl', function($scope, auth, langSer, API_URL){
+	.controller('baseCtrl', function($scope, auth, langSer, API_URL, $state){
+
+
+
+
 
         
 
 		var vm = this;
+
+
+        
 
 
         vm.branding = "IO2 Version 3";

@@ -2,15 +2,9 @@
 
 <div class="container">
 
-
-
-
-
 	<div class="wizardContainer">
 
-
 		<div class="stepper">
-
 
 			<ul class="stepperNav">
 
@@ -18,7 +12,7 @@
 							
 							<div class="innerContents">
 								<div class="stageIndigator">1</div>
-								<a href="#" ng-click="stage = 1">Categorization</a><br />
+								<a href="#" ng-click="stage = 1">Category</a><br />
 							</div>
 							
 						</li>
@@ -26,35 +20,35 @@
 						<li ng-class="{'active': stage == 2}">
 							<div class="innerContents">
 								<div class="stageIndigator">2</div>
-								<a href="#" ng-click="stage = 2">Particulars</a>
+								<a href="#" ng-click="stage = 2">Details</a>
 							</div>	
 						</li>
 
 						<li ng-class="{'active': stage == 3}">
 							<div class="innerContents">
 							<div class="stageIndigator">3</div>
-							<a href="#" ng-click="stage = 3">Tenure</a>
+							<a href="#" ng-click="stage = 3">Validity</a>
 						</div>
 						</li>
 
 						<li ng-class="{'active': stage == 4}">
 							<div class="innerContents">
 							<div class="stageIndigator">3</div>
-							<a href="#" ng-click="stage = 4">Features</a>
+							<a href="#" ng-click="stage = 4">Options</a>
 						</div>
 						</li>
 
 						<li ng-class="{'active': stage == 5}">
 							<div class="innerContents">
 							<div class="stageIndigator">5</div>
-							<a href="#" ng-click="vm.activateDistroState()">Distributions</a>
+							<a href="#" ng-click="vm.activateDistroState()">Weightage</a>
 						</div>
 						</li>
 
 						<li ng-class="{'active': stage == 6}">
 							<div class="innerContents">
 							<div class="stageIndigator">6</div>
-							<a href="#">Completion</a>
+							<a href="#">Finalize</a>
 						</div>
 						</li>
 			</ul>
@@ -119,14 +113,25 @@
 
 
 
-
-
-
-
 </section><!-- catSelectWrap -->
 
 
+<div style="padding-top: 30px; padding-bottom: 30px; width: 960px; margin: 0 auto">
 
+<div class="row-fluid">	
+
+		<div class="span6">	
+			<div class="btn btn-default std pull-left" class="wiz-contbox">Exit</div>
+		</div>
+
+		<div class="span6">
+			<div ng-if="vm.stepOneisValid()" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(2)" class="wiz-contbox">Next <span class="icon icon-arrow-right"></span></div>
+		</div>	
+
+	</div>
+
+
+</div>
 
 
 
@@ -134,7 +139,7 @@
 
 		
 		
-		<div ng-if="vm.stepOneisValid()" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(2)" class="wiz-contbox">Next <span class="icon icon-arrow-right"></span></div>
+		
 
 		<div class="clearfix"></div>
 	</div>
@@ -199,20 +204,18 @@
           </div>
 
           
-          <div class="row-fluid">
+          <div class="row-fluid" style="padding-top: 30px;">
 
                     <div class="span6">
-                        <div class="btn btn-default btn-block"> <span class="icon-remove"></span> Cancle</div>
+                        <div class="btn btn-default std pull-left">Cancle</div>
                     </div>   
 
                     <div class="span6">
-                        <button type="submit" ng-hide="particulars.$invalid" class="btn btn-warning btn-block" ng-click="vm.moveToStep(3)"> <span class="icon-arrow-right"></span> Next 
-                    </div>
+                        <button type="submit" ng-hide="particulars.$invalid" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(3)">Next</div>
 
                     </div>   
                    
                 </div>
-
         </form>
 
 
@@ -281,20 +284,20 @@
 
 			
 
-			<div class="row-fluid">
+			<div class="row-fluid" style="padding-bottom: 50px;">
 
                     <div class="span6">
-                        <div class="btn btn-default pull-left"> <span class="icon-remove"></span>Cancle</div>
+                        <div class="btn btn-default std pull-left">Cancle</div>
                     </div>   
 
                     <div class="span6">
-                        <button type="submit" class="btn btn-warning pull-right" ng-click="vm.checkDates()"> <span class="icon-arrow-right"></span> Next 
+                        <button type="submit" class="btn btn-warning std pull-right" ng-click="vm.checkDates()"> Next 
                     </div>
                    
             </div> 
 
 
-            <div style="height: 20px;"></div>
+            
 
 
 			
@@ -421,11 +424,11 @@
 			<div class="row-fluid" style="padding-bottom: 30px">
 
                     <div class="span6">
-                        <div class="btn btn-default btn-block"> <span class="icon-remove"></span> Cancle</div>
+                        <div class="btn btn-default std pull-left">Cancle</div>
                     </div>   
 
                     <div class="span6">
-                        <button type="submit" ng-hide="particulars.$invalid" class="btn btn-warning btn-block" ng-click="vm.moveToStep(5)"> <span class="icon-arrow-right"></span> Next 
+                        <button type="submit" ng-hide="particulars.$invalid" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(5)">Next 
                     </div>
 
                     </div> 
@@ -446,7 +449,7 @@
 
 		<div class="formControlflexWrap">
 				<div class="flexFormLabel">
-					<label>Threshold : {{vm.nQuiz.threshold}} <span class="icon-question-sign">
+					<label>View Limit : {{vm.nQuiz.threshold}} <span class="icon-question-sign">
 						<span class="label-info"> Prevent global questions to be allocated which has highier threshold then define here. </span>
 					</span></label>
 
@@ -458,18 +461,6 @@
 				</div>			
 		</div>
 
-
-		<div class="formControlflexWrap">
-			<h3>Note: Score and questions must exactly match with aggregated distribution total </h3>
-		</div>
-
-
-	
-
-
-	
-
-
 		<div>
 
 			
@@ -477,7 +468,7 @@
 			<table class="table">
 
 				<thead>
-					<tr>
+					<tr style="font-size: 18px;">
 						<th>Subjects</th>
 						<th>Available Questions</th>
 						<th>Questions Required : {{vm.nQuiz.noQues}} </th>
@@ -509,11 +500,14 @@
 						</td>
 
 						<td>
-							{{vm.Qtotal}}
+							<span ng-class="{'c-red': vm.nQuiz.noQues != vm.Qtotal, 'c-green': vm.nQuiz.noQues == vm.Qtotal}"> {{vm.Qtotal}} </span>
 						</td>
 
 						<td>
-							{{vm.pointsTotal}}
+							<span ng-class="{'c-red': vm.pointsTotal != vm.nQuiz.maxScore, 'c-green': vm.pointsTotal == vm.nQuiz.maxScore}"> 
+								{{vm.pointsTotal}}
+							</span>
+							
 						</td>
 						
 					</tr>
@@ -524,15 +518,38 @@
 
 		</div>
 
-
-		<div ng-if="vm.subjecTotal < vm.nQuiz.noQues">
-			<h3>Available questions are less then your required, would you like to continue and resolve distribution later</h3>
-			<span class="btn btn-warning" ng-click="vm.saveQuiz(0)">Yes Proceed</span> OR <span class="btn btn-danger">Cancel & Exit</span>
+		<div class="formControlflexWrap" ng-if="vm.pointsTotal != vm.nQuiz.maxScore || vm.nQuiz.noQues != vm.Qtotal">
+			<h4 class="c-warning">Note: Score and questions must exactly match with aggregated distribution total </h4>
 		</div>
 
-		<div ng-if="vm.pointsTotal == vm.nQuiz.maxScore && vm.nQuiz.noQues == vm.Qtotal && vm.subjecTotal >= vm.nQuiz.noQues">		
-			<h3>Perfect, Save quiz & Distribution with Current Congiruation</h3>
-			<div class="btn btn-success" ng-click="vm.saveQuiz(1)">Save</div>
+		<h4 ng-if="vm.subjecTotal < vm.nQuiz.noQues" style="margin-top: -30px">Available questions are less then your required, would you like to continue and resolve distribution later</h4>
+
+
+		<div ng-if="vm.subjecTotal < vm.nQuiz.noQues">
+			
+			
+
+			<div class="row-fluid">
+
+				<div class="span6">
+					<div class="btn btn-default pull-left std" ng-click="vm.step = 3">Back</div>
+				</div>
+
+				<div class="span6">
+					<div class="btn btn-warning pull-right std" ng-click="vm.saveQuiz(0)">Next</div>		
+				</div>
+			</div>	
+
+			 
+
+		</div>
+
+		<div ng-if="vm.pointsTotal == vm.nQuiz.maxScore && vm.nQuiz.noQues == vm.Qtotal && vm.subjecTotal >= vm.nQuiz.noQues" class="row-fluid">		
+
+			<div class="span6">&nbsp;</div>	
+
+			<div class="span6"><div class="btn btn-warning std pull-right" ng-click="vm.saveQuiz(1)">Next</div></div>	
+
 		</div>
 
 		
@@ -582,6 +599,12 @@
 						'c-pink': vm.phaseFourStatus == 'error' }"
 
 				>Saving Distribution</h4>
+
+
+
+				<a ng-if="vm.allDone" class="btn btn-success" style="width: 200px; display: block; margin: 0 auto" ng-click="vm.navigateToLastCreated()">All Done Proceed</a>
+
+
 
 				
 

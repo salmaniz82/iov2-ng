@@ -1,9 +1,11 @@
 (function() {
 
-    angular.module('io2v3').controller('usersCtrl', ['API_URL', '$scope', '$http', function(API_URL, $scope, $http){
+    angular.module('io2v3').controller('usersCtrl', ['API_URL', '$scope', '$http', '$state', function(API_URL, $scope, $http, $state){
 
 
         var vm = this;
+
+        $scope.$parent.base.pageUrl = $state.current.url; 
 
 
         vm.loadingStatus = null;
@@ -246,13 +248,20 @@
         })
         .then(function(res){
 
-        	if(res.data.status == true)
+        	if(res.status == 200)
         	{
         		vm.dataList = res.data.users;
-                vm.roles = res.data.roles;
-
+                
                 vm.loadingStatus = true;
         	}
+            else if (res.status == 206)
+            {
+                vm.loadingStatus = 'no contents';
+
+                vm.dataList = {};
+            }
+
+            vm.roles = res.data.roles;
 
         }, function(res){
 

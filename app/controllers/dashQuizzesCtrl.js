@@ -1,12 +1,14 @@
 (function() {
 
-    angular.module('io2v3').controller('dashQuizzesCtrl', ['API_URL', '$scope', '$http', function(API_URL, $scope, $http){
+    angular.module('io2v3').controller('dashQuizzesCtrl', ['API_URL', '$scope', '$http', '$state', function(API_URL, $scope, $http, $state){
 
 
         var vm = this;
 
 
         vm.loadingStatus = null;
+
+        $scope.$parent.base.pageUrl = $state.current.url; 
 
 
 

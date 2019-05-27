@@ -199,8 +199,49 @@
             templateUrl: 'views/dash-landing.html',
             controller : 'dashLandCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity', 'contributor']
+            roles : ['admin', 'entity', 'contributor', 'content developer']
         })
+
+
+
+        .state('dash.admindashboard', {
+
+            url : '/dashboard',
+            template : '<h1>Admin dashboard is under  contruction please login with : abf@domain.com to view entity dashboard</h1>'
+
+        })
+
+
+        .state('dash.entityDashbaord', {
+            url : '/dashboard',
+            templateUrl: 'views/dashboard-entity.html',
+            controller : 'dashboardEntityCtrl as vm',
+            authenticate: true,
+            roles : ['entity']
+        })
+
+
+        .state('dash.contributorDashbaord', {
+            url : '/dashboard',
+            template: '<h2>Contributor dashboard is under construction</h2>',
+            
+            authenticate: true,
+            roles : ['contributor']
+        })
+
+        .state('dash.contDevDashbaord', {
+            url : '/dashboard',
+            template: '<h2> Content Developer Dashboard is under construction </h2>',
+            
+            authenticate: true,
+            roles : ['content developer']
+        })
+
+
+
+        
+
+
 
 
         .state('dash.quizzes', {
@@ -209,8 +250,9 @@
             templateUrl: 'views/dash/dash-quizzes.html',
             controller : 'dashQuizzesCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity', 'contributor']
+            roles : ['admin', 'entity']
         })
+
 
         .state('dash.addQuiz', {
 
@@ -223,7 +265,9 @@
         .state('dash.cats', {
             url : '/categories',
             templateUrl: 'views/dash/categories.html',
-            controller : 'categoriesCtrl as vm'
+            controller : 'categoriesCtrl as vm',
+            authenticate: true,
+            roles : ['admin', 'content developer']
         })
 
         .state('dash.catree', {
@@ -260,7 +304,9 @@
         .state('dash.users', {
             url : '/users',
             templateUrl: 'views/dash/users.html',
-            controller : 'usersCtrl as vm'
+            controller : 'usersCtrl as vm',
+            authenticate: true,
+            roles : ['admin', 'entity']
         })
 
 
@@ -268,20 +314,26 @@
 
             url : '/roles',
             templateUrl : 'views/dash/roles.html',
-            controller : 'rolesCtrl as vm'
+            controller : 'rolesCtrl as vm',
+            authenticate: true,
+            roles : ['admin']
 
         })
 
         .state('dash.permission', {
             url : '/permissions',
             templateUrl : 'views/dash/permissions.html',
-            controller : 'permissionsCtrl as vm'
+            controller : 'permissionsCtrl as vm',
+            authenticate: true,
+            roles : ['admin']
         })
 
         .state('dash.rolePermissions', {
             url : '/role-permissions',
             templateUrl : 'views/dash/role-permissions.html',
-            controller : 'rolePermissionsCtrl as vm'
+            controller : 'rolePermissionsCtrl as vm',
+            authenticate: true,
+            roles : ['admin']
         })
 
 
@@ -291,7 +343,9 @@
 
             url : '/library',
             templateUrl : 'views/dash/library.html',
-            controller : 'libraryCtrl as vm'
+            controller : 'libraryCtrl as vm',
+            authenticate: true,
+            roles : ['admin']
 
         })
 
@@ -432,13 +486,6 @@
 
         })
 
-
-        .state('dash.admindashboard', {
-
-            url : '/dashboard',
-            template : 'admin dasboard is herer'
-
-        })
 
 
         .state('tabtest', {

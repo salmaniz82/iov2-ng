@@ -5,6 +5,8 @@
 
         var vm = this;
 
+        $scope.$parent.base.pageUrl = $state.current.url; 
+
 
         vm.parentId = null;
         vm.subCategory = null;
@@ -34,6 +36,8 @@
         
         vm.chosenSubjects = [];
 
+        vm.allDone = false;
+
 
         vm.hasValidDistribution = false;
 
@@ -43,6 +47,12 @@
         vm.phaseTwoStatus = 'inactive';
         vm.phaseThreeStatus = 'inactive';
         vm.phaseFourStatus = 'inactive';
+
+
+        vm.navigateToLastCreated = function()
+        {
+            $state.go("exm.exam", { examID: vm.lastCreatedId });
+        }
 
 
         vm.saveQuiz = function(saveNature)
@@ -120,7 +130,12 @@
                     $scope.$emit('notify', notify);
 
 
+
+
+
                 var lastId = res.data.last_id;
+
+                vm.lastCreatedId = lastId;        
 
                 vm.phaseThreeStatus = 'working';
 
@@ -156,7 +171,9 @@
 
                    else {
 
-                    $state.go("exm.exam", { examID: lastId });
+                    
+
+                        vm.allDone = true;
 
                    }     
                     
@@ -559,6 +576,8 @@
 
                 vm.phaseFourStatus = 'done';
 
+                vm.allDone  = true;
+
                 var notify = {
                         type: 'info',
                         title: 'Distrbution',
@@ -568,7 +587,7 @@
 
                     $scope.$emit('notify', notify);
 
-                    $state.go("exm.exam", { examID: lastID });
+                 //   $state.go("exm.exam", { examID: lastID });
 
 
               }, 
