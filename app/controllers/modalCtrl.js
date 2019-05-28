@@ -57,8 +57,51 @@
 
 		});
 
-		
 
+
+
+
+		vm.convertDates = function(dateInput)
+		{
+
+			var dt = new Date(dateInput);
+
+
+			var offset = dt.getTimezoneOffset();
+
+			if(offset > 0)
+			{
+
+				dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+
+			}
+
+			else {
+
+				dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+
+			}
+
+
+			var year = dt.getFullYear();
+
+			var month = (dt.getMonth() <= 9) ? '0'+dt.getMonth() : dt.getMonth();
+
+			var day = (dt.getDate() <= 9) ? '0'+dt.getDate() : dt.getDate();
+
+			var hour = (dt.getHours() <= 9 ) ? '0'+dt.getHours() : dt.getHours();
+
+			var minutes = (dt.getMinutes() <=9) ? '0'+dt.getMinutes() : dt.getMinutes();
+
+			var seconds = (dt.getSeconds() <= 9) ? '0'+dt.getSeconds() : dt.getSeconds();
+
+			var dateString =  year+'-'+month+'-'+day +' '+hour+':'+minutes+':'+seconds;
+
+			return dateString;
+
+			
+
+		};
 
 	}
 

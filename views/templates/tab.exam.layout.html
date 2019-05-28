@@ -5,16 +5,22 @@
         <a href="/" class="nav-brand" data-toggle="fullscreen">
           <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="150" height="88"/>
       </a>
+
+
+      <!--
+
+        <i class="fas fa-certificate"></i>
+      -->
       
 
       <ul id="top-menu"> 
             <li ui-sref-active="active"><a ui-sref="dash.land()"><i class="fab fa-buromobelexperte"></i> Dashboard</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})">Overview</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-certificate"></i> Progress</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})">Questions</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})">Weight Distribution</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})">Enroll</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})">Register</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})"><i class="fas fa-street-view"></i> Overview</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-chart-bar"></i> Progress</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})"><i class="fas fa-table"></i> Questions</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})"><i class="fas fa-balance-scale"></i> Weight Distribution</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})"><i class="fas fa-clipboard-check"></i> Enroll</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})"><i class="fas fa-clipboard-list"></i> Register</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.check()">Check</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.notify()">NOtify</a></li>
             
