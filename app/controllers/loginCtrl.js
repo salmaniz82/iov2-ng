@@ -51,21 +51,14 @@
 
 				auth.getUser();
 
+				$state.go('dash.land');
+
 			}
 
 			var AuthUser = auth.getUser();
 
 
-			if(AuthUser.role == 'students')
-			{
-				$state.go('std.exams');
-			}
-			else {
-
-				$state.go('dash.land');
-
-			}			
-
+			
 			
 
 		};

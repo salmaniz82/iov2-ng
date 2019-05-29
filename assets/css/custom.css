@@ -1164,7 +1164,7 @@ body {
 }
 
 .bg-success, .bg-green {
-   background-color: var(--green) !important; 
+   background-color: var(--greenLight) !important; 
 }
 
 
@@ -1324,6 +1324,11 @@ display: block;
 .btn.std {
   width: 100px;
 }
+
+.btn.stdx {
+  width: 300px;
+}
+
 
 ul.tags.level1 {margin-left: 0px;}
 
@@ -1761,3 +1766,57 @@ display: flex;
 }    
 
 
+.quizPlayWrapper {width: 1000px; margin: 0 auto;}
+
+
+#canvasScrollArea {
+  height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /*
+    display: flex;
+    align-items: center;
+    */
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding-right: 10px;
+}
+    
+}
+
+
+.canvasItem {
+
+}
+
+
+.reviewWarningBLock {
+    padding: 40px;
+    margin-bottom: 50px;
+    color: #827373;
+    text-align: center;
+}
+
+.startRewieBigButton {
+    padding: 50px 20px;
+    font-size: 30px;
+    background-color: var(--greenLight);
+    color: #fff;
+}
+
+
+#controllingArea__main {
+  position: absolute;
+  width: 1000px;
+  bottom: 20px;
+  padding-top: 10px;
+}
+
+
+
+.mt-20 {margin-top: 20px;}
+
+.mb-20 {margin-bottom: 20px;}

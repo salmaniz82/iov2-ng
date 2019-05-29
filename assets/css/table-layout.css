@@ -9,7 +9,7 @@
 
 #page-wrap.tab-layout {
 
-min-height: calc(100vh - 135px) !important;
+min-height: calc(100vh - 145px) !important;
 
 }
 
@@ -254,7 +254,8 @@ form.floatable .float-field:focus + label.placeholder {
           transform: translate3d(0, -20px, 0);
           box-shadow: none;
           outline: none;
-          color: var(--blue);
+          color: var(--greenLight);
+
 }
 
 form.floatable .placeholder {
@@ -270,7 +271,12 @@ form.floatable .placeholder {
 }
 
 form.floatable .float-field:invalid:focus {
-    border-color: var(--blue);
+    border-color: var(--pink);
+    box-shadow: none;
+}
+
+form.floatable .float-field:valid:focus {
+    border-color: var(--greenLight);
     box-shadow: none;
 }
 
@@ -488,8 +494,39 @@ form.floatable  .float-error {
 
 
 
+.align-self-end {
+  justify-self: end;
+}
+
+.align-self-center {
+  align-self: center;
+}
 
 
 
 
 
+.cbf:before, .cbf:after {
+    content: "";
+    display: table;
+    line-height: 0;
+
+}
+
+
+.newTimer {
+  display: inline-block;
+  width: 80px;
+}
+
+.newTimer.high {
+  color: var(--green);
+}
+
+.newTimer.med {
+  color: var(--yellow);
+}
+
+.newTimer.low {
+    color: var(--red);
+}

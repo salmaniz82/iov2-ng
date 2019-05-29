@@ -11,7 +11,7 @@
         // new line added for decoding strings of object 
         vm.quizData.questions = $scope.$parent.base.inboundDecode(vm.quizData.questions);
 
-
+        vm.endActivated = false;
 
         vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
 
@@ -105,6 +105,8 @@
             
             vm.answerAvailable = true;
             vm.payloadAnswers = [];
+
+            vm.endActivated = true;
 
             for(var key in vm.providedAnswers)
             {             

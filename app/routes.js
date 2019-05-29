@@ -199,7 +199,7 @@
             templateUrl: 'views/dash-landing.html',
             controller : 'dashLandCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity', 'contributor', 'content developer']
+            roles : ['admin', 'entity', 'contributor', 'content developer', 'students']
         })
 
 
@@ -237,10 +237,13 @@
             roles : ['content developer']
         })
 
-
-
-        
-
+        .state('std.studentDashbaord', {
+            url : '/dashboard',
+            template: '<h2> Student Dashboard comming soon. </h2>',
+            
+            authenticate: true,
+            roles : ['students']
+        })
 
 
 
@@ -410,7 +413,7 @@
         })
 
         .state('std', {
-            templateUrl: 'views/templates/studentTemplate.html',
+            templateUrl: 'views/templates/tab.student.layout.html',
             controller : 'stdCtrl as std',
             abstract: true
         })

@@ -42,6 +42,13 @@
             $state.go('dash.contDevDashbaord');
        		}
 
+          else if (UserRole == 'students' || UserRole == 'candidate')
+          {
+            
+              $state.go('std.studentDashbaord');
+
+          }
+
        		else {
 
        			// if there no role specified then route to the logout
