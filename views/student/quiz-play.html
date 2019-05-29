@@ -309,10 +309,8 @@
                 </div>
 
                 <div ng-if="vm.hasMore">
-                    <button ui-keypress="{13:'vm.nextQuestion($index)'}" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre}" ng-click="vm.nextQuestion($index)" >Next <span class="icon-chevron-right"> </span> </button>
+                    <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre}" ng-click="vm.nextQuestion($index)" >Next <span class="icon-chevron-right"> </span> </button>
                 </div>
-
-                
 
                 <div ng-if="vm.isLastQue">
                     <!--

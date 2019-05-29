@@ -33,7 +33,29 @@
                 data : {'enroll_id' : enroll_id}
             }).then(function(res){
 
-                if(res.data.type == 'static')
+                
+                var resData = res.data;
+
+
+                if(resData.usedXTimes != 0)
+                {
+
+                    vm.quizModal = false;
+
+                    var notify = {
+                        type: 'error',
+                        title: 'Error',
+                        content: resData.warning_message,
+                        timeout: 8000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+                }
+
+
+
+                else if(resData.type == 'static')
                 {
                     var attempt_id = res.data.attempt_id;
                     var stateargs = {'attempt_id' : attempt_id, 'quiz_id': vm.actQuiz.id};
@@ -41,7 +63,7 @@
                     $state.go('quizPlay', stateargs);
                 }
 
-                else if (res.data.type == 'dls')
+                else if (resData.type == 'dls')
                 {
 
                     $state.go('quizPlayDLS');

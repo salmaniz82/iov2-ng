@@ -1,0 +1,100 @@
+  <section class="hbox stretch parent">
+
+    <aside class="aside-sm bg-white border-right">
+      <a href="/" class="nav-brand" data-toggle="fullscreen">
+          <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="150" height="88"/>
+      </a>
+
+
+
+      <ul id="top-menu"> 
+            
+            <li ng-class="{'active': base.pageUrl == '/dashboard'}">
+
+            <a ui-sref="std.studentDashbaord()"><i class="fab fa-buromobelexperte"></i> Dashboard</a></li>
+            <li ui-sref-active="active"><a ui-sref="std.exams()"><i class="fas fa-brain"></i> Quizes</a></li>
+            
+      </ul>
+    </aside>
+
+    <section class="content">
+      
+      <section class="vbox">
+        
+        <header class="bg-white border-bottom">
+
+
+            <div class="flexTabHeader">
+                <div><span class="icon-home icon-2x"></span></div>
+                
+                <div class="flexTabHeader__InnerRightWrapper">
+                     
+                    <div>&nbsp;</div>   
+                    <div class="langCont">
+                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
+                    <div>
+
+                        <div class="btn-group topUserDrop">
+                                <a class="btn" href="#" data-toggle="dropdown">
+                                    <i class="icon-user c-green"></i>
+                                        {{getAuthUsername()}}
+                                        <i class="icon-caret-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                            <a href="index.php"><i class="icon-dashboard"></i>
+                                                Dashboard
+                                            </a></li>
+                                        <li>
+                                            <a href="profile.php"><i class="icon-user"></i>
+                                                My Profile
+                                            </a></li>
+
+                                        <li>
+                                            <a ui-sref="logout()"><i class="icon-off"></i>
+                                                Logout
+                                            </a></li>
+                                    
+                                    
+                                    
+                                </ul>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+      
+
+          
+        </header>
+
+        <section class="scrollable wrapper">         
+
+            <div id="page-wrap" class="tab-layout">
+          
+            <section class="hbox pageContentWrapper">
+
+
+              <ui-view>
+
+               
+            </section>
+
+
+          
+
+          </div>  <!-- tabLayout -->
+
+          <footer id="tabLayoutFooter" class="bg-white t-center border-top">@ Copyrights 2019 all rights reserved : Build with <span class="icon-heart c-pink"></span> Privacy Policy | About | Terms of Service </footer>
+        </section>
+      </section>
+
+    </section>
+    
+  </section>
+
+
+  

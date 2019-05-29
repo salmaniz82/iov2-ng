@@ -6,6 +6,24 @@
         var vm = this;
 
         vm.quizData = quizPlayData.data;
+
+        if(vm.quizData.usageXTimes > 1)
+        {
+            
+            var notify = {
+                type: 'warning',
+                title: 'Opps! <i class="far fa-smile-wink"></i>',
+                content: 'Very Smart!, sorry ran out of luck',
+                timeout: 8000 //time in ms
+            };
+
+    
+            $scope.$emit('notify', notify);
+
+
+            $state.go('std.exams');
+        }
+
         vm.questionIndex = 0;
 
         // new line added for decoding strings of object 
