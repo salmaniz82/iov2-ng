@@ -11,6 +11,9 @@
 
         vm.enableSynchronize = false;
 
+
+        vm.loading = null;
+
         
 
         vm.examID = $stateParams.examID;
@@ -76,6 +79,8 @@
 	        	vm.dataList = res.data;
 	        	vm.enableAllocate = false;
 
+                vm.loading = true;
+
                 if(vm.dataList.questions.length > 0 && vm.dataList.questions != undefined)
                 {
                     vm.syncCheck();
@@ -126,6 +131,8 @@
 	        	
 
 	        	vm.enableAllocate = true;
+
+                vm.loading = false;
 	        }
 
 	        $http.get(Questionsurl).then(successFetchQuestions, errorFetchQuestion);

@@ -7,6 +7,8 @@
 
         vm.quizData = quizPlayData.data;
 
+        /*
+
         if(vm.quizData.usageXTimes > 1)
         {
             
@@ -23,6 +25,8 @@
 
             $state.go('std.exams');
         }
+
+        */
 
         vm.questionIndex = 0;
 
@@ -69,7 +73,9 @@
                     
                     console.log(res);
 
-                    $state.go('std.exams');
+                 //   $state.go('std.exams');
+
+                 window.close();
 
                 }, 
 
@@ -187,6 +193,7 @@
             if(vm.validAnswer() && vm.questionIndex + 1 <= vm.markedQuestions.length)
             {
                 vm.providedAnswers.push(vm.activeQuestion);
+                vm.pushActivity(vm.questionIndex);
                 vm.questionIndex += 1;
                 vm.activeQuestion = vm.markedQuestions[vm.questionIndex];
             }
@@ -218,6 +225,8 @@
         {
 
 
+
+
              var answerIndex = parseInt($scope.$parent.base.getIndex(vm.providedAnswers, 'id', vm.activeQuestion.id));
              var markedIndex = parseInt($scope.$parent.base.getIndex(vm.markedQuestions, 'id', vm.activeQuestion.id));
 
@@ -237,6 +246,7 @@
                 if(markedIndex == -1)
                 {
                     vm.markedQuestions.push(vm.activeQuestion);  
+                    
                     vm.ShowPulse = false;
                 } 
 
@@ -245,6 +255,7 @@
                 {
                     vm.providedAnswers.splice(answerIndex, 1);
                     vm.ShowPulse = false;
+                    
                 }
 
              }
@@ -256,15 +267,20 @@
                {
                     vm.providedAnswers.push(vm.activeQuestion);
                     vm.ShowPulse = false;
+                    
                }
 
                if(markedIndex != -1)
                {
+                    
                     vm.markedQuestions.splice(markedIndex, 1);
                     vm.ShowPulse = false;
                }
 
              }
+
+
+                vm.pushActivity(vm.questionIndex);
 
     			vm.questionIndex +=1;
 	   		    vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
@@ -314,7 +330,6 @@
         		vm.hasMore = true;
         		vm.isLastQue = false;
         	}
-
 
 
         };
@@ -668,7 +683,66 @@
 
             vm.ansPrep();
 
-        };    
+        };
+
+
+        vm.implodeSingleAnswer = function(answer)
+        {
+            if(typeof(answer) == "object")
+                {
+
+                    var tempArrOPtions = [];
+                    for(var k in answer)
+                    {
+                        if(answer.hasOwnProperty(k))
+                        {
+                            if(answer[k] == true)
+                            {
+                                tempArrOPtions.push(k);
+                            }
+                        }
+                    }
+                    tempArrOPtions.sort();
+                  return answer = tempArrOPtions.join(",");
+                }
+
+                return answer;
+        }
+
+
+        vm.pushActivity = function(lastIndex)
+        {
+
+             var tarQue = vm.quizData.questions[lastIndex] ;
+
+            var pushPayload = {
+                attempt_id : $stateParams.attempt_id,
+                question_id : tarQue.questionId,
+                answer : vm.implodeSingleAnswer(tarQue.answer),
+                atype : (!vm.startReviewWizard) ? ((tarQue.marked) ? 'm' : 'a') : 'a',
+                questionIndex: (!vm.startReviewWizard) ? lastIndex+1 : lastIndex+(vm.providedAnswers.length)
+            };
+
+
+         console.log(pushPayload);
+
+         var pushUrl = API_URL+'recordActivity'; 
+
+          $.ajax({
+              type: "POST",
+              url: pushUrl,
+              data: pushPayload,
+              dataType: 'json',
+              success: function(res)
+              {
+                console.log('ajax did the job');
+              }
+              
+         });
+
+
+        };
+
 
     }]);
 

@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', '$scope', '$http', '$state', '$interval', function(API_URL, $scope, $http, $state, $interval){
+    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', '$interval', function(API_URL, SITE_URL, $scope, $http, $state, $interval){
 
 
         var vm = this;
@@ -50,6 +50,8 @@
                     };
                     $scope.$emit('notify', notify);
 
+                    return false;
+
 
                 }
 
@@ -59,8 +61,17 @@
                 {
                     var attempt_id = res.data.attempt_id;
                     var stateargs = {'attempt_id' : attempt_id, 'quiz_id': vm.actQuiz.id};
-                    console.log(stateargs);
-                    $state.go('quizPlay', stateargs);
+
+                    var popupUrl = SITE_URL+'quiz-assement/'+attempt_id+'/'+vm.actQuiz.id;
+
+                    vm.quizModal = false;
+                    vm.isInitiatStart = false;
+
+                    window.open(popupUrl, "Quiz", 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=1200,height=800');
+
+
+                   
+                 //   $state.go('quizPlay', stateargs);
                 }
 
                 else if (resData.type == 'dls')

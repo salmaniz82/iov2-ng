@@ -5,9 +5,15 @@
       return (location.hostname == 'alpha.iskillmetrics.com') ? 'https://api.iskillmetrics.com/' : 'http://api.io2v3.dvp/';
     }
 
+    function siteUrl()
+    {
+       return (location.hostname == 'alpha.iskillmetrics.com') ? 'https://alpha.iskillmetrics.com/' : 'http://localhost:8000/';     
+    }
+
     angular.module('io2v3', ['ui.router', 'loadingStatus', 'angularNotify', 'ngSanitize'])
-    
-     .constant("API_URL", apiUrl());
+         
+     .constant('API_URL', apiUrl())
+     .constant('SITE_URL', siteUrl());
 
 })();
 

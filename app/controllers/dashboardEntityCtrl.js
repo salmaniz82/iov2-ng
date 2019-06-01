@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('dashboardEntityCtrl', ['API_URL', '$scope', '$http', '$state', 'auth', function(API_URL, $scope, $http, $state, auth){
+    angular.module('io2v3').controller('dashboardEntityCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', 'auth', function(API_URL, SITE_URL, $scope, $http, $state, auth){
 
 
         var vm = this;
@@ -9,6 +9,41 @@
        $scope.$parent.base.pageUrl = $state.current.url; 
 
        vm.loadingStatus = null;
+       vm.hasWeekSchedule = false;
+       vm.currentactivity = false;
+
+
+       console.log(SITE_URL);
+
+
+
+        $http.get(API_URL+'dashboard').then(
+
+        	function(res) {
+
+
+        		if(res.data.actvity != undefined && res.data.actvity.length != 0)
+        		{
+        		
+        			vm.activeCandidates = res.data.actvity;
+        			vm.currentactivity = true;
+        		}
+
+        		if(res.data.weekSchedule != undefined)
+        		{
+        			vm.hasWeekSchedule = true;
+        			vm.weekSchedule = res.data.weekSchedule;		
+        		}
+
+
+        	}, function(res) {
+
+        		vm.currentactivity = false;
+
+        	});
+
+
+
 
         
 

@@ -14,51 +14,28 @@
 
 	<div class="gridItems three">
 		
-		<h3>Week Schedule</h3>
+		<h3>Scheduled this week</h3>
 
 		<table class="table">
 			<thead>
-				<th>Candidate</th>
-				<th>Quiz</th>
-				<th>Date/Time</th>
+				<th>Candidates</th>
+				<th>Day / Time</th>
 				
 			</thead>
 
 			<tbody>
-				<tr>
-					<td>Sara</td>
-					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
+				<tr ng-repeat="item in vm.weekSchedule">
+					<td>
+						<a ng-attr-title="{{item.title}}">
+							{{item.name}}		
+						</a>
+					</td>
+					
+					<td>{{item.at}}</td>
 					
 				</tr>
 
-				<tr>
-					<td>Alfred</td>
-					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
-					
-				</tr>
-
-				<tr>
-					<td>Rachel</td>
-					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
-					
-				</tr>
-
-				<tr>
-					<td>Diana</td>
-					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
-					
-				</tr>
-
-				<tr>
-					<td>Shane</td>
-					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
-					
-				</tr>
+				
 			</tbody>
 		</table>
 
@@ -70,72 +47,35 @@
 	</div>
 
 	<div class="gridItems five">
+
+		
 		
 		<h3>Current Activity</h3>
 
-		<table class="table">
+		<div ng-if="!vm.currentactivity">There are no active candiate activities</div>
+
+		<table class="table" ng-if="vm.currentactivity">
 
 			<thead>	
 				<th>Canidates</th>
 				<th>Quiz</th>
-				<th>Started At</th>
+				<th>Ends In</th>
 				<th>Questions</th>
 				<th>Position</th>
 				<th>Status</th>
 			</thead>
 
 			<tbody>
-				<td>John</td>
-				<td>CTX102</td>
-				<td>04:00 PM</td>
-				<td>50</td>
-				<td>0</td>
-				<td><span class="status initiated">Initiated</span></td>
-			</tbody>
 
-			<tbody>
-				<td>Shane</td>
-				<td>DMM506</td>
-				<td>03:50 PM</td>
-				<td>60</td>
-				<td>20</td>
-				<td><span class="status working">Progress</span></td>
-			</tbody>
-
-			<tbody>
-				<td>Todd</td>
-				<td>MCE219</td>
-				<td>03:55 PM</td>
-				<td>40</td>
-				<td>5</td>
-				<td><span class="status working">Progress</span></td>
-			</tbody>
-
-			<tbody>
-				<td>Mark</td>
-				<td>CMT219</td>
-				<td>04:00 PM</td>
-				<td>70</td>
-				<td>5</td>
-				<td><span class="status terminated">Terminated</span></td>
-			</tbody>
-
-			<tbody>
-				<td>James</td>
-				<td>ZTM456</td>
-				<td>03:30 PM</td>
-				<td>50</td>
-				<td>50</td>
-				<td><span class="status finished">Finished</span></td>
-			</tbody>
-
-			<tbody>
-				<td>Martha</td>
-				<td>CSC201</td>
-				<td>3:45 PM</td>
-				<td>40</td>
+				<tr ng-repeat="act in vm.activeCandidates">
+				<td>{{act.name}}</td>
+				<td>{{act.title}}</td>
+				<td>{{act.remainingTime}} mins</td>
+				<td>{{act.noQues}}</td>
 				<td>30</td>
 				<td><span class="status working">Progress</span></td>
+
+				</tr>
 			</tbody>
 			
 		</table>

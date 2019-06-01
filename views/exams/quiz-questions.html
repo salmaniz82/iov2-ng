@@ -1,13 +1,53 @@
- <section class="span9 bg-white">
-            <div class="col-right">
+ <section class="hbox">
 
-                
-                  
-                  <a ui-sref="exm.addQuizQuestions({'examID': vm.examID})" class="btn pull-right btn-icon btn-success graphic-plus" title="Add Lesson" href="/que-add">Add Questions</a>
-                
-                 
 
-                <quiz-info-component param="vm.examID"></quiz-info-component>
+  <aside class="bg-white border-all" ng-if="vm.loading == null">
+    <div style="padding: 10px;">
+      <h3 class="t-center">Loading questions ...</h3>
+    </div>  
+  </aside>
+
+  <aside class="bg-white border-all" ng-if="vm.loading == false">
+    <div style="padding: 10px;">
+      <p class="c-red">Cannot load questions</p>
+    </div>  
+  </aside>
+
+
+  <aside>
+
+
+        <div class="bg-white border-all" style="margin-bottom: 20px;"> 
+
+<div class="row-fluid"> 
+
+
+
+
+        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
+            
+        <a class="btn btn-twitter btn-block" ui-sref="exm.addQuizQuestions({'examID': vm.examID})"> <span class="icon-plus"></span> Questions </a>
+
+        </div>
+
+</div>  
+
+
+
+
+</div>
+    
+
+
+  
+
+
+
+            <div class="col-right bg-white border-all" style="padding-left: 10px; padding-right: 10px;">
+
+              <quiz-info-component param="vm.examID"></quiz-info-component>
+  
+                
 
                 <div class="row">
                   <div class="span6">
@@ -21,6 +61,8 @@
 
                   
                 </div>
+
+
 
 
 
@@ -96,4 +138,8 @@
                 </table>
 
             </div>
+            </aside>
         </section>
+
+
+      

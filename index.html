@@ -55,12 +55,11 @@
 
 	
 	<link href="assets/css/unminify.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/css/switch.css" media="all" rel="stylesheet" type="text/css" />   
+
+    
     <link href="assets/css/bootstrap-datetimepicker.min.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css" />
-
     <link href="plugins/chartjs/Chart.min.css" media="all" rel="stylesheet" type="text/css" />
-
     <link href="assets/css/table-layout.css" media="all" rel="stylesheet" type="text/css" />
 
 
@@ -283,7 +282,17 @@
 
 	<div notifybar style="position:fixed;top:0;right:0; z-index: 9999"></div>
 	<div loading-status-message style="position:fixed; top: 50%; left: 50%; margin: -40px 0 0 -40px; z-index: 9999; display:none;">
-			<img src="assets/images/spinner.svg">	
+			
+			<!-- <img src="assets/images/spinner.svg">	-->
+
+			<div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+
+
 	</div>
 
     	<ui-view autoscroll="true"></ui-view>
