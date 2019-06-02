@@ -44,9 +44,54 @@
 
 
 
+        /*
+        
+        API	/dasboard/activity?
+
+
+        */
 
         
+        vm.getContent = function(timestamp)
+		{
+		    var queryString = {'timestamp' : timestamp || null};
 
+		    $.ajax(
+		        {
+		            type: 'GET',
+		            url: API_URL+'dasboard/activity',
+		            data: queryString,
+		            headers: {
+		            	'token' : localStorage.auth_token
+		            },
+		            success: function(res){
+		                // put result data into "obj"
+
+		                console.log(res);
+
+		                vm.activeCandidates = res.activity;
+
+		                $scope.$apply();
+		                
+		                /*
+		                if(res.activity.length != 0 || res.activity != undefined)
+		                {
+		                	
+		                }
+		                */
+
+		                vm.getContent(res.timestamp);
+
+		               	 	
+
+
+		            }
+		        }
+		    );
+		};
+
+
+		vm.getContent(null);
 
 
   		var randomScalingFactor = function() {

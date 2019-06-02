@@ -58,9 +58,10 @@
 
 			<thead>	
 				<th>Canidates</th>
-				<th>Quiz</th>
+				<th>Que.</th>
 				<th>Ends In</th>
-				<th>Questions</th>
+				<th>Marked</th>
+				<th>Answered</th>
 				<th>Position</th>
 				<th>Status</th>
 			</thead>
@@ -68,11 +69,15 @@
 			<tbody>
 
 				<tr ng-repeat="act in vm.activeCandidates">
-				<td>{{act.name}}</td>
-				<td>{{act.title}}</td>
-				<td>{{act.remainingTime}} mins</td>
+				<td ng-attr-title="{{act.title}}">{{act.name}}</td>
+				
 				<td>{{act.noQues}}</td>
-				<td>30</td>
+				<td>{{act.remainingTime}} mins</td>
+				
+				<td>{{act.marked}}</td>
+				<td>{{act.answered}}</td>
+				<td>{{act.position}}</td>
+				
 				<td><span class="status working">Progress</span></td>
 
 				</tr>
