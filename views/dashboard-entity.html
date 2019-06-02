@@ -48,16 +48,29 @@
 
 	<div class="gridItems five">
 
+
+		<div class="grid12Col">
+
+			<div class="gc-first-remain-quater"><h3>Current Activity</h3></div>
+
+
+			<div class="gc-last-quater align-self-end">
+				<i id="actIndicator" class="far fa-lightbulb" ng-class="{'c-warning': vm.currentactivity == false, 'c-blue': vm.currentactivity == true }" style="font-size: 1.3rem"></i>
+			</div>
+			
+		</div>
 		
 		
-		<h3>Current Activity</h3>
+		
+
+		
 
 		<div ng-if="!vm.currentactivity">There are no active candiate activities</div>
 
 		<table class="table" ng-if="vm.currentactivity">
 
 			<thead>	
-				<th>Canidates</th>
+				<th>Candidates</th>
 				<th>Que.</th>
 				<th>Ends In</th>
 				<th>Marked</th>

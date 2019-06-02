@@ -27,6 +27,8 @@
         		
         			vm.activeCandidates = res.data.actvity;
         			vm.currentactivity = true;
+
+
         		}
 
         		if(res.data.weekSchedule != undefined)
@@ -67,20 +69,43 @@
 		            success: function(res){
 		                // put result data into "obj"
 
-		                console.log(res);
+		              //  console.log(res);
 
-		                vm.activeCandidates = res.activity;
-
-		                $scope.$apply();
-		                
-		                /*
-		                if(res.activity.length != 0 || res.activity != undefined)
+		                if(res.activity)
 		                {
+		                	vm.currentactivity = true;
+		                	vm.activeCandidates = res.activity;	
+		                	console.log(vm.activeCandidates);
+
+
+		                	
+        			$("#actIndicator").addClass('wobble').removeClass('c-blue');
+        			
+        			setTimeout(function() {
+        				
+        				console.log('work on colors');
+
+        				$("#actIndicator").removeClass('wobble').addClass('c-blue');
+					
+
+        			}, 1000);
+
+
 		                	
 		                }
-		                */
 
+		                else {
+
+		                	vm.currentactivity = false;
+
+		                }
+
+		                $scope.$apply();
+
+		                
 		                vm.getContent(res.timestamp);
+
+		                console.log(vm.activeCandidates);
 
 		               	 	
 

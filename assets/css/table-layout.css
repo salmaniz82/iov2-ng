@@ -530,3 +530,50 @@ form.floatable  .float-error {
 .newTimer.low {
     color: var(--red);
 }
+
+
+
+.wobble {
+
+  animation-name: wobbleAnimate;
+  animation-duration: .3s;
+  animation-delay: 0s;
+  animation-timing-function: ease-in-out;
+
+}
+
+
+@keyframes wobbleAnimate {
+
+  0% {
+    color: var(--pink);
+    transform: scale(1.2);
+  }
+
+  25% {
+    color: var(--green);
+    transform: scale(1.1);
+  }
+
+
+  50% {   
+    color: var(--green);
+    transform: scale(1);
+  }
+
+
+  75% {   
+    color: var(--green);
+    transform: scale(1.2);
+  }
+
+
+
+  100% {
+
+    transform: scale(1);
+    color: var(--green);
+    
+  }
+
+}
