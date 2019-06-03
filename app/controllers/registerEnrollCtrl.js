@@ -8,6 +8,8 @@
         vm.examID = $stateParams.examID;
         $scope.$parent.absExamId = vm.examID;
 
+        $scope.$parent.exAbs.pageHeading = "Register & Enroll Canidates";
+
         vm.re = {
 
         };

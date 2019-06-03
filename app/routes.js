@@ -72,7 +72,18 @@
         .state('exm.addQuizQuestions', {
             url : '/add-quiz-questions/:examID',
             templateUrl: 'views/dash/que-add.html',
-            controller : 'queAddCtrl as vm'
+            controller : 'queAddCtrl as vm',
+
+            resolve : {
+
+                queGlobalData : function(quizDataService)
+                {
+
+                   return quizDataService.queGlobalFetch();
+                }
+
+            }
+
         })
 
 
@@ -188,6 +199,7 @@
 
         .state('dash', {
             templateUrl : 'views/templates/tab.layout.html',
+            controller: 'dashboardCtrl as dash',
             abstract: true
         })
 
@@ -240,9 +252,9 @@
         .state('std.studentDashbaord', {
             url : '/dashboard',
             template: '<h2> Student Dashboard comming soon. </h2>',
-            
+            controller : 'studentDashboardCtrl as vm',
             authenticate: true,
-            roles : ['students']
+            roles : ['students', 'canidate']
         })
 
 
@@ -300,7 +312,16 @@
         .state('dash.queadd', {
             url : '/que-add',
             templateUrl: 'views/dash/que-add.html',
-            controller : 'queAddCtrl as vm'
+            controller : 'queAddCtrl as vm',
+            resolve : {
+
+                queGlobalData : function(quizDataService)
+                {
+
+                   return quizDataService.queGlobalFetch();
+                }
+
+            }
         })
 
 

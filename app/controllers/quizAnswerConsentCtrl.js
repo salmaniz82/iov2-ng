@@ -14,6 +14,8 @@
 
         var answerUrl = API_URL+'quiz/inspectanswers/'+vm.examID+'/'+attempt_id;
 
+        $scope.$parent.exAbs.pageHeading = "Consent";
+
 
         $http.get(answerUrl).then(
 

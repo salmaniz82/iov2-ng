@@ -8,6 +8,9 @@
         $scope.masterQuizData = null;
 
 
+        $scope.pageHeading = "";
+
+
     }]);
 
 })();

@@ -5,6 +5,8 @@
 
         var vm = this;
 
+        $scope.$parent.dash.pageHeading = "Questions Stats";
+
 
         console.log('que pool is activated');
 

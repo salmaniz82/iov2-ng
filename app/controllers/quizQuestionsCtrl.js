@@ -8,6 +8,8 @@
 
         vm.enableAllocate = false;
 
+        $scope.$parent.exAbs.pageHeading = "Allocated Questions";
+
 
         vm.enableSynchronize = false;
 

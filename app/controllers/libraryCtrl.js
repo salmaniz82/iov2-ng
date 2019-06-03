@@ -10,6 +10,8 @@
 
         $scope.$parent.base.pageUrl = $state.current.url; 
 
+        $scope.$parent.dash.pageHeading = "Media Libraray";
+
 
         vm.myFormData = {
 

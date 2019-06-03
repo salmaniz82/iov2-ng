@@ -14,7 +14,7 @@
       
 
       <ul id="top-menu"> 
-            <li ui-sref-active="active"><a ui-sref="dash.land()"><i class="fab fa-buromobelexperte"></i> Dashboard</a></li>
+            
             <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})"><i class="fas fa-street-view"></i> Overview</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-chart-bar"></i> Progress</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})"><i class="fas fa-table"></i> Questions</a></li>
@@ -35,7 +35,15 @@
 
 
             <div class="flexTabHeader">
-                <div><span class="icon-home icon-2x"></span></div>
+
+                <div>
+
+                <a class="fab fa-buromobelexperte icon-2x" ui-sref="dash.land()"></a>
+
+                <span class="tabHeading"> <span class="c-green">Quiz </span> / <span class="c-yellow">{{exAbs.pageHeading}}</span></span>
+
+                </div>
+                
                 
                 <div class="flexTabHeader__InnerRightWrapper">
                      

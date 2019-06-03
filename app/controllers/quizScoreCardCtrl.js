@@ -12,7 +12,7 @@
 
         var attempt_id = $stateParams.attemptID;
 
-
+        $scope.$parent.exAbs.pageHeading = "Scorecard";    
 
         var scoreCardUrl = API_URL+'quiz/scorecard/'+vm.examID+'/'+attempt_id;
 

@@ -577,3 +577,9 @@ form.floatable  .float-error {
   }
 
 }
+
+.tabHeading {
+  font-weight: 800;
+    color: var(--greenLight);
+    font-size: 20px;
+}

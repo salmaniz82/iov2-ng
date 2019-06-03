@@ -12,6 +12,9 @@
         var attempt_id = $stateParams.attemptID;
 
 
+        $scope.$parent.exAbs.pageHeading = "Inspection";
+
+
         var answerUrl = API_URL+'quiz/inspectanswers/'+vm.examID+'/'+attempt_id;
 
 

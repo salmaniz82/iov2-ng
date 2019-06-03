@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('queAddCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizDataService', function(API_URL, $scope, $http, $state, $stateParams, quizDataService){
+    angular.module('io2v3').controller('queAddCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizDataService', 'queGlobalData', function(API_URL, $scope, $http, $state, $stateParams, quizDataService, queGlobalData){
 
         var vm = this;
 
@@ -13,10 +13,22 @@
         $scope.$parent.base.pageUrl = $state.current.url; 
 
 
+        console.log(queGlobalData);
+
+        if($stateParams.examID != undefined)
+        {
+           $scope.$parent.exAbs.pageHeading = "Add New Questions";
+        }
+        else {
+
+            $scope.$parent.dash.pageHeading = "Add New Questions";
+
+        }    
         
 
-        
+        console.log($scope.$parent);
 
+        
 
         vm.addMediaToQuestion = function(item)
         {
@@ -129,27 +141,8 @@
         vm.fetchGlobal = function()
         {
 
-        	var url = API_URL+'quiz-global';
-
-        	function success(res)
-        	{
-        		
-                vm.globalList = res.data;
-        	}
-
-        	function error(res)
-        	{
-
-        		console.log('unable to load the global values');
-
-        	}
-
-        	$http({
-
-        		url : url,
-        		method : 'GET'
-
-        	}).then(success, error);
+            vm.globalList = queGlobalData.data;
+            
 
         };
 

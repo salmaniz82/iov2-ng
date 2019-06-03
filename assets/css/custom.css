@@ -197,13 +197,23 @@ span.timepicker-hour, span.timepicker-minute {
 
 
 .promo-header{
+
+    /*
     background-image: url('/assets/images/landing1-f1427195380f8e71987de879c65a0fb4.jpg');
-    background-position: 0 0;
+    background-image: url('/assets/images/bigstock-bg.jpg');
+    */
+
+    background-image: url(/assets/images/site_background__root.jpg);
+    background-position: 70% 60%;
     background-repeat: no-repeat;
-    background-size: cover;'
+    background-size: initial;
     opacity: 1 !important;
     transition: opacity 1s linear 0s;
     width: 100%;
+
+
+
+    
 }
 
 .bg-trans {
@@ -1644,6 +1654,12 @@ span.status.terminated {
   color: var(--red);
   background-color: #ed514059;
 }
+
+
+.mt-20 {margin-top: 20px;}
+.mt-10 {margin-top: 10px;}
+.mt-15 {margin-top: 15px;}
+
 
 .mb-20{
   margin-bottom: 20px;

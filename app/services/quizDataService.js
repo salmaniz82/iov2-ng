@@ -4,9 +4,6 @@ angular.module('io2v3')
 		this.getMasterQuiz = function(quiz_id)
 		{
 			
-
-			console.log('exam load initiated');
-
 			var quizPlayUrl = API_URL+'quiz/subjects/'+quiz_id;
 			return $http({
 
@@ -15,6 +12,25 @@ angular.module('io2v3')
 				 method: 'GET'
 
 			});
+
+		};
+
+
+		this.queGlobalFetch = function()
+		{
+
+			var urlforQuizGlobal = 	API_URL+'quiz-global';
+
+
+			return $http({
+				 
+				 url : urlforQuizGlobal,
+				 method: 'GET'
+
+			});
+
+
+
 
 		};
 

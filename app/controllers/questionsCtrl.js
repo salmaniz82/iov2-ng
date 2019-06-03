@@ -12,6 +12,8 @@
 
         $scope.$parent.base.pageUrl = $state.current.url; 
 
+        $scope.$parent.dash.pageHeading = "Questions";
+
 
         $scope.fields = [
 

@@ -7,6 +7,8 @@
 
         $scope.$parent.base.pageUrl = $state.current.url; 
 
+        $scope.$parent.dash.pageHeading = "Add New Quiz";
+
 
         vm.parentId = null;
         vm.subCategory = null;

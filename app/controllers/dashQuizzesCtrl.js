@@ -12,6 +12,10 @@
 
 
 
+        $scope.$parent.dash.pageHeading = "Quizzes";
+
+
+
 
         vm.fetchQuiz = function()
         {

@@ -11,6 +11,9 @@
 
 		console.log('dashboard abract controller is activated');
 
+
+		$scope.pageHeading = "";
+
 	}
 
 

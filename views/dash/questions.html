@@ -4,43 +4,184 @@
 
 
 
-	<aside class="bg-white border-all" ng-if="vm.loading == null">
+	<aside class="bg-white border-all mb-20" ng-if="vm.loading == null">
 		<div style="padding: 10px;">
 			<h3 class="t-center">Loading questions ...</h3>
 		</div>	
 	</aside>
 
-	<aside class="bg-white border-all" ng-if="vm.loading == false">
+	<aside class="bg-white border-all mb-20" ng-if="vm.loading == false">
 		<div style="padding: 10px;">
 			<p class="c-red">Cannot load questions</p>
 		</div>	
 	</aside>
 
 
+</section>
+
+
+<section class="hbox">
+
+
+<aside>
+
+	<div class="grid12Col gap10 mb-15">
+		<div class="gc-1-8 bg-white border-all" ng-if="vm.loading == true">
+
+
+				<div class="grid12Col gap10" style="padding: 10px;">
+				<div class="g_nested quad">
+
+					<div>
+						<label style="font-weight: 800;">Toggle Data Fields</label>
+					</div>
+
+
+					<div class="unselected" ng-click="vm.toggleFields('cat', 0)">
+						<label>
+							<input type="checkbox" ng-model="fields[0].cat">
+							Category
+						</label>
+					</div>
+					<div>
+						<div class="selected">
+						
+						<label>
+							<input type="checkbox" ng-model="fields[1].decip">
+							Decipline
+						</label>
+					</div>
+					</div>
+
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[2].author">
+							Author
+						</label>
+
+
+					</div>
+
+
+				</div>
+
+				<div class="g_nested quad">
+				
+
+					<div>
+														
+						<label>
+							<input type="checkbox" ng-model="fields[4].desc">
+							Description
+						</label>
+					</div>
+					<div>
+							
+							<label>
+							<input type="checkbox" ng-model="fields[5].answer">
+							Answers
+						</label>
+
+					</div>
+					<div>
+							
+							<label>
+							<input type="checkbox" ng-model="fields[6].diff">
+							Difficulty
+						</label>
+
+					</div>
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[7].type">
+							Type
+						</label>
+						
+					</div>
+				</div>
+				
+				<div class="g_nested quad">	
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[8].hits">
+							Hits
+						</label>
+						
+					</div>
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[9].scope">
+							Scope
+						</label>
+						
+					</div>
+
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[10].status">
+							Status
+						</label>
+						
+					</div>
+
+
+					<div>
+
+						
+						<label>
+							<input type="checkbox" ng-model="fields[3].dated">
+							Dated
+						</label>
+						
+					</div>
+					
+
+				</div> 
+			</div>
+				
+
+			
+		</div>
+		<div class="gc-9-12 bg-white border-all dfx-center-xy">
+			<a class="btn btn-success" ui-sref="dash.queadd()" style="width: 200px"> <span class="icon-plus"></span> Questions </a>
+		</div>
+
+	</div>
+	
+</aside>
+
+</section>
 	
 
-
+<!--
 	<aside ng-if="vm.loading == true || vm.loading == 'no contents'">
 
 		  <div class="bg-white border-all" style="margin-bottom: 20px;"> 
 
-<div class="row-fluid"> 
+			<div class="row-fluid"> 
+	        		<div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">           
+	        		<a class="btn btn-success btn-block" ui-sref="dash.queadd()"> <span class="icon-plus"></span> Questions </a>
+	        		</div>
+			</div>  
+	</div>
+
+-->
 
 
 
 
-        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
-            
-        <a class="btn btn-twitter btn-block" ui-sref="dash.queadd()"> <span class="icon-plus"></span> Questions </a>
+<section class="hbox">
 
-        </div>
-
-</div>  
+	<aside>
+		
+	
 
 
-
-
-</div>
 
 <div ng-if="vm.loading == 'no contents'" >
 		<h3 class="t-center">You have not added any questions yet</h3>
@@ -56,9 +197,6 @@
 			<span class="togglerButton" ng-click="vm.togglers =! vm.togglers">
 				
 				<i class="far fa-arrow-alt-circle-left"></i>
-
-
-
 
 			</span>
 		</div>

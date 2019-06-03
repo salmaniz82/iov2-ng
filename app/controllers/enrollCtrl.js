@@ -10,6 +10,11 @@
         $scope.$parent.absExamId = vm.examID;
 
         var enrollUrl = API_URL+'enroll/'+vm.examID;
+
+
+        $scope.$parent.exAbs.pageHeading = "Enrollment";
+
+
         vm.nenroll = {};
 
 

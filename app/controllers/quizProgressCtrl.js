@@ -8,6 +8,8 @@
         $scope.$parent.absExamId = vm.examID;
         vm.loadStatus = null;
 
+        $scope.$parent.exAbs.pageHeading = "Progress Details";
+
 
         vm.dataList = null;
 

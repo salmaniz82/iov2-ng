@@ -5,7 +5,7 @@
 
         var vm = this;
 
-
+        $scope.$parent.dash.pageHeading = "Role Permissions";    
         
         vm.pageMode = null;
 

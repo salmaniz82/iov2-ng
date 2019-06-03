@@ -15,6 +15,9 @@
         // the distro information
 
 
+        $scope.$parent.exAbs.pageHeading = "Weight Distribution";
+
+
         quizDataService.getMasterQuiz(vm.examID).then(
 	    	function(res){
 	    		console.log(res);

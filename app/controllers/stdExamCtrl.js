@@ -12,7 +12,7 @@
 
         $scope.counter = [];
 
-
+        $scope.$parent.std.pageHeading = "Quiz";
         
 
         localStorage.removeItem('lastStoredDurationSeconds');

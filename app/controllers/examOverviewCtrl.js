@@ -9,7 +9,12 @@
         $scope.$parent.absExamId = $stateParams.examID;
 
 
+        $scope.$parent.exAbs.pageHeading = "Overview Details";
+
+
         vm.loadProgress = null;
+
+
 
 
         quizDataService.getMasterQuiz(vm.examID).then(
