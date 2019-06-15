@@ -215,6 +215,14 @@
         })
 
 
+        .state('dash.profile', {
+
+            url : '/profile',
+            template : '<h2>Under Contruction</h2>'
+
+        })
+
+
 
         .state('dash.admindashboard', {
 

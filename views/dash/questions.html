@@ -29,120 +29,21 @@
 		<div class="gc-1-8 bg-white border-all" ng-if="vm.loading == true">
 
 
-				<div class="grid12Col gap10" style="padding: 10px;">
-				<div class="g_nested quad">
+				<div class="customInner" style="margin: 20px; padding-right: 30px;">
 
-					<div>
-						<label style="font-weight: 800;">Toggle Data Fields</label>
-					</div>
+            <form class="floatable w-80">
 
-
-					<div class="unselected" ng-click="vm.toggleFields('cat', 0)">
-						<label>
-							<input type="checkbox" ng-model="fields[0].cat">
-							Category
-						</label>
-					</div>
-					<div>
-						<div class="selected">
-						
-						<label>
-							<input type="checkbox" ng-model="fields[1].decip">
-							Decipline
-						</label>
-					</div>
-					</div>
-
-					<div>
-
-						<label>
-							<input type="checkbox" ng-model="fields[2].author">
-							Author
-						</label>
+                <div class="field-wrap">
+                    <span class="icon-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.descFitler">
+                    <label for="title-filter" class="placeholder">Filter By Description</label>
+                </div>
+                
+            </form>
 
 
-					</div>
-
-
-				</div>
-
-				<div class="g_nested quad">
-				
-
-					<div>
-														
-						<label>
-							<input type="checkbox" ng-model="fields[4].desc">
-							Description
-						</label>
-					</div>
-					<div>
-							
-							<label>
-							<input type="checkbox" ng-model="fields[5].answer">
-							Answers
-						</label>
-
-					</div>
-					<div>
-							
-							<label>
-							<input type="checkbox" ng-model="fields[6].diff">
-							Difficulty
-						</label>
-
-					</div>
-					<div>
-
-						<label>
-							<input type="checkbox" ng-model="fields[7].type">
-							Type
-						</label>
-						
-					</div>
-				</div>
-				
-				<div class="g_nested quad">	
-					<div>
-
-						<label>
-							<input type="checkbox" ng-model="fields[8].hits">
-							Hits
-						</label>
-						
-					</div>
-					<div>
-
-						<label>
-							<input type="checkbox" ng-model="fields[9].scope">
-							Scope
-						</label>
-						
-					</div>
-
-					<div>
-
-						<label>
-							<input type="checkbox" ng-model="fields[10].status">
-							Status
-						</label>
-						
-					</div>
-
-
-					<div>
-
-						
-						<label>
-							<input type="checkbox" ng-model="fields[3].dated">
-							Dated
-						</label>
-						
-					</div>
-					
-
-				</div> 
-			</div>
+        
+        </div>
 				
 
 			
@@ -157,22 +58,6 @@
 
 </section>
 	
-
-<!--
-	<aside ng-if="vm.loading == true || vm.loading == 'no contents'">
-
-		  <div class="bg-white border-all" style="margin-bottom: 20px;"> 
-
-			<div class="row-fluid"> 
-	        		<div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">           
-	        		<a class="btn btn-success btn-block" ui-sref="dash.queadd()"> <span class="icon-plus"></span> Questions </a>
-	        		</div>
-			</div>  
-	</div>
-
--->
-
-
 
 
 <section class="hbox">
@@ -189,7 +74,7 @@
 
 
 
-		<div style="padding: 10px;" class="bg-white border-all" ng-if="vm.loading == true || vm.loading != 'no contents'">
+		<div ng-if="vm.loading == true">
 
 		<div id="questionsSEttingsWrapper" class="bg-white border-all" ng-class="{'activated': vm.togglers}">
 
@@ -202,7 +87,7 @@
 		</div>
 
 
-		<div class="settingsArea">
+		<div class="settingsArea" class="bg-white border-all">
 			<div class="grid12Col gap10">
 				<div class="g_nested quad">
 					<div class="unselected" ng-click="vm.toggleFields('cat', 0)">
@@ -313,8 +198,128 @@
 			
 		</div>
 
+	</div>
 
-			<table class="table">
+
+			<div ng-if="vm.loading == true" class="grid12Col gap5 bg-white border-all" style="padding: 10px; margin-bottom: 10px">
+				
+
+					<div>
+						<label style="font-weight: 800;">Toggle Data Fields</label>
+					</div>
+
+
+					<div class="unselected" ng-click="vm.toggleFields('cat', 0)">
+						<label>
+							<input type="checkbox" ng-model="fields[0].cat">
+							Category
+						</label>
+					</div>
+					<div>
+						<div class="selected">
+						
+						<label>
+							<input type="checkbox" ng-model="fields[1].decip">
+							Decipline
+						</label>
+					</div>
+					</div>
+
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[2].author">
+							Author
+						</label>
+
+
+					</div>
+
+
+				
+
+				
+				
+
+					<div>
+														
+						<label>
+							<input type="checkbox" ng-model="fields[4].desc">
+							Description
+						</label>
+					</div>
+					<div>
+							
+							<label>
+							<input type="checkbox" ng-model="fields[5].answer">
+							Answers
+						</label>
+
+					</div>
+					<div>
+							
+							<label>
+							<input type="checkbox" ng-model="fields[6].diff">
+							Difficulty
+						</label>
+
+					</div>
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[7].type">
+							Type
+						</label>
+						
+					</div>
+				
+				
+				
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[8].hits">
+							Hits
+						</label>
+						
+					</div>
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[9].scope">
+							Scope
+						</label>
+						
+					</div>
+
+					<div>
+
+						<label>
+							<input type="checkbox" ng-model="fields[10].status">
+							Status
+						</label>
+						
+					</div>
+
+
+					<div>
+
+						
+						<label>
+							<input type="checkbox" ng-model="fields[3].dated">
+							Dated
+						</label>
+						
+					</div>
+					
+
+				
+			</div>
+
+	
+
+
+			<table class="table bg-white border-all" ng-if="vm.loading == true">
 				
 				<thead>
 					<tr>
@@ -340,8 +345,7 @@
 
 				<tbody>
 
-					<tr ng-repeat="que in vm.questions">
-						
+					<tr ng-repeat="que in vm.questions | filter:{ queDesc: vm.descFitler }">
 					
 					<td>{{$index+1}}</td>
 					<td ng-if="fields[0].cat">{{que.category}}</td>

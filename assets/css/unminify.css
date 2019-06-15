@@ -7051,7 +7051,7 @@ input[type="checkbox"]:after {
     width: 14px;
 }
 input[type="checkbox"]:checked:after {
-    color: #84CEE4;
+    color: var(--green);
     content: "✓";
     line-height: 14px;
     text-align: center;

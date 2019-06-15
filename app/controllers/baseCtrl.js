@@ -182,6 +182,14 @@
 
         };
 
+
+        $scope.getUSerRole  = function()
+        {
+
+            return vm.authUser().role;
+
+        };
+
         
 
     });

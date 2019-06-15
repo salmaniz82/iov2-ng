@@ -10,6 +10,8 @@
         vm.hasAttemptedQuiz = false;
         vm.isInitiatStart = false;
 
+        vm.poolCounter = 0;
+
         $scope.counter = [];
 
         $scope.$parent.std.pageHeading = "Quiz";
@@ -67,10 +69,15 @@
                     vm.quizModal = false;
                     vm.isInitiatStart = false;
 
-                    window.open(popupUrl, "Quiz", 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=1200,height=800');
 
+                    vm.actQuiz.validity = "progress";
 
-                   
+                    window.open(popupUrl, "Quiz", 
+
+                        'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
+                        screen.availHeight 
+                        );
+
                  //   $state.go('quizPlay', stateargs);
                 }
 
@@ -250,7 +257,58 @@
 
 
 
-        
+        vm.updateOnFinish = function(timestamp)
+        {
+            var queryString = {'timestamp' : timestamp || null};
+
+            $.ajax(
+                {
+                    type: 'GET',
+                    url: API_URL+'std-quiz-polling',
+                    data: queryString,
+                    headers: {
+                        'token' : localStorage.auth_token
+                    },
+                    success: function(res){
+                        
+
+                        if(res.timestamp > 0)
+                        {
+                            
+                            vm.poolCounter += 1;
+                            
+                        }
+
+
+                        if(vm.poolCounter > 1)
+                        {
+                           
+                           console.log('update the list');   
+
+
+                           vm.dataList = res;
+
+
+
+
+                        }
+
+                        
+
+                        $scope.$apply();
+                       
+                        vm.updateOnFinish(res.timestamp);
+
+                        
+
+                    }
+                }
+            );
+        };
+
+
+        vm.updateOnFinish(null);
+
 
 
 

@@ -27,7 +27,7 @@
             <div class="flexTabHeader">
 
               <div>
-                    <a class="icon-home icon-2x" ui-sref="pub.home()"></a>
+                    <a class="icon-home icon-2x c-green" ui-sref="pub.home()"></a>
                     <span class="tabHeading"> <span class="c-green">Dashboard</span> / <span class="c-yellow">{{std.pageHeading}}</span></span>
                 </div>
                 
@@ -48,11 +48,11 @@
                                 <ul class="dropdown-menu">
 
                                     <li>
-                                            <a href="index.php"><i class="icon-dashboard"></i>
+                                            <a ui-sref="dash.land()"><i class="icon-dashboard"></i>
                                                 Dashboard
                                             </a></li>
                                         <li>
-                                            <a href="profile.php"><i class="icon-user"></i>
+                                            <a ui-sref="dash.profile()"><i class="icon-user"></i>
                                                 My Profile
                                             </a></li>
 
@@ -93,7 +93,27 @@
 
           </div>  <!-- tabLayout -->
 
-          <footer id="tabLayoutFooter" class="bg-white t-center border-top">@ Copyrights 2019 all rights reserved : Build with <span class="icon-heart c-pink"></span> Privacy Policy | About | Terms of Service </footer>
+          <footer id="tabLayoutFooter" class="grid12Col gap10  galign-v-item-center bg-white border-top">
+
+
+            <div class="gc1-half">
+              <div style="padding-left: 10px"> Privacy Policy | About | Terms of Service  </div>
+            </div>
+
+
+            <div class="gc2-half align-self-end">
+              
+              <div style="padding-right: 10px">
+                <span>@ Copyrights 2019 all rights reserved : Build with </span> <span class="icon-heart c-pink"></span> in Canada  
+              </div>
+              
+            </div>
+
+            
+             
+         </footer>
+
+          
         </section>
       </section>
 

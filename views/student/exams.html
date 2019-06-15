@@ -91,13 +91,17 @@
 				<td>{{quiz.attempts}}</td>
 				
 				<td>
-					<a ng-if="quiz.validity == 'valid' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="icon-time"></span>&nbsp; Start Quiz</a>
-					<div ng-if="quiz.validity == 'expired'" class="c-red">Date Expired</div>
+					<a ng-if="quiz.validity == 'valid' && quiz.validity != 'progress' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="icon-time"></span>&nbsp; Start Quiz</a>
+
+					<p ng-if="quiz.attempts == '0' && quiz.validity == 'progress'" > <span class="status working">In Progress</span> </p>
+
+
+					<div ng-if="quiz.validity == 'expired'"><span class="status terminated" style="width: 80px">Date Expired</span></div>
 
 					<div ng-if="quiz.schedule == 'countdown' && quiz.validity == 'valid'" ng-init="vm.showCountdown(quiz.id, dateEnrolled, quiz.dtsScheduled)">
 						<small class="c-pink">{{counter[quiz.id]}}</small></div>
 
-					<a ng-if="quiz.validity == 'valid' && quiz.attempts != '0' && quiz.retake == '0'" data-quizid="93" class="c-red" href="#" title="Initated but failed to proceed further or intererpted">Conflict</a>
+					<a ng-if="quiz.validity == 'valid' && quiz.attempts != '0' && quiz.retake == '0'" data-quizid="93" class="c-red" href="#" title="Initated but failed to proceed further or intererpted"> <span class="status terminated" style="width: 80px">Conflict</span> </a>
 				</td>
 			</tr>
 
@@ -129,7 +133,13 @@
 				<td>{{item.attempts}}</td>
 				
 				<td>
-					<a ng-if="item.attempts != '0' && item.retake == '1'" class="btn btn-warning" style="width: 150px" href="#" ng-click="vm.launchQuizModal(item.id, true)"><span class="icon-repeat"></span>&nbsp;Retake</a>
+					<a ng-if="item.attempts != '0' && item.retake == '1' && item.validity != 'progress'" class="btn btn-warning" style="width: 150px" href="#" ng-click="vm.launchQuizModal(item.id, true)"><span class="icon-repeat"></span>&nbsp;Retake</a>
+
+					<p ng-if="item.attempts != '0' && item.retake == '1' && item.validity == 'progress'" >
+
+					<span class="status working">In Progress</span> </p>
+
+
 				</td>				
 			</tr>
 

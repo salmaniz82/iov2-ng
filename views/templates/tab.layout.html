@@ -2,7 +2,11 @@
 
     <aside class="aside-sm bg-white border-right">
       <a href="/" class="nav-brand" data-toggle="fullscreen">
-          <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="150" height="88"/>
+          
+          <img ng-if="getUSerRole() == 'admin'" alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="150" height="88"/>
+
+          <img ng-if="getUSerRole() == 'entity'" ng-src="{{'assets/images/demo-logo.jpg'}}" width="150" height="88"/>
+
       </a>
 
 
@@ -36,8 +40,10 @@
 
             <div class="flexTabHeader">
                 <div>
-                    <a class="icon-home icon-2x" ui-sref="pub.home()"></a>
+                    <a class="icon-home icon-2x c-green" ui-sref="pub.home()"></a>
                     <span class="tabHeading"> <span class="c-green">Dashboard</span> / <span class="c-yellow">{{dash.pageHeading}}</span></span>
+
+
                 </div>
                 
                 <div class="flexTabHeader__InnerRightWrapper">
@@ -56,11 +62,11 @@
                                 <ul class="dropdown-menu">
 
                                     <li>
-                                            <a href="index.php"><i class="icon-dashboard"></i>
+                                            <a ui-sref="dash.land()"><i class="icon-dashboard"></i>
                                                 Dashboard
                                             </a></li>
                                         <li>
-                                            <a href="profile.php"><i class="icon-user"></i>
+                                            <a ui-sref="dash.profile()"><i class="icon-user"></i>
                                                 My Profile
                                             </a></li>
 
@@ -101,7 +107,32 @@
 
           </div>  <!-- tabLayout -->
 
-          <footer id="tabLayoutFooter" class="bg-white t-center border-top">@ Copyrights 2019 all rights reserved : Build with <span class="icon-heart c-pink"></span> Privacy Policy | About | Terms of Service </footer>
+          
+
+         <footer id="tabLayoutFooter" class="grid12Col gap10  galign-v-item-center bg-white border-top">
+
+            <div class="gc-1-3"> 
+
+                <div style="padding-left: 10px"> Privacy Policy | About | Terms of Service  </div> 
+                
+            </div>
+
+            <div class="gc-4-9 t-center"> <span>  @ Copyrights 2019 all rights reserved : Build with </span> <span class="icon-heart c-pink"></span> in Canada </div>
+
+            <div class="gc-10-12 t-right"> 
+                
+                <div style="padding-left: 10px;" ng-if="getUSerRole() != 'admin'">
+                <a class="textLogo">iSkillMetrics</a>
+                </div>
+                
+
+            </div>
+
+
+             
+         </footer>
+
+
         </section>
       </section>
 

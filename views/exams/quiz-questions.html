@@ -1,11 +1,15 @@
  <section class="hbox">
 
 
-  <aside class="bg-white border-all" ng-if="vm.loading == null">
+  <aside class="bg-white" ng-if="vm.loading == null">
     <div style="padding: 10px;">
       <h3 class="t-center">Loading questions ...</h3>
     </div>  
   </aside>
+
+</section>
+
+<section class="hobx">
 
   <aside class="bg-white border-all" ng-if="vm.loading == false">
     <div style="padding: 10px;">
@@ -14,42 +18,48 @@
   </aside>
 
 
+  </section>
+
+
   <aside>
 
+    <div class="grid12Col gap10 mb-20">
 
-        <div class="bg-white border-all" style="margin-bottom: 20px;"> 
+      <div class="gc-1-8 bg-white border-all" ng-if="vm.loading == true">
 
-<div class="row-fluid"> 
+          <div class="customInner" style="margin: 20px; padding-right: 30px;">
+
+            <form class="floatable w-80">
+
+                <div class="field-wrap">
+                    <span class="icon-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.descFitler">
+                    <label for="title-filter" class="placeholder">Filter By Description</label>
+                </div>
+                
+            </form>
 
 
-
-
-        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
-            
-        <a class="btn btn-twitter btn-block" ui-sref="exm.addQuizQuestions({'examID': vm.examID})"> <span class="icon-plus"></span> Questions </a>
-
+        
         </div>
 
-</div>  
+      </div>  
 
 
+      <div class="gc-9-12 bg-white border-all dfx-center-xy">
+        <a class="btn btn-success" style="width: 200px" ui-sref="exm.addQuizQuestions({'examID': vm.examID})"> <span class="icon-plus"></span> Questions </a>
+      </div>
 
 
-</div>
-    
-
-
-  
-
+    </div>
 
 
             <div class="col-right bg-white border-all" style="padding-left: 10px; padding-right: 10px;">
 
               <quiz-info-component param="vm.examID"></quiz-info-component>
-  
-                
+                 
 
-                <div class="row">
+                <div class="row" ng-if="vm.loading == true">
                   <div class="span6">
 
                     <label>Filter By Subjects</label>
@@ -72,14 +82,14 @@
 
                 </div>
 
-                <div ng-if="vm.enableSynchronize">
+                <div ng-if="vm.enableSynchronize" ng-if="vm.loading == true">
                     <p>New Questions Available would you like to synchronize</p>                   
                     <div class="btn btn-success btn-small" ng-click="vm.processDoSyncronize()">Synchronize New Question</div>
                 </div>
 
 
 
-                <table class="table" ng-if="vm.dataList.status">
+                <table class="table" ng-if="vm.dataList.status && vm.loading == true">
                     <thead>
                         <th>#</th>
                         <th style="width: 500px">Questions</th>
@@ -92,7 +102,9 @@
 
                     <tbody>
 
-                        <tr ng-repeat="item in vm.dataList.questions | filter:{ subject: subjectSearch } track by $index ">
+                      
+
+                        <tr ng-repeat="item in vm.dataList.questions | filter:{ subject: subjectSearch, queDesc: vm.descFitler } track by $index ">
 
                                <td>{{$index + 1}}</td>
                                <td>
