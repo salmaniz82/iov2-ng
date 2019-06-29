@@ -251,7 +251,7 @@
     </div>
 
 
-    <div ng-if="vm.isReviewEnabled() && !vm.startReviewWizard">
+    <div ng-if="vm.isReviewEnabled() && !vm.startReviewWizard && !vm.reviewAll">
 
         <h3 class="reviewWarningBLock">You have <span class="c-blue">  {{vm.markedQuestions.length}} </span> marked questions please Start Review to answer. </h3>
 
@@ -263,13 +263,14 @@
     </div>
 
     
-    <div  ng-if="!vm.endActivated">
+    <div ng-if="!vm.endActivated">
+
         
     <section ng-if="(vm.startReviewWizard && (vm.questionIndex + 1 > vm.markedQuestions.length)) || (!vm.startReviewWizard && vm.isLastQue)" class="t-center">
 
         <h3>You are about to end quiz this evalaute all your answers as final step</h3>
-
         <a href="#" class="btn btn-success startRewieBigButton" ng-click="vm.ansPrep()">End Quiz</a>
+        <a ng-if="!vm.reviewAll" href="#" class="btn btn-warning startRewieBigButton" ng-click="vm.startReviewAll()">Review All</a>
 
     </section>
 
@@ -285,7 +286,7 @@
     <div id="controllingArea__main">
 
 
-        <div class="grid12Col" ng-if="!vm.startReviewWizard && !vm.isReviewEnabled()">
+        <div class="grid12Col" ng-if="!vm.startReviewWizard && !vm.isReviewEnabled() && vm.reviewAll == false">
                 <div class="gc1-half">
                         <label class="checkbox pull-left kt-pulse">
                             <input type="checkbox" name="review" value="1" ng-model="vm.quizData.questions[vm.questionIndex].marked">
@@ -308,7 +309,7 @@
                     <a href="#" class="btn btn-warning stdx" ng-click="vm.preQuestion($index)" > <span class="icon-chevron-left"> </span> Previous</a>
                 </div>
 
-                <div ng-if="vm.hasMore">
+                <div ng-if="(vm.hasMore || vm.reviewAll == true) && !vm.isLastQue">
                     <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre}" ng-click="vm.nextQuestion($index)" >Next <span class="icon-chevron-right"> </span> </button>
                 </div>
 

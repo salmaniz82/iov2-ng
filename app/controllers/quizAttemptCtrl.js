@@ -35,6 +35,10 @@
 
         vm.endActivated = false;
 
+        vm.reviewAll = false;
+
+
+
         vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
 
         var attempt_id = $stateParams.attempt_id;
@@ -187,6 +191,24 @@
        };
 
 
+       vm.startReviewAll = function()
+       {
+
+
+
+            vm.quizData.questions = vm.providedAnswers;
+            vm.questionIndex = 0;            
+            vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
+            vm.reviewAll = true;
+
+            vm.startReviewWizard = false;
+
+            vm.markedQuestions = [];
+
+            vm.isLastQue = false;
+       };
+
+
         vm.revNext = function()
         {
 
@@ -243,9 +265,11 @@
              {
                 // add to mark
                 
-                if(markedIndex == -1)
+                if(markedIndex == -1 && vm.reviewAll == false)
                 {
-                    vm.markedQuestions.push(vm.activeQuestion);  
+                    vm.markedQuestions.push(vm.activeQuestion); 
+
+
                     
                     vm.ShowPulse = false;
                 } 

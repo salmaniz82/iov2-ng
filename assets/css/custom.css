@@ -1844,3 +1844,4 @@ display: flex;
   content: "\f00c";
 }
 
+table.no-border td {border: none;}
