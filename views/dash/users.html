@@ -88,6 +88,7 @@
                                 <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Details</a></li>
+                                    <li ng-if="item.status == 0"><a href="#">Send Registration Email</a></li>
                                     <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
                                     <li><a href="#" ng-click="vm.loadPermissions(item.id)">Permissions</a></li>
                                     <li><a href="#" ng-click="vm.resetUserPermissions(item.id, item.role_id)">Reset Permissions</a></li>
@@ -328,6 +329,16 @@
             <label class="placeholder">Confirm Password</label>
 
             <span ng-show="registerall.userpasswordconfirm.$touched && registerall.userpasswordconfirm.$error.passwordVerify" class="float-error">Confirm Password Mismatched</span>
+          </div>
+
+
+          <div class="field-wrap">
+
+            <label ng-hide="registerall.$invalid">
+                <input type="checkbox" ng-model="vm.nUser.sendEmail">
+                    Send Registration Confirmation Email 
+                </label>
+              
           </div>
 
 

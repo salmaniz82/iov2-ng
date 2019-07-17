@@ -57,6 +57,14 @@
         }
 
 
+        vm.calcMaxAllocation = function(maxX)
+        {
+
+            vm.maxAllocated = parseInt(vm.nQuiz.noQues) * parseInt(maxX);
+
+        };
+
+
         vm.saveQuiz = function(saveNature)
         {
 

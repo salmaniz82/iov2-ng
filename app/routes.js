@@ -387,6 +387,15 @@
             controller : 'modalCtrl as vm'
         })
 
+        .state('dash.batches', {
+
+            url : '/batches',
+            templateUrl: 'views/dash/batches.html',
+            controller : 'batchesCtrl as vm',
+            authenticate: true,
+            roles : ['admin', 'entity']
+        })
+
 
         .state('ua', {
             abstract: true,

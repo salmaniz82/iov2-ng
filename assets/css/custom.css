@@ -1244,14 +1244,14 @@ ul.stepperNav {
     border-radius: 4px;
     margin-right: 10px;
     background-color: var(--greyLight);
-    color: var(--blue);   
+    color: var(--greenLight);   
     font-weight: 800; font-size: 14px;
     display: inline-block;
 
 }
 
 .stepperNav li.active .stageIndigator {
-    background-color: var(--blue);
+    background-color: var(--greenLight);
     color: #fff;
 }
 
@@ -1283,7 +1283,7 @@ ul.stepperNav {
 
 .stepperNav li.active a {
 
-  color: var(--blue);
+  color: var(--greenLight);
 
 }
 

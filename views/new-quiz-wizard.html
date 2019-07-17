@@ -187,6 +187,42 @@
             <span ng-show="particulars.noques.$touched && particulars.noques.$error.maxlength" class="float-error">Max. 3 characters allowed</span>
           </div>
 
+
+          <div class="grid12Col gap10" ng-hide="particulars.noques.$invalid">
+
+          		<div class="gc1-half">
+
+          			<label class="placeholder static">Limit Max Allocation</label>
+
+          		<select class="w-100 limitWizard" name="maxAllocation" ng-init="vm.nQuiz.maxAllocation = '-- Select X Allocation'" ng-model="vm.nQuiz.maxAllocation" required
+
+          		ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)"
+
+          		>
+                    <option ng-selected="vm.nUser.role_id == '-- Select X Allocation'" ng-disabled="1 == 1">-- Select X Allocation</option>
+                   <option value="1">1x</option>
+                   <option value="2">2x</option>
+                   <option value="3">3x</option>
+                   <option value="4">4x</option>
+                   <option value="5">5x</option>
+                   <option value="6">6x</option>
+                   <option value="7">7x</option>
+                   <option value="8">8x</option>
+                   <option value="9">9x</option>
+                   <option value="10">10x</option>
+            </select>
+          		
+          	</div>
+
+
+          	<div class="gc2-half">
+          		<p class="xAllocate">{{vm.maxAllocated}}</p>
+          	</div>
+          	
+          
+
+      </div>
+
           <div class="field-wrap">
             <input type="text" name="maxscore" class="float-field w-100" ng-model="vm.nQuiz.maxScore" required ng-pattern="/^[0-9]*$/" ng-maxlength="4">
             <label class="placeholder">Maxium Score</label>
@@ -345,6 +381,14 @@
 				</div>		
 			</div>
 
+
+			<div class="divider-grouping">
+
+				<label class="placeholder static c-green">Score Status & Visibilty Options</p>
+				
+
+			
+
 			<div class="formControlflexWrap">
 				<div class="flexFormLabel">
 					<label>Make Score Visible <span class="icon-question-sign"></span></label>
@@ -359,8 +403,29 @@
                               </label>
                             </span>
 					</div>	
+
+
 				</div>		
 			</div>
+
+			<div class="formControlflexWrap" ng-show="vm.nQuiz.scoreVisible == 1">
+				<div class="flexFormLabel">
+					<label>		
+						<input type="checkbox" ng-model="vm.nQuiz.scoreEmail">
+						Response Email	
+					</label>				
+				</div>
+			</div>
+
+			<div class="formControlflexWrap" ng-show="vm.nQuiz.scoreVisible == 1">
+				<div class="flexFormLabel">
+					<label>		
+						<input type="checkbox" ng-model="vm.nQuiz.scoreListView">
+						Canidates Enrolled Quiz 
+					</label>				
+				</div>
+			</div>
+
 
 
 			<div class="formControlflexWrap">
@@ -419,6 +484,9 @@
 					</div>	
 				</div>		
 			</div>
+
+
+			</div><!-- grouping -->
 
 
 			<div class="row-fluid" style="padding-bottom: 30px">
