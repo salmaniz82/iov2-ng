@@ -41,6 +41,9 @@
 
             var saveUrl = API_URL+'permissions';
 
+            vm.npermission.name = $scope.$parent.base.slugify(vm.npermission.name);
+
+
             $http({
 
                 url : saveUrl,

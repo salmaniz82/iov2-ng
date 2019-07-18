@@ -9,6 +9,8 @@
 
         $scope.$parent.dash.pageHeading = "Batches";
 
+        vm.dataList = null;
+
         vm.revealQuizList = false;
 
         vm.loadingStatus = null;
@@ -21,6 +23,43 @@
         vm.showEnrollment = false;
 
         vm.showBatchDetails = false;
+
+
+
+        vm.getEligQuiz = function()
+        {
+            
+            
+
+
+            function getEligQuizSuccess(res)
+            {
+                vm.eligQuiz = res.data.eligQuiz;
+
+                vm.revealQuizList = true;
+
+                
+            }
+
+            function getEligQuizError(res)
+            {
+
+
+                var notify = {
+                                type: 'error',
+                                title: 'Error While Fetching Eligible Quiz',
+                                content: res.data.message,
+                                timeout: 5000 //time in ms
+                            };
+                            $scope.$emit('notify', notify);  
+
+                vm.revealQuizList = false;
+
+            }
+
+            $http.get(API_URL+'batches/elig/quiz').then(getEligQuizSuccess, getEligQuizError);
+
+        };
 
 
         vm.enrollProcess = function()
@@ -166,27 +205,26 @@
 
         }, function(res){
 
-
-            
-        	
-
             vm.loadingStatus = false;
-            
+          
 
         });
 
 
         vm.enableQuizSelect = function()
-        {
-            vm.revealQuizList = true;
+        {          
+
+            vm.getEligQuiz();
+            
+                
         }
 
 
         vm.addtoBatch = function(quizId)
         {
 
-            var idx = $scope.$parent.base.getIndex(vm.dataList.eligQuiz, 'id', quizId);
-            var targetItem = vm.dataList.eligQuiz[idx];
+            var idx = $scope.$parent.base.getIndex(vm.eligQuiz, 'id', quizId);
+            var targetItem = vm.eligQuiz[idx];
             vm.batchQuizList.push(targetItem);
             vm.calcMinMax();
 

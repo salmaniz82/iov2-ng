@@ -41,7 +41,7 @@
 
 
                 <tbody>
-                    <tr ng-repeat="eq in vm.dataList.eligQuiz">
+                    <tr ng-repeat="eq in vm.eligQuiz">
 
                         <th>{{eq.title}}</th>
                         <th>{{eq.maxScore}}</th>
@@ -105,7 +105,7 @@
                 <div class="row-fluid"> 
 
                 <div class="span12">
-                    <h2 class="form-heading">New Batch</h2>
+                    <h2 class="form-heading">New Batch : {{vm.revealQuizList}}</h2>
                 </div>
 
             </div>
@@ -214,7 +214,7 @@
                             </td>
 
                             <td>    
-                                <p>{{pd.score}}</p>
+                                <p>{{pd.score | setDecimal:2}}</p>
 
                             </td>
 
@@ -291,16 +291,16 @@
 
                             </td>
                             <td>{{cp.maxScore}} / {{cp.minScore}}</td>
-                            <td>{{cp.score}}</td>
-                            <td>{{cp.per}}%</td>
+                            <td>{{cp.score | setDecimal:2}}</td>
+                            <td>{{cp.per | setDecimal:2}}%</td>
                             <td>{{cp.grade}}</td>
                         </tr>
 
                         <tr>
                             <td colspan="2">Overall</td>
                             <td>{{vm.candSummary.tmax}} / {{vm.candSummary.tmin}}</td>
-                            <td>{{vm.candSummary.tscore}}</td>                            
-                            <td>{{vm.candSummary.tper}}</td>
+                            <td>{{vm.candSummary.tscore | setDecimal:2}}</td>                            
+                            <td>{{vm.candSummary.tper | setDecimal:2}}</td>
                             <td>{{vm.candSummary.result}}</td>
                         </tr>
 
