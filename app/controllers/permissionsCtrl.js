@@ -88,6 +88,57 @@
 
         };
 
+
+
+        vm.removePermission = function(itemId)
+        {
+
+            
+
+
+            var idx = $scope.$parent.base.getIndex(vm.dataList.permissions, 'id', itemId);
+
+
+            console.log(idx);
+
+            function deleteSuccess(res)
+            {
+
+                var notify = {
+                                type: 'success',
+                                title: 'Delete Permission',
+                                content: res.data.message,
+                                timeout: 5000 //time in ms
+                            };
+                            $scope.$emit('notify', notify);  
+
+                            vm.dataList.permissions.splice(idx, 1);  
+            }
+
+            function deleteError(res)
+            {
+
+
+                  var notify = {
+                                type: 'error',
+                                title: 'Delete Permission',
+                                content: res.data.message,
+                                timeout: 5000 //time in ms
+                            };
+                            $scope.$emit('notify', notify);    
+
+
+            }
+
+
+            $http.delete(API_URL+'permissions/'+itemId).then(deleteSuccess, deleteError);
+
+
+
+
+
+        };
+
         
 
 

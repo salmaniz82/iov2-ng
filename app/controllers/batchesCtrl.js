@@ -9,7 +9,7 @@
 
         $scope.$parent.dash.pageHeading = "Batches";
 
-        vm.dataList = null;
+        
 
         vm.revealQuizList = false;
 
@@ -350,6 +350,23 @@
                     
 
                     vm.dataList.batches.push(res.data.lastBatch[0]);
+
+
+                    if(vm.dataList == undefined)
+                    {
+                        vm.loadingStatus = true;
+
+                        vm.dataList = {};
+
+                        vm.dataList.batches = res.data.lastBatch;
+
+                    }
+                    else {
+
+
+                        vm.dataList.batches.push(res.data.lastBatch[0]);
+
+                    }
 
 
 
