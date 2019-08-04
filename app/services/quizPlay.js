@@ -9,5 +9,14 @@ angular.module('io2v3')
 
 		};
 
+
+		this.dlsPrep = function(quiz_id, attempt_id)
+		{
+
+			var dlsQuizUrl = API_URL+'std-quiz-play/dls/'+quiz_id+'/attempt_id/'+attempt_id;
+			return $http.get(dlsQuizUrl);
+
+		}
+
 		
 	});

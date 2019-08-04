@@ -48,13 +48,13 @@
                     <h3 ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques">Question {{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}}</h3>
                 </div>
 
-                <div class="gc-first-remain-quater" ng-if="vm.startReviewWizard">
+                <div class="gc-first-remain-quater" ng-if="vm.startReviewWizard && !vm.reviewAll">
                     <span ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length">Review Questions : {{vm.questionIndex + 1}} of {{vm.markedQuestions.length}}</span>
                 </div>
 
                 
 
-                <div class="gc-last-quater align-self-end t-right mt-20 mb-20">
+                <div class="gc-last-quater align-self-end t-right mt-20 mb-20" ng-if="!vm.reviewAll">
 
                     <p ng-if="!vm.startReviewWizard" class="c-blue t-bold">Marked : {{vm.markedQuestions.length}}</p>
 

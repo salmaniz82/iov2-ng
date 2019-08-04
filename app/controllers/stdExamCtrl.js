@@ -84,7 +84,15 @@
                 else if (resData.type == 'dls')
                 {
 
-                    $state.go('quizPlayDLS');
+                    var attempt_id = res.data.attempt_id;
+                    var stateargs = {'attempt_id' : attempt_id, 'quiz_id': vm.actQuiz.id};
+
+                    var popupUrl = SITE_URL+'quiz-assement/'+attempt_id+'/'+vm.actQuiz.id;
+
+                    $state.go('quizPlayDLS', stateargs);
+
+                    
+
                 }
 
                 else {

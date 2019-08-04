@@ -481,11 +481,9 @@
 
                 quizPlayData : function(quizPlay, $stateParams)
                 {
-                   
                     var attempt_id = $stateParams.attempt_id;
                     var quiz_id = $stateParams.quiz_id;
                     return quizPlay.prepQuizQuestion(quiz_id, attempt_id);
-
                 }
 
             },
@@ -496,8 +494,22 @@
 
         .state('quizPlayDLS', {
 
-            url : '/quiz-assessment/dls',
-            templateUrl : 'views/student/dynamic-quiz.html'
+            url : '/quiz-assessment/dls/:attempt_id/:quiz_id',
+            templateUrl : 'views/student/dynamic-quiz.html',
+            controller : 'quizDlsCtrl as vm',
+            resolve : {
+
+                quizPlayData : function(quizPlay, $stateParams)
+                {
+                    var attempt_id = $stateParams.attempt_id;
+                    var quiz_id = $stateParams.quiz_id;
+                    return quizPlay.dlsPrep(quiz_id, attempt_id);
+                }
+
+            },
+
+            authenticate : true,
+            roles : ['students']
 
         })
 
@@ -529,10 +541,10 @@
 
 
 
-        .state('tabtest', {
+        .state('quizui', {
 
-            url : '/tabtest',
-            templateUrl: 'views/templates/tab.layout.html'
+            url : '/quizui',
+            templateUrl: 'views/student/quizui.html'
 
         })
 

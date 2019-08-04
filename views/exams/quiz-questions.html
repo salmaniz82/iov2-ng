@@ -62,8 +62,8 @@
                 <div class="row" ng-if="vm.loading == true">
                   <div class="span6">
 
-                    <label>Filter By Subjects</label>
-                    <select name="subjectFilter" ng-model="subjectSearch">
+                    <label>Filter By Subjects : {{subjectSearch}}</label>
+                    <select name="subjectFilter" ng-model="vm.subjectSearch">
                         <option value="">Show All</option>
                         <option ng-repeat="sub in vm.dataList.qqSubjects" ng-value="sub.subjects">{{sub.subjects}}</option>   
                     </select>
@@ -104,7 +104,7 @@
 
                       
 
-                        <tr ng-repeat="item in vm.dataList.questions | filter:{ subject: subjectSearch, queDesc: vm.descFitler } track by $index ">
+                        <tr ng-repeat="item in vm.dataList.questions | filter:{ subject: vm.subjectSearch, queDesc: vm.descFitler } track by $index ">
 
                                <td>{{$index + 1}}</td>
                                <td>

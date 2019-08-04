@@ -650,15 +650,8 @@
 						'c-blue': vm.phaseTwoStatus == 'working', 
 						'c-green': vm.phaseTwoStatus == 'done',
 						'c-pink': vm.phaseTwoStatus == 'error' }">Saving Quiz Information</h4>
-				
-				<h4 class="t-center"
 
-				ng-class="{'c-dull': vm.phaseThreeStatus == 'inactive', 
-						'c-blue': vm.phaseThreeStatus == 'working', 
-						'c-green': vm.phaseThreeStatus == 'done',
-						'c-pink': vm.phaseThreeStatus == 'error' }">Allocatings Questions</h4>
-
-				<h4 ng-if="vm.hasValidDistribution" class="t-center"
+						<h4 ng-if="vm.hasValidDistribution" class="t-center"
 
 
 				ng-class="{'c-dull': vm.phaseFourStatus == 'inactive', 
@@ -667,6 +660,15 @@
 						'c-pink': vm.phaseFourStatus == 'error' }"
 
 				>Saving Distribution</h4>
+				
+				<h4 class="t-center"
+
+				ng-class="{'c-dull': vm.phaseThreeStatus == 'inactive', 
+						'c-blue': vm.phaseThreeStatus == 'working', 
+						'c-green': vm.phaseThreeStatus == 'done',
+						'c-pink': vm.phaseThreeStatus == 'error' }">Allocatings Questions</h4>
+
+				
 
 
 

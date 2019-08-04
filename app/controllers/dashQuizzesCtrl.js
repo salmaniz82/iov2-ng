@@ -113,6 +113,47 @@
         {
 
 
+            var statusToggleUrl = API_URL+'quiz-status-toggle/'+itemId;
+
+            var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+
+            var row = vm.dataList[idx];
+
+
+            $http({
+
+                url : statusToggleUrl,
+                method : 'PUT',
+                data : {'status' : value}
+
+            }).then(toggleSuccess, toggleError);
+
+
+            function toggleSuccess(res)
+            {
+
+
+                var notifyType = (res.data.qstatus == 1) ? 'success' : 'warning';
+
+                console.log('type'  + res.data.qstatus);
+
+
+                var notify = {
+                        type: notifyType,
+                        title: 'Status',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);               
+
+            }
+
+            function toggleError(res)
+            {
+
+
+
+            }
             
 
 

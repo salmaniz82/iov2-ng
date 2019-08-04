@@ -49,6 +49,10 @@
 
                 function(res) {
 
+                    if(qqStatus == 0)
+                    {
+                        vm.syncCheck();    
+                    }
 
                 }, function(res){
 

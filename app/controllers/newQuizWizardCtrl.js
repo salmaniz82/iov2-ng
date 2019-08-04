@@ -116,7 +116,8 @@
                 showScore: vm.nQuiz.scoreVisible,
                 showResult: vm.nQuiz.showResults,
                 showGrading: vm.nQuiz.showGradings,
-                showGPA : vm.nQuiz.showGPA
+                showGPA : vm.nQuiz.showGPA,
+                maxAllocation: vm.nQuiz.maxAllocation
                 
             
             };
@@ -140,37 +141,18 @@
                     $scope.$emit('notify', notify);
 
 
+                   var lastId = res.data.last_id;
 
+                   vm.lastCreatedId = lastId;    
 
+                   /*
 
-                var lastId = res.data.last_id;
+                   if distribution is not valid then we must exit 
+                   distribution save 
+                   and we must not go to the allocation 
 
-                vm.lastCreatedId = lastId;        
+                   */
 
-                vm.phaseThreeStatus = 'working';
-
-
-                var allocateQuestionUrl = API_URL+'quiz-question-allocate/'+lastId;
-
-                 function allocateSuccess(res)
-                {
-                    
-                     var notify = {
-                        type: 'info',
-                        title: 'Question Allocation',
-                        content: res.data.message,
-                        timeout: 5000 //time in ms
-                    };
-
-                    $scope.$emit('notify', notify);
-                    vm.phaseThreeStatus = 'done';
-
-
-                    /*
-
-                    trigger subjects update here 
-                    
-                    */
 
 
                    if(vm.hasValidDistribution)
@@ -178,32 +160,14 @@
                       vm.phaseFourStatus = 'working';    
                       vm.saveDistribution(lastId);  
                    }
-
+                   
                    else {
-
-                    
 
                         vm.allDone = true;
 
-                   }     
-                    
-                }
+                   }    
 
-                function allocateError(res)
-                {
 
-                     var notify = {
-                        type: 'error',
-                        title: 'Question Allocation',
-                        content: res.data.message,
-                        timeout: 5000 //time in ms
-                    };
-
-                    $scope.$emit('notify', notify);
-
-                }
-
-                $http.post(allocateQuestionUrl).then(allocateSuccess, allocateError);    
 
 
             }
@@ -215,6 +179,9 @@
                 vm.phaseTwoStatus = 'error';
 
             }
+
+
+            console.log(newQuizPayload);
 
               
 
@@ -474,13 +441,10 @@
 
                     }
                     else {
-
-                        
+                       
 
                     }
 
-
-                    
 
                 }, 
 
@@ -586,7 +550,47 @@
 
                 vm.phaseFourStatus = 'done';
 
-                vm.allDone  = true;
+                vm.phaseThreeStatus = 'working';
+
+
+                var allocateQuestionUrl = API_URL+'quiz-question-allocate/'+lastID;
+
+                function allocateSuccess(res)
+                {
+                    
+                     var notify = {
+                        type: 'info',
+                        title: 'Question Allocation',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+
+                    $scope.$emit('notify', notify);
+                    vm.phaseThreeStatus = 'done';
+
+                    vm.allDone  = true;
+
+                    
+                }
+
+                function allocateError(res)
+                {
+
+                     var notify = {
+                        type: 'error',
+                        title: 'Question Allocation',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+
+                    $scope.$emit('notify', notify);
+
+                }
+
+
+                $http.post(allocateQuestionUrl).then(allocateSuccess, allocateError);
+
+                
 
                 var notify = {
                         type: 'info',
