@@ -25,7 +25,7 @@
             <p class="t-right">
 
                 <span>Time Remaining : </span>
-                <span class="t-right newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">00:00</span>    
+                <span class="t-right newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</span>    
             </p>  
         </div>  
 
@@ -34,18 +34,17 @@
 
 
 
-    <div class="grid12Col">
+    <div class="grid12Col" ng-if="!vm.endActivated || vm.reviewAll && !vm.endProcessActivated">
                 <div class="gc-first-remain-quater align-self-center">
                     <h3>Question {{vm.questionIndex + 1}} of {{vm.requiredQuestions}}</h3>
                 </div>
     </div>
 
 
-    <div id="canvasScrollArea">
-        
+    <div id="canvasScrollArea" ng-if="!vm.endActivated || vm.reviewAll && !vm.endProcessActivated">
+
+
     
-
-
     <div class="canvasItem" ng-repeat="item in vm.questions">
 
 
@@ -205,24 +204,22 @@
     </div> <!-- end question repeater -->
 
 
+    </div><!-- canvasScrollArea -->
 
-    <div ng-if="vm.answerAvailable" style="width: 600px; margin: 0 auto; padding-top: 200px; background-color: #F1F1F1">
-            
+    <div ng-if="vm.endProcessActivated" style="width: 600px; margin: 0 auto; padding-top: 200px; background-color: #F1F1F1">
+
             <h3 class="c-green">Please wait while your performance is being evaluated</h3>
             
     </div>
 
-
-
-    
-    <div ng-if="!vm.endActivated">
+    <div ng-if="vm.endActivated && !vm.reviewAll && !vm.endProcessActivated">
 
         
-    <section ng-if="(vm.startReviewWizard && (vm.questionIndex + 1 > vm.markedQuestions.length)) || (!vm.startReviewWizard && vm.isLastQue)" class="t-center">
+    <section class="t-center">
 
-        <h3>You are about to end quiz this evalaute all your answers as final step</h3>
-        <a href="#" class="btn btn-success startRewieBigButton" ng-click="vm.ansPrep()">End Quiz</a>
-        <a ng-if="!vm.reviewAll" href="#" class="btn btn-warning startRewieBigButton" ng-click="vm.startReviewAll()">Review All</a>
+        <h3>End quiz or Review all Questions</h3>
+        <a href="#" class="btn btn-success startRewieBigButton" ng-click="vm.triggerProcessEndQuiz()">End Quiz</a>
+        <a href="#" class="btn btn-warning startRewieBigButton" ng-click="vm.startReviewAll()">Review All</a>
 
     </section>
 
@@ -230,15 +227,10 @@
 
 
 
-
-    </div><!-- canvasScrollArea -->
-
-
-
     <div id="controllingArea__main">
 
 
-        <div class="grid12Col cbf" style="margin-top: 20px;" ng-if="!vm.startReviewWizard">
+        <div class="grid12Col cbf" style="margin-top: 20px;" ng-if="!vm.endActivated">
 
 
             <div class="g_nested gc-auto-half">
@@ -262,14 +254,14 @@
         </div>
 
 
-        <div class="grid12Col cbf"  ng-if="vm.startReviewWizard">
+        <div class="grid12Col cbf"  ng-if="vm.reviewAll && !vm.endProcessActivated">
 
 
             <div class="g_nested gc-auto-half">
 
             
             <div>
-                <a href="#" class="btn btn-success stdx pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">Next <span class="icon-chevron-right"> </span></a>
+                <a href="#" class="btn btn-success stdx pull-left" ng-click="vm.revNext()"> Next <span class="icon-chevron-right"> </span></a>
             </div>
 
 
