@@ -87,7 +87,7 @@
 
         		if(currentScrollPosition >= (scrollHeight - 300 ) )
         		{
-        			console.log('load more buddy');
+        			console.log('load more triggered');
         		}
 
         		console.log(currentScrollPosition + ' : ' + scrollHeight);

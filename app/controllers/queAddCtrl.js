@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('queAddCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizDataService', 'queGlobalData', function(API_URL, $scope, $http, $state, $stateParams, quizDataService, queGlobalData){
+    angular.module('io2v3').controller('queAddCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizDataService', 'queGlobalData', 'auth', function(API_URL, $scope, $http, $state, $stateParams, quizDataService, queGlobalData, auth){
 
         var vm = this;
 
@@ -13,7 +13,90 @@
         $scope.$parent.base.pageUrl = $state.current.url; 
 
 
+        vm.bindTopCategory = true;
+
+
+
+
+
+
+
         console.log(queGlobalData);
+
+
+
+        vm.userRole = auth.getUser()['role'];
+
+
+        vm.isNumber = angular.isNumber;
+
+
+
+        if(vm.userRole == 'content developer' || vm.userRole == 'contributor')
+        {
+
+            vm.bindTopCategory = true;
+
+
+
+
+            if(queGlobalData.data.topCategory == false)
+            {
+
+                var notify = {
+                        type: 'error',
+                        title: 'Permission Denied',
+                        content: 'Top level category was not assinged ',
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                $state.go('dash.questions');
+
+                return false;
+
+            }
+
+            else {
+
+                vm.topBindCategory = queGlobalData.data.topCategory;
+
+                setTimeout(function() {
+
+                    
+                    vm.queCategory = vm.topBindCategory;
+
+                    console.log();
+                    
+                    var idx = $scope.$parent.base.getIndex(vm.globalList.cat, "id", vm.queCategory.toString());
+
+                    vm.topPreSelectCategory = vm.globalList.cat[idx]['tree'];
+
+
+
+                })    
+                
+
+            }
+
+        }
+
+        else {
+
+
+            vm.bindTopCategory = false;
+
+        }
+
+
+
+
+
+
+
+
+
+
 
         if($stateParams.examID != undefined)
         {
@@ -24,9 +107,7 @@
             $scope.$parent.dash.pageHeading = "Add New Questions";
 
         }    
-        
 
-        console.log($scope.$parent);
 
         
 
@@ -113,8 +194,10 @@
 
         else {
             vm.QuizPrivate = false;
+
             vm.queCategory = "Select Category";
             vm.queSection = "Select Section";
+            vm.queDecipline = "Sub Descipline"
 
         }
 

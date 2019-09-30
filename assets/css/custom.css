@@ -1845,3 +1845,44 @@ display: flex;
 }
 
 table.no-border td {border: none;}
+
+
+
+.fixed_header{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: var(--greyLight);
+  color:#333;
+  font-size: 13px;
+}
+
+
+
+.fixed_header th, .fixed_header td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+
+}
+
+
+
+
+
+
+

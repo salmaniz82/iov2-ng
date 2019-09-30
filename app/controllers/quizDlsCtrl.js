@@ -45,7 +45,7 @@
 
         vm.quiz.noques;
 
-        vm.switchFrequency = 1;
+        vm.switchFrequency = 2;
 
         vm.mainNext = false;
 
@@ -253,7 +253,7 @@
                         vm.activeLevel = 'easy';
                   }
 
-                  if(vm.stream.collections[vm.currentSubjectName].composite['medium'].length != 0)
+                  else if(vm.stream.collections[vm.currentSubjectName].composite['medium'].length != 0)
                   {
                         vm.activeLevel = 'medium';
                   }
@@ -267,8 +267,6 @@
 
 
                 }
-
-                
 
 
             }
@@ -323,7 +321,7 @@
 
                 }
 
-                else if(vm.activeLevel == 'difficulty')
+                else if(vm.activeLevel == 'difficult')
                 {
                   
                   if(vm.stream.collections[vm.currentSubjectName].composite['difficult'].length != 0)

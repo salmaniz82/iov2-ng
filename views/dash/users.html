@@ -283,18 +283,37 @@
                 <form name="registerall" id="registerall" class="floatable" novalidate>
 
 
-                    <div class="field-wrap">
 
-                         <select name="userrole" ng-init="vm.nUser.role_id = '-- Select Role'" ng-model="vm.nUser.role_id" required ng-pattern="/^[0-9]{1,7}$/">
-                                <option ng-selected="vm.nUser.role_id == '-- Select Role'" ng-disabled="1 == 1">-- Select Role</option>
-                                <option ng-repeat="role in vm.roles" ng-value="role.id">{{role.role}}</option>     
+                    <div class="grid12Col"> 
+
+                        <div class="gc1-half">
+                            
+                            <div class="field-wrap">
+
+                             <select name="userrole" ng-init="vm.nUser.role_id = '-- Select Role'" ng-model="vm.nUser.role_id" required ng-pattern="/^[0-9]{1,7}$/" ng-change="vm.userBindCheck()">
+                                    <option ng-selected="vm.nUser.role_id == '-- Select Role'" ng-disabled="1 == 1">-- Select Role</option>
+                                    <option ng-repeat="role in vm.roles" ng-value="role.id">{{role.role}}</option>     
+                             </select>
+
+                             <span ng-show="registerall.$dirty && registerall.userrole.$invalid" class="float-error" style="left: 0; text-align: left;">Please Select Role</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="gc2-half">
+
+                            <div class="field-wrap" ng-if="vm.forceCategoryBound">
+                         <select name="topCategory" ng-init="vm.nUser.topCategory = '-- Select Category'" ng-model="vm.nUser.topCategory" required ng-pattern="/^[0-9]{1,7}$/">
+                                <option ng-selected="vm.nUser.topCategory == '-- Select Category'" ng-disabled="1 == 1">-- Select Category</option>
+                                <option ng-repeat="cat in vm.topCategories" ng-value="cat.id">{{cat.name}}</option>     
                          </select>
-                         
-
-                         <span ng-show="registerall.$dirty && registerall.userrole.$invalid" class="float-error">Please Select Role</span>
+                         <span ng-show="registerall.$dirty && registerall.topCategory.$invalid" class="float-error" style="left: 0; text-align: left;">Please Top Level Category</span>
                     </div>
 
+                        </div>
 
+                    </div>
 
 
                     <div class="field-wrap">

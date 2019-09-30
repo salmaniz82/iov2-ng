@@ -16,17 +16,29 @@
 		</div>	
 	</aside>
 
+	<aside class="grid12Col bg-white border-all mb-20" ng-if="vm.loading == 'no contents'">
+		<div style="padding: 10px;">
+
+			<h3 class="t-center gc-full">You have not added any questions yet</h3>
+
+			<div class="dfx-center-xy">
+					<a class="btn btn-success gc-full" ui-sref="dash.queadd()" style="width: 200px"> <span class="icon-plus"></span> Questions </a>	
+			</div>
+
+		</div>	
+	</aside>
+
 
 </section>
 
 
-<section class="hbox">
+<section class="hbox" ng-if="vm.loading == true">
 
 
 <aside>
 
 	<div class="grid12Col gap10 mb-15">
-		<div class="gc-1-8 bg-white border-all" ng-if="vm.loading == true">
+		<div class="gc-1-8 bg-white border-all">
 
 
 				<div class="customInner" style="margin: 20px; padding-right: 30px;">
@@ -64,13 +76,7 @@
 
 	<aside>
 		
-	
 
-
-
-<div ng-if="vm.loading == 'no contents'" >
-		<h3 class="t-center">You have not added any questions yet</h3>
-	</div>
 
 
 

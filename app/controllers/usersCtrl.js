@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('usersCtrl', ['API_URL', '$scope', '$http', '$state', function(API_URL, $scope, $http, $state){
+    angular.module('io2v3').controller('usersCtrl', ['API_URL', '$scope', '$http', '$state', 'auth', function(API_URL, $scope, $http, $state, auth){
 
 
         var vm = this;
@@ -11,6 +11,9 @@
 
 
         vm.loadingStatus = null;
+
+
+        vm.forceCategoryBound = false;
 
 
         vm.modalOpen = false;
@@ -30,6 +33,44 @@
         vm.addUser = false;
 
 
+        vm.userRole = auth.getUser()['role'];
+
+
+
+
+        vm.userBindCheck = function()
+        {
+
+            console.log();
+
+
+            var idx = $scope.$parent.base.getIndex(vm.roles, 'id', vm.nUser.role_id);
+
+            var chosenRole = vm.roles[idx]['role'];
+
+
+            if(chosenRole == 'contributor' || chosenRole == 'content developer')
+            {
+
+                vm.forceCategoryBound = true;
+
+            }
+
+            else {
+                vm.forceCategoryBound = false;
+                
+            }
+
+
+
+
+
+        }
+
+
+
+
+
         vm.addNewUser = function()
         {
 
@@ -47,9 +88,6 @@
 
                 function registerSuccess(res)
                 {
-
-                    
-
 
 
                     var notify = {
@@ -253,6 +291,8 @@
         	if(res.status == 200)
         	{
         		vm.dataList = res.data.users;
+
+                vm.topCategories = res.data.topCategories;
                 
                 vm.loadingStatus = true;
         	}

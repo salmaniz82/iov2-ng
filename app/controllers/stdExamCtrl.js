@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', '$interval', function(API_URL, SITE_URL, $scope, $http, $state, $interval){
+    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', '$interval', 'xToTimeFilter', function(API_URL, SITE_URL, $scope, $http, $state, $interval, xToTimeFilter){
 
 
         var vm = this;
@@ -174,14 +174,22 @@
         }
 
 
-        var url = API_URL+'std-quiz-list';
+        vm.fetchQuizListings = function()
+        {
 
-        $http({
+            var url = API_URL+'std-quiz-list';
 
-        	url : url,
-        	method: 'GET'
+            $http({
 
-        }).then(successFetchQuizList, errorFetchQuizList);
+                url : url,
+                method: 'GET'
+
+            }).then(successFetchQuizList, errorFetchQuizList);
+
+        };
+
+
+        vm.fetchQuizListings();
 
 
 
@@ -294,7 +302,17 @@
                            console.log('update the list');   
 
 
+                           /*
+
                            vm.dataList = res;
+
+                           */
+
+
+                           vm.fetchQuizListings();
+
+
+                           console.log(res);
 
 
 

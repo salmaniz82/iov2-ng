@@ -3,15 +3,17 @@
 
     <aside>
 
+    
+        <div ng-if="vm.loadingStatus == false" class="bg-white border-all mb-20" style="padding: 10px;">
 
+            <h3 class="t-center">No quiz added yet, please add one to proceed</h3>
 
+            <div class="dfx-center-xy">
+                    <a class="btn btn-success" style="width: 200px;" ui-sref="dash.quizWizard()"> <span class="icon-plus"></span> Add Quiz </a>
+            </div>
 
-
-        <div ng-if="vm.loadingStatus == false"> 
-                    <h2 class="t-center">
-                        There are no quiz added yet please add one.
-                   </h2>
-        </div>
+        </div>  
+    
         
 
     <!-- 
@@ -20,14 +22,9 @@
      -->
 
 
-<div class="grid12Col gap10 mb-15"> 
+<div class="grid12Col gap10 mb-15" ng-if="vm.loadingStatus == true"> 
 
-
-    
-
-
-
-        <div class="gc-1-8 bg-white border-all" ng-if="vm.loadingStatus == true">
+        <div class="gc-1-8 bg-white border-all">
 
         <div class="customInner" style="margin: 20px; padding-right: 30px;">
 
@@ -148,18 +145,19 @@
                                     <li><a ui-sref="exm.exam({'examID': item.id})"> - Details </a>
                                     <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
                                     <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
-                                    <li><a href="modify-date-time.php" class="c-red"> - Modify Date/Time</a>
+                                    <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - Modify Date/Time</a>
                                     <li><a ui-sref="exm.editQuiz()"> - Manage Quiz</a></li>
                                     <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
                                     <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
+
+                                    <li><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red icon-warning-sign"></span> <span class="c-red">Delete</span></a></li>
+
 
                                 </ul>
                             </div>
                         </td>
 
                     </tr>
-
-                  
 
 
                     </tbody>
@@ -173,3 +171,171 @@
 
 
         </aside>
+
+
+        <div class="cst-modal-container" ng-if="vm.updateDateTimeModal">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header" style="padding-bottom: 0px">
+
+        <div class="grid12Col">
+            <div class="gc1-half">
+                <h3>Modify Date / Time </h3>        
+            </div>
+            <div class="gc2-half">
+                <i class="icon-remove pull-right" ng-click="vm.closeDateTimeModal()"></i>        
+            </div>
+
+        </div>
+
+      </div>
+      <div class="cst-modal-body" style="padding-top: 0px">
+
+        <h4>{{vm.dateTimeModalData.title}}</h4>
+
+
+        <div class="grid12Col gap10">
+
+            <div class="gc-1-5 align-self-center"> 
+
+                <label>Start DateTime</label>                
+
+            </div> <!-- grid01 -->
+            <div class="gc-6-12">  
+
+                <div class="input-append pick-dt w-100 pick-dt" ng-model="vm.dateTimeModalData.startDateTime">
+                    <input type="datetime" id="{{'adate'+vm.dateTimeModalData.id}}" class="w-90 dateinput" name="sdate" placeholder="Start DateTime" ng-value="vm.dateTimeModalData.startDateTime">
+                    <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                </div>
+
+
+            </div> <!-- grids02 -->
+            
+        </div>
+
+
+        <div class="grid12Col gap10">
+
+            <div class="gc-1-5 align-self-center"> 
+
+                <label>End DateTime</label>
+
+            </div> <!-- grid01 -->
+            <div class="gc-6-12">  
+
+
+                <div class="input-append pick-dt w-100 pick-dt" ng-model="vm.dateTimeModalData.endDateTime">
+                    <input type="datetime" id="{{'edate'+vm.dateTimeModalData.id}}" class="w-90 dateinput" name="sdate" placeholder="Start DateTime" ng-value="vm.dateTimeModalData.endDateTime">
+                    <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                </div>
+
+
+            </div> <!-- grids02 -->
+            
+        </div>
+
+
+
+        
+        
+        <div>
+        <button class="btn btn-std btn-success" ng-click="vm.udpateQuizdateTime()">Update</button>
+        &nbsp;
+        <button class="btn btn-std btn-danger" ng-click="vm.closeDateTimeModal()">Cancle</button>    
+        </div>
+        
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
+
+  <div class="cst-modal-container" ng-if="vm.deleteConfirmModal">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        
+        <span><span class="icon-exclamation c-red"> </span> <span>Quiz Delete Confirmation</span>
+
+        <i class="icon-remove pull-right" ng-click="vm.dissmissDeleteModal()"></i>
+
+      </div>
+      <div class="cst-modal-body" style="padding-top: 0px">
+
+        <p class="c-red" style="font-weight: bold; font-size: 18px">Distructive & irreversable operation.</p>
+
+        <p>You are about to delete quiz and all information associated</p>
+               
+            <h3>{{vm.deleteModalItem.title}}</h3> 
+
+
+            <div class="grid12Col gap10">
+
+                <div class="gc-1-5">
+                    <label>Duration</label>
+                </div>
+
+                <div class="gc-6-12">
+                    <label>{{vm.deleteModalItem.duration}} mins.</label>
+                </div>
+
+                <div class="gc-1-5">
+                    <label>Required Questions</label>
+                </div>
+
+                <div class="gc-6-12">
+                    <label>{{vm.deleteModalItem.noques}}</label>
+                </div>
+
+                <div class="gc-1-5">
+                    <label>Max Score</label>
+                </div>
+
+                <div class="gc-6-12">
+                    <label>{{vm.deleteModalItem.maxScore}}</label>
+                </div>
+
+                <div class="gc-1-5">
+                    <label>Passing Score</label>
+                </div>
+
+                <div class="gc-6-12">
+                    <label>{{vm.deleteModalItem.minScore}}</label>
+                </div>
+
+                <div class="gc-1-5">
+                    <label>Start</label>
+                </div>
+
+                <div class="gc-6-12">
+                    <label>{{vm.deleteModalItem.startDateTime}}</label>
+                </div>
+
+                <div class="gc-1-5">
+                    <label>Ends</label>
+                </div>
+
+                <div class="gc-6-12">
+                    <label>{{vm.deleteModalItem.endDateTime}}</label>
+                </div>
+
+            </div> 
+
+        <div>
+
+
+
+            <div class="pull-left">
+                <label><input type="checkbox" name="agree" ng-model="vm.proceedToX">Yes, Proceed</label>
+            </div>
+
+            <div class="pull-right">
+                <button class="btn btn-danger" ng-if="vm.proceedToX" ng-click="vm.removeQuiz()">
+                    <span class="icon-warning-sign"></span>
+                Delete</button>
+            </div>
+
+        </div>
+        
+      </div>
+      
+    </div>
+  </div> <!-- Delete Quiz Modal -->

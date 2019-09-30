@@ -27,6 +27,31 @@
 
 
 
+        vm.resetDefaultPermissions = function(itemId)
+        {
+
+
+            $http({
+
+                url : API_URL+'roles-reset-permission/'+itemId,
+                method : 'PUT',
+                data : {}
+
+
+            }).then(
+
+            function(res){
+
+            }, 
+
+            function(res){
+
+            })
+
+        };
+
+
+
 
     }]);
 

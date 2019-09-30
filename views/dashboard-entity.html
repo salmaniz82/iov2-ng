@@ -23,14 +23,14 @@
 		
 		<h3>Scheduled this week</h3>
 
-		<table class="table">
+		<table class="fixed_header">
 			<thead>
 				<th>Candidates</th>
 				<th>Day / Time</th>
 				
 			</thead>
 
-			<tbody>
+			<tbody style="height: 500px">
 				<tr ng-repeat="item in vm.weekSchedule">
 					<td>
 						<a ng-attr-title="{{item.title}}">
@@ -122,7 +122,7 @@
 
 		<div ng-if="!vm.currentactivity">There are no active candiate activities</div>
 
-		<table class="table" ng-if="vm.currentactivity">
+		<table class="fixed_header" ng-if="vm.currentactivity">
 
 			<thead>	
 				<th>Candidates</th>
@@ -134,7 +134,7 @@
 				<th>Status</th>
 			</thead>
 
-			<tbody>
+			<tbody style="height: 500px">
 
 				<tr ng-repeat="act in vm.activeCandidates">
 				<td ng-attr-title="{{act.title}}">{{act.name}}</td>
@@ -160,7 +160,7 @@
 
 		<h3>Completed Last Hour</h3>
 
-		<table class="table">
+		<table class="fixed_header">
 			<thead>
 				<th>Candidate</th>
 				<th>Quiz</th>
@@ -168,39 +168,53 @@
 				<th>Score</th>
 			</thead>
 
-			<tbody>
+			<tbody style="height: 200px">
 				<tr>
 					<td>Sara</td>
 					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
+					<td>4:00 PM</td>
 					<td>92%</td>
 				</tr>
 
 				<tr>
 					<td>Alfred</td>
 					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
+					<td>4:00 PM</td>
 					<td>90%</td>
 				</tr>
 
 				<tr>
 					<td>Rachel</td>
 					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
+					<td>4:00 PM</td>
 					<td>89%</td>
 				</tr>
 
 				<tr>
 					<td>Diana</td>
 					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
+					<td>4:00 PM</td>
 					<td>88%</td>
 				</tr>
 
 				<tr>
 					<td>Shane</td>
 					<td>CTS203</td>
-					<td>5th May 4:00 PM</td>
+					<td>4:00 PM</td>
+					<td>87%</td>
+				</tr>
+
+				<tr>
+					<td>Shane</td>
+					<td>CTS203</td>
+					<td>4:00 PM</td>
+					<td>87%</td>
+				</tr>
+
+				<tr>
+					<td>Shane</td>
+					<td>CTS203</td>
+					<td>4:00 PM</td>
 					<td>87%</td>
 				</tr>
 			</tbody>
@@ -212,33 +226,29 @@
 
 		<h3>Contributors</h3>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Added</td>
-				</tr>
-			</thead>
+		<table class="fixed_header">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Category</th>
+      <th>Questions</th>
+      
+    </tr>
+  </thead>
+  <tbody style="height: 200px">
+    <tr>
+      <td>John Smith</td>
+      <td>john@domain.com</td>
+      <td>Management</td>
+      <td>40</td>
+      
+    </tr>
+    
+  </tbody>
+</table>
 
-			<tbody>
-				<tr>
-					<td>Jane</td>
-					<td>25</td>
-				</tr>
-
-				<tr>
-					<td>Lara</td>
-					<td>44</td>
-				</tr>
-
-				<tr>
-					<td>Smith</td>
-					<td>76</td>
-				</tr>
-				
-			</tbody>
-			
-		</table>
+		
 
 
 		

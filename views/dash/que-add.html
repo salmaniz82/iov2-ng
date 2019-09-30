@@ -34,14 +34,25 @@
 
                     <div class="row pb-20">
                         <div class="span9 bbr-light">
-                            <h4 class="c-green">Categorization</h4>    
+                            <h4 class="c-green">Categorization
+
+                             <span ng-if="vm.bindTopCategory" class="c-grey" style="font-size: 14px"> &#8211; {{vm.topPreSelectCategory}}</span>   
+                            </h4>    
                         </div>
+
+
+                        
+
+
+                        
+
+
                     </div>
 
 
                     <div ng-if="!vm.QuizPrivate">
 
-                    <div class="row">
+                    <div class="row" ng-if="!vm.bindTopCategory">
                         <div class="span4">
                             <select name="" id="exmlist" class="w-100" ng-model="vm.queCategory">    
                                 <option selected disabled="true">Select Category</option>
@@ -58,8 +69,8 @@
 
                         <div class="span4">
 
-                            <select name="" id="decipline" class="w-100" ng-model="vm.queDecipline">    
-                                <option selected disabled="true">Select Category</option>
+                            <select name="" id="decipline" class="w-100"  ng-model="vm.queDecipline">    
+                                <option selected disabled="1 == 1">Sub Descipline</option>
                                 <option ng-repeat="cat in vm.globalList.cat" ng-if="vm.queCategory == cat.pcat_id" ng-value="cat.id">{{cat.tree}}</option>
                             </select>
                             
@@ -69,7 +80,7 @@
 
                         <div class="span4">
                             <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
-                                    <option selected disabled="true">Select Section</option>
+                                    <option selected disabled="1 == 1">Select Section</option>
                                     <option ng-repeat="section in vm.globalList.sections" ng-value="section.id"
                                     ng-if="section.pcat_id == vm.queDecipline && vm.queDecipline != null">{{section.category}}</option>
                                 </select>

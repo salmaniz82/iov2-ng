@@ -15,17 +15,14 @@
     --redLight: #ed5140b8; 
     --greenLight: #3db862a6;
 
-
-
-
     /*
 
     --blue: #40a2ed;
         var(--greenLight)
     */
-
-
 }
+
+
 @font-face {
     font-family: "proxima-nova";
     font-style: normal;
