@@ -69,6 +69,19 @@
         }
 
 
+
+        vm.generateFromRandom = function()
+        {
+
+           
+           vm.generatedPassword = $scope.$parent.base.generatePassword();
+           vm.re.password =  vm.generatedPassword;
+           vm.nPass =  vm.generatedPassword;
+
+
+        };
+
+
     }]);
 
 })();

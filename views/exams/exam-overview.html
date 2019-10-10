@@ -21,7 +21,7 @@
                                 <td><span class="c-red">ITAS101</span></td>
 
                                 <td class="t-bold">Last Date</td>
-                                <td>{{vm.Quiz.endDateTime}}</td>
+                                <td>{{vm.Quiz.endDateTime }}</td>
                             </tr>
 
                             <tr>
@@ -29,7 +29,7 @@
                                 <td>{{vm.Quiz.category}}</td>
 
                                 <td class="t-bold">Duration</td>
-                                <td>{{vm.Quiz.duration}} min.</td>
+                                <td> {{vm.Quiz.duration + 'min.'}} </td>
                             </tr>
 
                             <tr>
@@ -53,7 +53,113 @@
 
 
                                 <td class="t-bold"><a href="#" >Student's Enrolled</a></td>
-                                <td><span class="c-red">301</span></td>
+                                <td><span class="c-green">
+
+
+                                    {{vm.Quiz.enrolledStudent}}
+                                    
+
+                                </span></td>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="4" class="bold">Options</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">Dynamic Difficulty</td>
+                                <td colspan="2">
+
+                                    <span class="kt-switch kt-switch--icon"><label>
+                                    <input type="checkbox" checked="checked" name="" ng-model="vm.Quiz.dls" ng-true-value="'1'" ng-false-value="'0'"
+                                         ng-checked="vm.Quiz.dls == '1'" ng-change="vm.optionsToggle('dls', vm.Quiz.id, vm.Quiz.dls)">
+                                    <span></span>
+
+                                    </label>
+                                    </span>
+
+
+                                    <small> Show questions of highier or lower difficulty level based on provided answers to measure strenght </small>
+                                    
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">Show Score</td>
+                                <td colspan="2">
+
+                                    <span class="kt-switch kt-switch--icon"><label>
+                                    <input type="checkbox" checked="checked" name="" ng-model="vm.Quiz.showScore" ng-true-value="'1'" ng-false-value="'0'"
+                                         ng-checked="vm.Quiz.showScore == '1'" ng-change="vm.optionsToggle('showScore', vm.Quiz.id, vm.Quiz.showScore)">
+                                    <span></span>
+
+                                    </label>
+                                    </span>
+
+
+                                    <small>Total obtained scoe to candidate</small>
+                                    
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">Show Result</td>
+                                <td colspan="2">
+
+                                    <span class="kt-switch kt-switch--icon"><label>
+                                    <input type="checkbox" checked="checked" name="" ng-model="vm.Quiz.showResult" ng-true-value="'1'" ng-false-value="'0'"
+                                         ng-checked="vm.Quiz.showResult == '1'" ng-change="vm.optionsToggle('showResult', vm.Quiz.id, vm.Quiz.showResult)">
+                                    <span></span>
+
+                                    </label>
+                                    </span>
+
+                                    <small>status pass / fail </small>
+                                    
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    Show Grades
+                                    
+                                </td>
+                                <td colspan="2"><span class="kt-switch kt-switch--icon"><label>
+                                    <input type="checkbox" checked="checked" name="" ng-model="vm.Quiz.showGrading" ng-true-value="'1'" ng-false-value="'0'"
+                                         ng-checked="vm.Quiz.showGrading == '1'" ng-change="vm.optionsToggle('showGrading', vm.Quiz.id, vm.Quiz.showGrading)">
+                                    <span></span>
+
+                                    </label>
+                                    </span>
+
+
+                                    <small> A+, A, B etc </small>
+
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">SHOW GPA</td>
+                                <td colspan="2">
+
+
+                                    <span class="kt-switch kt-switch--icon"><label>
+                                    <input type="checkbox" checked="checked" name="" ng-model="vm.Quiz.showGPA" ng-true-value="'1'" ng-false-value="'0'"
+                                         ng-checked="vm.Quiz.showGPA == '1'" ng-change="vm.optionsToggle('showGPA', vm.Quiz.id, vm.Quiz.showGPA)">
+                                    <span></span>
+
+                                    </label>
+                                    </span>
+
+
+                                    <small> 4.3 etc</small>
+                                    
+
+
+                                </td>
                             </tr>
 
                             <tr>

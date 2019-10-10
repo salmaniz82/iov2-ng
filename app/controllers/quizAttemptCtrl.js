@@ -195,8 +195,23 @@
        {
 
 
-
             vm.quizData.questions = vm.providedAnswers;
+
+
+            for (var key in vm.quizData.questions) {
+
+                if (vm.quizData.questions.hasOwnProperty(key)) {
+
+                        if(vm.quizData.questions[key]['marked'] != undefined)
+                        {
+                            delete vm.quizData.questions[key]['marked'];
+                        }
+
+                    }
+            }
+
+
+
             vm.questionIndex = 0;            
             vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
             vm.reviewAll = true;
@@ -206,6 +221,12 @@
             vm.markedQuestions = [];
 
             vm.isLastQue = false;
+
+
+            console.log(vm.quizData.questions);
+
+
+
        };
 
 

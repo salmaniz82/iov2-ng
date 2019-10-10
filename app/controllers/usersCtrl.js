@@ -68,6 +68,17 @@
         }
 
 
+        vm.generateFromRandom = function()
+        {
+
+           vm.generatedPassword = $scope.$parent.base.generatePassword();
+
+           vm.nUser.password =  vm.generatedPassword;
+           vm.nUser.passwordConfirm =  vm.generatedPassword;
+
+        };
+
+
 
 
 

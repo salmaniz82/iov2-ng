@@ -24,6 +24,11 @@ angular.module('io2v3')
         var factor = "1" + Array(+(places > 0 && places + 1)).join("0");
         return Math.round(input * factor) / factor;
     };
-});
+})
+
+
+   
+
+    
 
 

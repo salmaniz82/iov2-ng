@@ -92,6 +92,41 @@
         };
 
 
+
+        vm.optionsToggle = function(typeKey, quizId, statusValue)
+        {
+
+
+            var optionToggleUrl = API_URL+'quiz-option-toggle/'+quizId;
+
+
+            var dataPayload = {typeKey :  typeKey, statusValue :  statusValue};
+
+            var successOptiontoggle = function(res)
+            {
+
+            };
+
+
+            var errorOptiontoggle = function(res)
+            {
+
+            };
+
+            
+             $http({
+
+                    url : optionToggleUrl,
+                    method : 'PUT',
+                    data : dataPayload
+
+                }).then(successOptiontoggle, errorOptiontoggle);
+
+
+        };
+
+
+
 		
         
 
