@@ -178,6 +178,14 @@
 
                 vm.phaseTwoStatus = 'error';
 
+                var notify = {
+                        type: 'error',
+                        title: 'Save Operation Failed',
+                        content: res.data.message,
+                        timeout: 8000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
             }
 
 
