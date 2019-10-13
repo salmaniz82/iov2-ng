@@ -22,10 +22,18 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
     $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, options) {
 
-
-        
-
        // $window.scrollTo(0, 0);
+
+
+
+       if($rootScope.pooling != undefined )
+       {
+         
+          $rootScope.pooling.abort(); 
+
+
+          
+       }
 
 
         if(toState.authenticate == true)

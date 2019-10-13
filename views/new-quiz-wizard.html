@@ -196,7 +196,7 @@
 
           		<select class="w-100 limitWizard" name="maxAllocation" ng-init="vm.nQuiz.maxAllocation = '-- Select X Allocation'" ng-model="vm.nQuiz.maxAllocation" required
 
-          		ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)"
+          		ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)" ng-pattern="/^[0-9]{1,10}$/"
 
           		>
                     <option ng-selected="vm.nUser.role_id == '-- Select X Allocation'" ng-disabled="1 == 1">-- Select X Allocation</option>
@@ -216,7 +216,31 @@
 
 
           	<div class="gc2-half">
-          		<p class="xAllocate">{{vm.maxAllocated}}</p>
+
+
+          		<div class="grid12Col">
+          			
+          		
+          		<div class="g_nested gc-auto-half">
+
+          			<div class="">
+          				<p class="xAllocate text-center">{{vm.maxAllocated}}</p>
+          			</div>
+
+          			<div class="">
+
+          				<div class="field-wrap">
+          					<span ng-show="particulars.maxAllocation.$error.pattern" class="float-error">Max Allocation is required</span>	
+          				</div>
+          				
+          			</div>
+
+				
+          				
+          		</div>
+
+          		</div>
+          		
           	</div>
           	
           

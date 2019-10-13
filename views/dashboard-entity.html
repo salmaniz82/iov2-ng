@@ -110,7 +110,7 @@
 
 
 			<div class="gc-last-quater align-self-end">
-				<i id="actIndicator" class="far fa-lightbulb" ng-class="{'c-warning': vm.currentactivity == false, 'c-blue': vm.currentactivity == true }" style="font-size: 1.3rem"></i>
+				<i id="actIndicator" class="far fa-lightbulb" ng-class="{'c-warning': currentactivity == false, 'c-blue': currentactivity == true }" style="font-size: 1.3rem"></i>
 			</div>
 			
 		</div>
@@ -120,9 +120,9 @@
 
 		
 
-		<div ng-if="!vm.currentactivity">There are no active candiate activities</div>
+		<div ng-if="currentactivity ==  false">There are no active candiate activities</div>
 
-		<table class="fixed_header" ng-if="vm.currentactivity">
+		<table class="fixed_header" ng-if="currentactivity == true">
 
 			<thead>	
 				<th>Candidates</th>
@@ -136,7 +136,7 @@
 
 			<tbody style="height: 500px">
 
-				<tr ng-repeat="act in vm.activeCandidates">
+				<tr ng-repeat="act in activeCandidates">
 				<td ng-attr-title="{{act.title}}">{{act.name}}</td>
 				
 				<td>{{act.noQues}}</td>

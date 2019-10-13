@@ -120,7 +120,7 @@
                 {
 
                     var notify = {
-                    type: 'error',
+                    type: 'warning',
                     title: 'Global Threshold Limit',
                     content: 'Global threshold of ' + $scope.Globalthreshold + ' reached by ' + $scope.gThresholdCount + ' questions, disable and use lower limit',
                     timeout: 16000 //time in ms

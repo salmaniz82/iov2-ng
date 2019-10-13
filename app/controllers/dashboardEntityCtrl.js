@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('dashboardEntityCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', 'auth', function(API_URL, SITE_URL, $scope, $http, $state, auth){
+    angular.module('io2v3').controller('dashboardEntityCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', 'auth', '$rootScope', function(API_URL, SITE_URL, $scope, $http, $state, auth, $rootScope){
 
 
         var vm = this;
@@ -10,7 +10,9 @@
 
        vm.loadingStatus = null;
        vm.hasWeekSchedule = false;
-       vm.currentactivity = false;
+       $scope.currentactivity = false;
+
+
 
 
        console.log(SITE_URL);
@@ -25,8 +27,8 @@
         		if(res.data.actvity != undefined && res.data.actvity.length != 0)
         		{
         		
-        			vm.activeCandidates = res.data.actvity;
-        			vm.currentactivity = true;
+        			$scope.activeCandidates = res.data.actvity;
+        			$scope.currentactivity = true;
 
 
         		}
@@ -40,7 +42,7 @@
 
         	}, function(res) {
 
-        		vm.currentactivity = false;
+        		$scope.currentactivity = false;
 
         	});
 
@@ -53,12 +55,26 @@
 
         */
 
+
+		setTimeout(function() {
+
+			if($rootScope.pooling == undefined || $rootScope.pooling.statusText == 'abort')
+			{
+				vm.getContent(null);
+
+				console.log('run when null assinged');
+			}
+
+
+
+		});
+
         
         vm.getContent = function(timestamp)
 		{
 		    var queryString = {'timestamp' : timestamp || null};
 
-		    $.ajax(
+		$rootScope.pooling =  $.ajax(
 		        {
 		            type: 'GET',
 		            url: API_URL+'dasboard/activity',
@@ -73,9 +89,11 @@
 
 		                if(res.activity)
 		                {
-		                	vm.currentactivity = true;
-		                	vm.activeCandidates = res.activity;	
-		                	console.log(vm.activeCandidates);
+		                	$scope.currentactivity = true;
+
+		                	$scope.activeCandidates = res.activity;	
+
+		                	console.log($scope.activeCandidates);
 
 
 		                	
@@ -83,7 +101,7 @@
         			
         			setTimeout(function() {
         				
-        				console.log('work on colors');
+        				
 
         				$("#actIndicator").removeClass('wobble').addClass('c-blue');
 					
@@ -96,24 +114,21 @@
 
 		                else {
 
-		                	vm.currentactivity = false;
+		                	$scope.currentactivity = false;
 
 		                }
 
-		                $scope.$apply();
-
 		                
+
 		                vm.getContent(res.timestamp);
 
-		                console.log(vm.activeCandidates);
-
-		               	 	
-
-
+		                $scope.$apply();
+		                
 		            }
 		        }
 		    );
 		};
+
 
 
 		vm.getContent(null);

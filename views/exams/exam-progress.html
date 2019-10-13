@@ -1,8 +1,8 @@
 <section class="hbox">
 
 
-    <aside class="bg-white border-all">
-        <h2 class="t-center t-grey"> Loading progress please wait ...</h2>  
+    <aside class="bg-white border-all mb-20" ng-if="vm.loadStatus === null">
+        <h3 class="t-center t-grey"> Loading progress please wait ...</h3>  
     </aside>
 
 </section>
@@ -10,10 +10,296 @@
 
 <section class="hbox">
 
-    <aside class="bg-white border-all">
-        <h2 class="t-center t-grey"> Loading progress please wait ...</h2>  
+    <aside>
+
+    	<div class="bg-white border-all mt-10" style="padding-left: 10px">
+    			<quiz-info-component param="vm.examID"></quiz-info-component>	
+    	</div>
+
+
+    	<div class="bg-white border-all mt-10" ng-if="vm.loadStatus === false">
+
+    		<h3 class="t-center c-pink"> No progess available yet for this quiz </h3>  
+    		
+    	</div>
+
+    	<div class="bg-white border-all mt-10" ng-if="vm.loadStatus === true">
+
+    		<div class="tableWrapper" style="padding: 10px">
+    			
+    		
+
+
+    		<table class="table">
+
+                                <thead>
+                                <tr>
+
+                                    <th>Candidates</th>
+                                    <th>Score</th>
+                                    <th>Percentage %</th>
+                                    <th>Grade</th>
+                                    <th>GPA</th>
+                                    <th>Result</th>
+                                    <th>Actions</th>
+
+                                </tr></thead>
+
+                                <tbody>
+
+                                <tr ng-repeat="item in vm.dataList.attempted" ng-class="{'activeScoreCardRow' : item.attemptId == vm.activeId}">
+
+                                    <td> <p><strong>{{item.name}}</strong></p>
+
+                                    	<p>{{item.email}}</p>
+                                        <p><span class="icon-time c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
+                                    </td>
+                                    
+                                    
+                                    
+                                    <td>{{item.score | setDecimal:2}}</td>
+                                    <td>{{item.per | setDecimal:2}}</td>
+
+                                    <td>{{item.grade}}</td>
+                                    <td>{{item.gpa}}</td>
+                                    <td>
+
+                                    	<span ng-if="item.score >= item.minScore" class="status finished">Passes</span>
+										<span ng-if="item.score < item.minScore" class="status terminated">Failed</span>
+                                    	
+                                    </td>
+
+
+                                    <td>
+                                        
+                                        <div class="btn-group btn-more">
+                                <a class="btn" href="#"
+                                   data-toggle="dropdown">&nbsp;</a>
+
+                                <ul class="dropdown-menu">
+                                    
+                                    <li ng-if="item.score != null"><a href="#" class="static-link" ng-click="vm.activateScoreCard(item.attemptId)"> - Score Sheet </a></li>
+                                    <li ng-if="item.score != null"><a href="#" class="static-link" ng-click="vm.activateAnswers(item.attemptId)"> - Inpsect Answers </a></li>
+                                    <li ng-if="item.score != null"><a ui-sref="exm.consent({'examID': item.quizId, 'attemptID': item.attemptId})"> - Consent </a></li> 
+
+                                    <li ng-if="item.score == null"><a href="#" ng-click="vm.attemptRecover(item.attemptId)"> - Recover </a></li> 
+                                    <li ><a href="#" > - Rebase Score </a></li> 
+
+
+
+
+                                </ul>
+                            </div>
+
+                                    </td>
+
+                                </tr>
+                                </tr>
+                             
+
+                                </tbody></table>
+
+                                </div>
+    	</div>
+
+    	
+        
     </aside>
 
-    <aside> Hello</aside>
+    <aside ng-if="vm.dualColumnEnabled"> 
+
+
+
+    	<div class="scoreCardWrapper mt-10" style="margin-left: 10px" ng-if="vm.enableScoreCard">
+
+
+    		<div class="bg-white border-all" style="padding: 10px">
+
+
+    			<div class="grid12Col">
+
+    				<div class="gc1-half">
+    					<h4>Scorecard</h4>
+    				</div>
+
+    				<div class="gc2-half align-self-center" style="justify-self: end"> 
+
+
+						<div style="display: inline-block;" ng-click="vm.disableScoreCard()">
+								<i class="far fa-times-circle ic-1-5x"></i> 	
+						</div>		
+    					
+
+    				</div>
+    				
+    			</div>
+				
+		
+    		</div>
+
+
+    		<div ng-if="vm.scoreLoading === false" class="scoreCardError c-red bg-white border-all text-center pd-10 mt-10">Error While Load ScoreCard</div>
+
+    		<div ng-if="vm.scoreLoading === null" class="scoreCardError c-yellow bg-white border-all text-center pd-10 mt-10">Scorecard loading ...</div>
+
+
+    		<div class="scoreCardSuccessData bg-white border-all mt-10" ng-if="vm.enableScoreCard && vm.scoreLoading == true">
+
+
+			<div class="tableWrapper" style="padding: 10px"> 
+    		<table class="table">
+
+         
+         <thead>
+            <tr>
+               <th>S.NO</th>
+               <th>Subjects</th>
+               <th>Q / A</th>
+               <th>Max.</th>
+               <th>Obtatined</th>
+               <th>Percentage</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            <tr ng-repeat="item in vm.scoreCard.scorecard">
+
+               <td>{{$index +1 }}</td>
+               <td>{{item.subjects}}</td>
+               <td>{{item.quePerSection}} / <span ng-class="{'c-green': (item.correctAnswers != 0), 'c-red': (item.correctAnswers == 0) }">{{item.correctAnswers}}</span>  </td>
+               <td>{{item.maxScore}}</td>
+               <td>{{item.actualScore | setDecimal:2}}</td>
+               <td>{{item.per | setDecimal:2}} % </td>
+               
+            </tr>
+
+            <tr style="font-weight: bold; background-color: var(--greyLight)">
+               <td colspan="2">Overall Performance</td>
+               <td>{{vm.scoreCard.queTotal}}</td>
+               <td>{{vm.scoreCard.maxTotal}}</td>
+               <td>{{vm.scoreCard.total | setDecimal:2}}</td>
+               <td>{{vm.scoreCard.overAllPer | setDecimal:2}} % </td>
+            </tr>
+         </tbody>
+      </table>
+
+      </div>
+
+
+    			
+    		</div>
+
+
+
+    		
+    	</div>
+
+
+
+    	<div class="answerInspectWrapper mt-10" style="margin-left: 10px" ng-if="vm.answerEnabled">
+
+
+
+    		<div class="bg-white border-all" style="padding: 10px">
+
+
+    			<div class="grid12Col">
+
+    				<div class="gc1-half">
+    					<h4>Inspect Provided Answers</h4>
+    				</div>
+
+    				<div class="gc2-half align-self-center" style="justify-self: end"> 
+
+
+						<div style="display: inline-block;" ng-click="vm.deactivateAnswers()">
+								<i class="far fa-times-circle ic-1-5x"></i> 	
+						</div>		
+    					
+
+    				</div>
+    				
+    			</div>
+				
+		
+    		</div>
+
+		
+
+		
+
+    		<div ng-if="vm.answerLoading === null" class="scoreCardError c-yellow bg-white border-all text-center pd-10 mt-10">Answers loading ...</div>
+
+    		<div ng-if="vm.answerLoading === false" class="scoreCardError c-red bg-white border-all text-center pd-10 mt-10">Error While Load Answers</div>
+
+
+    		<div class="answerInspectData bg-white border-all mt-10" ng-if="vm.answerEnabled === true && vm.answerLoading === true">
+
+
+    			<div class="tableWrapper" style="padding: 10px">
+
+    				<div>
+
+						
+                    <label>Filter By Subjects</label>
+                    <select name="subjectFilter" ng-model="subjectSearch">
+                        <option value="">Show All</option>
+                        <option ng-repeat="sub in vm.answerDataList.qzAttemptSubjects" ng-value="sub.subjects">{{sub.subjects}}</option>   
+                    </select>
+                  </div>		
+    					
+
+    				
+
+
+
+
+    				<table class="table bordered">
+         <thead>
+            <tr class="gray-bg">
+               <th>Id</th>
+               <th>Question</th>
+               <th>Answer</th>
+               <th>Chosen</th>
+               <th>Correct</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="item in vm.answerDataList.answers | filter:{ subdiscipline: subjectSearch } track by $index">
+               <td ng-attr-title="{{item.Question_id}}">{{$index +1}}</td>
+               <td><p ng-bind-html="item.QuestionDescription"></td>
+               <td>{{item.answer}}</td>
+               <td>{{item.response}}</td>
+               <td> 
+                   <strong ng-if="item.isCorrect == 1" class="c-green">YES</strong> 
+                   <strong ng-if="item.isCorrect == 0"class="c-red">NO</strong> 
+               </td>
+            </tr>
+           
+            
+            <tr>
+               <td colspan="5">
+                  <strong>Total: {{vm.answerDataList.meta.correct + vm.answerDataList.meta.incorrect}} </strong>
+                  <strong class="c-green">{{vm.answerDataList.meta.correct}}</strong>
+                  <span> / </span>
+                  <strong class="c-red">{{vm.answerDataList.meta.incorrect}}</strong>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+    				
+    			</div>
+
+
+    		</div>
+
+
+
+    		
+    	</div><!-- answerInspectWrapper -->
+
+
+
+    </aside>
     
 </section>

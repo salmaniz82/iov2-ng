@@ -1837,6 +1837,8 @@ display: flex;
 
 .mb-20 {margin-bottom: 20px;}
 
+.pd-10 {padding: 10px}
+
 
 .afterMatch:after {
   font-family: "Font Awesome 5 Free";
@@ -1887,6 +1889,23 @@ table.no-border td {border: none;}
     font-weight: bold;
     color: #000;
 }
+
+
+tr.activeScoreCardRow {
+  
+  background-color: #3db8623b;
+}
+
+
+.ic-2x {
+  font-size: 2em;
+}
+
+
+.ic-1-5x {
+  font-size: 1.5em;
+}
+
 
 
 
