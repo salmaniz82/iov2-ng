@@ -180,7 +180,7 @@
         vm.closeCandProgress = function()
         {
             
-            vm.activeBatchId = null;
+            
 
             vm.revealCandProgress = false;
             vm.progressData = vm.lastBatchProgress;
@@ -349,7 +349,7 @@
 
                     
 
-                    vm.dataList.batches.push(res.data.lastBatch[0]);
+                    
 
 
                     if(vm.dataList == undefined)
@@ -477,10 +477,12 @@
 
                 function(res){
 
-                    vm.batchMasterDetails = res.data.batchDetails;
+                    vm.batchMasterDetails = res.data;
                     vm.showBatchDetails  = true;
 
                     console.log(res.data);
+
+                    vm.proceedToX = false;
 
                 }, 
 
@@ -492,7 +494,12 @@
                                 content: res.data.message,
                                 timeout: 5000 //time in ms
                             };
-                            $scope.$emit('notify', notify);  
+                            
+                            $scope.$emit('notify', notify);
+
+                            vm.closeBatchDetails();
+
+
 
                 });
 
@@ -507,6 +514,8 @@
             
             vm.activeBatchId = null;
             vm.showBatchDetails  = false;
+
+            vm.proceedToX = false;
 
 
         };

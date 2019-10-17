@@ -17,7 +17,7 @@
         <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">          
         <div class="btn btn-success btn-block" ng-click="vm.addBatch = true"> <span class="icon-plus"></span> Batch </div>
         </div>
-</div>  
+</div> 
 
 </div>
 
@@ -71,7 +71,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in vm.dataList.batches">
+                    <tr ng-repeat="item in vm.dataList.batches track by item.id">
                         <td>{{item.id}}</td>
                         <td><span ng-class="{'c-green': vm.activeBatchId == item.id}">{{item.title}}</span></td>
                         <td>{{item.maxScore}}</td>
@@ -249,7 +249,7 @@
 
             <section class="bg-white border-all" style="padding: 20px; margin-left: 10px; margin-right: 5px">
 
-                <h3>Candiate Progress</h3>
+                <h3>Candidate Progress</h3>
 
                 <p>Candidate : {{vm.candProgress[0].name}}</p>
                 <p>Email : {{vm.candProgress[0].email}}</p>
@@ -297,7 +297,7 @@
                         </tr>
 
                         <tr>
-                            <td colspan="2">Overall</td>
+                            <td colspan="3">Overall</td>
                             <td>{{vm.candSummary.tmax}} / {{vm.candSummary.tmin}}</td>
                             <td>{{vm.candSummary.tscore | setDecimal:2}}</td>                            
                             <td>{{vm.candSummary.tper | setDecimal:2}}</td>
@@ -422,7 +422,7 @@
                         </thead>
 
                         <tbody>
-                            <tr ng-repeat="bmd in vm.batchMasterDetails">
+                            <tr ng-repeat="bmd in vm.batchMasterDetails.batchDetails">
                                 <td>{{$index+1}}</td>
                                 <td>{{bmd.title}}</td>
                                 <td>{{bmd.maxScore}}</td>
@@ -430,6 +430,17 @@
                                 
 
                             </tr>
+
+                            <tr>
+                                
+                                <td colspan="2">Total Score</td>
+                                <td>{{vm.batchMasterDetails.summary.tmin}}</td>
+                                <td>{{vm.batchMasterDetails.summary.tmax}}</td>
+
+
+                            </tr>
+
+
                         </tbody>
 
 

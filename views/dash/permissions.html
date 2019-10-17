@@ -1,40 +1,86 @@
-<section class="span9 bg-white border-all">
-            <div class="col-right">
+<section class="hbox">
 
 
-                <div class="span9" ng-if="vm.pageMode == null">
-                    <p style="font-size: 20px" class="c-red">Loading ... </p>
-                </div>
-
-                <div class="span9" ng-if="vm.pageMode == 'error'">
-                    <p class="c-red">Permission cannot be loaded </p>
-                </div>
+            <aside>
 
 
-                <div class="row-fluid">
-                    <div ng-if="vm.pageMode == 'list' || vm.pageMode == 'error'" ng-click="vm.pageMode = 'add'" class="btn pull-right btn-icon btn-success graphic-plus" title="Permission">Permissions</div>    
-                </div>
+
+    <div class="bg-white border-all mb-10" ng-if="vm.pageMode == null">
+
+        <h2 class="t-center t-grey">Loading please wait ...</h2>  
+
+    </div>
+
+
+    <div class="bg-white border-all mt-10" ng-if="vm.pageMode === 'error'">
+
+        <h2 class="t-center t-pink">Permission cannot be loaded</h2>  
+
+    </div>
+                
+            
+
+
+
+        <div class="bg-white border-all mt-10" ng-if="vm.pageMode != 'add'"> 
+
+
+        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
+            
+            <div class="btn btn-success btn-block" ng-click="vm.pageMode = 'add'"> <span class="icon-plus"></span> Permissions </div>
+
+        </div>
+
+        </div>  
                 
                 
 
-
+                <div class="bg-white border-all mt-20 mb-20" ng-show="vm.pageMode == 'add'">
+                    
+                
                 
 
-                <div class="row" ng-show="vm.pageMode == 'add'">
+                <div ng-show="vm.pageMode == 'add'">
 
-                    <form class="form">
-                    <div class="span7">
-                        <input type="text" ng-model="vm.npermission.name" placeholder="Enter new Permission" class="w-100">
-                    </div>
+                    <form class="floatable" novalidate>
 
-                    <div class="span2">
-                        <button class="btn btn-success btn-block" ng-click="vm.savePermission()">Save</button>
-                    </div>
+                        <div class="grid12Col">
+
+                            <div class="gc1-half">
+                                
+
+                                <div class="field-wrap pd-10">
+                                    <input type="text" class="float-field w-100" ng-model="vm.npermission.name" required>
+                                    <label class="placeholder">Enter Permission</label>
+                                </div>
+                                
+                            </div>
+                            <div class="gc2-half align-self-center">
+
+                                <button class="btn btn-success " ng-click="vm.savePermission()" style="margin-left: 50px">Save</button>
+                                
+                            </div>
+                            
+
+                        </div>
+
+
 
                     </form>
                 </div>
 
-                <table class="table" ng-if="vm.pageMode == 'list' || vm.pageMode == 'add'">
+
+                </div>
+
+
+                
+
+
+                <div class="bg-white border-all mt-10" ng-if="vm.pageMode == 'list' || vm.pageMode == 'add'">
+
+                <div class="tableWrapper" style="padding: 10px">
+
+                <table class="table">
                     <thead>
                     <tr>
                         <th>S.NO</th>
@@ -61,8 +107,12 @@
                     </tbody>
                 </table>
 
+                </div>    
 
-                
 
-        </div><!-- end col right-->
+                </div>
+
+
+                </aside>
+
         </section>

@@ -1,3 +1,7 @@
+start local apache server
+-------------------------
+d: & cd D:\wamp\www\io2v3-ng & php -S localhost:8000
+
 select element from inspector and then type in developer console
 angular.element($0).scope()
 
@@ -18,8 +22,6 @@ API DOCUMENTATION
 -------------------------------------------
 
 - LOGIN
-
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139252530-1"></script>
 <script>

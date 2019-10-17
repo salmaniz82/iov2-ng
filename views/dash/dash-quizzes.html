@@ -324,11 +324,11 @@
 
 
             <div class="pull-left">
-                <label><input type="checkbox" name="agree" ng-model="vm.proceedToX">Yes, Proceed</label>
+                <label><input type="checkbox" name="agree" ng-model="vm.deleteModalItem.proceedToX">Yes, Proceed</label>
             </div>
 
             <div class="pull-right">
-                <button class="btn btn-danger" ng-if="vm.proceedToX" ng-click="vm.removeQuiz()">
+                <button class="btn btn-danger" ng-if="vm.deleteModalItem.proceedToX" ng-click="vm.removeQuiz()">
                     <span class="icon-warning-sign"></span>
                 Delete</button>
             </div>

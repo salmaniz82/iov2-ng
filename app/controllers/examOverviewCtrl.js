@@ -110,7 +110,20 @@
 
             var errorOptiontoggle = function(res)
             {
+                if(typeKey == 'dls')
+                {
+                    
+                    vm.Quiz.dls = 0;
 
+                    var notify = {
+                        type: 'error',
+                        title: 'DLS OPeration failed',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                }
             };
 
             

@@ -347,9 +347,12 @@
         vm.dissmissDeleteModal = function()
         {
 
-            vm.deleteModalItem = null;
+            vm.deleteModalItem.proceedToX = false;
 
+            vm.deleteModalItem = null;
+            
             vm.deleteConfirmModal = false;
+
         };
 
 
@@ -398,7 +401,10 @@
                         content: res.data.message,
                         timeout: 5000 //time in ms
                     };
-                    $scope.$emit('notify', notify);  
+                    $scope.$emit('notify', notify);
+
+
+                    vm.dissmissDeleteModal();  
 
             });
 

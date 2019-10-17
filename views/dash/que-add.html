@@ -30,7 +30,7 @@
 
                 
 
-                 <form method="post" id="qzques" name="qzques">
+                 <form method="post" id="qzques" name="qzques" class="floatable">
 
                     <div class="row pb-20">
                         <div class="span9 bbr-light">
@@ -39,12 +39,6 @@
                              <span ng-if="vm.bindTopCategory" class="c-grey" style="font-size: 14px"> &#8211; {{vm.topPreSelectCategory}}</span>   
                             </h4>    
                         </div>
-
-
-                        
-
-
-                        
 
 
                     </div>
@@ -123,27 +117,17 @@
                         <div class="span4">
                             <select name="level" id="level" class="w-100" ng-model="vm.queLevel">
                                 <option>Select Level</option>
-                                
                                 <option ng-repeat="level in vm.globalList.levels" ng-value="level.id">{{level.levelEN}}</option>
-
-                                
                             </select>
                         </div>
                         
                     </div>
 
 
-                        
-
-
-                    
-
-
                     <div class="row">
                         <div class="span8">
                             <label>Question Description</label>
                             <textarea ng-model="vm.nque.queDesc" ckeditor></textarea>
-                            
                         </div>
                     </div>
 
@@ -253,27 +237,46 @@
 
                     <div class="row">
                         <div class="span8">
-                            <input type="text" name="opta" id="opta" class="w-100" placeholder="A" ng-model="vm.nque.optionA">
+                            <div class="field-wrap">
+                                
+                            <input type="text" name="opta" id="opta" class="float-field w-100" ng-model="vm.nque.optionA" required>
+                            <label class="placeholder">A</label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="span8">
 
-                            <input type="text" name="optb" id="optb" class="w-100" placeholder="B" ng-model="vm.nque.optionB">
+                            <div class="field-wrap">
+                                <input type="text" name="optb" id="optb" class="float-field w-100" ng-model="vm.nque.optionB" required>
+                                <label class="placeholder">B</label>
+                            </div>    
+
+                            
                         </div>
                     </div>
 
                     <div class="row" ng-if="vm.queType != 2">
                         <div class="span8">
 
-                            <input type="text" name="optc" id="optc" class="w-100" placeholder="C" ng-model="vm.nque.optionC">
+                            <div class="field-wrap">
+                                <input type="text" name="optc" id="optc" class="float-field w-100" ng-model="vm.nque.optionC" required>
+                                <label class="placeholder">C</label>
+                            </div>
+
+                            
                         </div>
                     </div>
 
                     <div class="row" ng-if="vm.queType != 2">
                         <div class="span8">
-                            <input type="text" name="optd" id="optd" class="w-100" placeholder="D" ng-model="vm.nque.optionD">
+                            <div class="field-wrap">
+
+                                <input type="text" name="optd" id="optd" class="float-field w-100" ng-model="vm.nque.optionD" required>
+                                <label class="placeholder">D</label>
+                            </div>    
+                            
                         </div>
                     </div>
 
@@ -341,15 +344,9 @@
 
                     <div class="row">
                         <div class="span4">
-                            <div id="que-save"  class="btn btn-success btn-block" ng-click="vm.saveQuestion('back')"> Save & Return </div>
+                            <div id="que-save"  class="btn btn-success btn-block" ng-click="vm.saveQuestion('back')"> Save </div>
                             
                         </div>
-
-                        <div class="span4">
-                            <div id="que-save-add" class="btn btn-twitter btn-block" ng-click="vm.saveQuestion('more')"> Save & Continue</div>
-                        </div>
-
-
 
                     </div>
 

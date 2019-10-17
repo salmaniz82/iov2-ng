@@ -10,6 +10,9 @@
         $scope.$parent.dash.pageHeading = "Roles";
 
 
+        vm.loading = null;
+
+
         $http({
         	method: 'GET',
         	url : API_URL+'roles',
@@ -18,10 +21,15 @@
 
         		vm.dataList = res.data;
 
+                vm.loading = true;
+
         }, function(res){
 
 
-        	console.log('failed');
+
+            vm.loading = true;
+
+        	
 
         });
 
