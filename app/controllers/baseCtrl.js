@@ -32,6 +32,14 @@
 
 
 
+            /*
+            setTimeout(function() {
+
+                document.addEventListener('contextmenu', event => event.preventDefault());
+
+            })
+            */
+
 
 
 		$scope.gval = {

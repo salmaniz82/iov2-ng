@@ -112,7 +112,27 @@
                     vm.addUser = false;
                     vm.nUser = {};
 
-                    vm.dataList.push(res.data.lastCreatedUser[0]); 
+                    if(vm.dataList != undefined)
+                    {
+                        
+                        vm.dataList.push(res.data.lastCreatedUser[0]);
+
+                        console.log('with existing list');
+
+
+                    }
+
+                    else {
+
+                        console.log('on empty user list');
+
+                        vm.dataList = res.data.lastCreatedUser;
+
+                        vm.loadingStatus = true;
+
+                    }
+
+                    
 
 
                 }
@@ -299,11 +319,14 @@
         })
         .then(function(res){
 
+            vm.topCategories = res.data.topCategories;
+            vm.roles = res.data.roles;
+
         	if(res.status == 200)
         	{
         		vm.dataList = res.data.users;
 
-                vm.topCategories = res.data.topCategories;
+                
                 
                 vm.loadingStatus = true;
         	}
@@ -311,10 +334,10 @@
             {
                 vm.loadingStatus = 'no contents';
 
-                vm.dataList = {};
+                
             }
 
-            vm.roles = res.data.roles;
+            
 
         }, function(res){
 
@@ -550,6 +573,11 @@
         vm.deleteUser = function(itemId)
         {
 
+
+
+            
+
+
             $http({
 
                 url : API_URL+'users/'+itemId,
@@ -559,12 +587,46 @@
 
             function(res){
 
+                /*
+                    
+                    remove from the list
+
+
+                */
+
+                var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+
+
+                vm.dataList[idx].proceedToX = false;
+
+                vm.deleteConfirmModal = false;
+
+                vm.xUSer.proceedToX = false;
+
+
+
+                vm.dataList.splice(idx, 1);
+
+                var notify = {
+                            type: 'warning',
+                            title: 'OPeration Successfull',
+                            content: res.data.message,
+                            timeout: 3000 //time in ms
+                        };
+                         $scope.$emit('notify', notify);
 
 
             }, 
 
             function(res){
 
+                var notify = {
+                            type: 'error',
+                            title: 'OPeration Failed',
+                            content: res.data.message,
+                            timeout: 3000 //time in ms
+                        };
+                         $scope.$emit('notify', notify);
 
 
             });

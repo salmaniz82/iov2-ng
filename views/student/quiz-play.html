@@ -98,6 +98,8 @@
 
 
 
+            
+
             <div class="row" ng-if="item.media != undefined">
 
 
@@ -105,7 +107,7 @@
                     <section class="span12">
 
                         <figure class="quiz-figure" ng-repeat="media in item.media" ng-if="media.type == 'image'">
-                            <img ng-src="{{baseUrl + media.filepathurl}}">
+                            <img ng-src="{{baseUrl+media.filepathurl}}">
                             <figcaption>{{media.title}}</figcaption>
                         </figure>
 
@@ -113,7 +115,7 @@
                         <div class="video-wrapper" ng-repeat="media in item.media" ng-if="media.type == 'video'">
                             
                             <video width="640" height="360" controls>
-                              <source src="{{baseUrl + media.filepathurl | trustUrl}}" type="video/mp4">
+                              <source src="{{baseUrl+media.filepathurl | trustUrl}}" type="video/mp4">
                                Your browser does not support the video tag.
                             </video>
 
@@ -123,6 +125,8 @@
                     </section>
                     
                 </div>
+
+            
 
 
             <div class="grid12Col">
@@ -306,11 +310,11 @@
             <div class="g_nested gc-auto-half">
 
                 <div ng-if="vm.hasPre">
-                    <a href="#" class="btn btn-warning stdx" ng-click="vm.preQuestion($index)" > <span class="icon-chevron-left"> </span> Previous</a>
+                    <a href="#" class="btn btn-warning stdx" ng-click="vm.preQuestion($index)" > <span class="fas fa-chevron-left"> </span> Previous</a>
                 </div>
 
                 <div ng-if="(vm.hasMore || vm.reviewAll == true) && !vm.isLastQue">
-                    <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre}" ng-click="vm.nextQuestion($index)" >Next <span class="icon-chevron-right"> </span> </button>
+                    <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre}" ng-click="vm.nextQuestion($index)" >Next <span class="fas fa-chevron-right"> </span> </button>
                 </div>
 
                 <div ng-if="vm.isLastQue">
@@ -331,7 +335,7 @@
 
             
             <div>
-                <a href="#" class="btn btn-success stdx pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">Next <span class="icon-chevron-right"> </span></a>
+                <a href="#" class="btn btn-success stdx pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">Next <span class="fas fa-chevron-right"> </span></a>
             </div>
 
 

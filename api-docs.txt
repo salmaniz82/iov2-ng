@@ -31,3 +31,42 @@ gtag('js', new Date());
 
 gtag('config', 'UA-139252530-1');
 </script>
+
+
+ICONS
+
+
+fab fa-buromobelexperte		icon-dashboard
+far fa-user					icon-user			
+fas fa-caret-down			icon-caret-down					
+fas fa-home					icon-home		
+fas fa-heart c-pink			icon-hear
+
+far fa-lightbulb			icon-bulb
+
+
+fas fa-lightbulb			icon-chevron-left			
+
+fas fa-chevron-right		icon-chevron-right				
+
+
+far fa-clock				icon-time 
+
+
+fas fa-recycle
+
+
+fas fa-times : close
+
+two major problems in these
+graphic-cheveron button
+btn-icon
+
+
+
+quizConfirmation:modal Check				
+icon-off						fas fa-power-off
+quizaddCategories : circleSquare
+
+
+

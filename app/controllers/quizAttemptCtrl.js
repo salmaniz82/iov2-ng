@@ -7,31 +7,22 @@
 
         vm.quizData = quizPlayData.data;
 
-        /*
 
-        if(vm.quizData.usageXTimes > 1)
+
+        if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
         {
             
-            var notify = {
-                type: 'warning',
-                title: 'Opps! <i class="far fa-smile-wink"></i>',
-                content: 'Very Smart!, sorry ran out of luck',
-                timeout: 8000 //time in ms
-            };
+          return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
 
-    
-            $scope.$emit('notify', notify);
-
-
-            $state.go('std.exams');
         }
 
-        */
+        
 
         vm.questionIndex = 0;
 
         // new line added for decoding strings of object 
-        vm.quizData.questions = $scope.$parent.base.inboundDecode(vm.quizData.questions);
+
+       // vm.quizData.questions = $scope.$parent.base.inboundDecode(vm.quizData.questions);
 
         vm.endActivated = false;
 
@@ -75,16 +66,20 @@
             }).then(
                 function(res){
                     
-                    console.log(res);
+                    
 
                  //   $state.go('std.exams');
 
                  window.close();
 
+
+
                 }, 
 
                 function(res){
-                    console.log(res);
+
+                    
+
                 });
 
         };
@@ -223,7 +218,7 @@
             vm.isLastQue = false;
 
 
-            console.log(vm.quizData.questions);
+            
 
 
 
@@ -474,7 +469,7 @@
                 
                 
 
-		       // console.log($scope.timeLeft);
+		       
 
 		        if (diff <= 0) {
 
@@ -503,7 +498,7 @@
         vm.manageTimeOutSubmission = function()
         {
 
-            console.log('manage timeout is triggered');
+            
             /*
             1. no question were marked
             2. marked length is present
@@ -581,9 +576,9 @@
 
 
             else {
-                console.log('marked length : ' + vm.markedQuestions.length);
-                console.log('answer : ' + vm.providedAnswers.length);
-                console.log('required questions quiz : ' + vm.quizData.quiz[0].noques);
+
+
+                
             }
 
         };
@@ -595,7 +590,7 @@
             for(var key in vm.markedQuestions)
             {
                     var item = vm.markedQuestions[key];
-                    console.log(item);
+                    
                     if(item.answer == undefined)
                     {
                         // item property is set
@@ -681,7 +676,7 @@
             for(var key in vm.markedQuestions)
             {
                     var item = vm.markedQuestions[key];
-                    console.log(item);
+                    
                     if(item.answer == undefined)
                     {
                         // item property is set
@@ -769,7 +764,7 @@
             };
 
 
-         console.log(pushPayload);
+         
 
          var pushUrl = API_URL+'recordActivity'; 
 

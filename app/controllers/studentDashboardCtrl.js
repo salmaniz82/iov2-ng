@@ -8,6 +8,48 @@
         $scope.$parent.std.pageHeading = "Main";	
 
 
+
+
+        /*
+
+
+        setTimeout(function() {
+
+
+        $(document).keydown(function (event) {
+
+    		if (event.keyCode == 123 ||event.keyCode == 85) { // Prevent F12
+
+        return false;
+
+    		} else if (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 85) { // Prevent Ctrl+Shift+I        
+
+        		return false;
+
+    		}
+		});
+
+
+
+    $('body').bind('cut copy paste', function (e) {
+
+    	console.log(e);
+
+        e.preventDefault();
+    });
+
+
+
+        });
+
+    */
+
+
+
+
     }]);
 
 })();
+
+
+

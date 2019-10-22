@@ -64,8 +64,18 @@
                                     <td>{{item.gpa}}</td>
                                     <td>
 
+                                      <!--
+
                                     	<span ng-if="item.score >= item.minScore" class="status finished">Passes</span>
-										<span ng-if="item.score < item.minScore" class="status terminated">Failed</span>
+										                  <span ng-if="item.score < item.minScore" class="status terminated">Failed</span>
+
+                                    -->
+
+
+                                      <span class="status" ng-class="{'terminated': item.resultStatus == 0, 'finished': item.resultStatus == 1 }">
+                                      {{ (item.resultStatus == 0) ? 'Fail' : 'Pass'}}</span>
+
+
                                     	
                                     </td>
 

@@ -12,7 +12,7 @@
 
         <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
             
-        <div class="btn btn-success btn-block" ng-click="vm.addUser = true"> <span class="icon-plus"></span> User </div>
+        <div class="btn btn-success btn-block" ng-click="vm.addUser = true"> <span class="fas fa-plus"></span> User </div>
 
         </div>
 
@@ -29,7 +29,7 @@
 
 <div ng-if="vm.loadingStatus == 'no contents'" class="bg-white border-all">
 
-    <h2 class="t-center t-grey">No users created yet!</h2>  
+    <h2 class="t-center t-grey">No users created yet</h2>  
 
 </div>
 
@@ -180,7 +180,7 @@
 
                 <div class="span3">
 
-                    <div ng-click="vm.addNewUserPermission(vm.modalData.id)" class="btn btn-icon btn-success icon-plus ng-scope" title="Permission">Add</div>
+                    <div ng-click="vm.addNewUserPermission(vm.modalData.id)" class="btn btn-icon btn-success fas fa-plus ng-scope" title="Permission">Add</div>
                     
                 </div>
 
@@ -247,11 +247,11 @@
 
 
             <div class="pull-left">
-                <label><input type="checkbox" name="agree" ng-model="vm.proceedToX">Proceed to Delete</label>   
+                <label><input type="checkbox" name="agree" ng-model="vm.xUSer.proceedToX">Proceed to Delete</label>   
             </div>
 
             <div class="pull-right">
-                <button class="btn btn-danger" ng-if="vm.proceedToX" ng-click="vm.deleteUser(itemId = vm.xUSer.id)">
+                <button class="btn btn-danger" ng-if="vm.xUSer.proceedToX" ng-click="vm.deleteUser(itemId = vm.xUSer.id)">
                     <span class="icon-warning-sign"></span>
                 Delete</button>
             </div>
@@ -294,8 +294,9 @@
                                     <option ng-selected="vm.nUser.role_id == '-- Select Role'" ng-disabled="1 == 1">-- Select Role</option>
                                     <option ng-repeat="role in vm.roles" ng-value="role.id">{{role.role}}</option>     
                              </select>
-
                              <span ng-show="registerall.$dirty && registerall.userrole.$invalid" class="float-error" style="left: 0; text-align: left;">Please Select Role</span>
+
+                             
                             </div>
 
                         </div>

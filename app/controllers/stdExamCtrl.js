@@ -50,13 +50,11 @@
                         content: resData.warning_message,
                         timeout: 8000 //time in ms
                     };
-                    $scope.$emit('notify', notify);
 
+                    $scope.$emit('notify', notify);
                     return false;
 
-
                 }
-
 
 
                 else if(resData.type == 'static')
@@ -69,8 +67,9 @@
                     vm.quizModal = false;
                     vm.isInitiatStart = false;
 
-
                     vm.actQuiz.validity = "progress";
+
+
 
                     window.open(popupUrl, "Quiz", 
 
@@ -79,17 +78,38 @@
                         );
 
                  //   $state.go('quizPlay', stateargs);
+
+
                 }
 
                 else if (resData.type == 'dls')
                 {
 
+                                        
+                    
+
                     var attempt_id = res.data.attempt_id;
                     var stateargs = {'attempt_id' : attempt_id, 'quiz_id': vm.actQuiz.id};
 
-                    var popupUrl = SITE_URL+'quiz-assement/'+attempt_id+'/'+vm.actQuiz.id;
 
-                    $state.go('quizPlayDLS', stateargs);
+                    dlsPopupUrl = SITE_URL+'/quiz-assessment/dls/'+attempt_id+'/'+vm.actQuiz.id;
+
+
+
+                    vm.quizModal = false;
+                    vm.isInitiatStart = false;
+
+                    vm.actQuiz.validity = "progress";
+
+
+                    window.open(dlsPopupUrl, "Quiz", 
+
+                        'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
+                        screen.availHeight 
+                        );                        
+
+
+                    // $state.go('quizPlayDLS', stateargs);
 
                     
 

@@ -4,16 +4,27 @@
 
                 <quiz-info-component param="vm.examID"></quiz-info-component>
 
-                <p>Enter email to Enroll</p>
+                
 
-                <form method="post" id="stenroll" name="stenroll" ng-submit="vm.quizEnroll()">
+                <form method="post" id="stenroll" name="stenroll" class="floatable" ng-submit="vm.quizEnroll()" novalidate>
                     <div class="row">
                         <div class="span6">
-                            <input type="email" class="w-100" id="email" name="email" placeholder="Enter Email Address" ng-model="vm.nenroll.email">
+
+                                
+                             <div class="field-wrap">   
+
+
+                            <input type="email" class="float-field w-100" id="email" name="email" ng-model="vm.nenroll.email" required>
+
+                            <label class="placeholder">Enter existing email to enroll</label>
+
+
+
+                            </div>   
                         </div>
 
                         <div class="span2">
-                            <input type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success">
+                            <input ng-hide="stenroll.$invalid" type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success">
                         </div>
                     </div>
                 </form>

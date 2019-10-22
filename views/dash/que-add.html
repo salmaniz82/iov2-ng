@@ -1,39 +1,51 @@
 <section class="hbox">
 
-    <aside class="bg-white border-all">
-        
-    
-            <div class="col-right" style="padding-left: 10px;">
+    <aside>
 
-                <div class="row">
-                    <div class="span8"> <h3>Add Questions</h3> </div>
+
+
+        <div style="padding-left: 10px"> 
+
+
+
+            <form method="post" id="qzques" name="qzques" class="floatable" novalidate>
+
+            <div class="grid12Col gap10" ng-if="vm.examID">
+
+                <div class="gc1-half">
+
+                    <div class="bg-white border-all" style="padding: 10px">
+
+                    <quiz-info-component param="vm.examID"></quiz-info-component>
+
+
+                    </div>
+                    
+                </div>
+
+                <div class="gc2-half">
+    
+                    
+                    
                 </div>
                 
-
-                
-                        
-                        <quiz-info-component param="vm.examID"></quiz-info-component>
+            </div>
 
 
-                        <form>
-                            
-                        
 
-                        <div class="upload-btn-wrapper" ng-hide="1 == 1">
-                            <button class="custom-upload-btn">Choose File</button>
-                            <input type="file" name="file" file-input="photo">
-                        </div>
 
-                        </form>
-                        
-                
+            <div class="grid12Col gap10">
 
-                
 
-                 <form method="post" id="qzques" name="qzques" class="floatable">
+                <div class="gc1-half">
+
+
+                    <div class="queLeftWRapper bg-white border-all" style="padding: 10px 20px">
+
 
                     <div class="row pb-20">
-                        <div class="span9 bbr-light">
+
+                        <div class="span8 bbr-light">
                             <h4 class="c-green">Categorization
 
                              <span ng-if="vm.bindTopCategory" class="c-grey" style="font-size: 14px"> &#8211; {{vm.topPreSelectCategory}}</span>   
@@ -48,11 +60,26 @@
 
                     <div class="row" ng-if="!vm.bindTopCategory">
                         <div class="span4">
-                            <select name="" id="exmlist" class="w-100" ng-model="vm.queCategory">    
+
+
+                            <div class="field-wrap">
+                                
+                            <!-- top leve category e.g computer -->
+                            <select name="topCategory" id="exmlist" class="w-100" ng-model="vm.queCategory" ng-pattern="/^[0-9]{1,7}$/" required>
                                 <option selected disabled="true">Select Category</option>
                                 <option ng-if="cat.pcat_id == null" ng-repeat="cat in vm.globalList.cat" ng-value="cat.id">{{cat.tree}}</option>
                             </select>
 
+                            <span ng-show="qzques.$dirty && qzques.topCategory.$invalid" class="float-error" style="left: 0; text-align: left;">Category is required</span>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="span4">
+                            
                         </div>
 
                     </div>
@@ -63,21 +90,46 @@
 
                         <div class="span4">
 
-                            <select name="" id="decipline" class="w-100"  ng-model="vm.queDecipline">    
+
+                            <div class="field-wrap">
+
+
+                            <!-- top leve category e.g programming -->
+                                
+                            <select name="decipline" id="decipline" class="w-100"  ng-model="vm.queDecipline" ng-pattern="/^[0-9]{1,7}$/" required>
                                 <option selected disabled="1 == 1">Sub Descipline</option>
                                 <option ng-repeat="cat in vm.globalList.cat" ng-if="vm.queCategory == cat.pcat_id" ng-value="cat.id">{{cat.tree}}</option>
                             </select>
+
+                            <span ng-show="qzques.$dirty && qzques.decipline.$invalid" class="float-error" style="left: 0; text-align: left;">Sub Descipline is required</span>
+
+
+
+
+                            </div>
                             
                         </div>
 
 
 
                         <div class="span4">
-                            <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
+
+
+                            <!-- 3rd level i.e [php, javascript, python] -->
+
+                            <div class="field-wrap">
+                                
+                            
+                            <select class="w-100" id="courseCat" name="courseCata" ng-model="vm.queSection" ng-pattern="/^[0-9]{1,7}$/" required>
                                     <option selected disabled="1 == 1">Select Section</option>
-                                    <option ng-repeat="section in vm.globalList.sections" ng-value="section.id"
+                                    <option ng-repeat="section in vm.globalList.sections" ng-value="section.id" 
                                     ng-if="section.pcat_id == vm.queDecipline && vm.queDecipline != null">{{section.category}}</option>
                                 </select>
+
+
+                            <span ng-show="qzques.$dirty && qzques.courseCata.$invalid" class="float-error" style="left: 0; text-align: left;">Subject is required</span>
+
+                            </div>
                         </div>
 
                     </div>
@@ -87,18 +139,31 @@
                     <div ng-if="vm.QuizPrivate" class="row">
 
                         <div class="span4">
-                            <select class="w-100" id="courseCat" name="courseCat" ng-model="vm.queSection">
+
+                            <div class="field-wrap">
+                                
+                            
+
+                            <select class="w-100" id="courseCatp" name="courseCatp" ng-model="vm.queSection" ng-pattern="/^[0-9]{1,7}$/" required>
                                     <option selected disabled="true">Select Section</option>
                                     <option ng-repeat="section in vm.quizData.quizBaseDistro" ng-value="section.subject_id">{{section.subjects}}</option>
                                 </select>
+
+
+                                <span ng-show="qzques.$dirty && qzques.courseCatp.$invalid" class="float-error" style="left: 0; text-align: left;">Subject is required</span>
+
+
+                            </div>
+
+
                         </div>
 
                     </div>
 
 
                     <div class="row pb-20">
-                        <div class="span9 bbr-light">
-                            <h4 class="c-green">Type</h4>
+                        <div class="span8 bbr-light">
+                            <h4 class="c-green">Classification</h4>
                         </div>
                     </div>
 
@@ -106,28 +171,44 @@
                     <div class="row">
 
                         <div class="span4">
-                            <select name="difficulty" id="difficulty" class="w-100" ng-model="vm.queType">
+
+                            <div class="field-wrap">
+                                
+                            <select name="queType" id="queType" class="w-100" ng-model="vm.queType" ng-pattern="/^[0-9]{1,7}$/" required>
                                 <option selected disabled="true">Select Type</option>
                                 <option ng-repeat="type in vm.globalList.types" ng-value="type.id">{{type.typeEN}}</option>
-                                
                             </select>
+
+                            <span ng-show="qzques.level.$dirty && qzques.queType.$invalid" class="float-error" style="left: 0; text-align: left;">Set question type</span>
+
+                            </div>
                         </div>
 
 
                         <div class="span4">
-                            <select name="level" id="level" class="w-100" ng-model="vm.queLevel">
+
+                            <div class="field-wrap">
+                                
+                            
+                            <select name="level" id="level" class="w-100" ng-model="vm.queLevel" ng-pattern="/^[0-9]{1,7}$/" required>
                                 <option>Select Level</option>
                                 <option ng-repeat="level in vm.globalList.levels" ng-value="level.id">{{level.levelEN}}</option>
                             </select>
+
+                            <span ng-show="qzques.level.$dirty && qzques.level.$invalid" class="float-error" style="left: 0; text-align: left;">Set Difficulty</span>
+
+
+                            </div>
                         </div>
                         
                     </div>
 
 
-                    <div class="row">
+
+                  <div class="row" ng-show="qzques.$dirty && qzques.level.$valid">
                         <div class="span8">
                             <label>Question Description</label>
-                            <textarea ng-model="vm.nque.queDesc" ckeditor></textarea>
+                            <textarea ng-model="vm.nque.queDesc" ckeditor required></textarea>
                         </div>
                     </div>
 
@@ -150,12 +231,25 @@
                     <br>
 
 
+                    </div><!-- queLeftWRapper -->
+                    
+
+                </div> <!-- GRids left -->
+
+                <div class="gc2-half">
+
+
+                    <div class="queRightWRapper bg-white border-all" style="padding: 10px 20px">
+
+
+
+
 
                     <div class="row">
 
                         <div class="span5">
                             <div id="addMediabtn">
-                                <span class="icon-plus"></span><a href="#" ng-click="vm.enableLibrary()">Add Media</a>
+                                <span class="fas fa-plus"></span><a href="#" ng-click="vm.enableLibrary()">Add Media</a>
                             </div>
                             <!--addbtn-->
                         </div>
@@ -163,14 +257,14 @@
                     </div>
 
                     <div class="row" ng-if="vm.questionMedia.length < 1 ">
-                        <div class="span9">
+                        <div class="span8">
                             <p>No media attached to question</p>
                         </div>
                     </div>
 
 
                     <div class="row" ng-if="vm.questionMedia.length > 0 ">
-                        <div class="span9">
+                        <div class="span8">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -221,9 +315,14 @@
                     </div>
 
 
+                </div>
 
 
-                    <div class="bbr-light">&nbsp;</div>
+
+                <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px">
+
+
+
 
                     <div class="options_wrapper" ng-if="vm.queType != 4">
                         
@@ -283,10 +382,15 @@
 
                     </div><!-- options wrapper -->
 
+                </div>
+
+
+                <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px">
+
 
                     <div class="row">
                         <div class="span4" ng-if="vm.queType != 4 && vm.queType != 2 && vm.queType != 3">
-                            <select  class="w-100" id="courseCat" name="courseCat" ng-model="vm.nque.answer">
+                            <select  class="w-100" id="courseCat" name="courseCat" ng-model="vm.nque.answer" required>
                                 <option value="">Set Answer</option>
                                 <option value="a">A</option>
                                 <option value="b">B</option>    
@@ -300,7 +404,7 @@
                         <div class="span4" ng-if="vm.queType == 2">
 
 
-                            <select  class="w-100" id="queAnsTF" name="queAnsTF" ng-model="vm.nque.answer">
+                            <select  class="w-100" id="queAnsTF" name="queAnsTF" ng-model="vm.nque.answer" required>
                                 <option value="">Set Answer</option>
                                 <option value="a">A</option>
                                 <option value="b">B</option>    
@@ -311,7 +415,18 @@
                         
 
                         <div class="span8" ng-if="vm.queType == 4">
-                            <input type="text" class="w-100" name="queAnswerTextBox" ng-model="vm.nque.answer" value="Set Answer placeholder="Enter Answer">
+
+                            <div class="field-wrap">
+
+                                <input type="text" class="float-field w-100" name="queAnswerTextBox" ng-model="vm.nque.answer" required>
+
+                                <label class="placeholder">Text input as answer</label>
+
+
+
+                            </div>
+
+
                         </div>
 
 
@@ -320,19 +435,19 @@
                                 <p>Answer : {{vm.nque.optAns}}</p>
                             
                                 <label for="answerA" class="checkbox">
-                                    <input type="checkbox" ng-value="a" ng-model="vm.optAns.a"> A 
+                                    <input type="checkbox" name="multiAnswer" ng-value="a" ng-model="vm.optAns.a"> A 
                                 </label>
 
                                 <label for="answerB" class="checkbox">
-                                    <input type="checkbox" ng-value="b"  ng-model="vm.optAns.b"> B 
+                                    <input type="checkbox" name="multiAnswer" ng-value="b"  ng-model="vm.optAns.b"> B 
                                 </label>
 
                                 <label for="answerC" class="checkbox">
-                                    <input type="checkbox" ng-value="c"  ng-model="vm.optAns.c"> C 
+                                    <input type="checkbox" name="multiAnswer" ng-value="c"  ng-model="vm.optAns.c"> C 
                                 </label>
 
                                 <label for="answerD" class="checkbox">
-                                    <input type="checkbox" ng-value="d" ng-model="vm.optAns.d"> D 
+                                    <input type="checkbox" name="multiAnswer" ng-value="d" ng-model="vm.optAns.d"> D 
                                 </label>
                             
                                 
@@ -342,17 +457,61 @@
 
                     </div>
 
-                    <div class="row">
+
+                    
+
+
+
+
+                    </div><!-- queRightWRapper -->
+
+
+
+                    <div class="bg-white border-all mt-10" style="padding: 20px" ng-hide="qzques.$invalid">
+
+
+                        <div class="row">
                         <div class="span4">
                             <div id="que-save"  class="btn btn-success btn-block" ng-click="vm.saveQuestion('back')"> Save </div>
                             
                         </div>
 
                     </div>
+                        
+                    </div>
+
+
+
+                    
+
+                    
+                    
+                </div> <!-- GRids Right -->
+                
 
             </div>
-            </form>
+        
+    
+            
+
+
+                    </form>
+
+
+                  </div>
+
+        </aside>
+
+
+            
+
         </section>
+
+
+
+
+
+
 
 
 
@@ -451,6 +610,8 @@
 
   </div><!-- colright -->
 
-  </aside>
+  
+
+
 
 </section>

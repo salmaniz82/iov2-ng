@@ -521,7 +521,7 @@ h3.page-title {
 
 .checkbox-custom:checked + .checkbox-custom-label:before {
     content: "\f00c";
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 5 Pro";
     background: var(--green);
     color: #fff;
     margin-left: 10px;
@@ -534,7 +534,7 @@ h3.page-title {
 
 .radio-custom:checked + .radio-custom-label:before {
     content: "\f00c";
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 5 Pro";
     color: #bbb;
 }
 
@@ -625,7 +625,7 @@ button.custom-upload-btn {
     -webkit-transition: all 100ms ease-in;
     transition: all 100ms ease-in; }
   .kt-switch.kt-switch--icon input:empty ~ span:after {
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 5 Pro";
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
@@ -635,7 +635,7 @@ button.custom-upload-btn {
     content: "\f00c"; }
   .kt-switch.kt-switch--icon input:checked ~ span:after {
     content: "\f00c";
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 5 Pro";
      }
   .kt-switch.kt-switch--icon-check input:checked ~ span:after {
     font-family: "LineAwesome";
@@ -1905,7 +1905,6 @@ tr.activeScoreCardRow {
 .ic-1-5x {
   font-size: 1.5em;
 }
-
 
 
 

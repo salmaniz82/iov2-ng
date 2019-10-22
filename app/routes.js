@@ -215,10 +215,10 @@
         })
 
 
-        .state('dash.profile', {
+        .state('std.profile', {
 
             url : '/profile',
-            template : '<h2>Under Contruction</h2>'
+            template : '<h2>Profile Settings are not avaialable</h2>'
 
         })
 
@@ -259,10 +259,10 @@
 
         .state('std.studentDashbaord', {
             url : '/dashboard',
-            template: '<h2> Student Dashboard comming soon. </h2>',
+            template: '<h2> Student Dashboard not available. </h2>',
             controller : 'studentDashboardCtrl as vm',
             authenticate: true,
-            roles : ['students', 'canidate']
+            roles : ['students', 'candiate']
         })
 
 
@@ -314,7 +314,9 @@
         .state('dash.questions', {
             url : '/questions',
             templateUrl: 'views/dash/questions.html',
-            controller : 'questionsCtrl as vm'
+            controller : 'questionsCtrl as vm',
+            authenticate: true,
+            roles : ['admin', 'content developer', 'contributor', 'entity']
         })
 
         .state('dash.queadd', {
@@ -450,6 +452,17 @@
             roles : ['admin']
         })
 
+
+        
+
+        .state('onExamRefresh', {
+            url : '/examrefreshed/:attempt_id/:quiz_id',
+            templateUrl: 'views/student/onexamrefresh.html',
+            controller : 'examRefreshedCtrl as vm'
+            
+            
+        })
+
         .state('std', {
             templateUrl: 'views/templates/tab.student.layout.html',
             controller : 'stdCtrl as std',
@@ -488,7 +501,8 @@
 
             },
             authenticate : true,
-            roles : ['students']
+            roles : ['students', 'student', 'candidate']
+            
         })
 
 
@@ -509,7 +523,8 @@
             },
 
             authenticate : true,
-            roles : ['students']
+            roles : ['students', 'student', 'candidate']
+            
 
         })
 

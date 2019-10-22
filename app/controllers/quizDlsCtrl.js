@@ -9,6 +9,15 @@
         vm.quizData = quizPlayData.data;
 
 
+        if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
+        {
+            
+          return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
+
+        }
+
+
+
         vm.levels = ['easy', 'medium', 'difficult'];
 
         vm.activeLevel = vm.levels[0];
@@ -131,7 +140,7 @@
             vm.questions.push(currentQuestions);
             vm.stream.collections[vm.currentSubjectName].composite[vm.activeLevel].splice(0, 1);
 
-            console.log('stampAnswer' + currentQuestions.stamp);
+             console.log('stampAnswer' + currentQuestions.stamp);
 
             vm.mainNext = true;
 
@@ -862,7 +871,19 @@
             }).then(
                 function(res){
                  
+                    
+                    /*
                     $state.go('std.exams');
+                    */
+
+                    
+
+                    
+
+                    window.close();
+
+
+
 
                 }, 
 
@@ -957,7 +978,7 @@
                 $scope.timeLeft = minutes + ":" + seconds; 
 
 
-               // console.log($scope.timeLeft);
+               
 
                 if (diff <= 0) {
 

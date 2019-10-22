@@ -6779,7 +6779,7 @@ body.modal-merchant {
 }
 .btn-icon:before {
     background: none repeat scroll 0 0 rgba(51, 51, 48, 0.05);
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 5 Pro";
     font-size: 110%;
     height: 100%;
     left: 0;
@@ -6811,7 +6811,7 @@ body.modal-merchant {
     content: "";
 }
 .btn-icon.graphic-chevron-right:before {
-    content: "";
+    content: "\f054";
 }
 .btn-icon.graphic-chevron-left:before {
     content: "";

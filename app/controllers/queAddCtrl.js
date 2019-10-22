@@ -272,6 +272,10 @@
             }
 
 
+
+
+
+
         	var url = API_URL+'questions';
 
         	vm.nque.category_id = vm.queCategory;
@@ -321,6 +325,27 @@
 
         		 vm.nque = {};
                  vm.questionMedia = [];
+
+
+            if(vm.queType == 3)
+            {
+
+                // build string for multiple choice   
+                for(var key in vm.optAns)
+                {
+                    if(vm.optAns.hasOwnProperty(key))
+                    {
+                        vm.optAns[key] = false;
+                        
+                    }
+                }
+            }
+
+
+            vm.nque.answer = "";
+
+
+
         	}
 
         	function saveError(res)

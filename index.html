@@ -1,319 +1,317 @@
 <!DOCTYPE html>
 <html ng-app="io2v3" lang="{{lang}}" dir="{{ (lang == 'en') ? 'ltr' : 'rtl'}}" ng-controller="baseCtrl as base">
 <head>
-	<base href="/">	
-	<meta charset="utf-8">
-	
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="theme-color" content="D81B60"/>
-	<meta name="description" content="Skill Metrics - Skill Assessment Application">
+    <base href="/">
+    <meta charset="utf-8">
 
-	<link rel="apple-touch-icon" sizes="57x57" href="/fav.ico/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/fav.ico/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/fav.ico/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/fav.ico/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/fav.ico/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/fav.ico/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/fav.ico/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/fav.ico/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/fav.ico/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/fav.ico/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/fav.ico/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/fav.ico/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/fav.ico/favicon-16x16.png">
-	
-	<link rel="icon" href="/favicon.ico">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="D81B60"/>
+    <meta name="description" content="Skill Metrics - Skill Assessment Application">
 
+    <link rel="apple-touch-icon" sizes="57x57" href="/fav.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/fav.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/fav.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/fav.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/fav.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/fav.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/fav.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/fav.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/fav.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/fav.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/fav.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/fav.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/fav.ico/favicon-16x16.png">
 
+    <link rel="icon" href="/favicon.ico">
 
-	<title> iSkillMETRICS </title>
 
-	<style type="text/css">
-		.preloader {
-			position: fixed;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			background: #fff;
-			z-index: 99999;
-		}
+    <title> iSkillMETRICS </title>
 
-		.preloader .preloader-gif {
-			display: block;
-			width: 80px;
-			height: 80px;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			margin: -40px 0 0 -40px;
-			background: url('assets/images/spinner.svg') no-repeat;
-		}
-	</style>
+    <style type="text/css">
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #fff;
+            z-index: 99999;
+        }
 
-	<script type="text/javascript">
-		window.addEventListener("load", function(event) {
-    		console.log('load fired in js');
-		});
+        .preloader .preloader-gif {
+            display: block;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -40px 0 0 -40px;
+            background: url('assets/images/spinner.svg') no-repeat;
+        }
+    </style>
 
-		window.addEventListener("DOMContentLoaded", function(event) {
-    		console.log('content loaded fired in js');
-		});
+    <script type="text/javascript">
+        window.addEventListener("load", function (event) {
+            console.log('load fired in js');
+        });
 
+        window.addEventListener("DOMContentLoaded", function (event) {
+            console.log('content loaded fired in js');
+        });
 
-	</script>
 
+    </script>
 
-	<!-- io2 css -->
 
-	
-	<link href="assets/css/unminify.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- io2 css -->
 
-    
-    <link href="assets/css/bootstrap-datetimepicker.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="plugins/chartjs/Chart.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/css/table-layout.css" media="all" rel="stylesheet" type="text/css" />
 
+    <link href="assets/css/unminify.css" media="all" rel="stylesheet" type="text/css"/>
 
-    <link href="assets/css/custom.css" media="all" rel="stylesheet" type="text/css" />
 
-    
-        <link ng-if="lang == 'ar'" type="text/css" rel="stylesheet" id="langStyles" ng-href="assets/css/rtl.css" media="screen,projection"/>
-	   
-	<!-- end io2 css -->
+    <link href="assets/css/bootstrap-datetimepicker.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/jquery.dataTables.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="plugins/chartjs/Chart.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/table-layout.css" media="all" rel="stylesheet" type="text/css"/>
 
-	<link href="assets/css/dropzone.min.css" type="text/css" rel="stylesheet" />
-	<link href="assets/css/angular-notify-material.css" type="text/css" rel="stylesheet"/>
 
+    <link href="assets/css/custom.css" media="all" rel="stylesheet" type="text/css"/>
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-	
+    <link ng-if="lang == 'ar'" type="text/css" rel="stylesheet" id="langStyles" ng-href="assets/css/rtl.css"
+          media="screen,projection"/>
 
-	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!-- end io2 css -->
 
-	<script src="assets/js/libs/jquery.min.js"></script>
-	<script src="assets/js/libs/jquery.easing.js"></script>
-	
-	<script>if (window.module) module = window.module;</script>
+    <link href="assets/css/dropzone.min.css" type="text/css" rel="stylesheet"/>
+    <link href="assets/css/angular-notify-material.css" type="text/css" rel="stylesheet"/>
 
+    <!--
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-	<!-- Angular Libraries  -->
+        -->
 
-	<!--
-	<script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
-	-->
 
-	<script type="text/javascript" src="assets/js/libs/angular1.5.0.js"></script>
-	<script type="text/javascript" src="assets/js/libs/angular-sanitize1.5.0.min.js"></script>
+    <link rel="stylesheet" href="assets/css/font-awesome-pro/css/fontawesome-all.min.css">
 
-	<!--
 
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.js"></script>
+    <script>if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }</script>
 
-	-->
-	
+    <script src="assets/js/libs/jquery.min.js"></script>
+    <script src="assets/js/libs/jquery.easing.js"></script>
 
-	<script type="text/javascript" src="assets/js/libs/angular-ui-router.min.js"></script>
-	<script type="text/javascript" src="assets/js/libs/dropzone.min.js"></script>
-	
+    <script>if (window.module) module = window.module;</script>
 
 
-	<!-- Load External Modules  -->
-	<script type="text/javascript" src="app/loadingModule.js"></script>
-	<script type="text/javascript" src="app/angular-notify.js"></script>
-	<!-- Angular APP  -->
-	<script type="text/javascript" src="app/app.js"></script>
-	<script type="text/javascript" src="app/routes.js"></script>
+    <!-- Angular Libraries  -->
 
-	<!-- Angular Directives --> 
+    <!--
+    <script type="text/javascript" src="assets/js/libs/angular.min.js"></script>
+    -->
 
-	<script type="text/javascript" src="app/directives/back-button.js"></script>
-	
-	<script type="text/javascript" src="app/directives/date-picker.js"></script>
+    <script type="text/javascript" src="assets/js/libs/angular1.5.0.js"></script>
+    <script type="text/javascript" src="assets/js/libs/angular-sanitize1.5.0.min.js"></script>
 
-	<script type="text/javascript" src="app/directives/string-to-number.js"></script>
-	<script type="text/javascript" src="app/directives/fileModel.js"></script>
+    <!--
 
-	<script type="text/javascript" src="app/directives/verify-password.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.js"></script>
 
+    -->
 
 
+    <script type="text/javascript" src="assets/js/libs/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="assets/js/libs/dropzone.min.js"></script>
 
-	<!-- 
-	<script type="text/javascript" src="app/directives/material-dropdown.js"></script>
-	<script type="text/javascript" src="app/directives/material-select.js"></script>
-	<script type="text/javascript" src="app/directives/static-link.js"></script>
-	
-	<script type="text/javascript" src="app/directives/modal-trigger.js"></script>
-	
-	<script type="text/javascript" src="app/directives/time-picker.js"></script>
-	<script type="text/javascript" src="app/directives/client-email-auto.js"></script>
-	<script type="text/javascript" src="app/directives/side-nav.js"></script>
-	<script type="text/javascript" src="app/directives/dropzone-directive.js"></script>
-	<script type="text/javascript" src="app/directives/hd-carousel-slider.js"></script>
 
-	-->
+    <!-- Load External Modules  -->
+    <script type="text/javascript" src="app/loadingModule.js"></script>
+    <script type="text/javascript" src="app/angular-notify.js"></script>
+    <!-- Angular APP  -->
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/routes.js"></script>
 
-	<!-- Angular Services  --> 
+    <!-- Angular Directives -->
 
-	<script type="text/javascript" src="app/services/logService.js"></script>
-	<script type="text/javascript" src="app/services/auth.js"></script>
-	<script type="text/javascript" src="app/services/langSer.js"></script>
-	<script type="text/javascript" src="app/services/mutipartForm.js"></script>	
+    <script type="text/javascript" src="app/directives/back-button.js"></script>
 
-	<script type="text/javascript" src="app/services/quizPlay.js"></script>	
+    <script type="text/javascript" src="app/directives/date-picker.js"></script>
 
+    <script type="text/javascript" src="app/directives/string-to-number.js"></script>
+    <script type="text/javascript" src="app/directives/fileModel.js"></script>
 
+    <script type="text/javascript" src="app/directives/verify-password.js"></script>
 
-	
 
-	<script type="text/javascript" src="app/services/quizDataService.js"></script>	
-	<script type="text/javascript" src="app/services/quizWizardService.js"></script>	
+    <!--
+    <script type="text/javascript" src="app/directives/material-dropdown.js"></script>
+    <script type="text/javascript" src="app/directives/material-select.js"></script>
+    <script type="text/javascript" src="app/directives/static-link.js"></script>
 
-	
-	<script type="text/javascript" src="app/components/quizInfoComponent.js"></script>
+    <script type="text/javascript" src="app/directives/modal-trigger.js"></script>
 
-	
-	<!-- Angular Factory -->
+    <script type="text/javascript" src="app/directives/time-picker.js"></script>
+    <script type="text/javascript" src="app/directives/client-email-auto.js"></script>
+    <script type="text/javascript" src="app/directives/side-nav.js"></script>
+    <script type="text/javascript" src="app/directives/dropzone-directive.js"></script>
+    <script type="text/javascript" src="app/directives/hd-carousel-slider.js"></script>
 
-	<script type="text/javascript" src="app/factory/authInterceptor.js"></script>
+    -->
 
+    <!-- Angular Services  -->
 
-	<!-- Filters -->
-	<script type="text/javascript" src="app/filters/filters.js"></script>
-	<script type="text/javascript" src="app/filters/bindHtml.js"></script>
-	<script type="text/javascript" src="app/filters/arraymatch.js"></script>
+    <script type="text/javascript" src="app/services/logService.js"></script>
+    <script type="text/javascript" src="app/services/auth.js"></script>
+    <script type="text/javascript" src="app/services/langSer.js"></script>
+    <script type="text/javascript" src="app/services/mutipartForm.js"></script>
 
+    <script type="text/javascript" src="app/services/quizPlay.js"></script>
 
-	<script type="text/javascript" src="app/filters/timepassed.js"></script>
-	
 
-	<!-- Angular Controllers -->
+    <script type="text/javascript" src="app/services/quizDataService.js"></script>
+    <script type="text/javascript" src="app/services/quizWizardService.js"></script>
 
-	<script type="text/javascript" src="app/controllers/baseCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/coreCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/notifyCtrl.js"></script>
+    <script type="text/javascript" src="app/components/quizInfoComponent.js"></script>
 
-	<script type="text/javascript" src="app/controllers/authAppCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
 
-	
-	
+    <!-- Angular Factory -->
 
-	<script type="text/javascript" src="app/controllers/registerCtrl.js"></script>
+    <script type="text/javascript" src="app/factory/authInterceptor.js"></script>
 
 
-	<script type="text/javascript" src="app/controllers/logoutCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/homeCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/notFoundCtrl.js"></script>
+    <!-- Filters -->
+    <script type="text/javascript" src="app/filters/filters.js"></script>
+    <script type="text/javascript" src="app/filters/bindHtml.js"></script>
+    <script type="text/javascript" src="app/filters/arraymatch.js"></script>
 
-	<!-- dashboard controllers -->
 
-	<script type="text/javascript" src="app/controllers/dashboardCtrl.js"></script>
+    <script type="text/javascript" src="app/filters/timepassed.js"></script>
 
-	<script type="text/javascript" src="app/controllers/questionsCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/dashLandCtrl.js"></script>
+    <!-- Angular Controllers -->
 
-	<script type="text/javascript" src="app/controllers/dashboardEntityCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/baseCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/coreCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/dashQuizzesCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/notifyCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/addQuizCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/authAppCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
 
 
-	<script type="text/javascript" src="app/controllers/quepoolCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/queAddCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/registerCtrl.js"></script>
 
 
-	<script type="text/javascript" src="app/controllers/usersCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/logoutCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/homeCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/notFoundCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/batchesCtrl.js"></script>
+    <!-- dashboard controllers -->
 
-	<script type="text/javascript" src="app/controllers/rolesCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/permissionsCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/rolePermissionsCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/dashboardCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/questionsCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/dashLandCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/categoriesCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/dashboardEntityCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/catTreeCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/dashQuizzesCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/addQuizCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/modalCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/libraryCtrl.js"></script>
 
-	<!-- teacher / admin exam controller  -->
+    <script type="text/javascript" src="app/controllers/quepoolCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/queAddCtrl.js"></script>
 
-	
-	<script type="text/javascript" src="app/controllers/examMgmtAbstractCtrl.js"></script>	
 
-	<script type="text/javascript" src="app/controllers/examOverviewCtrl.js"></script>	
-	
-	<script type="text/javascript" src="app/controllers/newQuizWizardCtrl.js"></script>	
+    <script type="text/javascript" src="app/controllers/usersCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/quizWeightDistroCtrl.js"></script>	
+    <script type="text/javascript" src="app/controllers/batchesCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/rolesCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/permissionsCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/rolePermissionsCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/quizQuestionsCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/quizProgressCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/categoriesCtrl.js"></script>
 
-	
+    <script type="text/javascript" src="app/controllers/catTreeCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/quizAnswerInpectCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/quizAnswerConsentCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/quizScoreCardCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/modalCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/libraryCtrl.js"></script>
 
-	
+    <!-- teacher / admin exam controller  -->
 
-	<script type="text/javascript" src="app/controllers/enrollCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/registerEnrollCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/examMgmtAbstractCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/examOverviewCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/newQuizWizardCtrl.js"></script>
 
+    <script type="text/javascript" src="app/controllers/quizWeightDistroCtrl.js"></script>
 
-	<!-- student controllers  -->
 
-	<script type="text/javascript" src="app/controllers/studentDashboardCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/quizQuestionsCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/stdCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/stdExamCtrl.js"></script>
-	<script type="text/javascript" src="app/controllers/stdQuizCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/quizProgressCtrl.js"></script>
 
 
-	<script type="text/javascript" src="app/controllers/quizAttemptCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/quizAnswerInpectCtrl.js"></script>
 
-	<script type="text/javascript" src="app/controllers/quizDlsCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/quizAnswerConsentCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/quizScoreCardCtrl.js"></script>
 
-	<script type="text/javascript" src="app/directives/permissions.js"></script>
+
+    <script type="text/javascript" src="app/controllers/enrollCtrl.js"></script>
+
+    <script type="text/javascript" src="app/controllers/registerEnrollCtrl.js"></script>
+
+
+    <!-- student controllers  -->
+
+    <script type="text/javascript" src="app/controllers/studentDashboardCtrl.js"></script>
+
+
+    <script type="text/javascript" src="app/controllers/examRefreshedCtrl.js"></script>
+
+    <script type="text/javascript" src="app/controllers/stdCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/stdExamCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/stdQuizCtrl.js"></script>
+
+
+    <script type="text/javascript" src="app/controllers/quizAttemptCtrl.js"></script>
+
+    <script type="text/javascript" src="app/controllers/quizDlsCtrl.js"></script>
+
+    <script type="text/javascript" src="app/directives/permissions.js"></script>
 
 
 </head>
 
 <body class="pages landing promo-page">
 
-	<div class="preloader">
-		<span class="preloader-gif"></span>
-	</div>
+<div class="preloader">
+    <span class="preloader-gif"></span>
+</div>
 
-	<div notifybar style="position:fixed;top:0;right:0; z-index: 9999"></div>
-	<div loading-status-message style="position:fixed; top: 50%; left: 50%; margin: -40px 0 0 -40px; z-index: 9999; display:none;">
+<div notifybar style="position:fixed;top:0;right:0; z-index: 9999"></div>
+<div loading-status-message
+     style="position:fixed; top: 50%; left: 50%; margin: -40px 0 0 -40px; z-index: 9999; display:none;">
 
-		<!--
-			
-			 <img src="assets/images/spinner.svg">
+    <!--
 
-			-->
+         <img src="assets/images/spinner.svg">
 
-			<svg version="1.1" id="preloader" x="0px" y="0px" width="240px" height="120px" viewBox="0 0 240 120">
+        -->
+
+                <svg version="1.1" id="preloader" x="0px" y="0px" width="240px" height="120px" viewBox="0 0 240 120">
 
 <style type="text/css" >
     <![CDATA[
@@ -370,46 +368,41 @@ L146.48,87.02z"/>
 </animateMotion>  
 </svg>
 
-			
 
+</div>
 
-	</div>
-
-    	<ui-view autoscroll="true"></ui-view>
-
+<ui-view autoscroll="true"></ui-view>
 
 
 <script type="text/javascript">
 
-var assetsLoaded = false;
+    var assetsLoaded = false;
 
-	window.addEventListener('load', function() {
-    	
-    	
+    window.addEventListener('load', function () {
 
 
-    	var images = [];
-function preload() {
-    for (var i = 0; i < arguments.length; i++) {
-        images[i] = new Image();
-        images[i].src = preload.arguments[i];
-    }
+        var images = [];
 
-    var assetsLoaded = true;
+        function preload() {
+            for (var i = 0; i < arguments.length; i++) {
+                images[i] = new Image();
+                images[i].src = preload.arguments[i];
+            }
 
-    if(assetsLoaded)
-    {
-    	var preloaderElement = document.getElementsByClassName('preloader')[0];
-    	preloaderElement.style.display = 'none';
-    	console.log('crucial images and dom loaded');
-    }
-}
+            var assetsLoaded = true;
+
+            if (assetsLoaded) {
+                var preloaderElement = document.getElementsByClassName('preloader')[0];
+                preloaderElement.style.display = 'none';
+                console.log('crucial images and dom loaded');
+            }
+        }
 
 //-- usage --//
-preload(
-    "https://drivingtutors.ca/images/splash_bg.jpg",
-    "https://drivingtutors.ca/images/logo-dark.png"
-);
+        preload(
+            "https://drivingtutors.ca/images/splash_bg.jpg",
+            "https://drivingtutors.ca/images/logo-dark.png"
+        );
 
 
     });
@@ -437,7 +430,6 @@ preload(
 <script type="text/javascript" src="assets/js/libs/myscript.js"></script>
 -->
 <script type="text/javascript" src="app/directives/ckeditor.js"></script>
-
 
 
 </body>

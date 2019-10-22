@@ -7,28 +7,63 @@
                     <quiz-info-component param="vm.examID"></quiz-info-component>
 
                 
-                <form method="post" id="stregister" name="stregister" ng-submit="vm.regEnroll()">
+                <form method="post" id="stregister" name="stregister" class="floatable"  ng-submit="vm.regEnroll()" novalidate>
 
                
 
                     <div class="row">
-                        <div class="span4">
-                            <input type="text" class="w-100" id="name" name="name" placeholder="Full Name" ng-model="vm.re.name">
+                        <div class="span8">
+                            <div class="field-wrap">                                   
+                                    <input type="text" class="float-field w-100" id="name" name="name" ng-model="vm.re.name" required ng-minlength="6">
+                                    <label class="placeholder">Full Name</label>
+                                    <span ng-show="stregister.$dirty && stregister.name.$error.required" class="float-error">Full Name is required</span>
+                                    <span ng-show="stregister.name.$touched && stregister.name.$error.minlength" class="float-error">Full Name must be at least 6 characters</span>
+                            </div>
                         </div>                       
                     </div>
 
                     <div class="row">
                         <div class="span8">
-                            <input type="email" class="w-100" id="email" name="email" placeholder="Email Address" ng-model="vm.re.email">
+                            <div class="field-wrap">
+                                
+                            <input type="email" class="float-field w-100" id="email" name="email" ng-model="vm.re.email" required>
+                            <label class="placeholder">Email</label>
+
+                            <span ng-show="stregister.email.$touched && stregister.email.$error.required" class="float-error">Email is mandantory</span>
+                            <span ng-show="stregister.email.$touched && stregister.email.$error.email" class="float-error">Provide Valid Email</span>
+
+
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="span4">
-                            <input type="password" class="w-100" id="password" name="fpass" placeholder="Password" ng-model="vm.re.password">
+                            <div class="field-wrap">
+                                    <input type="password" class="float-field w-100" id="password" name="fpass" ng-model="vm.re.password" ng-minlength="6" required
+
+                                    password-verify="{{vm.nPass}}">
+                                    <label class="placeholder">Password</label>    
+
+                                    <span ng-show="stregister.password.$touched && stregister.password.$error.required" class="float-error">Password is required</span>
+                                    <span ng-show="stregister.password.$touched && stregister.password.$error.minlength" class="float-error">Password Must be at least 6 characters</span>
+
+
+                            </div>
+                            
                         </div>
                         <div class="span4">
-                            <input type="password" class="w-100" id="cpass" name="cpass" placeholder="Confirm Password" ng-model="vm.nPass">
+                            <div class="field-wrap">
+
+                            <input type="password" class="float-field w-100" id="cpass" name="cpass" ng-model="vm.nPass" required password-verify="{{vm.re.password}}">
+                            <label class="placeholder">Confirm Password</label> 
+
+
+                            <span ng-show="stregister.cpass.$touched && stregister.cpass.$error.passwordVerify" class="float-error">Confirm Password Mismatched</span>   
+                                
+                            </div>  
+
+                            
                         </div>
                     </div>
 
@@ -49,10 +84,9 @@
                 </div>
 
 
-                    <div class="row">
+                    <div class="row" ng-hide="stregister.$invalid">
                         <div class="span6">
-                            <input type="submit" id="sub-new-quiz" value="Save" class="btn btn-success">
-                            <input type="submit" id="sub-add-ques" value="Save & Add More" class="btn btn-success">
+                            <input type="submit" id="sub-new-quiz" value="Save" class="btn btn-success std">
                         </div>
                     </div>
 
