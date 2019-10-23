@@ -1,6 +1,13 @@
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 body {
     /*font-family: Tahoma !important;*/
+    /*
+    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif;
+    */
+}
+
+
+[lang="ar"].dak {
     font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif;
 }
 

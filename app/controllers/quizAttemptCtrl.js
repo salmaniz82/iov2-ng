@@ -70,7 +70,7 @@
 
                  //   $state.go('std.exams');
 
-                 window.close();
+                    window.close();
 
 
 

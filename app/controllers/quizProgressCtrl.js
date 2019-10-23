@@ -15,9 +15,14 @@
 
         vm.activeId = false;
 
+
+
         vm.enableScoreCard = false;
         vm.scoreLoading = null;
         vm.dualColumnEnabled = false;
+
+
+        vm.enabledScoreUpdateId = false;
 
 
 
@@ -28,22 +33,32 @@
 
         vm.dataList = null;
 
-        var progressUrl = API_URL+'quiz/progress/'+vm.examID;
 
-        $http.get(progressUrl).then(
+        vm.loadPrimaryData = function()
+        {
 
-        	function(res){
+
+             var progressUrl = API_URL+'quiz/progress/'+vm.examID;
+
+             $http.get(progressUrl).then(
+
+            function(res){
                 
-        		vm.loadStatus = true;
+                vm.loadStatus = true;
                 vm.dataList = res.data;
 
-        	}, 
+            }, 
 
-        	function(res){
+            function(res){
 
-        		vm.loadStatus = false;      		
+                vm.loadStatus = false;              
 
-        	});
+            });
+
+        };
+
+
+        vm.loadPrimaryData();
 
 
 
@@ -158,8 +173,136 @@
 
 
 
+            vm.markPayload = [];
+
+            vm.checkForDuplicates = function(sourceCollections, incommingData)
+                {
+
+                    var answerId = incommingData.id;
+                    var typeIncoming = incommingData.type;
+
+
+
+                    for(key in sourceCollections)
+                    {
+
+                        if(sourceCollections[key].id == answerId && sourceCollections[key].type == typeIncoming)
+                        {
+                            return 1;
+                        }
+
+                        else if(sourceCollections[key].id == answerId && sourceCollections[key].type != typeIncoming){
+
+                            return 2;
+                        }
+
+                    }
+
+                    return 0;
+
+                };
 
             
+            
+
+            vm.markForUpdates = function(type, answerId, questionId)
+            {
+
+
+                var answerListIndex = $scope.$parent.base.getIndex(vm.answerDataList.answers, 'answerId', answerId);
+                var currentPayload = {'attempt_id': vm.activeId, 'id' : answerId, que_id : questionId, type : type};
+
+                if(vm.markPayload.length == 0)
+                {
+                    vm.markPayload.push(currentPayload);              
+                    vm.answerDataList.answers[answerListIndex]['markedStatus'] = type;
+                    
+                }
+
+                else if(vm.checkForDuplicates(vm.markPayload, currentPayload) == 0)
+                {
+                    vm.markPayload.push(currentPayload);
+                    vm.answerDataList.answers[answerListIndex]['markedStatus'] = type;
+                }
+
+                else if (vm.checkForDuplicates(vm.markPayload, currentPayload) == 1)
+                {
+                    
+                    var idx = $scope.$parent.base.getIndex(vm.markPayload, 'id', answerId);
+                    vm.markPayload.splice(idx, 1); 
+                    vm.answerDataList.answers[answerListIndex]['markedStatus'] = null;
+                    
+                }
+
+                else if(vm.checkForDuplicates(vm.markPayload, currentPayload) == 2)
+                {
+                    
+                    var idx = $scope.$parent.base.getIndex(vm.markPayload, 'id', answerId);   
+                    vm.markPayload[idx] = currentPayload;
+                    vm.answerDataList.answers[answerListIndex]['markedStatus'] = type;
+                    
+                }
+
+            };
+
+          };
+
+
+
+
+          vm.processMarkedAnswers = function()
+          {
+
+
+            vm.activeId;
+
+            var processUrl = API_URL+'markandudpateanswers/'+vm.activeId;
+
+
+
+
+            $http({
+
+                url : processUrl,
+                method: 'POST',
+                data : {'dataMarkedPayload': vm.markPayload}
+
+            }).then(
+
+            function(res){
+
+                console.log('this is the success call');
+
+                vm.activeId = false;
+                vm.enableScoreCard = false;                        
+                vm.scoreCard = false;
+                vm.dualColumnEnabled = false;
+                vm.markPayload = [];
+
+
+                vm.answerEnabled = false;
+                vm.answerLoading = null;
+                vm.dataList = null;
+
+                vm.enabledScoreUpdateId = false;
+
+
+                vm.loadPrimaryData();
+
+
+
+            }, 
+
+            function(res){
+
+
+                console.log('the error call');
+
+
+            });
+
+
+
 
 
           };
@@ -180,6 +323,20 @@
 
 
           };
+
+
+         vm.enableScoreMatrix = function(attemptId)
+        {
+            vm.enabledScoreUpdateId  = attemptId;
+        };
+
+
+        vm.deactivateMarkUpdateMode = function()
+        {
+            vm.enabledScoreUpdateId  = false;
+            vm.markPayload = [];
+
+        };
 
 
 

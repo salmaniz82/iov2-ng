@@ -259,7 +259,7 @@
 
         .state('std.studentDashbaord', {
             url : '/dashboard',
-            template: '<h2> Student Dashboard not available. </h2>',
+            template: '<h2> Dashboard settings for candiates are not yet not available. </h2>',
             controller : 'studentDashboardCtrl as vm',
             authenticate: true,
             roles : ['students', 'candiate']

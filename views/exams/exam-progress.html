@@ -37,7 +37,7 @@
 
                                     <th>Candidates</th>
                                     <th>Score</th>
-                                    <th>Percentage %</th>
+                                    <th>Per %</th>
                                     <th>Grade</th>
                                     <th>GPA</th>
                                     <th>Result</th>
@@ -52,7 +52,7 @@
                                     <td> <p><strong>{{item.name}}</strong></p>
 
                                     	<p>{{item.email}}</p>
-                                        <p><span class="icon-time c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
+                                        <p><span class="fal fa-clock c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
                                     </td>
                                     
                                     
@@ -93,7 +93,13 @@
                                     <li ng-if="item.score != null"><a ui-sref="exm.consent({'examID': item.quizId, 'attemptID': item.attemptId})"> - Consent </a></li> 
 
                                     <li ng-if="item.score == null"><a href="#" ng-click="vm.attemptRecover(item.attemptId)"> - Recover </a></li> 
-                                    <li ><a href="#" > - Rebase Score </a></li> 
+                                    <li ><a href="#" > - Rebase Score </a></li>
+                                    <li>
+                                        <a href="#" class="static-link" permissions="['score-matrix']" ng-click="vm.enableScoreMatrix(item.attemptId)"> - Enable Update</a>
+                                    </li>
+
+
+
 
 
 
@@ -116,7 +122,7 @@
         
     </aside>
 
-    <aside ng-if="vm.dualColumnEnabled"> 
+    <aside ng-if="vm.dualColumnEnabled" style="width: 60%"> 
 
 
 
@@ -216,7 +222,21 @@
     			<div class="grid12Col">
 
     				<div class="gc1-half">
+
+
     					<h4>Inspect Provided Answers</h4>
+
+
+              <div ng-if="vm.markPayload.length != 0 && vm.enabledScoreUpdateId == vm.activeId">
+             
+               <span class="c-pink"> <strong>{{vm.markPayload.length}}</strong> Questions for update operation </span>
+
+               <div class="btn btn-warning" ng-click="vm.processMarkedAnswers()">Proceed</div>
+
+                  <div class="btn btn-twitter" ng-click="vm.deactivateMarkUpdateMode()">Exit Mode</div>
+
+
+             </div>
     				</div>
 
     				<div class="gc2-half align-self-center" style="justify-self: end"> 
@@ -275,11 +295,22 @@
             </tr>
          </thead>
          <tbody>
+
+          <span >
+
+
+
+
             <tr ng-repeat="item in vm.answerDataList.answers | filter:{ subdiscipline: subjectSearch } track by $index">
-               <td ng-attr-title="{{item.Question_id}}">{{$index +1}}</td>
+               <td ng-attr-title="{{item.Question_id}}" ng-class="{'c-green': item.markedStatus == 'up', 'c-red': item.markedStatus == 'down' }">{{$index +1}}</td>
                <td><p ng-bind-html="item.QuestionDescription"></td>
                <td>{{item.answer}}</td>
-               <td>{{item.response}}</td>
+               <td>{{item.response}}
+                <div ng-if="vm.enabledScoreUpdateId == vm.activeId">
+                    <a ng-if="item.isCorrect == 0" href="#" class="static-link fa fa-arrow-up c-green" ng-click="vm.markForUpdates('up', item.answerId, item.Question_id);"></a> <span>&nbsp;&nbsp;</span>
+                    <a ng-if="item.isCorrect == 1 && (item.type_id == 1 || item.type_id == 2)" href="#" class="static-link fa fa-arrow-down c-red" ng-click="vm.markForUpdates('down', item.answerId, item.Question_id); "></a>
+                  </div>
+               </td>
                <td> 
                    <strong ng-if="item.isCorrect == 1" class="c-green">YES</strong> 
                    <strong ng-if="item.isCorrect == 0"class="c-red">NO</strong> 

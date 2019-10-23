@@ -76,7 +76,7 @@
 	<p class="catLabel">Category</p>
 	<li ng-repeat="cat in vm.categories" ng-if="cat.pcat_id == null" ng-class="{'active': cat.id == vm.parentId}" ng-click="vm.setParent(cat.id)">
   	<a href="#" class="tag" >{{cat.category}}
-  		<span ng-class="{'icon-ok': cat.id == vm.parentId}"></span>
+  		<span ng-class="{'fal fa-check': cat.id == vm.parentId}"></span>
   	</a>
   </li>
 </ul>
@@ -85,7 +85,7 @@
   		<p class="catLabel">Discipline</p>
   		<li ng-repeat="subCat in vm.categories" ng-if="vm.parentId == subCat.pcat_id" ng-class="{'active': subCat.id == vm.subCategory}" ng-click="vm.setSubCategory(subCat.id)">
   			<a href="#" class="tag" >
-  				<span class="{{ (subCat.id == vm.subCategory) ? 'icon-ok' : 'icon-circle-blank' }}"></span>
+  				<span class="{{ (subCat.id == vm.subCategory) ? 'fal fa-check' : 'fal fa-circle' }}"></span>
   				{{subCat.category}}
   				
   			</a>
@@ -104,7 +104,7 @@
 				
 			<a href="#" class="tag" >
 
-				<span  class="{{ (vm.isSubjectActive(subj.id)) ? 'icon-ok' : 'icon-unchecked'}}" ></span>
+				<span  class="{{ (vm.isSubjectActive(subj.id)) ? 'fal fa-check' : 'fal fa-square'}}" ></span>
 				{{subj.category}} 
 					
 			 </a>
@@ -125,7 +125,7 @@
 		</div>
 
 		<div class="span6">
-			<div ng-if="vm.stepOneisValid()" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(2)" class="wiz-contbox">Next <span class="icon icon-arrow-right"></span></div>
+			<div ng-if="vm.stepOneisValid()" class="btn btn-warning std pull-right" ng-click="vm.moveToStep(2)" class="wiz-contbox">Next <span class="icon fa fa-chevron-right"></span></div>
 		</div>	
 
 	</div>
@@ -302,7 +302,7 @@
                     		<div class="span6 add-on">
                             <div class="input-append w-100 pick-dt" ng-model="vm.nQuiz.startDateTime">
                                 <input type="text" id="startDateTime" class="w-90 dateinput" name="sdate" placeholder="Start Date" ng-value="vm.nQuiz.startDateTime">
-                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                                <span class="add-on"><i data-date-icon="fal fa-calendar-alt" data-time-icon="fal fa-clock" class="fal fa-calendar-alt"></i></span>
                             </div>
                         </div>
                     	</div>
@@ -320,7 +320,7 @@
                     		<div class="span6 add-on">
                             <div class="input-append pick-dt w-100 pick-dt" ng-model="vm.nQuiz.endDateTime">
                                 <input type="text" id="endDateTime" class="w-90 dateinput" name="edate" placeholder="End Date" ng-value="vm.nQuiz.endDateTime">
-                                <span class="add-on"><i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar"></i></span>
+                                <span class="add-on"><i data-date-icon="fal fa-calendar-alt" data-time-icon="fal fa-clock" class="fal fa-calendar-alt"></i></span>
                             </div>
                         </div>
                     	</div>
@@ -658,7 +658,7 @@
 		
 		<div class="stage06-wrapper-inner wiz-contbox"> 
 
-				<h3 class="t-center c-green"><span class="icon-ok-sign"></span>Completion Status</h3>
+				<h3 class="t-center c-green"><span class="fal fa-check-sign"></span>Completion Status</h3>
 
 
 				<h4 class="t-center" 

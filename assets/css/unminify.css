@@ -7049,8 +7049,15 @@ input[type="checkbox"]:after {
 }
 input[type="checkbox"]:checked:after {
     color: var(--green);
+    /*
     content: "✓";
-    line-height: 14px;
+    */
+
+    content: "\f00c";
+
+    font-family: "Font Awesome 5 Pro";
+    
+    line-height: 10px;
     text-align: center;
 }
 input[type="checkbox"][readonly]:checked:after, input[type="radio"][readonly]:checked:after {

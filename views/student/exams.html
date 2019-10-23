@@ -103,7 +103,7 @@
 				<td>{{quiz.attempts}}</td>
 				
 				<td>
-					<a ng-if="quiz.validity == 'valid' && quiz.validity != 'progress' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="far fa-clock"></span>&nbsp; Start Quiz</a>
+					<a ng-if="quiz.validity == 'valid' && quiz.validity != 'progress' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="fal fa-clock"></span>&nbsp; Start Quiz</a>
 
 					<p ng-if="quiz.attempts == '0' && quiz.validity == 'progress'" > <span class="status working">In Progress</span> </p>
 
@@ -137,7 +137,7 @@
 
 				<td>{{item.id}}</td>
 				<td>{{item.title}}
-					<p><span class="far fa-clock c-blue"></span>&nbsp; <small class="c-blue">{{item.attempted_at | xToTime}}</small></p>
+					<p><span class="fal fa-clock c-blue"></span>&nbsp; <small class="c-blue">{{item.attempted_at | xToTime}}</small></p>
 				</td>
 
 				<td> 
@@ -228,7 +228,7 @@
 
 				<td>{{item.id}}</td>
 				<td>{{item.title}}
-					<p><span class="far fa-clock c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
+					<p><span class="fal fa-clock c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
 				</td>
 
 				<td>{{item.minScore}} / {{item.maxScore}}</td>
