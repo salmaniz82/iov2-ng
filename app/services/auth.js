@@ -64,7 +64,7 @@ angular.module('io2v3')
 
 
 
-				console.log(requiredPermission);
+				
 
 
 

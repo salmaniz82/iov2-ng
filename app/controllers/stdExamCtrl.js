@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', '$interval', 'xToTimeFilter', function(API_URL, SITE_URL, $scope, $http, $state, $interval, xToTimeFilter){
+    angular.module('io2v3').controller('stdExamCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$state', '$interval', 'xToTimeFilter', '$rootScope', function(API_URL, SITE_URL, $scope, $http, $state, $interval, xToTimeFilter, $rootScope){
 
 
         var vm = this;
@@ -297,7 +297,7 @@
         {
             var queryString = {'timestamp' : timestamp || null};
 
-            $.ajax(
+          $rootScope.studenExamListPooling =  $.ajax(
                 {
                     type: 'GET',
                     url: API_URL+'std-quiz-polling',

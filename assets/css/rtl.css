@@ -1,10 +1,32 @@
+/*
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 body {
-    /*font-family: Tahoma !important;*/
-    /*
     font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif;
-    */
+    
 }
+*/
+
+
+
+@font-face {
+    font-family: "AlJazeraRegular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("fonts/Al-Jazeera-Arabic-Regular.woff") format("woff");
+}
+
+
+
+
+body {
+    
+    font-family: 'AlJazeraRegular', sans-serif;
+    
+}
+
+
+
+
 
 
 [lang="ar"].dak {

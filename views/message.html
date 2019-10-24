@@ -1,0 +1,21 @@
+<form method="POST" class="mdl-grid js-background-sync" ng-submit="vm.handleMessagePost()">
+
+<div class="grid12Col">
+
+  <div class="gc2-full">
+    <input class="mdl-textfield__input" type="tel" name="phoneNumber" ng-model="vm.message.phoneNumber" id="phoneNumber">
+    <label class="mdl-textfield__label" for="phoneNumber">Number</label>
+  </div>
+  <div class="gc2-full">
+    <textarea class="mdl-textfield__input" type="text" rows="2" id="body" name="body" ng-model="vm.message.body"></textarea>
+    <label class="mdl-textfield__label" for="body">Message</label>
+  </div>
+  <div class="gc2-full">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect full-width">
+      Send
+    </button>
+  </div>
+
+
+  </div>
+</form>

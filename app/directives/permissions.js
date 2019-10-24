@@ -18,14 +18,14 @@ function permissionDirective(auth)
 
                      elem.show();
 
-                     console.log('has permission');
+                    
                   
                 } else {
                   
                     elem.remove();
 
 
-                    console.log('no permission');
+                    
 
                 }
               });          

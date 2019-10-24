@@ -31,21 +31,26 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
          
           $rootScope.pooling.abort(); 
 
+       }
 
-          
+
+       if($rootScope.studenExamListPooling != undefined)
+       {
+
+          $rootScope.studenExamListPooling.abort();
        }
 
 
         if(toState.authenticate == true)
         {
 
-            console.log('route is asking for authentication');
+            
              
             if(!auth.hastokenAndUser())
             {
 
                 e.preventDefault();
-                console.log('require auth redirecting to login');
+                
                 $state.go('ua.login');
 
               /*
@@ -67,16 +72,16 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
                 
                 var userRole = auth.getUser().role;
 
-                console.log(userRole);
+                
 
                 if(toState.roles.indexOf(userRole) != -1)
                 {
-                    console.log('Role Matched and can view the route');
+                    
                 }
                 else {
                     e.preventDefault();
                     $state.go('pub.home');
-                    console.log('this role is not allowed to touch this route');                   
+                    
                 }
 
             }
@@ -90,7 +95,7 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
     $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
 
-        
+     
 
 
                 
@@ -105,10 +110,6 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
         }, 3000);
 
         */
-
-
-
-        
 
         // only when need to intercept
        // e.preventDefault();

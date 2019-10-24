@@ -15,7 +15,7 @@
 
 
 
-       console.log(SITE_URL);
+       
 
 
 
@@ -64,8 +64,6 @@
 
 				console.log('run when null assinged');
 			}
-
-
 
 		});
 

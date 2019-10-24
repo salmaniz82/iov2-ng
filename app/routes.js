@@ -555,6 +555,13 @@
         })
 
 
+        .state('message', {
+                url : '/message',
+                templateUrl : 'views/message.html',
+                controller : 'messageCtrl as vm'
+        })
+
+
 
         .state('quizui', {
 
