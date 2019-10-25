@@ -11,7 +11,7 @@
  */
 
 
-angular.module('io2v3').directive('dropzone', function () {
+angular.module('io2v3').directive('dropzone', [function () {
   return function (scope, element, attrs) {
 
     element.addClass('dropzone');
@@ -28,7 +28,7 @@ angular.module('io2v3').directive('dropzone', function () {
       dropzone.on(event, handler);
     });
   };
-});
+}]);
 
 
 

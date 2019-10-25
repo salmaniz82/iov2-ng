@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('quizPlay', function($http, API_URL) {
+	.service('quizPlay', ['$http', 'API_URL', function($http, API_URL) {
 
 		this.prepQuizQuestion = function(quiz_id, attempt_id)
 		{
@@ -19,4 +19,4 @@ angular.module('io2v3')
 		}
 
 		
-	});
+	}]);

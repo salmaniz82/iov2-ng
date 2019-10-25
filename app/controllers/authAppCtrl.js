@@ -1,6 +1,6 @@
 (function(){
 	angular.module('io2v3')
-	.controller('authAppCtrl', function($state, auth, $scope, API_URL, $http){
+	.controller('authAppCtrl', ['$state', 'auth', '$scope', 'API_URL', '$http', function($state, auth, $scope, API_URL, $http){
 
 		vm = this;
 
@@ -19,6 +19,6 @@
 		}
 
        
-	});
+	}]);
 
 })();

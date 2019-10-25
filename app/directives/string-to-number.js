@@ -1,4 +1,4 @@
-angular.module('io2v3').directive('stringToNumber', function() {
+angular.module('io2v3').directive('stringToNumber', [function() {
   return {
     require: 'ngModel',
     link: function(scope, element, attrs, ngModel) {
@@ -10,4 +10,4 @@ angular.module('io2v3').directive('stringToNumber', function() {
       });
     }
   };
-});
+}]);

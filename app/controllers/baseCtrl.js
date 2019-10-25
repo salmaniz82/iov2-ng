@@ -1,6 +1,6 @@
 (function(){
 	angular.module('io2v3')
-	.controller('baseCtrl', function($scope, auth, langSer, API_URL, $state){
+	.controller('baseCtrl', ['$scope', 'auth', 'langSer', 'API_URL', '$state', function($scope, auth, langSer, API_URL, $state){
 
 		var vm = this;
 
@@ -225,10 +225,7 @@
 
 
 
-    });
-
-
-
+    }]);
 
 
 })();

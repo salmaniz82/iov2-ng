@@ -14,7 +14,7 @@
  angular.module('hdtest', [])
 
 
- .controller('dzCtrl', function ($scope) {
+ .controller('dzCtrl', ['$scope', function ($scope) {
 
   
   $scope.dropzoneConfig = {
@@ -30,8 +30,8 @@
       }
     }
   };
-})
-.directive('dropzone', function () {
+}])
+.directive('dropzone', [function () {
   return function (scope, element, attrs) {
 
     element.addClass('dropzone');
@@ -48,7 +48,5 @@
       dropzone.on(event, handler);
     });
   };
-});
-
-
+}]);
 

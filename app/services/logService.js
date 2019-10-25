@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('logService', function() {
+	.service('logService', [function() {
 
 		this.justLog = function() 
 		{
@@ -11,4 +11,4 @@ angular.module('io2v3')
 			console.log('With Logger Service Your message :' + msg);
 		};
 
-	});
+	}]);

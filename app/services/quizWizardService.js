@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('quizWizardService', function($http, API_URL) {
+	.service('quizWizardService', ['$http', 'API_URL', function($http, API_URL) {
 
 		this.getPresetValues = function(quiz_id)
 		{
@@ -33,4 +33,4 @@ angular.module('io2v3')
 		};
 
 
-	});
+	}]);

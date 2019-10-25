@@ -1,7 +1,8 @@
 (function(){
+    
     angular.module('io2v3')
 
-    .directive('staticLink', function() {
+    .directive('staticLink', [function() {
 
     vm = this;
 
@@ -15,8 +16,8 @@
     };
 
 
-})
-    .directive('dropdownButton', function() {
+}])
+    .directive('dropdownButton', [function() {
 
 
         vm = this;
@@ -29,11 +30,11 @@
         });
         }
     };
-});
+}]);
 
 
 
-    .directive('ngEnter', function () {
+    .directive('ngEnter', [function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
             if (event.which === 13) {
@@ -45,7 +46,7 @@
             }
         });
     };
-});
+}]);
 
 
 

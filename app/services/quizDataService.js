@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('quizDataService', function($http, API_URL) {
+	.service('quizDataService', ['$http', 'API_URL',function($http, API_URL) {
 
 		this.getMasterQuiz = function(quiz_id)
 		{
@@ -35,4 +35,4 @@ angular.module('io2v3')
 		};
 
 
-	});
+	}]);

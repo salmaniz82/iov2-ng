@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('auth', function($http, API_URL) {
+	.service('auth', ['$http', 'API_URL',function($http, API_URL) {
 
 		self = this;
 
@@ -92,4 +92,4 @@ angular.module('io2v3')
 
 		
 		
-	});
+	}]);

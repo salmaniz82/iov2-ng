@@ -1,4 +1,4 @@
-angular.module('directives').directive('input', function() {
+angular.module('directives').directive('input', [function() {
   return {
     restrict: 'E',
     require: 'ngModel',
@@ -14,4 +14,4 @@ angular.module('directives').directive('input', function() {
       }
     }
   }
-})
+}]);

@@ -12,5 +12,8 @@
 	}
 
 
+	coreCtrl.$inject = ['$state', '$scope'];
+
+
 
 })();

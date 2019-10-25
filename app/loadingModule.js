@@ -4,7 +4,7 @@ angular.module('loadingStatus', [])
   $httpProvider.interceptors.push('loadingStatusInterceptor');
 })
  
-.directive('loadingStatusMessage', function() {
+.directive('loadingStatusMessage', [function() {
   return {
     link: function($scope, $element, attrs) {
       var show = function() {
@@ -18,9 +18,9 @@ angular.module('loadingStatus', [])
       hide();
     }
   };
-})
+}])
  
-.factory('loadingStatusInterceptor', function($q, $rootScope) {
+.factory('loadingStatusInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
   var activeRequests = 0;
   var started = function() {
     if(activeRequests==0) {
@@ -48,4 +48,4 @@ angular.module('loadingStatus', [])
       return $q.reject(rejection);
     }
   };
-});
+}]);

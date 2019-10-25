@@ -1,7 +1,7 @@
 (function(){
     angular.module('io2v3')
 
-    .directive('modalTrigger', function() {
+    .directive('modalTrigger', [function() {
 
         return {
 
@@ -26,6 +26,6 @@
 
 
 
-    });
+    }]);
 
 })();

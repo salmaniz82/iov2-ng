@@ -334,11 +334,53 @@
 
 
 
+
+self.addEventListener('message', function (event) {
+
+   var client = event.source.id;
+  
+  if (event.data.hasOwnProperty('form_data')) 
+  {
+            // receives form data from script.js upon submission
+    
+            var form_data = event.data.form_data;
+
+
+            store.exams('readwrite').then(function(exams) {
+
+            return exams.put(form_data);
+
+            }).then(function() {
+
+            // if data is posted to indexDB
+
+            console.log('data has been saved to indexDB');
+
+            const channel = new BroadcastChannel('sw-idxsaved');
+            channel.postMessage({message: 'Data Saved', status: 1});
+
+
+           
+              
+
+
+        }).catch(function(err) {
+
+           // if not then do something else
+          console.log(err);
+
+        });
+
+
+
+  }
+
+
+});
+
+
+
 /* start Service worker code */
-
-let API_URL = (location.href == 'https://alpha.iskillmetrics.com/') ? 'https://api.iskillmetrics.com/' : 'http://api.io2v3.dvp/';
-
-
 self.addEventListener('sync', function(event) {
 
 
@@ -359,7 +401,7 @@ self.addEventListener('sync', function(event) {
         return fetch(exam.url, {
 
           method: exam.method,
-          body: JSON.stringify(exam.payload),
+          body: JSON.stringify(exam.data),
           headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
@@ -378,8 +420,6 @@ self.addEventListener('sync', function(event) {
 
           if (data.result === 'success') {
 
-            
-
             return store.exams('readwrite').then(function(exams) {
 
               return exams.delete(exam.id);
@@ -394,4 +434,8 @@ self.addEventListener('sync', function(event) {
 
     })
   );
-})
+});
+
+
+
+

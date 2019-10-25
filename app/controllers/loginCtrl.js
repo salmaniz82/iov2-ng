@@ -1,7 +1,7 @@
 (function(){
 	angular.module('io2v3')
 
-	.controller('loginCtrl', function ($state, auth, API_URL, $scope){
+	.controller('loginCtrl',['$state', 'auth', 'API_URL', '$scope', function ($state, auth, API_URL, $scope){
 
 
 		
@@ -77,7 +77,7 @@
                     $scope.$emit('notify', notify);
 		};
 
-	});
+	}]);
 
 
 

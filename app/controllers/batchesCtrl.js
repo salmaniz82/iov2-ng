@@ -514,9 +514,7 @@
             
             vm.activeBatchId = null;
             vm.showBatchDetails  = false;
-
             vm.proceedToX = false;
-
 
         };
 

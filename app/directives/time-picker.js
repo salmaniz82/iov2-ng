@@ -1,7 +1,7 @@
 (function(){
     angular.module('io2v3')
 
-    .directive('timePicker', function() {
+    .directive('timePicker', [function() {
 
         return {
 
@@ -27,6 +27,6 @@
 
 
 
-    });
+    }]);
 
 })();

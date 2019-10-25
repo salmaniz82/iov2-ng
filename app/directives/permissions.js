@@ -1,6 +1,6 @@
 angular.module('io2v3').directive('permissions', permissionDirective);
-permissionDirective.$inject = ['auth'];
 
+permissionDirective.$inject = ['auth'];
 
 function permissionDirective(auth)
 {

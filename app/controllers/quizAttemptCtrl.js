@@ -7,6 +7,8 @@
 
         vm.quizData = quizPlayData.data;
 
+        const channel = new BroadcastChannel('sw-idxsaved');
+
 
 
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
@@ -57,30 +59,67 @@
             $timeout.cancel(vm.quizTimeInterval);
             localStorage.removeItem('lastStoredDurationSeconds');
 
-            $http({
-                url : answerSaveUrl,
-                method : 'POST',
-                data : {
-                    'answers' : vm.payloadAnswers
-                }
-            }).then(
+            vm.idbPayload = {
+            "url" : answerSaveUrl,
+            "method": 'POST',
+            "data" : {'answers' : vm.payloadAnswers}
+            };
+
+            $http(vm.idbPayload).then(
+
                 function(res){
-                    
-                    
 
                  //   $state.go('std.exams');
-
-                    window.close();
-
-
-
+                       window.close();
                 }, 
 
                 function(res){
-
+                if(res.status < 1)
+                {
                     
+                    console.log('LOST IC Trigger BackgroundSync');
+                    vm.triggerBackgroundSync(vm.idbPayload);
+
+
+                    var notify = {
+                        type: 'warning',
+                        title: 'Internet Disconnected',
+                        content: 'Progress has been saved and pushed to server as connection resumes',
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                    setTimeout(function() {
+
+                        window.close();     
+
+                    }, 2000)
+
+                }      
+                 
 
                 });
+
+        };
+
+
+        vm.triggerBackgroundSync = function(payload)
+        {
+
+            var swPost = {
+                 'form_data': payload
+              };
+      
+            navigator.serviceWorker.controller.postMessage(swPost);
+
+            channel.addEventListener('message', event => {
+
+            if(event.data.status == 1 && window.cachedRegisterSW != undefined)
+            {
+                 window.cachedRegisterSW.sync.register('exam');
+            }
+
+            });
 
         };
 

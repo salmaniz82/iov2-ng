@@ -1,4 +1,4 @@
-angular.module('io2v3').directive("fileInput", function($parse){
+angular.module('io2v3').directive("fileInput", ['$parse', function($parse){
     return{
         link: function($scope, element, attrs){
             element.on("change", function(event){
@@ -9,4 +9,4 @@ angular.module('io2v3').directive("fileInput", function($parse){
             });
         }
     }
-});
+}]);

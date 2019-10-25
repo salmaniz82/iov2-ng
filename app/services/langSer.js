@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('langSer', function() {
+	.service('langSer', [function() {
 
 		this.init = function()
 		{
@@ -42,4 +42,4 @@ angular.module('io2v3')
 			}
 		};
 
-	});
+	}]);

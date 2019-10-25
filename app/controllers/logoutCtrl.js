@@ -1,7 +1,7 @@
 (function(){
 	angular.module('io2v3')
 
-	.controller('logoutCtrl', function ($state, $timeout, auth){
+	.controller('logoutCtrl', ['$state', '$timeout', 'auth', function ($state, $timeout, auth){
 		
 		var vm = this;
 
@@ -10,7 +10,7 @@
 
 		$state.go('ua.login');
 
-	});
+	}]);
 
 
 

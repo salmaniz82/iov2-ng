@@ -1,7 +1,7 @@
-angular.module('io2v3').component('quizInfoComponent',  {
+angular.module('io2v3').component('quizInfoComponent', {
 
             templateUrl: 'views/shared/quizInfo.html',
-            controller: function($scope, $http, quizDataService) {
+            controller: ['$scope', '$http', 'quizDataService', function($scope, $http, quizDataService) {
 
             	var vm  = this;
             	
@@ -19,7 +19,7 @@ angular.module('io2v3').component('quizInfoComponent',  {
 	        		
 	        	});
                 
-            },
+            }],
             bindings: {
                 param: '='
             }

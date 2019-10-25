@@ -1,6 +1,6 @@
 angular.module('io2v3')
 
-    .filter('xToTime', function() {
+    .filter('xToTime', [function() {
         return function(input) {
 
 
@@ -38,4 +38,4 @@ angular.module('io2v3')
             
 
         }
-    });
+    }]);

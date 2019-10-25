@@ -1,7 +1,7 @@
 
     angular.module('io2v3')
 
-    .directive('pickDt', function() {
+    .directive('pickDt', [function() {
 
         return {
 
@@ -31,63 +31,4 @@
 
         };
 
-    });
-
-
-
-
-
-/*
-angular.module('io2v3').directive('pickDt', function() {
-  return {
-    restrict: 'C',
-    require: 'ngModel',
-
-    link: function(scope, el, attr, ngModel) {
-      el.datetimepicker({
-        onSelect: function(dateText) {
-          scope.$apply(function() {
-            ngModel.$setViewValue(dateText);
-          });
-        }
-      });
-    }
-  };
-});
-
-*/
-
-/*
-angular.module('io2v3')
-
-    .directive('pickDt', function() {
-
-        return {
-
-            restrict: 'C',
-            link: function(scope, ele, attr, ngModel)
-            {
-                ele.datetimepicker({
-                format: 'yyyy-MM-dd hh:mm',
-                pickDate: true,
-                pickTime: true,
-                pick12HourFormat: true,   
-                pickSeconds: false,
-                language: 'en',
-                change : function(e) {
-
-                    console.log('dp check in');
-
-
-                }
-
-                });
-            }
-
-        };
-
-
-    });
-
-*/
-
+    }]);

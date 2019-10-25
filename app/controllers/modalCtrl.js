@@ -106,7 +106,7 @@
 	}
 
 
-
+	modalCtrl.$inject = ['$state', '$scope', '$http'];
 	
 
 

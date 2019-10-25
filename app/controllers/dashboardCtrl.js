@@ -17,5 +17,8 @@
 	}
 
 
+	dashboardCtrl.$inject = ['$scope'];
+
+
 
 })();

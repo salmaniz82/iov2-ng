@@ -1,6 +1,6 @@
   angular.module('io2v3')
 
-    .directive('backButton', function() {
+    .directive('backButton', [function() {
 
     return {
         restrict : 'A',
@@ -17,4 +17,4 @@
     };
 
 
-})
+}])

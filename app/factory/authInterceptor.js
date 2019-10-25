@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.factory('authInterceptor', function() {
+	.factory('authInterceptor', [function() {
 
 		oAuthIntercept = {};
 
@@ -30,13 +30,13 @@ angular.module('io2v3')
 		return oAuthIntercept;
 
 
-	})
+	}])
 
-	.config(function($httpProvider) {
+	.config(['$httpProvider', function($httpProvider) {
 
     	$httpProvider.interceptors.push('authInterceptor');
 
-    });
+    }]);
 
     
 	
