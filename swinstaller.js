@@ -6,10 +6,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
       if ('sync' in reg) {
 
-
         window.cachedRegisterSW = reg;
-
-
 
        // return reg.sync.register('outbox');
 

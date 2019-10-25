@@ -5,24 +5,25 @@
 
         var vm = this;
 
-        var store = {
-            db: null,
+          var store = {
+          db: null,
 
-            init: function() {
-              if (store.db) { return Promise.resolve(store.db); }
-                    return idb.open('messages', 1, function(upgradeDb) {
-                  upgradeDb.createObjectStore('outbox', { autoIncrement : true, keyPath: 'id' });
-                }).then(function(db) {
-                  return store.db = db;
-                });
-              },
+          init: function() {
+            if (store.db) { return Promise.resolve(store.db); }
+            return idb.open('iskillmetrics', 1, function(upgradeDb) {
+              upgradeDb.createObjectStore('exams', { autoIncrement : true, keyPath: 'id' });
+            }).then(function(db) {
+              return store.db = db;
+            });
+          },
 
-              outbox: function(mode) {
-                return store.init().then(function(db) {
-                  return db.transaction('outbox', mode).objectStore('outbox');
+          exams: function(mode) {
+            return store.init().then(function(db) {
+              return db.transaction('exams', mode).objectStore('exams');
             })
           }
         };
+
 
         vm.message = {};
 
@@ -30,23 +31,25 @@
         vm.handleMessagePost = function()
         {
 
-
         /*  
       	var url = API_URL+"message";
         */
 
         var liveUrl = 'https://api.iskillmetrics.com/message';
-
         var url = liveUrl;
 
-        
+        vm.idbPayload = {
+          "url" : url,
+          "method": 'POST',
+          "payload" : vm.message
+        };
 
         vm.triggerBackgroundSync = function()
         {
 
-        store.outbox('readwrite').then(function(outbox) {
+        store.exams('readwrite').then(function(exams) {
 
-            return outbox.put(vm.message);
+            return exams.put(vm.idbPayload);
 
         }).then(function() {
 
@@ -55,21 +58,16 @@
           vm.message = {};
 
         if(window.cachedRegisterSW != undefined)
-        {
-          
-              window.cachedRegisterSW.sync.register('outbox');
+        {         
+         
+          window.cachedRegisterSW.sync.register('exam');
 
         }
 
-
-
         }).catch(function(err) {
 
-
-          // if not then do something else
+           // if not then do something else
           console.log(err);
-
-
 
         });
 
