@@ -1,53 +1,215 @@
-<section class="span9 bg-white border-all">
+<section class="hbox">
+
+
+
+<aside ng-if="vm.loading === 'loading'">
+
+    <div class="bg-white border-all mb-5">
+
+        <h3 class="t-center c-grey">Loading categories ...</h3>  
+
+    </div>
+
+
+</aside>
+
+
+
+
+<aside ng-if="vm.loading === false">
+
+
+    <div class="bg-white border-all mb-5">
+
+        <h3 class="t-center c-grey c-pink">Failed while fetching categories ...</h2>
+
+    </div>
+
+
+</aside>
+
+
+</section>
+
+
+    <section class="hbox" ng-if="vm.loading === true">
+
+
+<aside style="width: 800px">
+
 
     <div class="row-fluid">
         <div class="span4">
             
-            <a class="btn btn-warning" ui-sref="dash.catree()">Tree View</a>
+            <a class="btn btn-warning" ui-sref="dash.catree()">Hierarchy</a>
         </div>
         <div class="span4">
-            <div ng-hide="vm.pageMode == 'new' || vm.pageMode == 'edit'" class="btn btn-success pull-right" ng-click="vm.pageMode = 'new'">Add New</div>
+            
         </div>
     </div>
 
     
-                <div class="col-right">
+                <div class="bg-white border-all pd-10" ng-if="vm.pageMode != 'edit'"> 
 
-                    <form name="addpCat" id="addpCat" class="form-search form-inline" ng-if="vm.pageMode == 'new'">
+                    <h3 class="c-grey"> Add New Category </h3>
 
-                        <input type="text" class="input-large search-query span5" placeholder="Category Name" ng-model="vm.ncat.name">
 
-                        <select name="paretncat" ng-model="vm.ncat.pcat_id">
 
-                            <option selected ng-value="0">{{vm.ncat.catLabel}}</option>
-                            <option ng-repeat="item in vm.dataList" ng-value="item.id">{{item.category}}</option>
+
+
+                    <form name="addpCat" id="addpCat" class="floatable" novalidate>
+
+
+                        <div class="grid12Col gap10">
+
+
+                            <div class="gc-1-6">
+
+                                <div class="field-wrap">
+
                             
-                        </select>
 
-                        <button class="btn btn-twitter" ng-click="vm.addNew()">Save</button>
-                    </form>
+                            <select name="paretncat" class="float-field w-100" ng-model="vm.selectedCategory" ng-change="vm.newParentCategory(vm.selectedCategory)">
+                                <option ng-disabled="1 == 1">{{vm.ncat.catLabel}}</option>
+                                <option ng-value="Parent" ng-selected="{{vm.selectedCategory == 'Parent'}}">Parent</option>
+                                <option ng-repeat="item in vm.dataList" ng-value="item.category"  ng-selected="{{item.category == vm.selectedCategory}}" ng-if="item.id > 0">{{item.category}}</option>
 
 
-                    <form name="editCategory" id="editCategory" class="form-search form-inline" ng-if="vm.pageMode == 'edit'">
+                            </select>
 
-                        <input type="text" class="input-large search-query span5" placeholder="Category Name" ng-model="vm.edata.category">
+                            
 
-                        <select name="editParentCat" ng-model="vm.edata.parent" ng-change="vm.updatePcatId(vm.edata.parent)">
-                            <option value="0" ng-selected="{{vm.edata.parent == 'Null'}}"> Root </option>
-                            <option ng-repeat="item in vm.dataList" ng-value="item.category" ng-selected="{{item.category == vm.edata.parent}}">{{item.category}}</option>
-                        </select>
+                        </div>
+                                
+                            
+
+
+                        </div>
+
+
+                        <div class="gc-7-12">
+
+
+
+                        <div class="field-wrap">
+                            <input type="text" class="w-100 float-field" ng-model="vm.ncat.name" required>
+                            <label class="placeholder">Category Name</label>                            
+                        </div>
+
+                            
+                            
+                        </div>
+
+                        <div class="gc-1-6">
+
+
+                        </div>
+
+                        <div class="gc-7-12">
+
+                            <div class="w-45 pull-left">
+                                <div class="btn btn-danger btn-block" ng-click="vm.deactivateAddNew()">Exit</div>
+                            </div>
+
+                            <div class="w-45 pull-right">
+                                <button type="submit" class="btn btn-success btn-block" ng-click="vm.addNew()">Save</div>
+                            </div>
+
+                            
+                            
+                        </div>
+
                         
-                        <button class="btn btn-small btn-twitter" ng-click="vm.udpateCategory()">Update</button>
+
+                        
+
+                    </div><!-- grid12Col -->
                     </form>
 
+                </div>
 
+
+                <div class="bg-white border-all" ng-if="vm.pageMode == 'edit'">
+
+
+                    <form name="editCategory" id="editCategory" class="floatable" novalidate>
+
+
+
+
+                        <div class="grid12Col gap10 pd-10">
+
+                            <h3 class="gc2-full"> Edit Category </h3>
+
+
+                            <div class="gc-1-6">
+
+                                <div class="field-wrap">
+
+
+                            <select name="editParentCat" ng-model="vm.edata.parent" ng-change="vm.updatePcatId(vm.edata.parent)" class="float-field w-100" required>
+                                    <option ng-disabled="1 == 1" value="0" ng-selected="{{vm.edata.parent == 'Null'}}"> Root </option>
+                                    <option ng-disabled="1 == 1" ng-repeat="item in vm.dataList" ng-value="item.category" ng-selected="{{item.category == vm.edata.parent}}">{{item.category}}</option>
+                            </select>    
+                        </div>
+                                
+                            </div>
+
+                            <div class="gc-7-12">
+
+                                <div class="field-wrap">
+                            <input type="text" class="float-field w-100" ng-model="vm.edata.category" required>    
+                            <label class="placeholder">Category Name</label>
+                        </div>
+                                
+                            </div>
+
+
+                            <div class="gc-1-6"></div>
+
+                        <div class="gc-7-12">
+
+                            <div class="w-45 pull-left">
+                                <div class="btn btn-block btn-blue" ng-click="vm.pageMode = 'list'">Cancle</div>       
+                            </div>
+
+                            <div class="w-45 pull-right">
+                                 <div class="btn btn-block btn-warning" ng-click="vm.udpateCategory()">Update</div>       
+                            </div>
+ 
+                        </div>
+
+                        
+
+                        
+                            
+                        </div> <!-- grid12Col -->
+
+
+                        
+
+
+                        
+                        
+                        
+                        
+                    </form>
+
+                </div>    
+
+
+
+                    <div class="tableWrapper bg-white border-all" style="padding: 10px; margin-top: 20px">
+                        
+                    
 
                     <table class="table">
                         <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Parent</th>  
                             <th>Category</th>
-                            <th>Parent</th>          
+                                    
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -55,9 +217,8 @@
 
                         <tr ng-repeat="item in vm.dataList">
                             <td>{{item.id}}</td>
-                            <td>{{item.category}}</td>
                             <td>{{(item.parent == null) ? 'Null' : item.parent}}</td>
-                            
+                            <td>{{item.category}}</td>
                             
                             <td>
                                 
@@ -78,5 +239,35 @@
 
                         </tbody></table>
 
+
+                        </div><!-- tableWrapper -->
+
                 </div><!-- end col right-->
-            </section>
+
+
+
+    
+
+
+</aside>
+
+
+<aside>
+
+
+    <div>&nbsp;</div>
+    
+
+</aside>
+
+
+
+</section>
+
+
+
+    
+
+
+    
+            

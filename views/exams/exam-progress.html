@@ -19,7 +19,7 @@
 
     	<div class="bg-white border-all mt-10" ng-if="vm.loadStatus === false">
 
-    		<h3 class="t-center c-pink"> No progess available yet for this quiz </h3>  
+    		<h3 class="t-center c-pink"> No progress available yet for this quiz </h3>  
     		
     	</div>
 
@@ -41,6 +41,8 @@
                                     <th>Grade</th>
                                     <th>GPA</th>
                                     <th>Result</th>
+                                    <th>Remaining</th>
+                                    <th>End as</th>
                                     <th>Actions</th>
 
                                 </tr></thead>
@@ -78,6 +80,11 @@
 
                                     	
                                     </td>
+
+
+                                    <td>{{item.timeLeft}}</td>
+
+                                    <td>{{item.endState}}</td>
 
 
                                     <td>

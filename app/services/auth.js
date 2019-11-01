@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.service('auth', ['$http', 'API_URL',function($http, API_URL) {
+	.service('auth', ['$http', 'API_URL', '$cacheFactory', function($http, API_URL, $cacheFactory) {
 
 		self = this;
 
@@ -89,6 +89,46 @@ angular.module('io2v3')
         return found;
 
 		};
+
+
+
+		var cachedUrl = [
+		'https://api.iskillmetrics.com/quiz',
+		'https://api.iskillmetrics.com/questions',
+		'https://api.iskillmetrics.com/question-section-summary',
+		'https://api.iskillmetrics.com/batches',
+		'https://api.iskillmetrics.com/roles',
+		'https://api.iskillmetrics.com/users',
+		'https://api.iskillmetrics.com/permissions',
+		'https://api.iskillmetrics.com/role-permissions',
+		'https://api.iskillmetrics.com/cats',
+		'https://api.iskillmetrics.com/media'
+		];
+
+
+		this.clearAllhttpCache = function()
+		{
+
+			
+			var $httpDefaultCache = $cacheFactory.get('$http');
+
+
+			for(key in cachedUrl)
+			{
+				$httpDefaultCache.remove(cachedUrl[key]);
+
+				console.log('cleared : ' + cachedUrl[key])
+			}
+
+
+			return true;
+
+
+
+		};
+
+
+		
 
 		
 		

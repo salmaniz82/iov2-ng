@@ -9,6 +9,9 @@
 
 		$scope.baseUrl = API_URL;
 
+
+        $scope.masterData = null;
+
 		//$scope.lang = 'en';
 
         $scope.lang = langSer.init();
@@ -67,6 +70,9 @@
                 'cancel': ['Cancel', 'حذف'],
                 'edit': ['Edit', 'تصحيح'],
                 'remove': ['Remove', 'حذف'],
+                'next' : ['Next', 'تالي'],
+                'previous' : ['Previous', 'السابق'],
+
 
                 'back': ['Back', 'الى الخلف'],
 

@@ -216,10 +216,18 @@
             roles : ['admin', 'entity', 'contributor', 'content developer', 'students']
         })
 
+        .state('dash.profile', {
+
+            url : '/profile',
+            templateUrl : 'views/dash/profile.html',
+            controller : 'dashProfileCtrl as vm'
+
+        })
+
 
         .state('std.profile', {
 
-            url : '/profile',
+            url : '/account-details',
             template : '<h2>Profile Settings are not avaialable</h2>'
 
         })

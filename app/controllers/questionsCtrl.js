@@ -49,7 +49,7 @@
         vm.loading = null;
 
 
-        $http.get(API_URL+'questions').then(
+        $http.get(API_URL+'questions', {cache: false}).then(
 
         	function(res) {
 

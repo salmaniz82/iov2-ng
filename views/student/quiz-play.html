@@ -1,19 +1,16 @@
 <div class="quizPlayWrapper">
 
 
-    <div class="grid12Col" style="grid-template-rows: 40px;" ng-if="1 == 2">
+    <div class="grid12Col" style="grid-template-rows: 40px;" ng-if="1 == 1">
 
-        <!--
-    
-            <div class="gc2-full"><a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a></div>  
+        
 
-        -->
-
-        <div class="gc2-full align-self-center">
-                
-                <a href="/" class="brand">  <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/></a>
-            
+        <div class="gc-first-remain-quater align-self-center">        
+                <a href="#" class="brand static-link">  <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/></a>
         </div>  
+
+        <div class="gc-last-quater" style="align-self: end;
+    justify-self: end;"><a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a></div>  
 
         
 
@@ -23,38 +20,42 @@
 
     <div class="grid12Col bbr-light">
     
-        <div class="gc-first-remain-quater align-self-center">
-            <h2>{{vm.quizData.quiz[0].title | titleCase}}</h2>
+        <div class="gc-first-quater align-self-center">
+            <p class="t-left">
+                <span class="t-left newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</span>    
+                <span>Time Remaining </span>
+            </p>  
+
         </div>
 
-        <div class="gc-last-quater align-self-center">
-            <p class="t-right">
-
-                <span>Time Remaining : </span>
-                <span class="t-right newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</span>    
-            </p>  
+        <div class="gc-last-remain-quater align-self-center">
+            <h2 class="t-right">{{vm.quizData.quiz[0].title | titleCase}}</h2>           
         </div>  
-
     </div>
 
 
 
-    <div id="quizTimer" ng-if="1 == 2" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</div>
+    <div class="grid12Col mt-20 mb-20">
+
+        <div class="gc-first-remain-quater align-self-center">
+
+            <span ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques && !vm.startReviewWizard">Question : {{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}}</span>
+            <span ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques && vm.startReviewWizard && vm.questionIndex + 1 <= vm.markedQuestions.length">Marked Question :  {{vm.questionIndex + 1}} of {{vm.markedQuestions.length}}</span>
 
 
-    <div class="grid12Col">
+            <div class="queDesc noselect" style="padding-top: 10px; padding-bottom: 20px;">    
 
-                <div class="gc-first-remain-quater align-self-center" ng-if="!vm.startReviewWizard">
-                    <h3 ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques">Question {{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}}</h3>
-                </div>
+                <div ng-bind-html="vm.activeQuestion.queDesc"></div>
 
-                <div class="gc-first-remain-quater" ng-if="vm.startReviewWizard && !vm.reviewAll">
-                    <span ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length">Review Questions : {{vm.questionIndex + 1}} of {{vm.markedQuestions.length}}</span>
-                </div>
+            </div>
+            
+        </div>
 
-                
 
-                <div class="gc-last-quater align-self-end t-right mt-20 mb-20" ng-if="!vm.reviewAll">
+
+                <div class="gc-last-quater align-self-end t-right quizPlayMeta" ng-if="!vm.reviewAll">
+
+                    <p class="t-bold c-black">{{vm.activeQuestion.subDecipline}}</p>
 
                     <p ng-if="!vm.startReviewWizard" class="c-blue t-bold">Marked : {{vm.markedQuestions.length}}</p>
 
@@ -66,10 +67,20 @@
 
                     <div class="c-yellow t-bold" ng-if="vm.startReviewWizard">Next : {{vm.quizData.quiz[0].noques - vm.providedAnswers.length}} </div>
 
-                    
-                    
-                    
                 </div>
+
+
+                <div class="gc-last-quater align-self-end t-right mt-20 mb-20" ng-if="vm.reviewAll">
+
+                    <p class="c-grey t-bold">Marked : 0</p>
+
+                    <p class="c-green t-bold">Answered : {{vm.quizData.quiz[0].noques}}</p>
+        
+                    <div class="c-yellow t-bold" ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques">Reviewing : {{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}} </div>
+
+                </div>
+
+
             </div>
 
 
@@ -81,24 +92,7 @@
     <div ng-repeat="item in vm.quizData.questions" class="canvasItem">
 
 
-        <div  ng-if="$index == vm.questionIndex">
-
-
-            
-
-
-            <p class="t-right">Sub Decipline : {{item.subDecipline}}</p>
-
-            
-            <div class="queDesc noselect" style="padding-bottom: 10px; padding-top: 10px;">    
-
-                <span><p ng-bind-html="item.queDesc"></p>  
-
-            </div>
-
-
-
-            
+        <div ng-if="$index == vm.questionIndex">
 
             <div class="row" ng-if="item.media != undefined">
 
@@ -129,13 +123,13 @@
             
 
 
-            <div class="grid12Col">
+            <div class="grid12Col" style="margin-bottom: 20px; margin-top: 20px">
                     <div class="gc2-full">
                         <p class="txt-highlight">
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 1">Select 1 options from 4 givens choices </span>
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 2">Select 1 valid from 2 given choices</span>
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 3">Choose all possible valid choices which can satisify the answer</span>
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 4">Provide answer in text box</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 1">Select correct option answers</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 2">Select valid option</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 3">Choose all which applies</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 4">Provide your answer in text box</span>
                         </p>
                     </div>
             </div>
@@ -290,7 +284,7 @@
     <div id="controllingArea__main">
 
 
-        <div class="grid12Col" ng-if="!vm.startReviewWizard && !vm.isReviewEnabled() && vm.reviewAll == false">
+        <div class="grid12Col" ng-if="!vm.startReviewWizard && !vm.isReviewEnabled() && vm.reviewAll == false && vm.hasMore">
                 <div class="gc1-half">
                         <label class="checkbox pull-left kt-pulse">
                             <input type="checkbox" name="review" value="1" ng-model="vm.quizData.questions[vm.questionIndex].marked">
@@ -309,12 +303,34 @@
 
             <div class="g_nested gc-auto-half">
 
-                <div ng-if="vm.hasPre">
-                    <a href="#" class="btn btn-warning stdx" ng-click="vm.preQuestion($index)" > <span class="fas fa-chevron-left"> </span> Previous</a>
+                <div ng-if="vm.hasPre && vm.hasMore">
+                    <a href="#" class="btn btn-warning stdx" ng-click="vm.preQuestion($index)" > 
+
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-right"></span>
+
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-left"></span>
+
+                        <span lang="{{lang}}">{{gval.previous[langIndex()]}}</span>
+                       
+                        
+                        
+
+
+                    </a>
                 </div>
 
                 <div ng-if="(vm.hasMore || vm.reviewAll == true) && !vm.isLastQue">
-                    <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre}" ng-click="vm.nextQuestion($index)" >Next <span class="fas fa-chevron-right"> </span> </button>
+                    <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre == true}" ng-click="vm.nextQuestion($index)" >
+
+
+
+                        <span lang="{{lang}}">{{gval.next[langIndex()]}}</span>
+                       
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-right"></span>
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-left"></span>
+
+
+                     </button>
                 </div>
 
                 <div ng-if="vm.isLastQue">
@@ -335,7 +351,16 @@
 
             
             <div>
-                <a href="#" class="btn btn-success stdx pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">Next <span class="fas fa-chevron-right"> </span></a>
+                <a href="#" class="btn btn-success stdx pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">
+
+
+                    <span lang="{{lang}}">{{gval.next[langIndex()]}}</span>
+                       
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-right"></span>
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-left"></span>
+
+
+                </a>
             </div>
 
 

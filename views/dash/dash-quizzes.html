@@ -30,7 +30,7 @@
 
             <form class="floatable w-80">
 
-                <div class="field-wrap">
+                <div class="field-wrap hasflatCons">
                     <span class="icon-search quiztitlefilter"></span>
                     <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.titleFitler">
                     <label for="title-filter" class="placeholder">Filter By Title</label>
@@ -150,7 +150,7 @@
                                     <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
                                     <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
 
-                                    <li><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red icon-warning-sign"></span> <span class="c-red">Delete</span></a></li>
+                                    <li><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete</span></a></li>
 
 
                                 </ul>
@@ -182,7 +182,7 @@
                 <h3>Modify Date / Time </h3>        
             </div>
             <div class="gc2-half">
-                <i class="icon-remove pull-right" ng-click="vm.closeDateTimeModal()"></i>        
+                <i class="fas fa-times pull-right" ng-click="vm.closeDateTimeModal()"></i>
             </div>
 
         </div>
@@ -255,7 +255,7 @@
         
         <span><span class="icon-exclamation c-red"> </span> <span>Quiz Delete Confirmation</span>
 
-        <i class="icon-remove pull-right" ng-click="vm.dissmissDeleteModal()"></i>
+        <i class="fas fa-times pull-right" ng-click="vm.dissmissDeleteModal()"></i>
 
       </div>
       <div class="cst-modal-body" style="padding-top: 0px">
@@ -329,7 +329,7 @@
 
             <div class="pull-right">
                 <button class="btn btn-danger" ng-if="vm.deleteModalItem.proceedToX" ng-click="vm.removeQuiz()">
-                    <span class="icon-warning-sign"></span>
+                    <span class="far fa-exclamation-triangle"></span>
                 Delete</button>
             </div>
 

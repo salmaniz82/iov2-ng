@@ -109,6 +109,8 @@
                 startDateTime: vm.nQuiz.startDateTime,
                 endDateTime: vm.nQuiz.endDateTime,
                 noques: vm.nQuiz.noQues,
+                code: vm.nQuiz.code,
+                venue: vm.nQuiz.venue,
 
                 threshold: vm.nQuiz.threshold,
                 dls : vm.nQuiz.dls,

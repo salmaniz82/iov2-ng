@@ -9,6 +9,25 @@
 
         vm.message = {};
 
+
+
+        vm.loadMaster = function()
+        {
+
+
+          
+          $http.get(API_URL+'masterdatalist').then(function(res) {}, function(res){});
+
+
+
+
+        };
+
+
+
+
+
+
         vm.handleMessagePost = function()
         {
 

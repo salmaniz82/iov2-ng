@@ -161,6 +161,22 @@
 				<form name="particulars" id="particulars" class="floatable" novalidate>
 
 
+					<div class="grid12Col gap10">
+
+						<div class="gc1-half">
+							<div class="field-wrap">
+            					<input type="text" name="code" class="float-field w-100" ng-model="vm.nQuiz.code" required ng-maxlength="6">
+            					<label class="placeholder">Quiz Code</label>
+
+            					<span ng-show="particulars.code.$touched && particulars.code.$error.required" class="float-error">Quiz Code is required</span>
+            					
+            					<span ng-show="particulars.code.$touched && particulars.code.$error.maxlength" class="float-error">Minimum 6 characters required</span>
+          					</div>
+						</div>		
+						
+					</div>
+
+
                     <div class="field-wrap">
                          <input type="text" name="title" class="float-field w-100" ng-model="vm.nQuiz.title" ng-minlength="6" required>
                          <label class="placeholder">Quiz Title</label>
@@ -169,47 +185,67 @@
                     </div>
 
 
-          <div class="field-wrap">
-            <input type="text" name="duration" class="float-field w-100" ng-model="vm.nQuiz.duration" required ng-pattern="/^[0-9]*$/" ng-maxlength="3">
-            <label class="placeholder">Durations Minutes</label>
+                    <div class="grid12Col gap10">
 
-            <span ng-show="particulars.duration.$touched && particulars.duration.$error.required" class="float-error">Duration is missing</span>
-            <span ng-show="particulars.duration.$touched && particulars.duration.$error.pattern" class="float-error">Enter Digits only</span>
-            <span ng-show="particulars.duration.$touched && particulars.duration.$error.maxlength" class="float-error">Max. 3 characters allowed</span>
 
-          </div>
+                    	<div class="gc1-half">
 
-          <div class="field-wrap">
-            <input type="text" name="noques" class="float-field w-100" ng-model="vm.nQuiz.noQues" required ng-pattern="/^[0-9]*$/" ng-maxlength="3">
-            <label class="placeholder">Questions to Attempt</label>
-            <span ng-show="particulars.noques.$touched && particulars.noques.$error.required" class="float-error">Missing Questions Attempts</span>
-            <span ng-show="particulars.noques.$touched && particulars.noques.$error.pattern" class="float-error">Enter Digits only</span>
-            <span ng-show="particulars.noques.$touched && particulars.noques.$error.maxlength" class="float-error">Max. 3 characters allowed</span>
-          </div>
+						
+							       <div class="field-wrap">
+            					<input type="number" name="duration" class="float-field w-100" ng-model="vm.nQuiz.duration" required ng-pattern="/^[0-9]*$/" ng-maxlength="3" max="120">
+            					<label class="placeholder">Durations Minutes</label>
+
+            					<span ng-show="particulars.duration.$touched && particulars.duration.$error.required" class="float-error">Duration is missing</span>
+            					<span ng-show="particulars.duration.$touched && particulars.duration.$error.pattern" class="float-error">Enter Digits only</span>
+            					<span ng-show="particulars.duration.$touched && particulars.duration.$error.maxlength" class="float-error">Max. 3 characters allowed</span>
+            					<span ng-show="particulars.duration.$touched && particulars.duration.$error.max" class="float-error">Duration 120mins is max allowowed</span>
+          					</div>	
+                    	
+                    	</div>
+                    	<div class="gc2-half">
+
+                    		<div class="field-wrap">
+            				<input type="text" name="noques" class="float-field w-100" ng-model="vm.nQuiz.noQues" required ng-pattern="/^[0-9]*$/" ng-maxlength="3"
+
+            				ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)"
+
+            				>
+            				<label class="placeholder">Questions to Attempt</label>
+            				<span ng-show="particulars.noques.$touched && particulars.noques.$error.required" class="float-error">Missing Questions Attempts</span>
+            				<span ng-show="particulars.noques.$touched && particulars.noques.$error.pattern" class="float-error">Enter Digits only</span>
+            				<span ng-show="particulars.noques.$touched && particulars.noques.$error.maxlength" class="float-error">Max. 3 characters allowed</span>
+          					</div>
+
+                    	</div>
+                    </div>
+
+
+          
+
+          
 
 
           <div class="grid12Col gap10" ng-hide="particulars.noques.$invalid">
 
           		<div class="gc1-half">
 
-          			<label class="placeholder static">Limit Max Allocation</label>
+          		<label class="placeholder static">Limit Max Allocation</label>
 
-          		<select class="w-100 limitWizard" name="maxAllocation" ng-init="vm.nQuiz.maxAllocation = '-- Select X Allocation'" ng-model="vm.nQuiz.maxAllocation" required
-
-          		ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)" ng-pattern="/^[0-9]{1,10}$/"
+          		<select class="w-100 limitWizard" name="maxAllocation" ng-model="vm.nQuiz.maxAllocation" required
+	          		ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)" ng-pattern="/^[0-9]{1,10}$/"
 
           		>
-                    <option ng-selected="vm.nUser.role_id == '-- Select X Allocation'" ng-disabled="1 == 1">-- Select X Allocation</option>
-                   <option value="1">1x</option>
-                   <option value="2">2x</option>
-                   <option value="3">3x</option>
-                   <option value="4">4x</option>
-                   <option value="5">5x</option>
-                   <option value="6">6x</option>
-                   <option value="7">7x</option>
-                   <option value="8">8x</option>
-                   <option value="9">9x</option>
-                   <option value="10">10x</option>
+                    <option ng-disabled="1 == 1">-- Select X Allocation</option>
+                   <option value="1" ng-selected="1 == vm.nQuiz.maxAllocation">1x</option>
+                   <option value="2" ng-selected="2 == vm.nQuiz.maxAllocation">2x</option>
+                   <option value="3" ng-selected="3 == vm.nQuiz.maxAllocation">3x</option>
+                   <option value="4" ng-selected="4 == vm.nQuiz.maxAllocation">4x</option>
+                   <option value="5" ng-selected="5 == vm.nQuiz.maxAllocation">5x</option>
+                   <option value="6" ng-selected="6 == vm.nQuiz.maxAllocation">6x</option>
+                   <option value="7" ng-selected="7 == vm.nQuiz.maxAllocation">7x</option>
+                   <option value="8" ng-selected="8 == vm.nQuiz.maxAllocation">8x</option>
+                   <option value="9" ng-selected="9 == vm.nQuiz.maxAllocation">9x</option>
+                   <option value="10" ng-selected="10 == vm.nQuiz.maxAllocation">10x</option>
             </select>
           		
           	</div>
@@ -224,7 +260,7 @@
           		<div class="g_nested gc-auto-half">
 
           			<div class="">
-          				<p class="xAllocate text-center">{{vm.maxAllocated}}</p>
+          				<p class="xAllocate text-center" ng-if="vm.maxAllocated > 0">{{vm.maxAllocated}} : <small> Max Questions can be allocated</small></p>
           			</div>
 
           			<div class="">
@@ -247,21 +283,59 @@
 
       </div>
 
-          <div class="field-wrap">
-            <input type="text" name="maxscore" class="float-field w-100" ng-model="vm.nQuiz.maxScore" required ng-pattern="/^[0-9]*$/" ng-maxlength="4">
-            <label class="placeholder">Maxium Score</label>
-            <span ng-show="particulars.maxscore.$touched && particulars.maxscore.$error.required" class="float-error">Max. Score Missing</span>
-            <span ng-show="particulars.maxscore.$touched && particulars.maxscore.$error.pattern" class="float-error">Enter Digits only</span>
-            <span ng-show="particulars.maxscore.$touched && particulars.maxscore.$error.maxlength" class="float-error">Max. 4 characters allowed</span>
-          </div>
 
-          <div class="field-wrap">
+      	<div class="grid12Col gap10">
+
+
+      		<div class="gc1-half">
+
+
+      			<div class="field-wrap">
+            	<input type="text" name="maxscore" class="float-field w-100" ng-model="vm.nQuiz.maxScore" required ng-pattern="/^[0-9]*$/" ng-maxlength="4">
+            	<label class="placeholder">Maxium Score</label>
+            	<span ng-show="particulars.maxscore.$touched && particulars.maxscore.$error.required" class="float-error">Max. Score Missing</span>
+            	<span ng-show="particulars.maxscore.$touched && particulars.maxscore.$error.pattern" class="float-error">Enter Digits only</span>
+            	<span ng-show="particulars.maxscore.$touched && particulars.maxscore.$error.maxlength" class="float-error">Max. 4 characters allowed</span>
+          </div>
+      			
+      		</div>
+
+
+      		<div class="gc2-half">
+
+      		<div class="field-wrap">
             <input type="text" name="minscore" class="float-field w-100" ng-model="vm.nQuiz.minScore" required ng-pattern="/^[0-9]*$/" ng-maxlength="3">
             <label class="placeholder">Passing Score</label>
             <span ng-show="particulars.minscore.$touched && particulars.minscore.$error.required" class="float-error">Passing Score is mandatory</span>
             <span ng-show="particulars.minscore.$touched && particulars.minscore.$error.pattern" class="float-error">Enter Digits only</span>
             <span ng-show="particulars.minscore.$touched && particulars.minscore.$error.maxlength" class="float-error">Max. 3 characters allowed</span>
           </div>
+
+      			
+      		</div>
+      		
+      	</div>
+
+
+        <div class="grid12Col gap10">
+
+          <div class="gc2-full">
+
+            <div class="field-wrap">
+              <input type="text" name="venue" class="float-field w-100" ng-model="vm.nQuiz.venue">
+              <label class="placeholder">Venue <sup class="c-grey"> (optional)</sup></label>
+          </div>
+            
+          </div>
+          
+        </div>
+
+
+
+
+          
+
+          
 
           
           <div class="row-fluid" style="padding-top: 30px;">
@@ -718,7 +792,7 @@
 	<div class="w-50 hidden">
 		
 		<div class="btn btn-success std">Add New</div>
-		<div class="btn btn-info std"><span class="icon icon-save"></span>Save</div>
+		<div class="btn btn-info std"><span class="fal fa-save"></span>Save</div>
 		<div class="btn btn-twitter std">Update</div>
 		<div class="btn btn-danger std">Edit</div>
 	</div>

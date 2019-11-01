@@ -14,7 +14,7 @@
         var url = API_URL+'question-section-summary';
 
 
-        $http.get(url).then(function(res) {
+        $http.get(url, {cache: false}).then(function(res) {
 
 
         	vm.dataList = res.data.queSum;

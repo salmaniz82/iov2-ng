@@ -1,0 +1,186 @@
+<section class="hbox">
+
+
+
+	<aside ng-if="vm.loadingStatus != true">
+
+		<div ng-if="vm.loadingStatus === null" class="bg-white border-all mb-20" style="padding: 10px;">
+
+            <h3 class="t-center">Loading profile data</h3>
+
+        </div>  
+
+
+        <div ng-if="vm.loadingStatus === false" class="bg-white border-all mb-20" style="padding: 10px;">
+
+            <h3 class="t-center c-pink">No existing profile information found please add now</h3>
+
+            <div class="dfx-center-xy">
+
+                    <div class="btn btn-success">Add Profile</div>
+
+            </div>
+
+        </div>  
+		
+	</aside>
+
+
+
+	<aside class="bg-white border-all" style="padding: 10px">
+
+
+		<div class="grid12Col gap10">
+			<div class="gc1-half">
+				<div dropzone="dropzoneConfig" style="width: 200px"></div>
+			</div>
+
+
+			<div class="gc2-half">
+				<img ng-src="{{vm.logoUrl}}">
+			</div>
+
+
+	</div>
+
+
+		
+
+
+		<form name="profile" class="floatable" novalidate>
+
+
+		<div class="grid12Col gap10">
+
+
+			<div class="gc1-half">
+
+			<div class="field-wrap">
+				<input type="text" class="float-field w-100" ng-model="vm.profileData.companyTitle" required ng-change="vm.sayHello(vm.profileData.companyTitle)">
+				<label class="placeholder">Brand Title</label>
+			</div>
+				
+			</div>
+
+
+			<div class="gc2-half">
+
+				<div class="field-wrap">
+					<input type="text" class="float-field w-100" ng-model="vm.profileData.slug" ng-disabled="vm.loadingStatus ===  true" required>
+					<label class="placeholder" style="top: 13px">Slug Url</label>
+				</div>
+
+			</div>
+
+
+
+			<div class="gc1-half">
+
+			<div class="field-wrap">
+				<input type="text" class="float-field w-100" ng-model="vm.profileData.url" required>
+				<label class="placeholder">Url</label>
+			</div>
+				
+			</div>
+
+
+			<div class="gc2-half">
+
+				<div class="field-wrap">
+					<input type="email" class="float-field w-100" ng-model="vm.profileData.email" required>
+					<label class="placeholder">Email</label>
+				</div>
+
+			</div>
+
+
+			<div class="gc1-half">
+
+			<div class="field-wrap">
+				<input type="text" class="float-field w-100" ng-model="vm.profileData.contactPerson" required>
+				<label class="placeholder">Contact Person</label>
+			</div>
+				
+			</div>
+
+
+			<div class="gc2-half">
+
+				<div class="field-wrap">
+					<input type="text" class="float-field w-100" ng-model="vm.profileData.address" required>
+					<label class="placeholder">Address</label>
+				</div>
+
+			</div>
+
+
+			<div class="gc1-half">
+
+			<div class="field-wrap">
+				<input type="text" class="float-field w-100" ng-model="vm.profileData.mobile" required>
+				<label class="placeholder">Mobile</label>
+			</div>
+				
+			</div>
+
+
+			<div class="gc2-half">
+
+				<div class="field-wrap">
+					<input type="text" class="float-field w-100" ng-model="vm.profileData.landline" required>
+					<label class="placeholder">Landline</label>
+				</div>
+
+			</div>
+
+			<div class="gc1-half">
+	
+			</div>
+
+
+			<div class="gc2-half">
+
+
+				<div class="pull-left w-45">
+
+					<button ng-if="vm.loadingStatus ===  true" type="submit" class="btn btn-success btn-block" ng-click="vm.updateProfile()">Update</button>
+					<button ng-if="vm.loadingStatus ===  false" type="submit" class="btn btn-success btn-block" ng-click="vm.saveProfile()">Save</button>
+					
+				</div>
+
+				<div class="pull-right w-45">
+
+
+					
+				</div>
+
+				
+
+			</div>
+
+
+
+
+
+			
+		</div>
+
+
+		</form>
+
+
+
+		
+	</aside>
+
+
+	
+
+
+
+
+
+
+
+	
+</section>

@@ -36,6 +36,9 @@
         vm.userRole = auth.getUser()['role'];
 
 
+        vm.changePassword = false;
+
+
 
 
         vm.userBindCheck = function()
@@ -72,9 +75,27 @@
         {
 
            vm.generatedPassword = $scope.$parent.base.generatePassword();
-
            vm.nUser.password =  vm.generatedPassword;
            vm.nUser.passwordConfirm =  vm.generatedPassword;
+
+        };
+
+
+        vm.activateAddUser = function()
+        {
+
+            vm.generatedPassword = "";
+            vm.nUser = "";
+            vm.addUser = true;
+
+        };
+
+        vm.deactivateAddUser = function()
+        {
+
+            vm.generatedPassword = "";
+            vm.nUser = "";
+            vm.addUser = false;            
 
         };
 
@@ -241,6 +262,28 @@
 
 		};
 
+        vm.cpGenerateFromRandom = function()
+        {
+            vm.cpGenerated = $scope.$parent.base.generatePassword();
+            vm.modalData.password =  vm.cpGenerated;
+            vm.modalData.cpassword =  vm.cpGenerated;
+
+        };
+
+
+
+        vm.deactivateChangePassword = function()
+        {
+
+            vm.modalOpen = false;
+            vm.modalData.password = "";
+            vm.modalData.cpassword = "";
+            vm.modalData = null;
+
+            vm.cpGenerated = false;
+
+        };
+
 
         vm.udpatePassword = function()
         {
@@ -255,9 +298,6 @@
             function successPasswordChange(res)
             {
 
-                vm.modalOpen = false;
-
-                vm.modalData = {};
                 
                 var notify = {
                         type: 'success',
@@ -266,6 +306,9 @@
                         timeout: 3000 //time in ms
                     };
                     $scope.$emit('notify', notify);
+
+
+                    vm.deactivateChangePassword();
 
             }
 
@@ -316,6 +359,7 @@
         $http({
         	method: 'GET',
         	url : API_URL+'users',
+            cache: false
         })
         .then(function(res){
 
@@ -574,10 +618,6 @@
         {
 
 
-
-            
-
-
             $http({
 
                 url : API_URL+'users/'+itemId,
@@ -630,6 +670,7 @@
 
 
             });
+
 
         };
 

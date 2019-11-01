@@ -6,8 +6,15 @@
         var vm = this;
 
 
+        vm.timeexpiration = false;
+
+
+
+
         vm.quizData = quizPlayData.data;
 
+
+        /*
 
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
         {
@@ -15,6 +22,22 @@
           return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
 
         }
+
+        */
+
+
+        const channel = new BroadcastChannel('sw-idxsaved');        
+
+
+
+
+        vm.closeCurrentWindow = function() {
+
+          
+          window.close();
+            
+
+        };
 
 
 
@@ -54,7 +77,7 @@
 
         vm.quiz.noques;
 
-        vm.switchFrequency = 2;
+        vm.switchFrequency = 1;
 
         vm.mainNext = false;
 
@@ -791,15 +814,15 @@
 
             vm.endProcessActivated = true;
 
+            vm.buildPayloadSanitizeAnswers();
+
+            vm.save();
+
+
             if(localStorage.hasOwnProperty('lastStoredDurationSeconds'))
             {
                localStorage.removeItem('lastStoredDurationSeconds');         
             }
-
-
-            vm.buildPayloadSanitizeAnswers();
-
-            vm.save();
 
 
          };
@@ -853,6 +876,26 @@
         }
 
 
+        vm.triggerBackgroundSync = function(payload)
+        {
+
+            var swPost = {
+                 'form_data': payload
+              };
+      
+            navigator.serviceWorker.controller.postMessage(swPost);
+
+            channel.addEventListener('message', event => {
+
+            if(event.data.status == 1 && window.cachedRegisterSW != undefined)
+            {
+                 window.cachedRegisterSW.sync.register('exam');
+            }
+
+            });
+
+        };
+
 
         vm.save = function()
         {
@@ -862,34 +905,48 @@
             $timeout.cancel(vm.quizTimeInterval);
 
 
-            $http({
-                url : answerSaveUrl,
-                method : 'POST',
-                data : {
-                    'answers' : vm.payloadAnswers
-                }
-            }).then(
+
+            var timeLeft = localStorage.getItem('lastStoredDurationSeconds');
+
+            var endState = (vm.timeexpiration) ? 'timeout' : 'explicit';
+
+
+            vm.quizMeta = {"endState" : endState,  "timeLeft" : timeLeft};
+
+            
+
+
+            vm.idbPayload = {
+            "url" : answerSaveUrl,
+            "method": 'POST',
+            "data" : {'answers' : vm.payloadAnswers, 'quizMeta' : vm.quizMeta}
+            };
+
+
+            $http(vm.idbPayload).then(
                 function(res){
-                 
-                    
+                                    
                     /*
                     $state.go('std.exams');
                     */
 
-                    
-
-                    
-
-                    window.close();
-
-
+                    vm.closeCurrentWindow();
 
 
                 }, 
 
                 function(res){
 
-                    
+                  if(res.status < 1)
+                  {
+
+                    vm.idbPayload.data.quizMeta.endState = 'Network Lost';
+                    vm.triggerBackgroundSync(vm.idbPayload);
+
+                  }
+
+                    vm.closeCurrentWindow();  
+
 
                 });
 
@@ -981,6 +1038,8 @@
                
 
                 if (diff <= 0) {
+
+                  vm.timeexpiration = true;
 
                   vm.manageTimeOutSubmission();
 

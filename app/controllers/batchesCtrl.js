@@ -195,8 +195,9 @@
 
 
         $http({
+            url : API_URL+'batches',
         	method: 'GET',
-        	url : API_URL+'batches',
+        	cache: false
         })
         .then(function(res){
 

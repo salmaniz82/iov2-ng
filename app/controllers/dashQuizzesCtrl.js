@@ -48,7 +48,8 @@
         	$http({
 
         		url : url,
-        		method : 'GET'
+        		method : 'GET',
+                cache: false
 
         	}).then(success, error);
 

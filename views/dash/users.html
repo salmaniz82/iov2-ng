@@ -12,7 +12,7 @@
 
         <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
             
-        <div class="btn btn-success btn-block" ng-click="vm.addUser = true"> <span class="fas fa-plus"></span> User </div>
+        <div class="btn btn-success btn-block" ng-click="vm.activateAddUser()"> <span class="fas fa-plus"></span> User </div>
 
         </div>
 
@@ -92,7 +92,7 @@
                                     <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
                                     <li><a href="#" ng-click="vm.loadPermissions(item.id)">Permissions</a></li>
                                     <li><a href="#" ng-click="vm.resetUserPermissions(item.id, item.role_id)">Reset Permissions</a></li>
-                                    <li permissions="['user-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red icon-warning-sign"></span> <span class="c-red">Delete User</span></a></li>
+                                    <li permissions="['user-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete User</span></a></li>
                                     
                                 </ul>
                             </div>
@@ -111,21 +111,83 @@
 
     <div class="cst-modal-container" ng-if="vm.modalOpen">
     <div class="cst-modal-window">
-      <div class="cst-modal-header">
-        <span style="font-weight: 600">Change Password</span>
+      <div class="cst-modal-header grid12Col">
 
-        <i class="icon-remove pull-right" ng-click="vm.modalOpen = false"></i>
+        <div class="gc1-half">
+            <h3 class="c-grey">Change Password</h3>  
+        </div>
+        
+        <div class="gc2-half">
+          <i class="fal fa-times fa-2x pull-right c-grey" ng-click="vm.deactivateChangePassword()"></i> 
+        </div>
 
       </div>
       <div class="cst-modal-body">
 
-        <p>Email : {{vm.modalData.email}} </p>
-        <div> <input type="password" name="password" placeholder="New Password" ng-model="vm.modalData.password"></div>
-        <div> <input type="password" name="password" placeholder="Confirm Password" ng-model="vm.modalData.cpassword"></div>
+
+        <!--
+        <p>Email : {{vm.modalData.email}} </p>       
+      -->
         
-        <div>
-        <button class="btn btn-mini btn-success" ng-click="vm.udpatePassword()">Change</button>
-        <button class="btn btn-mini btn-danger" ng-click="vm.modalOpen = false">Cancle</button>    
+          <form class="floatable" name="changepassword" novalidate>
+
+        
+        <div class="grid12Col gap10">
+
+
+
+          <div class="gc2-full">
+
+            <span ng-show="changepassword.passwordconfirm.$touched && changepassword.$error.passwordVerify" class="c-red">Confirm password unmatched</span>
+
+          </div>
+
+
+          <div class="gc-1-6"> 
+            <div class="field-wrap">
+                <input type="password" name="password" class="float-field w-100" ng-model="vm.modalData.password" ng-minlength="6" password-verify="{{vm.modalData.cpassword}}" required>  
+                <label class="placeholder">New Password</label>
+
+
+
+            </div>
+            
+          </div>
+          <div class="gc-7-12"> 
+
+            <div class="field-wrap">
+                <input type="password" name="passwordconfirm"  class="float-field w-100" ng-model="vm.modalData.cpassword" required ng-minlength="6" password-verify="{{vm.modalData.password}}">  
+                <label class="placeholder">Confirm Password</label>
+
+                
+            </div>
+
+          </div>
+
+
+          <div class="gc-1-6">
+            <div class="btn btn-default btn-mini" ng-click="vm.cpGenerateFromRandom()">Generate Password</div>
+          </div>
+
+          <div class="gc-7-12" ng-if="vm.cpGenerated">
+
+            <div class="gNested w-50 pull-left">
+              <span class="c-pink">currently used</span>
+            </div>
+
+            <div class="gNested w-50 pull-right">
+                {{vm.cpGenerated}}  
+            </div>
+
+          </div>
+
+
+
+
+          <button ng-if="changepassword.$valid" class="gc-1-6  btn btn-success" ng-click="vm.udpatePassword()">Change</button>
+          <button class="gc-7-12  btn btn-danger" ng-click="vm.deactivateChangePassword()">Cancle</button>  
+
+          </form>  
         </div>
         
       </div>
@@ -144,7 +206,7 @@
     <div class="cst-modal-window large">
       <div class="cst-modal-header">
         <span style="font-weight: 600">Permissions : {{vm.modalData.name}} </span>
-        <i class="icon-remove icon-2x pull-right" ng-click="vm.permssionModal = false"></i>
+        <i class="fas fa-times icon-2x pull-right" ng-click="vm.permssionModal = false"></i>
       </div>
       <div class="cst-modal-body" style="max-height: 500px; overflow: auto">
 
@@ -229,7 +291,7 @@
         
         <span><span class="icon-exclamation c-red"> </span> <span>Delete Confirmation</span>
 
-        <i class="icon-remove pull-right" ng-click="vm.closeDeleteModal()"></i>
+        <i class="fas fa-times pull-right" ng-click="vm.closeDeleteModal()"></i>
 
       </div>
       <div class="cst-modal-body">
@@ -252,7 +314,7 @@
 
             <div class="pull-right">
                 <button class="btn btn-danger" ng-if="vm.xUSer.proceedToX" ng-click="vm.deleteUser(itemId = vm.xUSer.id)">
-                    <span class="icon-warning-sign"></span>
+                    <span class="far fa-exclamation-triangle"></span>
                 Delete</button>
             </div>
 
@@ -383,11 +445,11 @@
           <div class="row-fluid">
 
                     <div class="span6">
-                        <div class="btn btn-warning btn-block" ng-click="vm.addUser = false"><span class="icon-remove"></span> Cancle</div>
+                        <div class="btn btn-warning btn-block" ng-click="vm.deactivateAddUser()"><span class="fas fa-times"></span> Cancle</div>
                     </div>   
 
                     <div class="span6">
-                        <button type="submit" ng-hide="registerall.$invalid" class="btn btn-twitter btn-block" ng-click="vm.addNewUser()"> <span class="icon-save"></span> Save </div>
+                        <button type="submit" ng-hide="registerall.$invalid" class="btn btn-twitter btn-block" ng-click="vm.addNewUser()"> <span class="fal fa-save"></span> Save </div>
                     </div>   
                    
                 </div>
@@ -402,8 +464,6 @@
         </section>
         
     </aside>
-
-    
 
 
 

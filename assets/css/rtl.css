@@ -1,7 +1,7 @@
 /*
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 body {
-    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif;
+    font-family: 'Droid Arabic Kufi', sans-serif;
     
 }
 */
@@ -17,11 +17,9 @@ body {
 
 
 
-
 body {
-    
+     
     font-family: 'AlJazeraRegular', sans-serif;
-    
 }
 
 
@@ -29,8 +27,10 @@ body {
 
 
 
+
+
 [lang="ar"].dak {
-    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif;
+    font-family: 'Droid Arabic Kufi', sans-serif;
 }
 
 body {text-align: right;}
@@ -81,11 +81,38 @@ h1.c-profile, h2.c-profile, h3.c-profile, h4.c-profile, h5.c-profile, h6.c-profi
     margin-left: 20px;
 }
 
-h4.que p span {
-    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif !important;
+
+.queDesc p {
+    font-size: 18px;
+    font-family: 'AlJazeraRegular', sans-serif;
+}
+
+.btn {
+
+    font-family: 'AlJazeraRegular', sans-serif;
+
 }
 
 
 p, small, .small {
-    font-family: 'Droid Arabic Kufi', Tahoma, Geneva, sans-serif !important
+    font-family: 'Droid Arabic Kufi', sans-serif !important
+}
+
+
+
+.t-right {
+    text-align: left;
+}
+
+.t-left {
+    text-align: right;
+}
+
+
+.pull-right {
+    float: left;
+}
+
+.pull-left {
+    float: right;
 }

@@ -73,7 +73,7 @@
         vm.fetchMediaList = function()
         {
 
-            $http.get(API_URL+'media').then(
+            $http.get(API_URL+'media', {cache: false}).then(
             function(res) {
 
                 vm.loadingStatus = true;
@@ -97,7 +97,7 @@
         vm.fetchCategoryFlatRoot = function()
         {
 
-            $http.get(API_URL+'category-flat-root').then(
+            $http.get(API_URL+'category-flat-root', {cache: true}).then(
 
             function(res) {
                 vm.loadingStatus = true;

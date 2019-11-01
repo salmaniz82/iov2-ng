@@ -19,6 +19,50 @@
         }
 
 
+        vm.selectedCategory = 'Parent';
+
+
+        vm.newParentCategory = function(currentSelection)
+        {
+
+            console.log(currentSelection);
+
+            if(currentSelection != 0 && currentSelection != 'Parent')
+            {
+
+                var idx = $scope.$parent.base.getIndex(vm.dataList, 'category', currentSelection);
+                vm.ncat.pcat_id = vm.dataList[idx].id;
+                vm.selectedCategory = vm.dataList[idx].category;
+                console.log(vm.ncat.pcat_id);
+
+            }
+
+            else {
+                vm.ncat.pcat_id = 'root';
+                vm.selectedCategory = 'Parent';
+            }
+            
+
+        };
+
+
+
+
+        vm.loading = null;
+
+
+
+
+        vm.deactivateAddNew = function()
+        {
+            
+            vm.pageMode = 'list';
+
+            vm.ncat = null;
+
+        };
+
+
         console.log('working from categories controller');
 
         var url = API_URL+'cats';
@@ -27,20 +71,32 @@
         vm.fethList = function()
         {
 
+            vm.loading = 'loading';
+
             $http({
             method: 'GET',
             url : url,
+            cache: false
         })
         .then(function(res){
 
+            
             vm.dataList = res.data.cats;
 
+
+            vm.loading = true;
 
 
         }, function(res){
 
+            if(res.status < 1)
+            {
+                vm.loading = false;
+            }
 
-            console.log(res);
+            vm.loading = false;
+
+            vm.dataList = false;
 
         });
 
@@ -52,10 +108,14 @@
         {
 
 
+             
+
+
             var url =  API_URL+'cats';
+            
             if(!parseInt(vm.ncat.pcat_id))
             {
-                delete vm.ncat.pcat_id;
+               delete vm.ncat.pcat_id;
             }
 
             $http({
@@ -68,7 +128,9 @@
 
                 if(res.status == 200)
                 {
-                    vm.dataList.push(res.data.cat[0]);
+
+                 vm.dataList.push(res.data.cat[0]);
+
                 }
 
                 var notify = {
@@ -78,10 +140,11 @@
                         timeout: 3000 //time in ms
                     };
                     $scope.$emit('notify', notify);
-                
-                
 
-                vm.pageMode = 'list';
+
+                    vm.ncat.name = "";
+                
+                
 
 
             }, function(res){

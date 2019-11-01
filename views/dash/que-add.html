@@ -46,7 +46,7 @@
                     <div class="row pb-20">
 
                         <div class="span8 bbr-light">
-                            <h4 class="c-green">Categorization
+                            <h4 class="c-green">Category
 
                              <span ng-if="vm.bindTopCategory" class="c-grey" style="font-size: 14px"> &#8211; {{vm.topPreSelectCategory}}</span>   
                             </h4>    
@@ -301,7 +301,7 @@
                                         <td>{{media.filepathurl}}</td>
                                         <td>{{media.size}}</td>
                                         <td>
-                                            <a href="#" class="rmbtn" ng-click="vm.removeMedia($index)"><span class="c-red icon-remove-circle icon-2x vam"></span></a>
+                                            <a href="#" class="rmbtn" ng-click="vm.removeMedia($index)"><span class="c-red fas fa-times-circle icon-2x vam"></span></a>
                                         </td>
 
                                         
@@ -521,7 +521,7 @@
       <div class="cst-modal-header">
         <span style="font-weight: 600">Media Library</span>
 
-        <i class="icon-remove pull-right" ng-click="vm.closeLibrary()"></i>
+        <i class="fas fa-times pull-right" ng-click="vm.closeLibrary()"></i>
 
       </div>
       <div class="cst-modal-body" style="max-height: 500px; overflow: auto">
@@ -584,7 +584,7 @@
                                 
                                 <div ng-if="vm.mediaAddedTolist(item.id)">
                                     
-                                    <a href="#" class="rmbtn" ng-click="vm.unlinkFromLibrary(item.id)"><span class="c-red icon-remove-circle vam"></span> Remove</a>
+                                    <a href="#" class="rmbtn" ng-click="vm.unlinkFromLibrary(item.id)"><span class="c-red fas fa-times-circle vam"></span> Remove</a>
 
                                 </div>
 

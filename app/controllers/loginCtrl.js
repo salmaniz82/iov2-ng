@@ -4,11 +4,18 @@
 	.controller('loginCtrl',['$state', 'auth', 'API_URL', '$scope', function ($state, auth, API_URL, $scope){
 
 
+
+		auth.clearAllhttpCache();
+
+
 		
 		var vm = this;
 
 		vm.loginStatus = null;
 		vm.wrongCreds = null;
+
+
+
 
 
 		if(localStorage.getItem('auth_token'))

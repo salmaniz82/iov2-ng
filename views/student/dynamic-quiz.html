@@ -1,15 +1,18 @@
 <div class="quizPlayWrapper">
 
-    <div class="grid12Col" style="grid-template-rows: 40px;" ng-if="1 == 2">
-        <!--   
-            <div class="gc2-full"><a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a></div>  
-        -->
+    <div class="grid12Col" style="grid-template-rows: 40px;" ng-if="1 == 1">
+           
+            
+        
 
-        <div class="gc2-full align-self-center">
+        <div class="gc-first-remain-quater align-self-center">
                 
-                <a href="/" class="brand">  <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/></a>
+                <a href="#" class="brand static-link">  <img alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="200" height="88"/></a>
             
         </div>  
+
+        <div class="gc-last-quater" style="align-self: end;
+    justify-self: end;"><a href="#" role="button" ng-click="switchLang()">{{langLabel()}}</a></div>  
 
     </div>    
 
@@ -17,16 +20,17 @@
 
     <div class="grid12Col bbr-light">
     
-        <div class="gc-first-remain-quater align-self-center">
-            <h2> {{vm.quiz.title}} </h2>
+        <div class="gc-first-quater align-self-center">
+
+            <p class="t-left">
+                <span class="t-left newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</span>    
+                <span>:Time Remaining</span>
+            </p>  
+            
         </div>
 
-        <div class="gc-last-quater align-self-center">
-            <p class="t-right">
-
-                <span>Time Remaining : </span>
-                <span class="t-right newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</span>    
-            </p>  
+        <div class="gc-last-remain-quater align-self-center">
+            <h2 class="t-right">{{vm.quiz.title}}</h2>
         </div>  
 
     </div>
@@ -36,7 +40,23 @@
 
     <div class="grid12Col" ng-if="!vm.endActivated || vm.reviewAll && !vm.endProcessActivated">
                 <div class="gc-first-remain-quater align-self-center">
-                    <h3>Question {{vm.questionIndex + 1}} of {{vm.requiredQuestions}}</h3>
+
+                    <span>Question {{vm.questionIndex + 1}} of {{vm.requiredQuestions}}</span>
+
+                    <div class="queDesc noselect" style="padding-bottom: 10px; padding-top: 10px;">    
+
+                        <span><div ng-bind-html="vm.questions[vm.questionIndex].queDesc"></div>  
+
+                    </div>
+
+                </div>
+
+
+                <div class="gc-last-quater align-self-end">
+                    <p class="t-right">
+                        {{vm.questions[vm.questionIndex].subDecipline}} : {{vm.questions[vm.questionIndex].levelEN}} : {{vm.activeLevel}}    
+                    </p>
+                    
                 </div>
     </div>
 
@@ -51,14 +71,8 @@
         <div ng-if="$index == vm.questionIndex">
 
 
-            <p class="t-right">Sub Decipline : {{item.subDecipline}} : {{item.levelEN}} : {{vm.activeLevel}}</p>
-
-            <div class="queDesc noselect" style="padding-bottom: 10px; padding-top: 10px;">    
-
-                <span><p ng-bind-html="item.queDesc"></p>  
-
-            </div>
-
+            
+           
 
 
             <div class="row" ng-if="item.media != undefined">
@@ -88,13 +102,13 @@
                 </div>
 
 
-            <div class="grid12Col">
+            <div class="grid12Col mt-20 mb-20">
                     <div class="gc2-full">
                         <p class="txt-highlight">
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 1">Select 1 options from 4 givens choices </span>
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 2">Select 1 valid from 2 given choices</span>
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 3">Choose all possible valid choices which can satisify the answer</span>
-                            <span style="border-bottom: 1px solid #333" ng-if="item.type_id == 4">Provide answer in text box</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 1">Select answer </span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 2">Select valid option</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 3">Select all which applies</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 4">Provide answer in text box</span>
                         </p>
                     </div>
             </div>
@@ -236,11 +250,30 @@
             <div class="g_nested gc-auto-half">
 
                 <div ng-if="1 == 2">
-                    <a href="#" class="btn btn-warning stdx" > <span class="fas fa-chevron-right"> </span> Previous</a>
+                    <a href="#" class="btn btn-warning stdx" > 
+                        
+                        
+
+                        <span lang="{{lang}}">{{gval.next[langIndex()]}}</span>
+
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-left"></span>
+
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-right"></span>
+
+                    </a>
                 </div>
 
                 <div ng-if="vm.mainNext">
-                    <button type="submit" href="#" class="btn btn-success stdx" ng-click="vm.primaryNextProcedure()"> Next <span class="fas fa-chevron-right"> </span> </button>
+                    <button type="submit" href="#" class="btn btn-success stdx" ng-click="vm.primaryNextProcedure()"> 
+
+
+                        <span lang="{{lang}}">{{gval.next[langIndex()]}}</span>
+                       
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-right"></span>
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-left"></span>
+
+
+                    </button>
                 </div>
 
                 <div ng-if="vm.isLastQue">
@@ -261,7 +294,7 @@
 
             
             <div>
-                <a href="#" class="btn btn-success stdx pull-left" ng-click="vm.revNext()"> Next <span class="fas fa-chevron-right"> </span></a>
+                <a href="#" class="btn btn-success stdx pull-left" ng-click="vm.revNext()"> Next  <span class="fas fa-chevron-right"> </span></a>
             </div>
 
 

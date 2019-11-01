@@ -7,16 +7,44 @@
 
         vm.quizData = quizPlayData.data;
 
+        vm.timeexpiration = false;
+
         const channel = new BroadcastChannel('sw-idxsaved');
 
-
-
+        /*
+        
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
         {
             
           return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
 
         }
+        */
+        
+
+        vm.closeCurrentWindow = function() {
+            var version=0;
+            if (navigator.appVersion.indexOf("MSIE")!=-1){
+                        var temp=navigator.appVersion.split("MSIE");
+                        version=parseFloat(temp[1]);
+            }
+            if (version>=5.5 && version<=6) {
+
+                        this.focus();
+
+                        self.opener = this;
+
+                        self.close();
+
+            } else {
+
+                        window.open('','_parent','');
+
+                        window.close();
+
+            }
+
+        };
 
         
 
@@ -57,12 +85,20 @@
             var answerSaveUrl = API_URL+'std-patch-answers';
 
             $timeout.cancel(vm.quizTimeInterval);
-            localStorage.removeItem('lastStoredDurationSeconds');
+            
+
+            var timeLeft = localStorage.getItem('lastStoredDurationSeconds');
+
+            var endState = (vm.timeexpiration) ? 'timeout' : 'explicit';
+
+
+            vm.quizMeta = {"endState" : endState,  "timeLeft" : timeLeft};
+
 
             vm.idbPayload = {
             "url" : answerSaveUrl,
             "method": 'POST',
-            "data" : {'answers' : vm.payloadAnswers}
+            "data" : {'answers' : vm.payloadAnswers, 'quizMeta' : vm.quizMeta}
             };
 
             $http(vm.idbPayload).then(
@@ -70,7 +106,10 @@
                 function(res){
 
                  //   $state.go('std.exams');
-                       window.close();
+                       
+                       vm.closeCurrentWindow();
+
+
                 }, 
 
                 function(res){
@@ -78,6 +117,12 @@
                 {
                     
                     console.log('LOST IC Trigger BackgroundSync');
+
+
+                    vm.idbPayload.data.quizMeta.endState = 'Network Lost';
+
+
+
                     vm.triggerBackgroundSync(vm.idbPayload);
 
 
@@ -89,9 +134,12 @@
                     };
                     $scope.$emit('notify', notify);
 
+
+
                     setTimeout(function() {
 
-                        window.close();     
+                        vm.closeCurrentWindow();
+                        
 
                     }, 2000)
 
@@ -99,6 +147,9 @@
                  
 
                 });
+
+
+            localStorage.removeItem('lastStoredDurationSeconds');
 
         };
 
@@ -512,9 +563,11 @@
 
 		        if (diff <= 0) {
 
-			      
+			      vm.timeexpiration = true;
 
 			      vm.manageTimeOutSubmission();
+
+
 
 			      return false;
 
@@ -538,6 +591,11 @@
         {
 
             
+
+            vm.timeexpiration = true;
+
+
+
             /*
             1. no question were marked
             2. marked length is present
@@ -613,12 +671,13 @@
 
             }
 
-
             else {
 
 
-                
+               
             }
+
+            vm.endActivated = true;
 
         };
 
@@ -814,7 +873,7 @@
               dataType: 'json',
               success: function(res)
               {
-                console.log('ajax did the job');
+                console.log('acivity pushed to server');
               }
               
          });

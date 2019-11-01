@@ -18,6 +18,7 @@
         $http({
         	method: 'GET',
         	url : API_URL+'permissions',
+            cache: false
 
         })
         .then(function(res){

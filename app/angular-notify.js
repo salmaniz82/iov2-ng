@@ -35,7 +35,7 @@ AngularNotifyModule.directive('notifybar', [
 					}
 					var closeBtn = document.createElement('button');
 					closeBtn.className += ' close';
-					closeBtn.innerHTML = '<i class="icon icon-remove-circle"></i>';
+					closeBtn.innerHTML = '<i class="fal fa-times"></i>';
 					closeBtn.addEventListener('click',function(){
 						notify.hideFunc();
 					});

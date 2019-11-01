@@ -15,6 +15,7 @@
         $http({
         	method: 'GET',
         	url : API_URL+'role-permissions',
+            cache: false
 
         })
         .then(function(res){
