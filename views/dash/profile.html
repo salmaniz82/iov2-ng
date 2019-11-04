@@ -11,23 +11,12 @@
         </div>  
 
 
-        <div ng-if="vm.loadingStatus === false" class="bg-white border-all mb-20" style="padding: 10px;">
-
-            <h3 class="t-center c-pink">No existing profile information found please add now</h3>
-
-            <div class="dfx-center-xy">
-
-                    <div class="btn btn-success">Add Profile</div>
-
-            </div>
-
-        </div>  
 		
 	</aside>
 
 
 
-	<aside class="bg-white border-all" style="padding: 10px">
+	<aside class="bg-white border-all" style="padding: 10px" ng-if="vm.loadingStatus != null">
 
 
 		<div class="grid12Col gap10">
@@ -37,11 +26,10 @@
 
 
 			<div class="gc2-half">
-				<img ng-src="{{vm.logoUrl}}">
+				<img ng-src="{{vm.logoUrl}}" width="200" height="50">
 			</div>
 
-
-	</div>
+		</div>
 
 
 		
@@ -66,7 +54,7 @@
 			<div class="gc2-half">
 
 				<div class="field-wrap">
-					<input type="text" class="float-field w-100" ng-model="vm.profileData.slug" ng-disabled="vm.loadingStatus ===  true" required>
+					<input type="text" class="float-field w-100" ng-model="vm.profileData.slug" ng-disabled="vm.profileData.slug != null" required>
 					<label class="placeholder" style="top: 13px">Slug Url</label>
 				</div>
 
@@ -170,6 +158,23 @@
 
 
 
+		
+	</aside>
+
+
+	<aside style="width: 400px; margin: 5px">	
+
+
+		<div class="innerSettings bg-white border-all" style="padding: 10px;">
+
+			<h3 class="t-grey">Crendentials</h3>
+
+
+			change password
+
+		</div>
+
+		
 		
 	</aside>
 

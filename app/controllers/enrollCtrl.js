@@ -21,6 +21,35 @@
         vm.dataList;
 
 
+        vm.sendInvitation = function(itemId)
+        {
+
+            console.log(itemId);
+
+            var inviteUrl = API_URL+'sendinvitation/'+itemId;
+
+
+            $http({
+
+                url : inviteUrl,
+                method : 'POST',
+                data : {}
+            }).then(
+
+            function(res){
+
+
+
+            }, 
+            function(res){
+
+            })
+
+
+
+        }
+
+
 
         function successEnroll(res)
         {

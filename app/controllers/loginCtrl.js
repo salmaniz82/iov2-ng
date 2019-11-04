@@ -1,11 +1,15 @@
 (function(){
 	angular.module('io2v3')
 
-	.controller('loginCtrl',['$state', 'auth', 'API_URL', '$scope', function ($state, auth, API_URL, $scope){
+	.controller('loginCtrl',['$state', 'auth', 'API_URL', '$scope', '$stateParams', function ($state, auth, API_URL, $scope, $stateParams){
+
 
 
 
 		auth.clearAllhttpCache();
+
+
+		console.log($stateParams);
 
 
 		
@@ -56,9 +60,26 @@
                 hdAuthUser = btoa(hdAuthUser);
                 localStorage.setItem('hdauEn', hdAuthUser);
 
+				
 				auth.getUser();
 
-				$state.go('dash.land');
+
+				if($stateParams.actiontoken != undefined)
+				{
+
+						var decodedUriObj = $scope.$parent.base.decodeUrlToken($stateParams.actiontoken);
+						if(decodedUriObj.action == 'quizInvitation')
+						{
+							$state.go('inv.invited', {'entityslug': decodedUriObj.entitySlug, 'invitetoken': $stateParams.actiontoken});
+						}
+
+				}
+
+				else {
+
+					$state.go('dash.land');
+
+				}
 
 			}
 

@@ -1,0 +1,123 @@
+  <section class="hbox stretch parent">
+
+    <aside class="aside-sm bg-white border-right">
+      <a href="/" class="nav-brand" data-toggle="fullscreen">
+          <img alt="Logo" ng-src="{{vm.brandLogo}}" width="150" height="88"/>
+      </a>
+
+
+
+      <ul id="top-menu"> 
+            
+            <li ng-class="{'active': base.pageUrl == '/dashboard'}">
+
+            <a ui-sref="std.studentDashbaord()"><i class="fab fa-buromobelexperte"></i> Invited </a></li>
+            <li ui-sref-active="active"><a ui-sref="std.exams()"><i class="fas fa-brain"></i> Quizes</a></li>
+            
+      </ul>
+    </aside>
+
+    <section class="content">
+      
+      <section class="vbox">
+        
+        <header class="bg-white border-bottom">
+
+
+            <div class="flexTabHeader">
+
+              <div>
+                    <a class="fas fa-home icon-2x c-green" ui-sref="pub.home()"></a>
+                    <span class="tabHeading"> <span class="c-green">Dashboard</span> / <span class="c-yellow">{{std.pageHeading}}</span></span>
+                </div>
+                
+                
+                <div class="flexTabHeader__InnerRightWrapper">
+                     
+                    <div>&nbsp;</div>   
+                    <div class="langCont">
+                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
+                    <div>
+
+                        <div class="btn-group topUserDrop">
+                                <a class="btn" href="#" data-toggle="dropdown">
+                                    <i class="far fa-user c-green"></i>
+                                        {{getAuthUsername()}}
+                                        <i class="fas fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                            <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte"></i>
+                                                Dashboard
+                                            </a></li>
+                                        <li>
+                                            <a ui-sref="std.profile()"><i class="far fa-user"></i>
+                                                My Profile
+                                            </a></li>
+
+                                        <li>
+                                            <a ui-sref="logout()"><i class="fas fa-power-off"></i>
+                                                Logout
+                                            </a></li>
+                                    
+                                </ul>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+      
+
+          
+        </header>
+
+        <section class="scrollable wrapper">         
+
+            <div id="page-wrap" class="tab-layout">
+          
+            <section class="hbox pageContentWrapper">
+
+
+              <ui-view>
+
+               
+            </section>
+
+
+          
+
+          </div>  <!-- tabLayout -->
+
+          <footer id="tabLayoutFooter" class="grid12Col gap10  galign-v-item-center bg-white border-top">
+
+
+            <div class="gc1-half">
+              <div style="padding-left: 10px"> Privacy Policy | About | Terms of Service  </div>
+            </div>
+
+
+            <div class="gc2-half align-self-end">
+              
+              <div style="padding-right: 10px">
+                <span>@ Copyrights 2019 all rights reserved : Build with </span> <span class="fas fa-heart c-pink"></span> in Canada
+              </div>
+              
+            </div>
+
+            
+             
+         </footer>
+
+          
+        </section>
+      </section>
+
+    </section>
+    
+  </section>
+
+
+  

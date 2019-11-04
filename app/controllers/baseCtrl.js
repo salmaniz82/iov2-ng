@@ -30,7 +30,18 @@
             .replace(/\-\-+/g, '-') // Replace multiple - with single -
             .replace(/^-+/, '') // Trim - from start of text
             .replace(/-+$/, '') // Trim - from end of text
-        }
+        };
+
+
+
+        vm.decodeUrlToken = function(urlToken)
+        {
+
+            var decodedUri = decodeURIComponent(urlToken);
+            var decodedObject = atob(decodedUri);
+            return JSON.parse(decodedObject);
+
+        };
 
 
 

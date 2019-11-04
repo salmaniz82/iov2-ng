@@ -1,33 +1,80 @@
- <section class="span9 bg-white">
+ <section class="hbox">
 
-            <div class="col-right">
 
-                <quiz-info-component param="vm.examID"></quiz-info-component>
+    <aside class="bg-white border-all">
 
-                
+        <div class="pd-10">   
 
-                <form method="post" id="stenroll" name="stenroll" class="floatable" ng-submit="vm.quizEnroll()" novalidate>
-                    <div class="row">
-                        <div class="span6">
+        <quiz-info-component param="vm.examID"></quiz-info-component>
 
-                                
-                             <div class="field-wrap">   
+        </div>
 
+        
+        
+    </aside>
+
+
+    <aside>
+
+        
+    </aside>
+
+</section>
+
+
+
+<section class="hbox"> 
+
+
+    <aside> 
+
+
+        <div class="grid12Col">
+
+            <div class="gc1-half">
+
+
+                <div class="bg-white border-all pd-10 mt-10">
+
+
+            <h4 class="t-grey">Add Enrollments</h4>
+
+        <form method="post" id="stenroll" name="stenroll" class="floatable" ng-submit="vm.quizEnroll()" novalidate>
+                    <div class="grid12Col gap10">
+
+                        <div class="gc-first-remain-quater">
+
+                            <div class="field-wrap">   
 
                             <input type="email" class="float-field w-100" id="email" name="email" ng-model="vm.nenroll.email" required>
 
                             <label class="placeholder">Enter existing email to enroll</label>
 
-
-
-                            </div>   
+                            </div> 
+                            
                         </div>
 
-                        <div class="span2">
+                        <div class="gc-last-quater">
+                            <div class="field-wrap">    
                             <input ng-hide="stenroll.$invalid" type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success">
-                        </div>
+
+                            </div>  
+                        </div> 
+
                     </div>
                 </form>
+
+                </div>
+
+
+                
+            </div>
+        </div>
+
+        
+
+            <div class="pd-10 bg-white border-all mt-10">
+
 
                 <table class="table" ng-if="vm.dataList">
                     <thead>
@@ -39,6 +86,8 @@
                         <th style="width: 10px">&nbsp;</th>
                         <th>Attempts</th>
                         <th>Retake</th>
+                        <th>Invited</th>
+                        <th>&nbsp;</th>
                     </thead>
 
                     <tbody>
@@ -79,6 +128,28 @@
 
 
                             </td>
+
+                            <td>
+                                <span ng-if="item.invited == 1" class="fal fa-check c-green"> </span>
+                            </td>
+
+
+                            <td>
+
+
+                                <div class="btn-group btn-more">
+                                <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
+                                <ul class="dropdown-menu">
+                                    
+                                    <li ng-if="1 == 1"><a href="#" class="static-link" ng-click="vm.sendInvitation(item.id)">Send Invitation</a></li>
+                                    
+                                    
+                                    
+                                </ul>
+                            </div>
+                                
+
+                            </td>
                             
                         </tr>
                         
@@ -94,5 +165,7 @@
                 </div>
 
             </div>
+
+        </aside>
 
         </section>

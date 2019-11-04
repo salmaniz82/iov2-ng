@@ -11,6 +11,10 @@
 
 
 
+        console.log($stateParams);
+
+
+
         vm.loadMaster = function()
         {
 

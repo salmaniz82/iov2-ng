@@ -416,7 +416,7 @@
 
 
         .state('ua.login', {
-            url : '/login',
+            url : '/login?actiontoken&redirectUrl',
             templateUrl: 'views/login.html',
             controller: 'loginCtrl as vm'
         })
@@ -546,6 +546,23 @@
         })
 
 
+        .state('inv', {
+
+            templateUrl : 'views/templates/inv.invited.html',
+            abstract : true,
+            controller : 'invitedAbstractCtrl as vm'
+        })
+
+
+        .state('inv.invited', {
+
+            url : '/i/:entityslug/:invitetoken',
+            templateUrl : 'views/student/invited.html',
+            controller : 'invitedbyentityCtrl as vm'
+
+        })
+
+
         .state('dash.quizWizard', {
 
             url : '/new-quiz-wizard',
@@ -580,7 +597,7 @@
 
         })
 
-        
+
         .state('notfound', {
             url: '/notfound',
             templateUrl: 'views/404.html'
