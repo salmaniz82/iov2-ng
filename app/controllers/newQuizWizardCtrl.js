@@ -211,7 +211,10 @@
         {       
 
             
-            var currentDateTime = new Date().toJSON().slice(0, 19).replace('T', ' ');    
+            var currentDateTime = new Date();
+
+            currentDateTime.setMilliseconds(0);
+            currentDateTime.setSeconds(0);
 
             var startDateTime = document.getElementById('startDateTime').value;
             var endDateTime = document.getElementById('endDateTime').value;
@@ -222,15 +225,26 @@
             vm.dateVerified = null;
             vm.datesError = null;
 
-            if(startDateTime <= currentDateTime)
-            {
-                vm.datesError = 'start datetime cannot be lesser than current date time';
+            var inputStartDateTime = new Date(startDateTime);
 
+            inputStartDateTime.setMilliseconds(0);
+            inputStartDateTime.setSeconds(0);
+
+            var inputEndDateTime = new Date(endDateTime);
+
+            inputEndDateTime.setMilliseconds(0);
+
+            inputEndDateTime.setSeconds(0);
+
+
+            if(inputStartDateTime < currentDateTime)
+            {
+                vm.datesError = 'start datetime cannot be less than current date time';
                 vm.dateVerified = false;
             }
 
 
-            else if(vm.nQuiz.endDateTime <= startDateTime)
+            else if(inputEndDateTime <= inputStartDateTime)
             {
                 vm.datesError = 'End Date Time must be greater!';
                 vm.dateVerified = false;

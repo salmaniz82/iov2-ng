@@ -2,9 +2,9 @@
 
 
 
-	<aside ng-if="vm.loadingStatus != true">
+	<aside ng-if="vm.loadingStatus === null">
 
-		<div ng-if="vm.loadingStatus === null" class="bg-white border-all mb-20" style="padding: 10px;">
+		<div class="bg-white border-all mb-20" style="padding: 10px;">
 
             <h3 class="t-center">Loading profile data</h3>
 
@@ -20,7 +20,7 @@
 
 
 		<div class="grid12Col gap10">
-			<div class="gc1-half">
+			<div class="gc1-half" ng-if="profile.companytitle.$valid && profile.slug.$valid">
 				<div dropzone="dropzoneConfig" style="width: 200px"></div>
 			</div>
 
@@ -44,7 +44,7 @@
 			<div class="gc1-half">
 
 			<div class="field-wrap">
-				<input type="text" class="float-field w-100" ng-model="vm.profileData.companyTitle" required ng-change="vm.sayHello(vm.profileData.companyTitle)">
+				<input type="text" name="companytitle" class="float-field w-100" ng-model="vm.profileData.companyTitle" required ng-change="vm.sayHello(vm.profileData.companyTitle)">
 				<label class="placeholder">Brand Title</label>
 			</div>
 				
@@ -54,8 +54,9 @@
 			<div class="gc2-half">
 
 				<div class="field-wrap">
-					<input type="text" class="float-field w-100" ng-model="vm.profileData.slug" ng-disabled="vm.profileData.slug != null" required>
+					<input type="text" name="slug" class="float-field w-100 error" ng-model="vm.profileData.slug" required ng-change="vm.slugAvailable(vm.profileData.slug)">
 					<label class="placeholder" style="top: 13px">Slug Url</label>
+					<span ng-show="vm.slugValidity == false" class="float-error c-pink">Already taken!</span>
 				</div>
 
 			</div>
@@ -129,7 +130,7 @@
 			<div class="gc2-half">
 
 
-				<div class="pull-left w-45">
+				<div class="pull-left w-45" ng-if="profile.companytitle.$valid && profile.slug.$valid && vm.slugValidity == true">
 
 					<button ng-if="vm.loadingStatus ===  true" type="submit" class="btn btn-success btn-block" ng-click="vm.updateProfile()">Update</button>
 					<button ng-if="vm.loadingStatus ===  false" type="submit" class="btn btn-success btn-block" ng-click="vm.saveProfile()">Save</button>
@@ -137,7 +138,6 @@
 				</div>
 
 				<div class="pull-right w-45">
-
 
 					
 				</div>
@@ -162,29 +162,12 @@
 	</aside>
 
 
-	<aside style="width: 400px; margin: 5px">	
-
-
-		<div class="innerSettings bg-white border-all" style="padding: 10px;">
-
-			<h3 class="t-grey">Crendentials</h3>
-
-
-			change password
-
-		</div>
+	<aside style="width: 600px">	
 
 		
-		
+
+
 	</aside>
-
-
-	
-
-
-
-
-
 
 
 	

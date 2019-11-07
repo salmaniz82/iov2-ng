@@ -330,7 +330,7 @@
         })
 
         .state('dash.queadd', {
-            url : '/que-add',
+            url : '/question-add',
             templateUrl: 'views/dash/que-add.html',
             controller : 'queAddCtrl as vm',
             resolve : {
@@ -340,6 +340,21 @@
 
                    return quizDataService.queGlobalFetch();
                 }
+
+            }
+        })
+
+        .state('dash.queedit', {
+            url : '/question-edit/:queID',
+            templateUrl: 'views/dash/que-edit.html',
+            controller : 'queEditCtrl as vm',
+            resolve : {
+                
+                queGlobalData : function(quizDataService)
+                {
+                   return quizDataService.queGlobalFetch();
+                }
+
 
             }
         })
@@ -429,8 +444,18 @@
 
         .state('ua.forget', {
             url : '/forget',
+            controller : 'forgetCtrl as vm',
             templateUrl: 'views/forget.html'
         })
+
+        
+
+        .state('ua.recovery', {
+            url : '/recover?accesstoken',
+            controller : 'recoverCtrl as vm',
+            templateUrl: 'views/recover.html'
+        })
+
 
         .state('logout', {
             url : '/logout',

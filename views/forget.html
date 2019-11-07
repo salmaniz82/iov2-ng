@@ -17,7 +17,7 @@
 
             <div class="field-wrap">
 
-                    <input type="email" name="email" class="float-field w-100" ng-model="vm.creds.email" required>
+                    <input type="email" name="email" class="float-field w-100" ng-model="vm.email" required>
                     <label class="placeholder">email</label>
                        
             </div>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="span4">
-                    <button ng-disabled="forgetForm.$invalid" class="btn btn-warning pull-right" data-disable-with="Login" ng-click="vm.login()"> Send </button>
+                    <button ng-disabled="forgetForm.$invalid" class="btn btn-warning pull-right" data-disable-with="Login" ng-click="vm.sendRecover()"> Send </button>
                 </div>
 
             </div>

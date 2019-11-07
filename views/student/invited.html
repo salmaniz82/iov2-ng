@@ -1,6 +1,259 @@
+<div class="cst-modal-container" ng-if="vm.quizModal">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        <span>You are about to start quiz</span>
+		<i class="fas fa-times pull-right" ng-click="vm.quizModal = false"></i>
+      </div>
+      <div class="cst-modal-body">
+
+	
+		<div ng-if="!vm.isInitiatStart">
+
+      	<p>Title : <strong> {{vm.actQuiz.title | titleCase}} </strong></p>
+      	<p>Duration: {{vm.actQuiz.duration}} min.</p>
+      	<p>Questions: {{vm.actQuiz.noQues}} </p>
+
+        <p>Canidates are not allowed to refresh web page using keyboard key <strong>F5</strong> or with any other means
+        	during examamination, in such case exam will be ternminated completely and will be considered as failed attempt for given exam.
+        </p>
+
+        <p>
+        	In case of any or bug during examination please contact immediately to invigilator or adminstrator in examination room, so that matter can be 
+        	resolve by our technical software team.
+        </p>
+
+        <p>
+        	If exam was effected by any technicial difficuly it can be rescheduled or be given a second change if adminstator seems it fair.
+        </p>
+
+
+
+        <p><small>You must agree to continue</small></p>
+
+        <p>
+        	<label>
+        	<input type="checkbox" name="agree" ng-model="vm.agree">
+        		I agree with terms of service
+        	</label>
+        </p>
+      	
+        <button class="btn btn-success" ng-if="vm.agree" ng-click="vm.initiateQuiz(vm.actQuiz.enroll_id)">Continue</button>
+        <button class="btn btn-danger" ng-if="!vm.agree" ng-click="vm.quizModal = false">Cancel</button>
+
+
+        </div> <!-- not initialzed -->
+
+
+        <div ng-if="vm.isInitiatStart">
+
+        	<p class="c-green">Please Wait while Quiz is being Initialized</p>
+        	
+        </div>
+
+
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
 <section class="hbox">
 
 
-	<aside>	<h3>Landed to invitation</h3></aside>
+	<aside class="bg-white border-all">	
+
+
+
+
+	<h3> &nbsp;Invited : </h3>
 	
+	<table class="table" ng-if="vm.hasPendingQuiz || vm.hasAttemptedQuiz">
+		<thead>
+			<tr>	
+				<th>S.NO</th>
+				<th>Quiz</th>
+				<th>Min / Max</th>
+				<th>Duration</th>
+				<th>Obtained</th>
+				<th>Attempts</th>
+				<th>Status</th>
+				<th>&nbsp;</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+
+			<tr style="border-bottom: 1px solid var(--greenLight) !important">
+
+				<td colspan="8">
+					<div style="height: 50px"></div>
+				<h4>Unattempted : {{vm.dataList.quiz.length || 0}}</h4></td>
+				
+			</tr>
+
+			<tr ng-if="vm.hasPendingQuiz" ng-repeat="quiz in vm.dataList.quiz track by $index">
+				<td>{{$index + 1}}</td>
+				<td>{{quiz.title}}</td>
+				<td>
+					<span ng-if="quiz.showScore == 1"> {{quiz.minScore + ' / ' + quiz.maxScore}} </span>
+					<span ng-if="quiz.showScore == 0" class="c-pink">N/A</span>
+				</td>
+				<td>{{quiz.duration}} mins.</td>
+				<td><span class="c-pink">N/A</span></td>
+				<td>{{quiz.attempts}}</td>
+				
+				<td>
+					<a ng-if="quiz.validity == 'valid' && quiz.validity != 'progress' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="fal fa-clock"></span>&nbsp; Start Quiz</a>
+
+					<p ng-if="quiz.attempts == '0' && quiz.validity == 'progress'" > <span class="status working">In Progress</span> </p>
+
+
+					<div ng-if="quiz.validity == 'expired'"><span class="status terminated" style="width: 80px">Date Expired</span></div>
+
+					<div ng-if="quiz.schedule == 'countdown' && quiz.validity == 'valid'" ng-init="vm.showCountdown(quiz.id, dateEnrolled, quiz.dtsScheduled)">
+						<small class="c-pink">{{counter[quiz.id]}}</small></div>
+
+					<a ng-if="quiz.validity == 'valid' && quiz.attempts != '0' && quiz.retake == '0'" data-quizid="93" class="c-red" href="#" title="Initated but failed to proceed further or intererpted"> <span class="status terminated" style="width: 80px">Conflict</span> </a>
+				</td>
+
+
+
+
+
+
+			</tr>
+
+
+			<tr ng-if="vm.hasAttemptedQuiz" style="border-bottom: 1px solid var(--greenLight) !important">
+
+				<td colspan="8">
+					<div style="height: 50px"></div>
+				<h4>Participated In : {{vm.dataList.attempted.length || 0}} </h4></td>
+				
+			</tr>
+
+
+			<tr ng-if="vm.hasAttemptedQuiz" ng-repeat="item in vm.dataList.attempted">
+
+				<td>{{$index + 1}}</td>
+				<td>{{item.title}}
+					<p><span class="fal fa-clock c-blue"></span>&nbsp; <small class="c-blue">{{item.attempted_at | xToTime}}</small></p>
+				</td>
+
+				<td> 
+					<span ng-if="item.showScore == 1">{{item.minScore}} / {{item.maxScore}}</span> 
+					<span ng-if="item.showScore == 0" class="c-pink"> N/A </span>
+				</td>
+
+				<td>{{item.duration}} mins.</td>
+
+
+
+				<td> 
+					<span ng-if="item.showScore == 1"> {{item.score | setDecimal:2 }} </span> 
+					<span ng-if="item.showScore == 0" class="c-pink"> N/A </span>
+				</td>
+				
+				<td>{{item.attempts}}</td>
+
+				<td>
+
+					<div ng-if="item.showResult == 1">
+
+						<span ng-if="item.score >= item.minScore" class="status finished">Passes</span>
+						<span ng-if="item.score < item.minScore" class="status terminated">Failed</span>
+					
+					</div>				
+
+					<span ng-if="item.showResult == 0" class="c-pink">N/A</span>
+
+
+					
+				</td>
+				
+				<td>
+					<a ng-if="item.attempts != '0' && item.retake == '1' && item.validity != 'progress'" class="btn btn-warning" style="width: 150px" href="#" ng-click="vm.launchQuizModal(item.id, true)"><span class="fas fa-recycle"></span>&nbsp;Retake</a>
+
+					<p ng-if="item.attempts != '0' && item.retake == '1' && item.validity == 'progress'" >
+
+					<span class="status working">In Progress</span> </p>
+
+
+				</td>				
+			</tr>
+
+
+				
+
+
+			
+		</tbody>
+    </table>
+
+
+    <div ng-if="vm.hasQuizEnrolled == null">
+    	<p class="c-orange">Loading enrolled quiz ...</p>
+    </div>
+
+    <div ng-if="vm.hasQuizEnrolled == false">
+    	<p class="c-red">You are not enrolled in any quiz</p>
+    </div>
+
+
+    <div ng-if="vm.hasAttemptedQuiz && 1 == 2">
+    	<h4>Attempted Quiz</h4>
+
+
+    	<table class="table">
+		<thead>
+			<tr>	
+				<th>ID</th>
+				<th>Quiz</th>
+
+				<th>Min / Max</th>
+
+				<th>Duration</th>
+				
+				<th>Obtained</th>
+				<th>Attempts</th>
+				
+				<th>&nbsp;</th>
+
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<tr ng-repeat="item in vm.dataList.attempted">
+
+				<td>{{item.id}}</td>
+				<td>{{item.title}}
+					<p><span class="fal fa-clock c-pink"></span>&nbsp; <small class="c-pink">{{item.attempted_at | xToTime}}</small></p>
+				</td>
+
+				<td>{{item.minScore}} / {{item.maxScore}}</td>
+
+				<td>{{item.duration}} mins.</td>
+
+
+
+				<td>{{item.score | setDecimal:2 }} / {{item.maxScore}}</td>
+				
+				<td>{{item.attempts}}</td>
+				
+				<td>
+					<a ng-if="item.attempts != '0' && item.retake == '1'" class="btn btn-warning" href="#" ng-click="vm.launchQuizModal(item.id, true)"><span class="fas fa-recycle"></span>&nbsp;Retake</a>
+				</td>				
+			</tr>
+		</tbody>
+
+
+
+    </div>
+
+</aside>
+   
 </section>
+
+
+

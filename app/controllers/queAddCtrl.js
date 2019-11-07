@@ -321,10 +321,19 @@
 
         	function saveSuccess(res)
         	{
-        		console.log(res);
+        		
 
         		 vm.nque = {};
                  vm.questionMedia = [];
+
+                 var notify = {
+                        type: 'success',
+                        title: 'Operartion Successful',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+
+                    $scope.$emit('notify', notify);
 
 
             if(vm.queType == 3)
@@ -350,7 +359,16 @@
 
         	function saveError(res)
         	{
-        		console.log(res);
+        		
+                    var notify = {
+                        type: 'error',
+                        title: 'Operartion Failed',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+
+                    $scope.$emit('notify', notify);
+
         	}
 
 

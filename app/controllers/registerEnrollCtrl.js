@@ -27,6 +27,11 @@
         	{
 
 
+                vm.re = {};
+                vm.generatedPassword = null;
+                vm.nPass = null;
+
+
                 var notify = {
                         type: 'success',
                         title: 'Enrollment Status',

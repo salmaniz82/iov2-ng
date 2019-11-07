@@ -8,9 +8,10 @@
 
         vm.token = localStorage.getItem('auth_token');
 
+
+        vm.slugValidity = null;
+
         
-
-
 
 
         $scope.$parent.base.pageUrl = $state.current.url; 
@@ -76,7 +77,8 @@
 
 
         		slug = vm.slugify(brandTtext);
-	        	vm.profileData.slug = slug;	       	
+	        	vm.profileData.slug = slug;	
+                vm.slugAvailable(slug);
 
         };
 
@@ -152,9 +154,8 @@
         vm.updateProfile = function()
         {
 
-            console.log(vm.profileData);
 
-
+            
             $http({
 
                 url : API_URL+'profile',
@@ -169,6 +170,60 @@
             function(res){
 
             })
+
+        };
+
+
+
+        vm.slugAvailable = function(slug)
+        {
+
+            
+
+
+            var successSlugCheck = function(res, status, xhr)
+            {
+                vm.slugValidity = true;
+            };
+
+            var errorSlugCheck = function(res, status, xhr)
+            {
+
+
+
+                if(res.status == 406)
+                {
+
+                    vm.slugValidity = false;
+
+                    
+                    
+                    vm.slugValidity = false;
+
+                    var notify = {
+                        type: 'error',
+                        title: 'Critical Error',
+                        content: res.responseJSON.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                }
+
+            };
+
+            var slugurl = API_URL+'profile/slugavailable';
+
+
+            $.ajax({
+
+                url : slugurl,
+                method : 'POST',    
+                data:  {'slug': slug}
+
+            }).then(successSlugCheck, errorSlugCheck);
+
+
 
         };
 

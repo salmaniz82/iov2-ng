@@ -45,7 +45,7 @@
 
             <form class="floatable w-80">
 
-                <div class="field-wrap">
+                <div class="field-wrap hasflatCons">
                     <span class="icon-search quiztitlefilter"></span>
                     <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.descFitler">
                     <label for="title-filter" class="placeholder">Filter By Description</label>
@@ -242,11 +242,6 @@
 					</div>
 
 
-				
-
-				
-				
-
 					<div>
 														
 						<label>
@@ -370,7 +365,22 @@
 					<td ng-if="fields[6].diff">{{que.levelEN}}</td>
 					<td ng-if="fields[7].type">{{que.typeEN}}</td>
 					
-					<td ng-if="fields[10].status">{{que.status}}</td>
+					<td ng-if="fields[10].status">
+
+
+					
+
+					<span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="que.status" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="que.status == '1'" ng-change="vm.questionStatusToggle(que.question_id, que.status)">
+                                <span></span>
+                              </label>
+                            </span>
+
+
+
+					</td>
 					<td ng-if="fields[8].hits">{{que.hits}}</td>
 					<td ng-if="fields[9].scope"><span class="status" ng-class="{'finished': que.scope == 'private', 'working': que.scope == 'public', 'initiated': que.scope == 'linked' }">{{que.scope}}</span></td>
 

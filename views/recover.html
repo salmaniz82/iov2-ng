@@ -1,0 +1,86 @@
+<div id="bg__siteBackgrondImage"></div>
+
+<div id="login__root">
+
+
+
+
+
+
+            <div class="loginInerWrapper">
+
+
+            <h4 class="c-pink">Recover forgotten password</h4>
+
+
+            <form name="forgetForm" role="form" class="floatable" method="post" novalidate>
+
+
+            <div class="field-wrap">
+
+                    <input type="email" name="email" class="float-field w-100" ng-model="vm.email" required>
+                    <label class="placeholder">email</label>
+                       
+            </div>
+
+            <div class="field-wrap" ng-if="vm.localvertication === true">
+
+                    <input type="password" name="password" class="float-field w-100" ng-model="vm.password" required ng-minlength="6" password-verify="{{vm.cpassword}}">
+                    <label class="placeholder">Password</label>
+                       
+            </div>
+
+            <div class="field-wrap" ng-if="vm.localvertication === true">
+
+                    <input type="password" name="cpassword" class="float-field w-100" ng-model="vm.cpassword" required ng-minlength="6" password-verify="{{vm.password}}">
+                    <label class="placeholder">Confirm Password</label>
+
+
+                    <span ng-show="forgetForm.cpassword.$touched && forgetForm.cpassword.$error.passwordVerify" class="float-error">Confirm Password Mismatched</span>   
+                       
+            </div>
+
+            <div class="row-fluid" ng-if="vm.localvertication === true">
+
+                <div class="span8">
+
+                </div>
+
+                <div class="span4">
+                    <button ng-disabled="forgetForm.$invalid" class="btn btn-warning pull-right" data-disable-with="Login" ng-click="vm.attemptUpdatePassword()"> Change Password </button>
+                </div>
+            </div>
+
+
+
+            <div class="row-fluid" ng-if="!vm.localvertication">
+
+                <div class="span8">
+                    <!--
+                    <a ui-sref="ua.login()" class="btn btn-success pull-left"> Login </a>
+                --> 
+                </div>
+
+                <div class="span4">
+                    <button ng-disabled="forgetForm.$invalid" class="btn btn-warning pull-right" data-disable-with="Login" ng-click="vm.validateEmail()"> Proceed </button>
+                </div>
+            </div>
+
+
+
+
+            </form>
+
+            </div> <!-- login inner wrapper -->
+
+
+
+            </div>
+
+
+
+    
+
+        
+
+        

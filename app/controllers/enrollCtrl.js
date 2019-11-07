@@ -28,6 +28,10 @@
 
             var inviteUrl = API_URL+'sendinvitation/'+itemId;
 
+            var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+
+            vm.dataList[idx].invited = 1;
+
 
             $http({
 
@@ -39,11 +43,28 @@
             function(res){
 
 
+                var notify = {
+                        type: 'info',
+                        title: 'Invitation',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    
+                    $scope.$emit('notify', notify);
 
             }, 
             function(res){
 
-            })
+
+                var notify = {
+                        type: 'error',
+                        title: 'Invitation Failed',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            });
 
 
 

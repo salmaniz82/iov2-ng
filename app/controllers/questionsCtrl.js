@@ -15,6 +15,8 @@
         $scope.$parent.dash.pageHeading = "Questions";
 
 
+
+
         $scope.fields = [
 
         {'cat': false},
@@ -30,8 +32,11 @@
         
         {'description': false},
         {'hits': false},
-        {'status': false}
+        {'status': true}
         ];
+
+
+        
 
 
         vm.toggleFields = function(field, index)
@@ -41,6 +46,59 @@
 
 
           console.log($scope.fields[index].field);
+
+        };
+
+
+        vm.questionStatusToggle = function(id, queStatus)
+        {
+
+            console.log(id, queStatus);
+
+            var toggleUrl = API_URL+'questions/status-toggle/'+id;
+
+
+            var toggleUpdateSuccess = function(res)
+            {
+
+
+                  var notifyType = (queStatus == 1) ? 'success' : 'warning';
+
+                var notify = {
+                        type: notifyType,
+                        title: 'Status Updated',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            };
+
+
+            var toggleUpdateError = function(res)
+            {
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'Operation Failed',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+            };
+
+            $http({
+
+               url : toggleUrl,
+               method : 'PUT',
+               data : {'status': queStatus}
+
+            }).then(toggleUpdateSuccess, toggleUpdateError);
+
+
 
         };
 

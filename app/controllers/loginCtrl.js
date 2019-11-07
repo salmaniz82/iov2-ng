@@ -3,29 +3,70 @@
 
 	.controller('loginCtrl',['$state', 'auth', 'API_URL', '$scope', '$stateParams', function ($state, auth, API_URL, $scope, $stateParams){
 
-
-
-
 		auth.clearAllhttpCache();
 
-
-		console.log($stateParams);
-
-
-		
 		var vm = this;
 
 		vm.loginStatus = null;
 		vm.wrongCreds = null;
 
+		vm.actionTokenObj = null;
+
+		vm.interceptDefaultRedirect = false;
 
 
 
+		if($stateParams.actiontoken != undefined)
+		{
 
-		if(localStorage.getItem('auth_token'))
-		{			
-			$state.go('dash.land');
+		
+			var decodedUriObj = $scope.$parent.base.decodeUrlToken($stateParams.actiontoken);
+
+
+			if(typeof(decodedUriObj) == "object")
+			{
+				vm.actionTokenObj = decodedUriObj;	
+				vm.interceptDefaultRedirect = true;
+			}
+
+
 		}
+
+
+
+		vm.handleRedirect = function()
+		{
+
+			if(!localStorage.getItem('auth_token'))
+			{			
+				return false;
+			}
+
+
+
+			if(!vm.interceptDefaultRedirect)
+			{
+				$state.go('dash.land');
+			}
+
+			else if(vm.actionTokenObj.action == 'quizInvitation') {
+
+				$state.go('inv.invited', {'entityslug': vm.actionTokenObj.entitySlug, 'invitetoken': $stateParams.actiontoken});
+			}
+
+			else {
+
+				$state.go('dash.land');
+
+			}
+
+
+		};
+
+
+
+
+		vm.handleRedirect();
 
 		
 		vm.login = function() 
@@ -64,29 +105,12 @@
 				auth.getUser();
 
 
-				if($stateParams.actiontoken != undefined)
-				{
+				vm.handleRedirect();
 
-						var decodedUriObj = $scope.$parent.base.decodeUrlToken($stateParams.actiontoken);
-						if(decodedUriObj.action == 'quizInvitation')
-						{
-							$state.go('inv.invited', {'entityslug': decodedUriObj.entitySlug, 'invitetoken': $stateParams.actiontoken});
-						}
-
-				}
-
-				else {
-
-					$state.go('dash.land');
-
-				}
 
 			}
 
 			var AuthUser = auth.getUser();
-
-
-			
 			
 
 		};

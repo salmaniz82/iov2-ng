@@ -425,6 +425,10 @@ figure.quiz-figure img {
 
 .que-line {border-bottom: 1px solid #80808024; margin-bottom: 20px; padding-bottom: 20px;}
 
+.que-line:last-child{
+  border-bottom: none 
+}
+
 
 .bbr-light {border-bottom: 1px solid #80808024}
 
@@ -489,6 +493,7 @@ h3.page-title {
 
 .checkbox-custom-label, .radio-custom-label {
     position: relative;
+    color: #000;
 }
 
 .checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
@@ -1786,7 +1791,7 @@ display: flex;
 
 
 #canvasScrollArea {
-  height: 600px;
+  height: 55vh;
     overflow-x: hidden;
     overflow-y: auto;
     /*
@@ -1794,10 +1799,9 @@ display: flex;
     align-items: center;
     */
 
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 10px;
     border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
     padding-right: 10px;
 }
     
@@ -1821,14 +1825,18 @@ display: flex;
     font-size: 30px;
     background-color: var(--greenLight);
     color: #fff;
+
 }
 
 
 #controllingArea__main {
   position: absolute;
   width: 1000px;
-  bottom: 60px;
+  bottom: 0px;
   padding-top: 10px;
+  border-top: 1px solid var(--grey);
+  background-color: #fff;
+  padding-bottom: 65px
 }
 
 
@@ -1919,4 +1927,14 @@ i.floatcons {
 
 .quizPlayMeta p {
   margin-bottom: 0px !important;
+}
+
+.bbr-grey {
+
+  border-bottom: 1px solid var(--grey);
+
+}
+
+.quizTitleHeading {
+  font-size: 28px;
 }
