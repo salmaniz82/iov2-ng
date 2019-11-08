@@ -344,10 +344,10 @@
             }
         })
 
-        .state('dash.queedit', {
+        .state('dash.questionedit', {
             url : '/question-edit/:queID',
             templateUrl: 'views/dash/que-edit.html',
-            controller : 'queEditCtrl as vm',
+            controller : 'questionEditCtrl as vm',
             resolve : {
                 
                 queGlobalData : function(quizDataService)
@@ -356,7 +356,12 @@
                 }
 
 
-            }
+            },
+
+            authenticate: true,
+            roles : ['admin', 'entity', 'contributor', 'content developer']
+
+
         })
 
 

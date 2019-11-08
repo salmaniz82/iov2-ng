@@ -1,0 +1,157 @@
+<section class="hbox">
+
+
+    <aside>
+
+        <div class="bg-white border-all mb-10" ng-if="vm.pageloading == null">
+
+            <h2 class="t-center t-grey">Loading question ...</h2>  
+
+        </div>
+
+        <div class="bg-white border-all mb-10" ng-if="vm.pageloading == false">
+
+            <h2 class="t-center c-red">Loading failed</h2>  
+
+        </div>
+
+
+        <div ng-if="vm.pageloading == true" class="bg-white border-all pd-10">
+
+            <form name="queEdit" class="floatable" novalidate>
+
+
+               <div class="grid12Col">
+
+
+                <div class="gc1-half">
+                    Category : {{vm.queData.question.category}}
+                </div>
+
+                <div class="gc2-half">
+                    Subject : {{vm.queData.question.subject}}
+                </div>
+
+                <div class="gc1-half">
+                    Level : {{vm.queData.question.levelEN}}
+                </div>
+
+                <div class="gc2-half">
+                    Type : {{vm.queData.question.typeEN}}
+                </div>
+
+                <div class="gc1-half">
+                    Scope : {{vm.queData.question.scope}}
+                </div>
+
+                <div class="gc2-full">
+
+                    <div class="float-wrap">
+                    <label>Description</label>       
+                            <textarea ckeditor required ng-model="vm.queData.question.queDesc">
+                            </textarea>                  
+                    </div>
+                </div>
+
+
+                <div class="gc2-full" ng-if="vm.queData.question.type_id != 4">
+
+                    <div class="field-wrap">            
+                         <input type="text" name="opta" id="opta" class="float-field w-100" ng-model="vm.queData.question.optionA" required>
+                         <label class="placeholder">A</label>
+                    </div>
+
+                    <div class="field-wrap">            
+                         <input type="text" name="optb" id="optb" class="float-field w-100" ng-model="vm.queData.question.optionB" required>
+                         <label class="placeholder">B</label>
+                    </div>
+
+                    <div class="field-wrap" ng-if="vm.queData.question.type_id == 1 || vm.queData.question.type_id == 3">            
+                         <input type="text" name="optc" id="optc" class="float-field w-100" ng-model="vm.queData.question.optionC" required>
+                         <label class="placeholder">C</label>
+                    </div>
+
+                    <div class="field-wrap" ng-if="vm.queData.question.type_id == 1 || vm.queData.question.type_id == 3">            
+                         <input type="text" name="optd" id="optc" class="float-field w-100" ng-model="vm.queData.question.optionD" required>
+                         <label class="placeholder">D</label>
+                    </div>
+
+
+                </div>
+
+                <div class="gc2-full mt-20" ng-if="vm.queData.question.type_id == 1 || vm.queData.question.type_id == 2">
+
+                    <div class="field-wrap">
+
+                        <select  class="w-100" id="courseCat" name="courseCat" ng-model="vm.selectedAnswer" required>
+                                <option ng-value="a" ng-selected="{{vm.queData.question.answer == 'a'}}">a</option>
+                                <option ng-value="b" ng-selected="{{vm.queData.question.answer == 'b'}}">b</option>    
+                                <option ng-value="c" ng-selected="{{vm.queData.question.answer == 'c'}}" ng-if="vm.queData.question.type_id != 2">c</option>
+                                <option ng-value="d" ng-selected="{{vm.queData.question.answer == 'd'}}" ng-if="vm.queData.question.type_id != 2">d</option>
+                        </select>
+
+                        <label class="placeholder static">Answer</label>
+
+                        </div>
+
+                </div>
+
+                <div class="gc2-full mt-20" ng-if="vm.queData.question.type_id == 4">
+                            <div class="field-wrap">
+                                <input type="text" class="float-field w-100" name="queAnswerTextBox" ng-model="vm.queData.question.answer" required>
+                                <label class="placeholder">Answer</label>
+                            </div>
+                </div>
+
+
+                <div class="gc2-full mt-20" ng-if="vm.queData.question.type_id == 3">
+
+                    <p>Answer</p>
+                            
+                                <label for="answerA" class="checkbox">
+                                    <input type="checkbox" name="multiAnswer" ng-value="a" ng-model="vm.optAns.a"> A 
+                                </label>
+
+                                <label for="answerB" class="checkbox">
+                                    <input type="checkbox" name="multiAnswer" ng-value="b"  ng-model="vm.optAns.b"> B 
+                                </label>
+
+                                <label for="answerC" class="checkbox">
+                                    <input type="checkbox" name="multiAnswer" ng-value="c"  ng-model="vm.optAns.c"> C 
+                                </label>
+
+                                <label for="answerD" class="checkbox">
+                                    <input type="checkbox" name="multiAnswer" ng-value="d" ng-model="vm.optAns.d"> D 
+                                </label>
+                    
+                </div>
+
+
+                
+            </div>
+
+
+               <div class="gc2-full">
+
+                <div class="btn btn-success" ng-click="vm.triggerUpdate()">Update</button>
+                   
+               </div> 
+
+
+
+
+
+            </form>
+
+
+        </div>
+        
+    </aside>
+
+
+    <aside>
+        &nbsp;
+    </aside>
+    
+
+</section>
