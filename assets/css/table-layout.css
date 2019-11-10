@@ -257,6 +257,13 @@ form.floatable .float-field:focus + label.placeholder {
 
 }
 
+
+form.floatable .placeholder.invalidSelectPlaceholder {
+  color: #c2c2c6 !important;
+  -webkit-transform: translate3d(0, 0px, 0) !important;
+          transform: translate3d(0, 0px, 0) !important;
+}
+
 form.floatable .placeholder {
   pointer-events: none;
   top: 35px;

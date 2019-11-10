@@ -200,7 +200,71 @@
 		ctx.canvas.parentNode.style.width = '420px';
 
 
-		var myDoughnutChart = new Chart(ctx, config);		
+		var myDoughnutChart = new Chart(ctx, config);
+
+
+
+
+		vm.clearActivity = function(attemptId)
+		{
+
+			
+			var requestSuccess = function(res)
+            {
+
+                var notify = {
+                        type: 'success',
+                        title: 'Operation Successfull',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+                    var idx = $scope.$parent.base.getIndex($scope.activeCandidates, 'attemptID', attemptId);
+               
+                	$scope.activeCandidates.splice(idx, 1);
+
+                	if($scope.activeCandidates.length == 0)
+                	{
+
+                		$scope.currentactivity = false;
+
+                	}
+
+
+
+
+            };
+
+
+            var requestError = function(res)
+            {
+
+                var notify = {
+                        type: 'error',
+                        title: 'Operation Failed',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+
+
+
+
+            };
+
+
+            $http({
+                url : API_URL+'dashboard/markactivityinactive/'+attemptId,
+                method : 'PUT',
+                data : {'payload' : 'empty'}
+            }).then(requestSuccess, requestError); 
+
+
+		};
 
 
     }]);

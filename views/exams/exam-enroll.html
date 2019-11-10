@@ -141,9 +141,10 @@
                                 <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
                                 <ul class="dropdown-menu">
                                     
-                                    <li ng-if="1 == 1"><a href="#" class="static-link" ng-click="vm.sendInvitation(item.id)">Send Invitation</a></li>
-                                    
-                                    
+                                    <li ng-if="1 == 1"><a href="#" class="static-link" ng-click="vm.sendInvitation(item.id)"><i class="fal fa-envelope vam"></i>  Invite</a></li>
+                                    <li><a href="#" class="static-link c-red" ng-click="vm.removeEnroll(item.id)"> <i class="fal fa-times-circle vam"></i> Remove</a></li>
+                                    <li><a href="#" class="static-link c-blue" ng-click="vm.resetEnroll(item.id)"> <i class="fal fa-recycle vam"></i> Reset</a></li>
+
                                     
                                 </ul>
                             </div>

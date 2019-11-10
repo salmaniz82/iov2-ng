@@ -231,13 +231,12 @@
 
                 <div class="field-wrap">
 
-                  <label class="placeholder static">Limit Max Allocation</label>
+                  
 
-              <select class="w-100 limitWizard" name="maxAllocation" ng-model="vm.nQuiz.maxAllocation" required
+              <select class="float-field w-100 limitWizard" name="maxAllocation" ng-model="vm.nQuiz.maxAllocation" required
                 ng-change="vm.calcMaxAllocation(vm.nQuiz.maxAllocation)" ng-pattern="/^[0-9]{1,10}$/"
 
               >
-                    <option ng-disabled="1 == 1">-- Select X Allocation</option>
                    <option value="1" ng-selected="1 == vm.nQuiz.maxAllocation">1x</option>
                    <option value="2" ng-selected="2 == vm.nQuiz.maxAllocation">2x</option>
                    <option value="3" ng-selected="3 == vm.nQuiz.maxAllocation">3x</option>
@@ -249,6 +248,8 @@
                    <option value="9" ng-selected="9 == vm.nQuiz.maxAllocation">9x</option>
                    <option value="10" ng-selected="10 == vm.nQuiz.maxAllocation">10x</option>
             </select>
+
+            <label class="placeholder" ng-class="{'invalidSelectPlaceholder': particulars.maxAllocation.$invalid}"> Set Max Allocation </label>
                   
 
                 </div>
@@ -261,7 +262,7 @@
           	<div class="gc2-half">
 
 
-          		<div class="grid12Col">
+          		<div class="grid12Col field-wrap">
           			
           		
           		<div class="g_nested gc-auto-half">

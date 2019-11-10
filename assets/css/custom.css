@@ -1938,3 +1938,7 @@ i.floatcons {
 .quizTitleHeading {
   font-size: 28px;
 }
+
+.vam {
+  vertical-align: middle;
+}

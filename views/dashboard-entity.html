@@ -126,7 +126,7 @@
 
 			<thead>	
 				<th>Candidates</th>
-				<th>Que.</th>
+				<th title="Total questions required to attempt in quiz">Que.</th>
 				<th>Ends In</th>
 				<th>Marked</th>
 				<th>Answered</th>
@@ -146,7 +146,13 @@
 				<td>{{act.answered}}</td>
 				<td>{{act.position}}</td>
 				
-				<td><span class="status working">Progress</span></td>
+				<td><span class="status working">Progress</span> 
+
+
+					<a href="#" class="static-link" ng-click="vm.clearActivity(act.attemptID)">&nbsp;<i class="fal fa-times-circle c-red vam"></i></a>
+
+					
+				</td>
 
 				</tr>
 			</tbody>

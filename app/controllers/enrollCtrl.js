@@ -241,6 +241,107 @@
         };
 
 
+        vm.removeEnroll = function(itemId)
+        {
+
+            
+            
+
+            var removeSuccess = function(res)
+            {
+
+                var notify = {
+                        type: 'success',
+                        title: 'Operation Successfull',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+
+                var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+
+                
+                vm.dataList.splice(idx, 1);
+            
+
+            };
+
+
+            var removeError = function(res)
+            {
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'Operation Failed',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            };
+
+
+            $http.delete(API_URL+'enroll/'+itemId).then(removeSuccess, removeError);
+
+
+
+        };
+
+
+
+        
+
+        vm.resetEnroll = function(itemid)
+        {
+
+
+            var resetSuccess = function(res)
+            {
+
+                var notify = {
+                        type: 'success',
+                        title: 'Operation Successfull',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            };
+
+
+            var resetError = function(res)
+            {
+
+                var notify = {
+                        type: 'error',
+                        title: 'Operation Failed',
+                        content: res.data.message,
+                        timeout: 5000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+            };
+
+
+
+            $http({
+                url : API_URL+'enroll-reset/'+itemid,
+                method : 'PUT',
+                data : {'payload' : 'empty'}
+            }).then(resetSuccess, resetError); 
+
+            
+
+
+            
+
+            
+
+        };
+
+
 
 
 
