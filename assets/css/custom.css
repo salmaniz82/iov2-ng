@@ -77,6 +77,10 @@ img.img-resp{
   color: var(--grey);
 }
 
+.c-white {
+  color: #fff;
+}
+
 
 .c-blue {
     color: #00ACEE !important;
@@ -367,6 +371,15 @@ p.flat-circle span {
   width:1200px !important;
 }
 
+
+.cst-modal-window.fullSize {
+
+  width: 98%;
+  height: 90vh;
+  background-color: transparent !important; 
+
+}
+
 .cst-modal-header{
   padding:1.5rem;
   font-family: sans-serif;
@@ -392,8 +405,13 @@ p.flat-circle span {
 
 
 .cst-modal-body{
-  padding:1.5rem;
+  padding:10px;
   flex-size:1;
+  overflow: scroll;    
+}
+
+.cst-modal-body.no-pad {
+  padding: 0px !important;
 }
 
 button{padding: 0.6rem 1rem; font-family: sans-serif; text-transform: uppercase; border: none; cursor: pointer;}
@@ -1802,7 +1820,6 @@ display: flex;
     padding-top: 5px;
     padding-bottom: 10px;
     border-top: 1px solid #ddd;
-    padding-right: 10px;
 }
     
 }
@@ -1839,13 +1856,20 @@ display: flex;
   padding-bottom: 65px
 }
 
-
-
+.mt-5 {margin-top: 5px;}
+.mt-10 {margin-top: 10px;}
+.mt-15 {margin-top: 15px;}
 .mt-20 {margin-top: 20px;}
 
+
+.mb-5 {margin-bottom: 5px;}
+.mb-10 {margin-bottom: 10px;}
+.mb-15 {margin-bottom: 15px;}
 .mb-20 {margin-bottom: 20px;}
 
+.pd-5 {padding: 5px}
 .pd-10 {padding: 10px}
+.pd-20 {padding: 20px}
 
 
 .afterMatch:after {
@@ -1942,3 +1966,65 @@ i.floatcons {
 .vam {
   vertical-align: middle;
 }
+
+
+
+
+#photos {
+   /* Prevent vertical gaps */
+   line-height: 0;
+   
+   -webkit-column-count: 3;
+   -webkit-column-gap:   0px;
+   -moz-column-count:    3;
+   -moz-column-gap:      0px;
+   column-count:         3;
+   column-gap:           3px;
+}
+
+#photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  #photos {
+  -moz-column-count:    4;
+  -webkit-column-count: 4;
+  column-count:         4;
+  }
+}
+@media (max-width: 1000px) {
+  #photos {
+  -moz-column-count:    3;
+  -webkit-column-count: 3;
+  column-count:         3;
+  }
+}
+@media (max-width: 800px) {
+  #photos {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  #photos {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
+}
+
+
+.field-wrap .optionAttachIcon {
+
+  position: absolute;
+  right: -35px;
+  top: 35px;
+
+}
+

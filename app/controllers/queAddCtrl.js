@@ -4,6 +4,8 @@
 
         var vm = this;
 
+        vm.token = localStorage.getItem('auth_token');
+
 
         vm.showMediaLibrary = false;
         vm.mediaLoaded = null;
@@ -13,13 +15,13 @@
         $scope.$parent.base.pageUrl = $state.current.url; 
 
 
+        vm.optionImageModal = false;
+
+        vm.enableLink = false;
+
+
+
         vm.bindTopCategory = true;
-
-
-
-
-
-
 
         console.log(queGlobalData);
 
@@ -458,6 +460,80 @@
 
         };
 
+
+
+        vm.activateImageOption = function(optionLabel)
+        {
+
+            vm.optionLabel = optionLabel;
+            console.log(optionLabel);
+            vm.optionImageModal = true;
+            vm.uploadUrl = API_URL+'queoptionimages/'+optionLabel;
+
+
+            $scope.dropzoneConfig = {
+            'options': { 
+              'url': vm.uploadUrl,
+              'multiple' : false,
+              'maxFiles' : 1,
+              'thumbnailWidth': null,
+              'thumbnailHeight': null,
+              
+              'acceptedFiles': ".pdf,.png,.jpg,.gif,.bmp,.jpeg",
+              'dictDefaultMessage': 'Drag or upload option image here',
+              headers: {'token': vm.token}
+            },
+            'eventHandlers': {
+              'sending': function (file, xhr, formData) {
+
+                console.log(xhr);
+
+              },
+              'success': function (file, response) {
+
+                  if(response.status)
+                  {
+                    
+                    console.log('met condition');
+                    
+                    vm.enableLink = true;
+
+                    var imageUrl = response.imageUrl;
+
+                    var optionOrder = 'option'+optionLabel.toUpperCase();
+
+                    vm.nque[optionOrder] = imageUrl;
+
+
+                    vm.closeOptionAttachModal();
+
+
+                    $scope.$apply();
+
+
+
+                  }
+
+                  
+
+                  
+
+
+              }
+            }
+        };
+
+
+
+        };
+
+
+        vm.closeOptionAttachModal = function()
+        {
+
+            vm.optionImageModal = false;
+
+        };
 
 
 

@@ -720,3 +720,19 @@ p.xAllocate {
   margin-top: 10px;
   border: 1px solid var(--greyLight);
 }
+
+
+.quizThumbsWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 5px;
+}
+
+
+.quizThumbsWrapper img {
+  width: 100%;
+  height: auto;
+}
+
+
+.quizThumbsWrapper .imgCol {background-color: green}

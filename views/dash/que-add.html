@@ -254,6 +254,7 @@
 
                         <div class="span5">
                             <div id="addMediabtn">
+
                                 <span class="fal fa-camera icon-2x vam"></span><a href="#" ng-click="vm.enableLibrary()"> Add Media</a>
                             </div>
                             <!--addbtn-->
@@ -324,12 +325,12 @@
 
 
 
-                <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px">
+                <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px" ng-if="vm.queType != 4">
 
 
 
 
-                    <div class="options_wrapper" ng-if="vm.queType != 4">
+                    <div class="options_wrapper">
                         
                     
                     <div class="row">
@@ -342,11 +343,15 @@
                     <div class="row">
                         <div class="span8">
                             <div class="field-wrap">
+
+
                                 
                             <input type="text" name="opta" id="opta" class="float-field w-100" ng-model="vm.nque.optionA" required>
                             <label class="placeholder">A</label>
+                            <i class="fal fa-image vam icon-2x optionAttachIcon" ng-click="vm.activateImageOption('a')"></i>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="row">
@@ -355,8 +360,11 @@
                             <div class="field-wrap">
                                 <input type="text" name="optb" id="optb" class="float-field w-100" ng-model="vm.nque.optionB" required>
                                 <label class="placeholder">B</label>
+                                <i class="fal fa-image vam icon-2x optionAttachIcon" ng-click="vm.activateImageOption('b')"></i>
                             </div>    
 
+                            
+        
                             
                         </div>
                     </div>
@@ -367,6 +375,10 @@
                             <div class="field-wrap">
                                 <input type="text" name="optc" id="optc" class="float-field w-100" ng-model="vm.nque.optionC" required>
                                 <label class="placeholder">C</label>
+
+
+                                <i class="fal fa-image vam icon-2x optionAttachIcon" ng-click="vm.activateImageOption('c')"></i>
+                                
                             </div>
 
                             
@@ -379,6 +391,7 @@
 
                                 <input type="text" name="optd" id="optd" class="float-field w-100" ng-model="vm.nque.optionD" required>
                                 <label class="placeholder">D</label>
+                                <i class="fal fa-image vam icon-2x optionAttachIcon" ng-click="vm.activateImageOption('d')"></i>
                             </div>    
                             
                         </div>
@@ -391,6 +404,8 @@
 
 
                 <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px">
+
+
 
 
                     <div class="row">
@@ -409,6 +424,8 @@
 
 
                             <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.radioAnswer.$invalid}">Set Answer</label>
+
+                            <i class="fal fa-image vam icon-2x optionAttachIcon" ng-click="vm.activateImageOption('a')"></i>
 
                             </div>
 
@@ -632,8 +649,42 @@
 
   </div><!-- colright -->
 
-  
-
-
 
 </section>
+
+
+
+<div class="cst-modal-container" ng-if="vm.optionImageModal">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header grid12Col">
+
+        <div class="gc-first-remain-quater">
+            <h3 class="c-grey">Attach image option: {{vm.optionLabel}} </h3> 
+        </div>
+        
+        <div class="gc-last-quater">
+          <i class="fal fa-times fa-2x pull-right c-grey" ng-click="vm.closeOptionAttachModal()"></i> 
+        </div>
+
+      </div>
+      <div class="cst-modal-body">
+
+
+          <form class="floatable" name="changepassword" novalidate>
+        
+          <div class="grid12Col gap10">
+
+
+            <div class="gc2-full">
+                <div dropzone="dropzoneConfig"></div>
+            </div>
+
+          
+          <button class="gc-7-12  btn btn-danger" ng-click="vm.closeOptionAttachModal()">Cancle</button>  
+
+          </form>  
+        </div>
+        
+      </div>
+      
+    </div>

@@ -11,6 +11,16 @@
 
         const channel = new BroadcastChannel('sw-idxsaved');
 
+
+        vm.lightBoxEnabled  = false;
+
+        /*
+        myRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i
+        let imagePath = "http://localhost:3001/App 12-0.png";
+        console.log(myRegex.test(imagePath));
+        */
+
+
         /*
         
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
@@ -20,6 +30,16 @@
 
         }
         */
+
+
+        vm.optionhasImage = function(optionsSTring)
+        {
+
+            myRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i
+            return myRegex.test(optionsSTring);
+        };
+
+        
         
 
         vm.closeCurrentWindow = function() {
@@ -878,6 +898,28 @@
               
          });
 
+
+        };
+
+
+        vm.launchLightbox = function(imgPath, imgCaption)
+        {
+
+            vm.lightBoxEnabled = true;
+
+            console.log(imgPath);
+
+            vm.fullImageSourceLink = imgPath;
+            
+            vm.fullImageTitle = imgCaption;
+
+        };
+
+
+        vm.closeLightBox = function()
+        {
+
+            vm.lightBoxEnabled = false;
 
         };
 
