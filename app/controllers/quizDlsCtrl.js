@@ -8,6 +8,11 @@
 
         vm.timeexpiration = false;
 
+        vm.optionhasImage = function(optionsSTring)
+        {
+            myRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i
+            return myRegex.test(optionsSTring);
+        };
 
 
 

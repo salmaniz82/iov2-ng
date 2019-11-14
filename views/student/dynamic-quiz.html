@@ -128,7 +128,12 @@
 
                 <div class="gc2-full que-line">
                     <input type="radio" id="radio-1" class="radio-custom" name="answer" value="a" ng-model="vm.questions[$index].answer">
-                    <label for="radio-1" class="radio-custom-label noselect">{{item.optionA}}</label>    
+                    <label for="radio-1" class="radio-custom-label noselect">
+
+                        <span ng-if="!vm.optionhasImage(item.optionA)">{{item.optionA}}</span> 
+                        <img ng-if="vm.optionhasImage(item.optionA)" ng-src="{{item.optionA}}">   
+
+                    </label>    
                 </div>
 
             
@@ -138,7 +143,12 @@
 
                 <div class="gc2-full que-line noselect">
                     <input type="radio" id="radio-2" class="radio-custom" name="answer" value="b" ng-model="vm.questions[$index].answer">
-                    <label for="radio-2" class="radio-custom-label ">{{item.optionB}}</label>    
+                    <label for="radio-2" class="radio-custom-label ">
+
+                        <span ng-if="!vm.optionhasImage(item.optionB)">{{item.optionB}}</span>
+                        <img ng-if="vm.optionhasImage(item.optionB)" ng-src="{{item.optionB}}">  
+                        
+                    </label>    
                 </div>
 
             
@@ -147,7 +157,12 @@
 
                 <div class="gc2-full que-line noselect" ng-if="vm.questions[$index].optionC != null && item.type_id != 2">
                     <input type="radio" id="radio-3" class="radio-custom" name="answer" value="c" ng-model="vm.questions[$index].answer">
-                    <label for="radio-3" class="radio-custom-label">{{item.optionC}}</label>    
+                    <label for="radio-3" class="radio-custom-label">
+
+                        <span ng-if="!vm.optionhasImage(item.optionC)">{{item.optionC}}</span>
+                        <img ng-if="vm.optionhasImage(item.optionC)" ng-src="{{item.optionC}}">
+
+                    </label>    
                 </div>
 
 
@@ -158,7 +173,13 @@
                 <div class="gc2-full que-line noselect" ng-if="vm.questions[$index].optionD != null && item.type_id != 2">
 
                     <input type="radio" id="radio-4" class="radio-custom" name="answer" value="d" ng-model="vm.questions[$index].answer">
-                    <label for="radio-4" class="radio-custom-label">{{item.optionD}}</label>    
+                    <label for="radio-4" class="radio-custom-label">
+
+
+                        <span ng-if="!vm.optionhasImage(item.optionD)">{{item.optionD}}</span>  
+                        <img ng-if="vm.optionhasImage(item.optionD)" ng-src="{{item.optionD}}">  
+
+                    </label>    
 
 
                 </div>
@@ -174,14 +195,24 @@
 
                 <div class="gc2-full que-line">
                     <input type="checkbox" name="answer[]" id="checkbox-1" class="checkbox-custom" name="answer" value="a" ng-model="vm.questions[$index].answer.a">
-                    <label for="checkbox-1" class="checkbox-custom-label noselect"> {{item.optionA}} </label>    
+                    <label for="checkbox-1" class="checkbox-custom-label noselect"> 
+                        
+                        <span ng-if="!vm.optionhasImage(item.optionA)">{{item.optionA}}</span>  
+                        <img ng-if="vm.optionhasImage(item.optionA)" ng-src="{{item.optionA}}"> 
+
+                     </label>    
                 </div>
 
 
                 <div class="gc2-full que-line">
                     
                         <input type="checkbox" name="answer[]" id="checkbox-2" class="checkbox-custom" name="answer" value="b" ng-model="vm.questions[$index].answer.b">
-                        <label for="checkbox-2" class="checkbox-custom-label noselect"> {{item.optionB}} </label>    
+                        <label for="checkbox-2" class="checkbox-custom-label noselect"> 
+                            
+                            <span ng-if="!vm.optionhasImage(item.optionB)">{{item.optionB}}</span>  
+                            <img ng-if="vm.optionhasImage(item.optionB)" ng-src="{{item.optionB}}"> 
+
+                        </label>    
                     
                 </div>
             
@@ -191,7 +222,13 @@
                 <div class="gc2-full que-line" ng-if="vm.questions[$index].optionC != null">
 
                         <input type="checkbox" name="answer[]" id="checkbox-3" class="checkbox-custom" name="answer" value="c" ng-model="vm.questions[$index].answer.c">
-                        <label for="checkbox-3" class="checkbox-custom-label noselect"> {{item.optionC}} </label>    
+                        <label for="checkbox-3" class="checkbox-custom-label noselect"> 
+
+                            <span ng-if="!vm.optionhasImage(item.optionC)">{{item.optionC}}</span>  
+                            <img ng-if="vm.optionhasImage(item.optionC)" ng-src="{{item.optionC}}"> 
+
+
+                        </label>    
 
                 </div>
             
@@ -200,7 +237,12 @@
                 <div class="gc2-full que-line" ng-if="vm.questions[$index].optionD != null">
 
                     <input type="checkbox" name="answer[]" id="checkbox-4" class="checkbox-custom" name="answer" value="d" ng-model="vm.questions[$index].answer.d">
-                    <label for="checkbox-4" class="checkbox-custom-label noselect"> {{item.optionD}} </label>    
+                    <label for="checkbox-4" class="checkbox-custom-label noselect"> 
+
+                        <span ng-if="!vm.optionhasImage(item.optionD)">{{item.optionD}}</span>  
+                        <img ng-if="vm.optionhasImage(item.optionD)" ng-src="{{item.optionD}}"> 
+
+                    </label>    
 
                 </div>
             

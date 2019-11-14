@@ -32,6 +32,11 @@
 
         vm.isNumber = angular.isNumber;
 
+        vm.myFormData = {};
+
+
+        
+
 
 
         if(vm.userRole == 'content developer' || vm.userRole == 'contributor')
