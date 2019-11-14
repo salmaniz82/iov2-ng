@@ -503,6 +503,17 @@
             
         })
 
+        .state('quizcomplited', {
+
+            url : '/quizcomplited',
+            templateUrl : 'views/student/quizcomplited.html',
+            controller : 'quizcomplitedCtrl as vm'
+
+        })
+
+
+
+
         .state('std', {
             templateUrl: 'views/templates/tab.student.layout.html',
             controller : 'stdCtrl as std',

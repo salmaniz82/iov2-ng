@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('quizDlsCtrl', ['API_URL', '$scope', '$http', '$stateParams', 'quizPlayData', '$timeout', '$state', function(API_URL, $scope, $http, $stateParams, quizPlayData, $timeout, $state){
+    angular.module('io2v3').controller('quizDlsCtrl', ['API_URL', '$scope', '$http', '$stateParams', 'quizPlayData', '$timeout', '$state', '$rootScope', function(API_URL, $scope, $http, $stateParams, quizPlayData, $timeout, $state, $rootScope){
 
 
         var vm = this;
@@ -39,7 +39,15 @@
         vm.closeCurrentWindow = function() {
 
           
-          window.close();
+          
+            if($rootScope.quizWindow != undefined)
+            {
+               $rootScope.quizWindow.close();
+            }
+
+            else {
+                window.close();
+            }
             
 
         };

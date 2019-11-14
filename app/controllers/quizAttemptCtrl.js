@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('quizAttemptCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizPlayData', '$timeout', function(API_URL, $scope, $http, $state, $stateParams, quizPlayData, $timeout){
+    angular.module('io2v3').controller('quizAttemptCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizPlayData', '$timeout', '$rootScope', function(API_URL, $scope, $http, $state, $stateParams, quizPlayData, $timeout, $rootScope){
 
 
         var vm = this;
@@ -14,11 +14,6 @@
 
         vm.lightBoxEnabled  = false;
 
-        /*
-        myRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i
-        let imagePath = "http://localhost:3001/App 12-0.png";
-        console.log(myRegex.test(imagePath));
-        */
 
 
         /*
@@ -43,27 +38,17 @@
         
 
         vm.closeCurrentWindow = function() {
-            var version=0;
-            if (navigator.appVersion.indexOf("MSIE")!=-1){
-                        var temp=navigator.appVersion.split("MSIE");
-                        version=parseFloat(temp[1]);
-            }
-            if (version>=5.5 && version<=6) {
 
-                        this.focus();
 
-                        self.opener = this;
-
-                        self.close();
-
-            } else {
-
-                        window.open('','_parent','');
-
-                        window.close();
-
+            if($rootScope.quizWindow != undefined)
+            {
+               $rootScope.quizWindow.close();
             }
 
+            else {
+                window.close();
+            }
+            
         };
 
         

@@ -71,7 +71,7 @@
 
 
 
-                    window.open(popupUrl, "Quiz", 
+                $rootScope.quizWindow = window.open(popupUrl, "Quiz", 
 
                         'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
                         screen.availHeight 
@@ -102,7 +102,7 @@
                     vm.actQuiz.validity = "progress";
 
 
-                    window.open(dlsPopupUrl, "Quiz", 
+                 $rootScope.quizWindow = window.open(dlsPopupUrl, "Quiz", 
 
                         'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
                         screen.availHeight 
