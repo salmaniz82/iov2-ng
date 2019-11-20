@@ -356,12 +356,16 @@ self.addEventListener('message', function (event) {
 
             console.log('data has been saved to indexDB');
 
+            /*
             const channel = new BroadcastChannel('sw-idxsaved');
             channel.postMessage({message: 'Data Saved', status: 1});
+            */
 
+            self.clients.matchAll().then(clients => {
 
-           
-              
+              clients.forEach(client => client.postMessage( {message: 'Data Saved', status: 1}) );
+
+          });
 
 
         }).catch(function(err) {

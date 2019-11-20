@@ -51,10 +51,7 @@
         }
 
 
-
-
         console.log(decodedUriObj);
-
 
 
         vm.fetchEntityProfile = function()

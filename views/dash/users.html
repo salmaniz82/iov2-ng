@@ -1,20 +1,73 @@
-
 <section class="hbox">
+
+
 
 
     <aside> 
 
+      
 
-        <div class="bg-white border-all" style="margin-bottom: 20px;"> 
+        <div class="" style="margin-bottom: 20px;"> 
 
-<div class="row-fluid"> 
+      <div class="grid12Col gap10"> 
 
 
-        <div class="compactCenterBlock" style="width: 300px; margin: 0 auto; padding: 20px 30px;">
+        <div class="gc-first-remain-quater bg-white border-all" >
+
+
+          <div class="customInner" style="margin: 10px; padding-right: 20px;">
+
+
+            <div ng-if="vm.loadingStatus == 'no contents'">
+
+              <h2 class="t-center t-grey">No users created</h2>  
+
+            </div>
+
+
+
+            <div class="grid12Col gap5" ng-if="vm.loadingStatus == true">
+
+              <div class="gc-remain-of-last-col">
+
+                <form class="floatable" novalidate>
+
+              <div class="field-wrap hasflatCons">
+                    <span class="fal fa-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.searchQuery[sortType]">
+                    <label for="title-filter" class="placeholder">Filter By selected field</label>
+                </div>
             
-        <div class="btn btn-success btn-block" ng-click="vm.activateAddUser()"> <span class="fas fa-plus"></span> User </div>
+              </form>
+                
+              </div>
+
+              <div class="gc-last-column dfx-center-xy">
+
+
+                <a href="#" class="c-pink" ng-click="vm.clearFilters()">Clear Filters <span class="fal fa-times-circle"></span> </a>
+                
+              </div>
+
+
+              
+            </div>
+
+          
 
         </div>
+
+        </div>
+
+        <div class="gc-last-quater bg-white border-all dfx-center-xy">
+
+          
+            <div class="btn btn-success" ng-click="vm.activateAddUser()" style="width: 200px"> <span class="fas fa-plus"></span> User </div>  
+          
+        </div>
+
+
+        
 
 </div>  
 
@@ -27,11 +80,7 @@
 
 </div>
 
-<div ng-if="vm.loadingStatus == 'no contents'" class="bg-white border-all">
 
-    <h2 class="t-center t-grey">No users created yet</h2>  
-
-</div>
 
 
 <section ng-if="vm.loadingStatus == false">
@@ -50,20 +99,37 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Firstname</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Locked</th>
-                        <th>loginAttempts</th>
-                        <th>Status</th>
+                        <th><a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a></th>
+                        <th><a href="#" ng-click="vm.selectSortfield('name')">Firstname</a>
+                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'name'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+
+                        </th>
+                        <th><a href="#" ng-click="vm.selectSortfield('email')">Email</a>
+
+                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'email'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+
+                        </th>
+                        <th><a href="#" ng-click="vm.selectSortfield('role')">Role</a>
+
+                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'role'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th><a href="#" ng-click="vm.selectSortfield('locked')">Locked</a>
+                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'locked'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th><a href="#" ng-click="vm.selectSortfield('loginAttempts')">loginAttempts</a>
+                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'loginAttempts'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th><a href="#" ng-click="vm.selectSortfield('status')">Status</a>
+                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'status'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'">
+                          
+                        </th>
                         <th>Actions</th>
                         
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in vm.dataList">
-                        <td>{{item.id}}</td>
+                    <tr ng-repeat="item in vm.dataList | filter:vm.searchQuery | orderBy:sortType:sortReverse">
+                        <td>{{$index + 1}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.role}}</td>

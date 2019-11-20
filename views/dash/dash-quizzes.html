@@ -26,25 +26,34 @@
 
         <div class="gc-1-8 bg-white border-all">
 
-        <div class="customInner" style="margin: 20px; padding-right: 30px;">
 
-            <form class="floatable w-80">
+            <div class="grid12Col gap5 customInner" style="margin: 20px; padding-right: 10px;">
+
+                <div class="gc-remain-of-last-col">
+
+                    <form class="floatable w-80">
 
                 <div class="field-wrap hasflatCons">
-                    <span class="icon-search quiztitlefilter"></span>
-                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.titleFitler">
+                    <span class="fal fa-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.searchQuery[sortType]">
                     <label for="title-filter" class="placeholder">Filter By Title</label>
                 </div>
                 
             </form>
+                    
+                </div>
 
+
+                <div class="gc-last-column dfx-center-xy">
+
+                    <a href="#" class="c-pink" ng-click="vm.clearFilters()"> Filters <span class="fal fa-times-circle"></span> </a>
+                    
+                </div>
+
+            </div>
 
         
-        </div>
 
-            
-
-            
 
         </div>
 
@@ -54,11 +63,6 @@
 
         </div>
 
-        
-            
-        
-
-        
 
 </div>  
 
@@ -87,12 +91,33 @@
 
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Quiz Title</th>
-                        <th>Min / Max </th>
-                        <th>Duration</th>
-                        <th>Enrollment</th>
-                        <th>Status</th>
+                        <th>
+                        
+
+                        <a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a>
+                        <span ng-click="vm.toggleSort()" ng-show="sortType == '$'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="vm.selectSortfield('title')">Quiz Title</a>
+                            <span ng-click="vm.toggleSort()" ng-show="sortType == 'title'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th>
+                            
+                            <a href="#" ng-click="vm.selectSortfield('minScore')">Min / Max </a>
+                            <span ng-click="vm.toggleSort()" ng-show="sortType == 'minScore'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="vm.selectSortfield('duration')">Duration</a>
+                            <span ng-click="vm.toggleSort()" ng-show="sortType == 'duration'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="vm.selectSortfield('enrollment')">Enrollment</a>
+                            <span ng-click="vm.toggleSort()" ng-show="sortType == 'enrollment'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="vm.selectSortfield('status')">Status</a>
+                            <span ng-click="vm.toggleSort()" ng-show="sortType == 'status'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+                        </th>
                         <th>Actions</th>
 
                     </tr>
@@ -100,9 +125,9 @@
 
                     <tbody>
 
-                    <tr ng-repeat="item in vm.dataList | filter:{ title: vm.titleFitler }">
+                    <tr ng-repeat="item in vm.dataList | filter:vm.searchQuery | orderBy:sortType:sortReverse">
 
-                        <td>{{item.id}}</td>
+                        <td>{{$index + 1}}</td>
                         <td>{{item.title}}</td>
                         <td>{{item.minScore}} / {{item.maxScore}}</td>
                         <td>{{item.duration}} mins.</td>
@@ -146,7 +171,7 @@
                                     <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
                                     <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
                                     <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - Modify Date/Time</a>
-                                    <li><a ui-sref="exm.editQuiz()"> - Manage Quiz</a></li>
+                                    
                                     <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
                                     <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
 

@@ -1554,7 +1554,7 @@ section.catSelectWrap {
   display: grid;
   grid-template-columns: repeat(13, 1fr);
   grid-auto-rows: minmax(250px, auto);
-  grid-gap: 15px;
+  grid-gap: 10px;
 }
 
 

@@ -31,24 +31,68 @@
         */
 
 
-        const channel = new BroadcastChannel('sw-idxsaved');        
 
+        /*  
+        commit broadcast api not working in safari
+        const channel = new BroadcastChannel('sw-idxsaved');        
+        */
+
+
+        vm.returnFormattedAnswer = function(answer)
+        {
+
+            vm.payloadAnswers = [];
+    
+                
+                if(typeof(answer) == "object")
+                {
+
+                    var tempArrOPtions = [];
+                    for(var k in answer)
+                    {
+                        if(answer.hasOwnProperty(k))
+                        {
+                            if(answer[k] == true)
+                            {
+                                tempArrOPtions.push(k);
+                            }
+                        }
+                    }
+                    tempArrOPtions.sort();
+                    answer = tempArrOPtions.join(",");
+
+                    return answer;
+                }
+
+                else {
+                    return answer;
+                }
+                
+           
+         };
 
 
 
         vm.closeCurrentWindow = function() {
+         
+            console.log('attempt to close window');
 
-          
-          
-            if($rootScope.quizWindow != undefined)
+            console.log(window.quizWindow);
+
+
+            if(window.quizWindow != undefined)
             {
-               $rootScope.quizWindow.close();
+               console.log('quiz window attached to root');
+               window.quizWindow.close();
             }
 
             else {
-                window.close();
-            }
-            
+
+                console.log('redirect compilted page');
+                    
+                $state.go('quizcomplited');
+
+            }      
 
         };
 
@@ -130,13 +174,15 @@
            
            if(vm.questionIndex + 1 < vm.quiz.noques)
            {
+              vm.pushAnswerToActivity();
               vm.questionIndex += 1;   
+
+
            }
 
            else {
 
-            
-
+            vm.pushAnswerToActivity();
             vm.triggerProcessEndQuiz();
 
            }
@@ -401,30 +447,6 @@
 
         
 
-        /*
-        	vm.dataSource;
-	        easy equal all required
-	        next Protocols 
-        */
-
-        /*
-
-			vm.performanceIndicator : {
-				easy : [],
-				medium : [],
-				hard : []
-			}
-
-	        vm.mediumQuestions
-    	    vm.easyQuestions
-        	vm.difficultsQuestions
-	
-			vm.questionsStream:
-
-			whatever the choosen questions according to matric will be pulled in 
-
-
-        */
 
 
         vm.prepareSubjectPerformanceIndicatorProperties = function()
@@ -444,24 +466,47 @@
         vm.prepareSubjectPerformanceIndicatorProperties();
 
 
+        vm.pushAnswerToActivity = function()
+        {
+
+          var currentIndex = vm.questionIndex;
+
+          var tarQue = vm.questions[currentIndex];
+
+          var formattedAnswer = vm.returnFormattedAnswer(tarQue.answer);
+
+          
+            var pushPayload = {
+                attempt_id : $stateParams.attempt_id,
+                question_id : tarQue.questionId,
+                answer : formattedAnswer,
+                atype : 'a',
+                questionIndex: (++currentIndex)
+            };
+
+
         
+          console.log(pushPayload);
 
- /*
 
-           vm.stream.distribution.
-           vm.currentSubjectIndex;
-           vm.currentSubjectName;
-           vm.questionIndex
+          var pushUrl = API_URL+'recordActivity'; 
 
-           */
+          $.ajax({
+              type: "POST",
+              url: pushUrl,
+              data: pushPayload,
+              dataType: 'json',
+              success: function(res)
+              {
+                console.log('activity logged to server');
+              }
+              
+         });
 
-           /*
-                - check what subject you are on
-                - check if quePerSubject has a room 
-                - if room continue with subject 
-                - or change the subject and level would be easy 
-                - how many answered we have per subject 
-           */
+
+
+        };
+
 
 
 
@@ -490,12 +535,21 @@
 
                     vm.initializeQuestions();
 
+                    console.log('push activity checkpoint');
+
+                    vm.pushAnswerToActivity();
+
                     vm.questionIndex += 1;
+
+
+                    
 
                 }
 
                 else if (vm.questions.length == vm.quiz.noques)
                 {
+
+                  vm.pushAnswerToActivity();
                     
                     vm.endActivated = true;
                 }
@@ -504,9 +558,6 @@
 
            else {
                     
-                    /*
-                      invalid answer cannot move further
-                    */
 
                     console.log('invalid attempt');
 
@@ -520,11 +571,7 @@
         vm.subjectProcedure = function()
         {
 
-            /*
-            vm.currentSubjectIndex
-            vm.noSubjects
-            vm.currentSubjectName
-            */
+            
 
             console.log('called subject procedure');
 
@@ -712,38 +759,7 @@
         };
 
 
-        vm.returnFormattedAnswer = function(answer)
-        {
-
-            vm.payloadAnswers = [];
-    
-                
-                if(typeof(answer) == "object")
-                {
-
-                    var tempArrOPtions = [];
-                    for(var k in answer)
-                    {
-                        if(answer.hasOwnProperty(k))
-                        {
-                            if(answer[k] == true)
-                            {
-                                tempArrOPtions.push(k);
-                            }
-                        }
-                    }
-                    tempArrOPtions.sort();
-                    answer = tempArrOPtions.join(",");
-
-                    return answer;
-                }
-
-                else {
-                    return answer;
-                }
-                
-           
-         };
+        
 
 
 
@@ -757,7 +773,7 @@
 
                 var Indicator = (proivdedAnswer == vm.questions[vm.questionIndex].stamp) ? 1 : 0;
 
-                console.log('proivded Answer :' + proivdedAnswer);
+                console.log('provided Answer :' + proivdedAnswer);
 
                 console.log('correct answer :' +  vm.questions[vm.questionIndex].stamp);
 
@@ -767,12 +783,12 @@
 
                 if(Indicator)
                 {
-                    console.log('correct provided answer');
+                    console.log('correct response answer');
                 }
 
                 else {
 
-                    console.log('incorrect wrong answer');
+                    console.log('incorrect response answer');
 
                 }
 
@@ -898,6 +914,8 @@
       
             navigator.serviceWorker.controller.postMessage(swPost);
 
+            /*  
+
             channel.addEventListener('message', event => {
 
             if(event.data.status == 1 && window.cachedRegisterSW != undefined)
@@ -905,6 +923,17 @@
                  window.cachedRegisterSW.sync.register('exam');
             }
 
+            });
+
+            */
+
+            navigator.serviceWorker.addEventListener('message', event => {
+
+            if(event.data.status == 1 && window.cachedRegisterSW != undefined)
+                {
+                    window.cachedRegisterSW.sync.register('exam');
+                }
+                        
             });
 
         };

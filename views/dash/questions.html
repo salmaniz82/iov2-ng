@@ -2,8 +2,6 @@
 
 
 
-
-
 	<aside class="bg-white border-all mb-20" ng-if="vm.loading == null">
 		<div style="padding: 10px;">
 			<h3 class="t-center">Loading questions ...</h3>
@@ -41,25 +39,35 @@
 		<div class="gc-1-8 bg-white border-all">
 
 
-				<div class="customInner" style="margin: 20px; padding-right: 30px;">
+			<div class="grid12Col gap5 customInner" style="margin: 20px; padding-right: 10px;">
 
-            <form class="floatable w-80">
+				<div class="gc-remain-of-last-col">
+
+					<form class="floatable w-80">
 
                 <div class="field-wrap hasflatCons">
-                    <span class="icon-search quiztitlefilter"></span>
-                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.descFitler">
-                    <label for="title-filter" class="placeholder">Filter By Description</label>
+                    <span class="fal fa-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100"  required ng-model="vm.searchQuery[sortType]">
+                    <label for="title-filter" class="placeholder">Filter By Selected field</label>
                 </div>
                 
             </form>
+					
+				</div>
 
+				<div class="gc-last-column dfx-center-xy">
 
-        
-        </div>
+					<a href="#" class="c-pink" ng-click="vm.clearFilters()"> Filters <span class="fal fa-times-circle"></span> </a>
+					
+				</div>
 				
+			</div>
+
 
 			
 		</div>
+
+
 		<div class="gc-9-12 bg-white border-all dfx-center-xy">
 			<a class="btn btn-success" ui-sref="dash.queadd()" style="width: 200px"> <span class="fas fa-plus"></span> Questions </a>
 		</div>
@@ -324,21 +332,68 @@
 				
 				<thead>
 					<tr>
-					<th>S.NO</th>
-					<th ng-if="fields[0].cat">Category</th>				
-					<th ng-if="fields[1].decip">Sub Deciplines</th>
-					<th ng-if="fields[2].author">Author</th>
-					<th ng-if="fields[3].dated">created at</th>
+					<th>
+						
+						<a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a>
+					</th>
+					<th ng-if="fields[0].cat">
 					
-					<th ng-if="fields[4].desc">Description</th>
-				
-					<th ng-if="fields[5].answer">Answer</th>
-					<th ng-if="fields[6].diff">Difficulty</th>
+						<a href="#" ng-click="vm.selectSortfield('category')">Category</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'category'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
 
-					<th ng-if="fields[7].type">Type</th>
-					<th ng-if="fields[10].status">Status</th>
-					<th ng-if="fields[8].hits">Hits</th>
-					<th ng-if="fields[9].scope">Scope</th>
+					</th>				
+					<th ng-if="fields[1].decip">
+						<a href="#" ng-click="vm.selectSortfield('subject')">Sub Deciplines</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'subject'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+						
+					</th>
+					<th ng-if="fields[2].author">
+						<a href="#" ng-click="vm.selectSortfield('author')">Author</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'author'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+					</th>
+					<th ng-if="fields[3].dated">
+						<a href="#" ng-click="vm.selectSortfield('created_at')">created at</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'created_at'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+						
+					</th>
+					
+					<th ng-if="fields[4].desc">
+
+						<a href="#" ng-click="vm.selectSortfield('queDesc')">Description</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'queDesc'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>	
+						
+					</th>
+				
+					<th ng-if="fields[5].answer">
+						<a href="#" ng-click="vm.selectSortfield('answer')">Answer</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'answer'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+					</th>
+					<th ng-if="fields[6].diff">
+						
+						<a href="#" ng-click="vm.selectSortfield('levelEN')">Difficulty</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'levelEN'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+
+					</th>
+
+					<th ng-if="fields[7].type">
+						<a href="#" ng-click="vm.selectSortfield('typeEN')">Type</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'typeEN'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+					</th>
+					<th ng-if="fields[10].status">
+						<a href="#" ng-click="vm.selectSortfield('status')">Status</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'status'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+					</th>
+					<th ng-if="fields[8].hits">
+						
+						<a href="#" ng-click="vm.selectSortfield('hits')">Hits
+							<span ng-click="vm.toggleSort()" ng-show="sortType == 'hits'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+						</a>
+					</th>
+					<th ng-if="fields[9].scope">
+						<a href="#" ng-click="vm.selectSortfield('scope')">Scope
+						</a>
+						<span ng-click="vm.toggleSort()" ng-show="sortType == 'scope'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+					</th>
 					<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -346,7 +401,7 @@
 
 				<tbody>
 
-					<tr ng-repeat="que in vm.questions | filter:{ queDesc: vm.descFitler }">
+					<tr ng-repeat="que in vm.questions | filter:vm.searchQuery | orderBy:sortType:sortReverse">
 					
 					<td>{{$index+1}}</td>
 					<td ng-if="fields[0].cat">{{que.category}}</td>

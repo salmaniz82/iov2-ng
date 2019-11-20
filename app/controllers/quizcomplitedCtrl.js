@@ -11,7 +11,23 @@
 
 
 
-        
+        vm.attemptClose = function()
+        {
+
+        	var win = window.open("about:blank", "_self");
+
+
+        	setTimeout(function(){
+
+        		win.close();
+
+        	}, 300);
+
+            open(location, '_self').close();    
+			
+
+        };
+
 
 
     }]);

@@ -6,6 +6,38 @@
         var vm = this;
 
 
+        $scope.sortType = '$';
+        vm.searchQuery = '';
+        $scope.sortReverse  = false;
+
+
+
+        vm.selectSortfield = function(fieldName)
+        {
+
+            $scope.sortType = fieldName;
+
+        };
+
+
+        vm.clearFilters = function()
+        {
+
+            $scope.sortType = '$';
+            vm.searchQuery = '';
+            $scope.sortReverse  = false;
+
+        };
+
+        vm.toggleSort = function()
+        {
+
+            $scope.sortReverse = !$scope.sortReverse;
+
+        };
+
+
+
         vm.loadingStatus = null;
 
         $scope.$parent.base.pageUrl = $state.current.url; 

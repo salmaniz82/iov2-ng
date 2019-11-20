@@ -130,14 +130,16 @@
 			<div class="gc2-half">
 
 
-				<div class="pull-left w-45" ng-if="profile.companytitle.$valid && profile.slug.$valid && vm.slugValidity == true">
+				<div class="pull-left w-45">
 
-					<button ng-if="vm.loadingStatus ===  true" type="submit" class="btn btn-success btn-block" ng-click="vm.updateProfile()">Update</button>
-					<button ng-if="vm.loadingStatus ===  false" type="submit" class="btn btn-success btn-block" ng-click="vm.saveProfile()">Save</button>
+					
+					<button ng-if="vm.loadingStatus ==  false" type="submit" class="btn btn-success btn-block pull-right" ng-click="vm.saveProfile()">Save</button>
 					
 				</div>
 
 				<div class="pull-right w-45">
+
+					<button ng-if="vm.loadingStatus ==  true" type="submit" class="btn btn-success btn-block pull-right" ng-click="vm.updateProfile()">Update</button>
 
 					
 				</div>

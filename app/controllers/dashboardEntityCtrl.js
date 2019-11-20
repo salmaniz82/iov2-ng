@@ -23,6 +23,13 @@
 
         	function(res) {
 
+        		if(res.data.logo != undefined)
+        		{
+
+        		//	$scope.$parent.entityLogo = API_URL+res.data.logo;
+
+        		}
+
 
         		if(res.data.actvity != undefined && res.data.actvity.length != 0)
         		{

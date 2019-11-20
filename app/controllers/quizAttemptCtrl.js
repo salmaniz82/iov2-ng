@@ -1,31 +1,27 @@
 (function() {
 
-    angular.module('io2v3').controller('quizAttemptCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizPlayData', '$timeout', '$rootScope', function(API_URL, $scope, $http, $state, $stateParams, quizPlayData, $timeout, $rootScope){
+    angular.module('io2v3').controller('quizAttemptCtrl', ['API_URL', '$scope', '$http', '$state', '$stateParams', 'quizPlayData', '$timeout', function(API_URL, $scope, $http, $state, $stateParams, quizPlayData, $timeout){
 
 
         var vm = this;
-
         vm.quizData = quizPlayData.data;
-
         vm.timeexpiration = false;
 
-        const channel = new BroadcastChannel('sw-idxsaved');
 
+        /*    
+        terminate broadcast api not working in safari
+        const channel = new BroadcastChannel('sw-idxsaved');
+        */
 
         vm.lightBoxEnabled  = false;
 
 
-
         /*
-        
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
         {
-            
           return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
-
         }
         */
-
 
         vm.optionhasImage = function(optionsSTring)
         {
@@ -39,14 +35,23 @@
 
         vm.closeCurrentWindow = function() {
 
+            console.log('attempt to close window');
 
-            if($rootScope.quizWindow != undefined)
+            console.log(window.quizWindow);
+
+
+            if(window.quizWindow != undefined)
             {
-               $rootScope.quizWindow.close();
+               console.log('quiz window attached to root');
+               window.quizWindow.close();
             }
 
             else {
-                window.close();
+
+                console.log('redirect compilted page');
+                    
+                $state.go('quizcomplited');
+
             }
             
         };
@@ -168,6 +173,8 @@
       
             navigator.serviceWorker.controller.postMessage(swPost);
 
+
+            /*    
             channel.addEventListener('message', event => {
 
             if(event.data.status == 1 && window.cachedRegisterSW != undefined)
@@ -176,6 +183,18 @@
             }
 
             });
+            */
+
+
+            navigator.serviceWorker.addEventListener('message', event => {
+
+            if(event.data.status == 1 && window.cachedRegisterSW != undefined)
+                {
+                    window.cachedRegisterSW.sync.register('exam');
+                }
+                        
+            });
+
 
         };
 

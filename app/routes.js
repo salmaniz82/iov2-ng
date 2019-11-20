@@ -96,12 +96,7 @@
             
         })
 
-        .state('exm.edit', {
-
-            url : '/exam-edit',
-            templateUrl : 'views/exams/exam-edit.html',
-            
-        })
+        
 
 
         .state('exm.enroll', {
@@ -120,13 +115,6 @@
             
         })
 
-
-        .state('exm.editQuiz', {
-
-            url : '/quiz-edit',
-            templateUrl : 'views/exams/quiz-edit.html',
-  
-        })
 
         .state('exm.progress', {
 
@@ -161,15 +149,6 @@
             controller : 'quizScoreCardCtrl as vm'           
         })
 
-
-
-
-        .state('exm.check', {
-
-            url : '/exam-checkscroll',
-            templateUrl : 'views/check-scroll.html',
-            
-        })
 
         
 
@@ -468,31 +447,6 @@
         })
 
 
-        .state('core', {
-
-            url: '/core',
-            templateUrl: 'views/core.html',
-            controller : 'coreCtrl as vm',
-            authenticate : true,       
-            roles : ['admin', 'entity', 'contributor']
-
-        })
-
-       
-        .state('smauth', {
-            url : '/allauth',
-            templateUrl : 'views/everyauth.html',
-            authenticate: true,
-        })
-
-        .state('fbi', {
-            url : '/fbi',
-            templateUrl : 'views/dash-fbi.html',
-            authenticate: true,
-            roles : ['admin']
-        })
-
-
         
 
         .state('onExamRefresh', {
@@ -579,12 +533,6 @@
 
         })
 
-        .state('newlayout', {
-
-            url: '/newlayout',
-            templateUrl: 'views/newlayout.html'
-
-        })
 
 
         .state('inv', {

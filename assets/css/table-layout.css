@@ -518,6 +518,20 @@ form.floatable .field-wrap.hasflatCons .placeholder{
 }
 
 
+.gc-remain-of-last-col {
+
+  grid-column: 1 / 12;
+
+}
+
+.gc-last-column {
+
+  grid-column: 12 / -1;
+
+}
+
+
+
 .gc-triplet-solo {
 
     grid-column: 5 / 9;   

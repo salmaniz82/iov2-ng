@@ -1,12 +1,12 @@
- <section class="span9 bg-white">
-            <div class="col-right">
+ <section class="hbox">
 
-                   
+
+            <aside>
+
+                <div class="bg-white border-all pd-10">
 
                 <quiz-info-component param="vm.examID"></quiz-info-component>
 
-
-                
 
                 <div class="row">
                     <div class="span5"><span class="t-bold ">Calculated Values </span></div>
@@ -21,8 +21,7 @@
 
                     <div class="row">
 
-                        <div class="bg-success" style="font-size: 17px">
-                            
+                        <div class="bg-success" style="font-size: 17px">                       
                         
                         <div class="span4"><span class="t-bold ">Sub-Discipline</span></div>
                         <div class="span1"><span class="t-bold ">Allocated</span></div>
@@ -33,7 +32,6 @@
                         </div>
                         
                     </div>
-
 
 
                     <div class="row" ng-repeat="item in vm.Distro" style="margin-top:10px">
@@ -59,8 +57,6 @@
 
                         </div>
                         
-                        
-                        
                     </div>
 
 
@@ -72,9 +68,6 @@
                     </div>
 
 
-                    
-                  
-
                     <div class="clearfix">&nbsp;</div>
                     <div class="rowq" ng-if="vm.validDistro">
                         <button class="btn btn-success" ng-click="vm.saveDistribution()">Save</button>
@@ -82,6 +75,9 @@
 
                 </form>
 
-            </div>
+
+                </div>
+
+            </aside>
             <!-- end col right-->
         </section>

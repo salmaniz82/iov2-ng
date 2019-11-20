@@ -5,6 +5,33 @@
 
         var vm = this;
 
+
+        $scope.sortType = '$';
+        vm.searchQuery = '';
+        $scope.sortReverse  = false;
+
+
+
+        vm.selectSortfield = function(fieldName)
+        {
+
+            $scope.sortType = fieldName;
+
+        };
+
+
+        vm.clearFilters = function()
+        {
+
+            $scope.sortType = '$';
+            vm.searchQuery = '';
+            $scope.sortReverse  = false;
+
+        };
+
+
+
+
         $scope.$parent.base.pageUrl = $state.current.url; 
 
         $scope.$parent.dash.pageHeading = "Users";

@@ -6,7 +6,7 @@
 
             <img ng-if="getUSerRole() == 'admin'" alt="Logo" ng-src="{{'assets/images/iSkillMetrics-logo.svg'}}" width="150" height="88"/>
 
-          <img ng-if="getUSerRole() == 'entity'" ng-src="{{'assets/images/demo-logo.jpg'}}" width="150" height="88"/>
+          <img ng-if="getUSerRole() == 'entity'" ng-src="{{entityLogo}}" width="150" height="88"/>
           
       </a>
 
@@ -23,8 +23,7 @@
             <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})"><i class="fas fa-balance-scale"></i> Weight Distribution</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})"><i class="fas fa-clipboard-check"></i> Enroll</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})"><i class="fas fa-clipboard-list"></i> Register</a></li>
-            <li ui-sref-active="active"><a permissions="['secure-navs']" ui-sref="exm.check()">Check</a></li>
-            <li ui-sref-active="active"><a permissions="['secure-navs']" ui-sref="exm.notify()">NOtify</a></li>
+            
             
       </ul>
     </aside>

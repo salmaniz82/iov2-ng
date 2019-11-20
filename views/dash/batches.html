@@ -1,13 +1,13 @@
 <section class="hbox">
             <aside>
 
-                <div ng-if="vm.loadingStatus == null" class="bg-white border-all mb-20">
+                <div ng-if="vm.loadingStatus == null" class="bg-white border-all mb-10">
 
     <h3 class="t-center c-grey">Loading please wait ...</h3>  
 
 </div>
 
-<div ng-if="vm.loadingStatus == false" class="bg-white border-all mb-20">
+<div ng-if="vm.loadingStatus == false" class="bg-white border-all mb-10">
     <h3 class="t-center c-grey">No batches available</h3>  
 </div>
 
@@ -64,7 +64,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>S.NO</th>
                         <th>Batch</th>
                         <th>Max Score</th>
                         <th>Passing Score</th>
@@ -72,7 +72,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in vm.dataList.batches track by item.id">
-                        <td>{{item.id}}</td>
+                        <td>{{$index + 1}}</td>
                         <td><span ng-class="{'c-green': vm.activeBatchId == item.id}">{{item.title}}</span></td>
                         <td>{{item.maxScore}}</td>
                         <td>{{item.passingScore}}</td>

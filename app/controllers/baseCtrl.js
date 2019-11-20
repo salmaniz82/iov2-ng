@@ -1,6 +1,6 @@
 (function(){
 	angular.module('io2v3')
-	.controller('baseCtrl', ['$scope', 'auth', 'langSer', 'API_URL', '$state', function($scope, auth, langSer, API_URL, $state){
+	.controller('baseCtrl', ['$scope', 'auth', 'langSer', 'API_URL', '$state', '$http', function($scope, auth, langSer, API_URL, $state, $http){
 
 		var vm = this;
 
@@ -15,6 +15,9 @@
 		//$scope.lang = 'en';
 
         $scope.lang = langSer.init();
+
+
+        $scope.entityLogo = 'assets/images/demo-logo.jpg'
 
 
         vm.slugify = function(string) {
@@ -92,6 +95,51 @@
                 'logout': ['Logout', 'الخروج']
 
         };
+
+
+        vm.updateDashboardLogo = function()
+        {
+
+            var successLogoFetch = function(res)
+            {
+
+                 var fetchedLogo = res.data.logo;
+
+                 $scope.entityLogo = API_URL+fetchedLogo;               
+
+            };        
+
+            var errorLogoFetch = function(res)
+            {
+
+
+            };
+
+            
+            if(auth.isLoggedIn())
+            {
+           
+            var roleName = auth.getUser().role;
+
+                if(roleName == 'entity')
+                {
+
+                    // get self profile logo
+                    $http.get(API_URL+'profile-authlogo').then(successLogoFetch, errorLogoFetch);
+                    
+                }
+
+            }
+
+
+        };
+
+
+
+
+        vm.updateDashboardLogo();    
+
+        
 
 
 
