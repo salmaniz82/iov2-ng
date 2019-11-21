@@ -10,22 +10,23 @@
 
     <div class="bg-white border-all mb-5" ng-if="vm.loading === null">
 
-        <h2 class="t-center t-grey">Loading roles please wait ...</h2>  
+        <div class="pd-10"> 
+                <h3 class="t-center c-grey">Loading roles ...</h3>  
+        </div>
+
+        
 
     </div>
 
 
     <div class="bg-white border-all mb-5" ng-if="vm.loading === false">
 
-        <h2 class="t-center t-pink">Failed no roles found ...</h2>  
+        <div class="pd-10"> 
+            <h3 class="t-center t-pink">Failed no roles found ...</h3>      
+        </div>   
 
     </div>
         
-
-    
-
-
-
 
 
 <div ng-if="vm.loading === true" class="bg-white border-all">

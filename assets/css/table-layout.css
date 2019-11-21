@@ -175,13 +175,13 @@ ul, ul li {list-style: none;}
 }
 
 #top-menu li.active  a {
-  color: var(--greenLight);
+  color: var(--green);
 }
 
 
 #top-menu li:hover a {
 
-  color: var(--green);
+  color: var(--greenLight);
 
 }
 

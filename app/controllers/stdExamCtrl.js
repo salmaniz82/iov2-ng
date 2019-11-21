@@ -10,6 +10,11 @@
         vm.hasAttemptedQuiz = false;
         vm.isInitiatStart = false;
 
+
+        vm.detailModalBox = false;
+
+        vm.progressDetailsModal = false;
+
         vm.poolCounter = 0;
 
         $scope.counter = [];
@@ -356,6 +361,104 @@
 
 
         vm.updateOnFinish(null);
+
+
+
+        vm.activateDetails = function(quizId, enrollId)
+        {
+
+            vm.fetchQuizDetails(quizId); 
+
+        };
+
+
+        vm.deactivateDetail = function()
+        {
+
+            vm.detailModalBox = false;
+
+        };
+
+
+
+        vm.fetchQuizDetails = function(quizID)
+        {
+
+            var successFetchDetails = function(res)
+            {
+
+                if(res.data.status == true)
+                {
+
+                    vm.detailModalBox = true;
+                    vm.modalQuiz = res.data.quiz[0];
+
+                }
+                
+            };
+
+            var errorFetchDetails = function(res)
+            {
+
+            };
+
+            $http({
+
+                url: API_URL+'quiz/'+quizID,
+                method: 'GET'
+
+
+                }).then(successFetchDetails, errorFetchDetails);
+
+
+
+
+
+        };
+
+
+
+        vm.activateProgressStatus = function(attemptId)
+        {
+            
+            console.log(attemptId);
+
+            var successProgress = function(res)
+            {
+                if(res.data.status == true)
+                {
+                   
+                   
+                   vm.mdProgressData = res.data.progress[0]; 
+
+                   vm.progressDetailsModal = true;
+
+                   
+
+
+                }
+                
+            };
+
+            var errorProgress = function(res)
+            {
+
+            };
+
+            $http({
+
+                url : API_URL+'std-self-progress/'+attemptId,
+                method: 'GET'
+
+            }).then(successProgress, errorProgress);
+
+        };
+
+
+        vm.deActicateProgressStatus = function()
+        {
+            vm.progressDetailsModal = false;
+        };
 
 
 

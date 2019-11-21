@@ -7,14 +7,23 @@
 
     <div class="bg-white border-all mb-10" ng-if="vm.pageMode == null">
 
-        <h2 class="t-center t-grey">Loading please wait ...</h2>  
+        <div class="pd-10"> 
+           <h3 class="t-center c-grey">Loading permissions ...</h3>       
+        </div>   
+
+        
 
     </div>
 
 
     <div class="bg-white border-all mt-10" ng-if="vm.pageMode === 'error'">
 
-        <h2 class="t-center t-pink">Permission cannot be loaded</h2>  
+
+        <div class="pd-10">
+            <h3 class="t-center t-pink">Permission cannot be loaded</h3>          
+        </div>      
+
+        
 
     </div>
                 

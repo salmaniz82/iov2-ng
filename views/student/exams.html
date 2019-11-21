@@ -2,7 +2,7 @@
     <div class="cst-modal-window">
       <div class="cst-modal-header">
         <span>You are about to start quiz</span>
-		<i class="fas fa-times pull-right" ng-click="vm.quizModal = false"></i>
+		<i class="fal fa-times pull-right" ng-click="vm.quizModal = false"></i>
       </div>
       <div class="cst-modal-body">
 
@@ -59,23 +59,25 @@
 <section class="hbox">
 
 
+
+
+
 	<aside class="bg-white border-all">	
 
 
 
 
-	<h3>Enrolled In : </h3>
+	<h3>Enrolled In </h3>
 	
-	<table class="table" ng-if="vm.hasPendingQuiz || vm.hasAttemptedQuiz">
+	<table class="table no-borders" ng-if="vm.hasPendingQuiz || vm.hasAttemptedQuiz">
 		<thead>
 			<tr>	
 				<th>S.NO</th>
 				<th>Quiz</th>
-				<th>Min / Max</th>
+				<th>Questions</th>
 				<th>Duration</th>
-				<th>Obtained</th>
-				<th>Attempts</th>
-				<th>Status</th>
+				
+				<th>&nbsp;</th>
 				<th>&nbsp;</th>
 
 			</tr>
@@ -95,12 +97,14 @@
 				<td>{{$index + 1}}</td>
 				<td>{{quiz.title}}</td>
 				<td>
-					<span ng-if="quiz.showScore == 1"> {{quiz.minScore + ' / ' + quiz.maxScore}} </span>
-					<span ng-if="quiz.showScore == 0" class="c-pink">N/A</span>
+					<span>{{quiz.noQues}}</span>
+					
 				</td>
 				<td>{{quiz.duration}} mins.</td>
-				<td><span class="c-pink">N/A</span></td>
-				<td>{{quiz.attempts}}</td>
+
+				
+				
+				
 				
 				<td>
 					<a ng-if="quiz.validity == 'valid' && quiz.validity != 'progress' && quiz.attempts == '0' && quiz.schedule == 'eligible'" data-quizid="93" class="btn btn-success" href="#" ng-click="vm.launchQuizModal(quiz.id)"><span class="fal fa-clock"></span>&nbsp; Start Quiz</a>
@@ -119,7 +123,15 @@
 
 
 
-
+				<td>
+					<div class="btn-group btn-more">
+                                <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="vm.activateDetails(quiz.id, quiz.enroll_id)">Details</a></li>
+                                    
+                                </ul>
+                            </div>
+				</td>
 
 			</tr>
 
@@ -141,50 +153,29 @@
 				</td>
 
 				<td> 
-					<span ng-if="item.showScore == 1">{{item.minScore}} / {{item.maxScore}}</span> 
-					<span ng-if="item.showScore == 0" class="c-pink"> N/A </span>
+					<span>{{item.noques}}</span>
 				</td>
 
 				<td>{{item.duration}} mins.</td>
 
-
-
-				<td> 
-					<span ng-if="item.showScore == 1"> {{item.score | setDecimal:2 }} </span> 
-					<span ng-if="item.showScore == 0" class="c-pink"> N/A </span>
-				</td>
-				
-				<td>{{item.attempts}}</td>
-
-				<td>
-
-					<div ng-if="item.showResult == 1">
-
-						<span ng-if="item.score >= item.minScore" class="status finished">Passes</span>
-						<span ng-if="item.score < item.minScore" class="status terminated">Failed</span>
-					
-					</div>				
-
-					<span ng-if="item.showResult == 0" class="c-pink">N/A</span>
-
-
-					
-				</td>
-				
 				<td>
 					<a ng-if="item.attempts != '0' && item.retake == '1' && item.validity != 'progress'" class="btn btn-warning" style="width: 150px" href="#" ng-click="vm.launchQuizModal(item.id, true)"><span class="fas fa-recycle"></span>&nbsp;Retake</a>
-
 					<p ng-if="item.attempts != '0' && item.retake == '1' && item.validity == 'progress'" >
-
 					<span class="status working">In Progress</span> </p>
 
+				</td>
 
+				<td>
+
+					<div class="btn-group btn-more">
+                                <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="vm.activateDetails(item.id, item.enroll_id)">Details</a></li>
+                                    <li><a href="#" ng-click="vm.activateProgressStatus(item.attemptId)">Progress Status</a></li>                                   
+                                </ul>
+                            </div>					
 				</td>				
 			</tr>
-
-
-				
-
 
 			
 		</tbody>
@@ -251,9 +242,146 @@
 
     </div>
 
+</table>
+
 </aside>
-   
+
 </section>
+
+
+
+<div class="cst-modal-container" ng-if="vm.detailModalBox">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        <span style="font-size: 1.3rem">Quiz details</span>
+		<i class="fal fa-times pull-right icon-2x fam c-grey" ng-click="vm.deactivateDetail()"></i>
+      </div>
+      <div class="cst-modal-body" style="overflow-x: hidden; overflow-y: auto; padding-bottom: 30px">
+
+
+      	<div class="grid12Col gap10">
+
+
+      		<div class="gc2-full">
+      			<span style="font-size: 1.2rem"><strong class="txt-black">{{vm.modalQuiz.title}}</strong></span>
+      		</div>
+
+      		<div class="gc-first-quater">Code</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.code}}</div>
+
+      		
+
+      		<div class="gc-first-quater">Category</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.category}}</div>
+
+      		<div class="gc-first-quater">Ends At</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.formatedEndDate}} {{vm.modalQuiz.formatedEndTime}} </div>
+
+
+
+      		<div class="gc-first-quater">Questions</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.noques}}</div>
+
+      		
+      		<div class="gc-first-quater">Duration</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.duration + '' + 'mins'}}</div>
+
+
+      		<div class="gc-first-quater">Venue</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.venue}}</div>
+
+      		
+      	</div>
+
+
+      	<div class="grid12Col gap10 mt-10" ng-if="vm.modalQuiz.showScore == 1">
+
+      		<div class="gc-first-quater">Total Score</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.maxScore}}</div>
+
+      		<div class="gc-first-quater">Passing Score</div>
+      		<div class="gc-last-remain-quater">{{vm.modalQuiz.minScore}}</div>
+      		
+      	</div>
+
+
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
+
+
+
+  <div class="cst-modal-container" ng-if="vm.progressDetailsModal">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header">
+        <span style="font-size: 1.3rem">Quiz progress details</span>
+		<i class="fal fa-times pull-right icon-2x fam c-grey" ng-click="vm.deActicateProgressStatus()"></i>
+      </div>
+      <div class="cst-modal-body" style="overflow-x: hidden; overflow-y: auto; padding-bottom: 30px">
+
+      	<div class="grid12Col gap10">
+
+      		<div class="gc2-full">
+      			<span style="font-size: 1.2rem"><strong class="txt-black">{{vm.mdProgressData.title}}</strong></span>
+            
+      		</div>
+
+      		<div class="gc-first-quater">Code</div>
+      		<div class="gc-last-remain-quater">{{vm.mdProgressData.code}}</div>
+      		
+      		<div class="gc-first-quater">Questions</div>
+      		<div class="gc-last-remain-quater">{{vm.mdProgressData.noques}}</div>
+     		
+      		<div class="gc-first-quater">Duration</div>
+      		<div class="gc-last-remain-quater">{{vm.mdProgressData.duration + '' + 'mins'}}</div>
+
+          <div class="gc-first-quater" ng-if="vm.mdProgressData.showGrading">Grade</div>
+          <div class="gc-last-remain-quater" ng-if="vm.mdProgressData.showGrading">{{vm.mdProgressData.grade}}</div>
+
+          <div class="gc-first-quater" ng-if="vm.mdProgressData.showGPA">GPA</div>
+          <div class="gc-last-remain-quater" ng-if="vm.mdProgressData.showGPA">{{vm.mdProgressData.gpa}}</div>
+
+      		
+      	</div>
+
+
+
+        <div class="grid12Col gap10 mt-10" ng-if="vm.mdProgressData.showScore == 1">
+
+          <div class="gc-first-quater">Total Score</div>
+          <div class="gc-last-remain-quater">{{vm.mdProgressData.maxScore}}</div>
+
+          <div class="gc-first-quater">Passing Score</div>
+          <div class="gc-last-remain-quater">{{vm.mdProgressData.minScore}}</div>
+
+          <div class="gc-first-quater">Obtained Score</div>
+          <div class="gc-last-remain-quater">{{vm.mdProgressData.score | setDecimal:2}}</div>
+
+          <div class="gc-first-quater">Percentage</div>
+          <div class="gc-last-remain-quater">{{vm.mdProgressData.per | setDecimal:2}} %</div>
+          
+        </div>
+
+
+        <div class="grid12Col gap10 mt-10" ng-if="vm.mdProgressData.showResult == 1">
+
+          <div class="gc-first-quater">Result</div>
+          <div class="gc-last-remain-quater">
+
+            <span ng-if="vm.mdProgressData.is_active == 0" class="status" ng-class="{'terminated': vm.mdProgressData.resultStatus == 0, 'finished': vm.mdProgressData.resultStatus == 1 }">
+                                      {{(vm.mdProgressData.resultStatus == 0) ? 'Fail' : 'Pass'}}</span>
+          </div>
+
+        </div>
+
+
+      </div>
+      
+    </div>
+  </div> <!-- quiz modal container -->
+
 
 
 

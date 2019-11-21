@@ -381,7 +381,7 @@ p.flat-circle span {
 }
 
 .cst-modal-header{
-  padding:1.5rem;
+  padding:15px 10px 0px 10px;
   font-family: sans-serif;
   color: #333;
 }
@@ -1675,7 +1675,7 @@ span.status.initiated {
 
 span.status.terminated {
   color: var(--red);
-  background-color: #ed514059;
+  background-color: #fb9f9559;
 }
 
 

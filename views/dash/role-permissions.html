@@ -1,15 +1,22 @@
 <section class="hbox">
 
     <aside>
+
+
+
+        <div ng-if="vm.pageMode == null" class="bg-white border-all mb-20">   
+
+        <div class="pd-10">
+                        
+            <h3 class="c-grey t-center">Loading role permissions ... </h3>
+
+            </div> 
+
+        </div>    
         
     
 
             <div class="bg-white border-all">
-
-
-                <div class="span9" ng-if="vm.pageMode == null">
-                    <p>Loading ... </p>
-                </div>
 
                 <div class="span9" ng-if="vm.pageMode == 'error'">
                     <p class="c-red">Permission cannot be loaded </p>
