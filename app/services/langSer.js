@@ -37,8 +37,12 @@ angular.module('io2v3')
 			{
 				return 0;
 			}
-			else {
+			else if (localStorage.getItem('hdrLang') == 'ar')
+			{
 				return 1;
+			}
+			else {
+				return 2;
 			}
 		};
 

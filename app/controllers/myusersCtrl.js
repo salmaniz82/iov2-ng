@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('usersCtrl', ['API_URL', '$scope', '$http', '$state', 'auth', function(API_URL, $scope, $http, $state, auth){
+    angular.module('io2v3').controller('myusersCtrl', ['API_URL', '$scope', '$http', '$state', 'auth', function(API_URL, $scope, $http, $state, auth){
 
 
         var vm = this;
@@ -404,7 +404,7 @@
 
         $http({
         	method: 'GET',
-        	url : API_URL+'users',
+        	url : API_URL+'my-users',
             cache: false
         })
         .then(function(res){

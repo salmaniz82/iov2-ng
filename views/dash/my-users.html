@@ -1,27 +1,17 @@
 <section class="hbox">
 
-
-
-
     <aside> 
 
-      
-
-        <div class="" style="margin-bottom: 20px;"> 
+      <div class="" style="margin-bottom: 20px;"> 
 
       <div class="grid12Col gap10"> 
 
-
         <div class="gc-first-remain-quater bg-white border-all" >
-
 
           <div class="customInner" style="margin: 10px; padding-right: 20px;">
 
-
             <div ng-if="vm.loadingStatus == 'no contents'">
-
               <h3 class="t-center c-grey">No users created</h3>  
-
             </div>
 
 
@@ -75,25 +65,20 @@
 
 
 <div ng-if="vm.loadingStatus == null" class="bg-white border-all">
+  <div class="pd-10"> 
+    <h3 class="t-center c-grey">Loading users ...</h3>  
+    </div>
+</div>
+
+
+<section ng-if="vm.loadingStatus == false" class="bg-white border-all">
 
 
   <div class="pd-10"> 
 
+    <h3 class="t-center c-grey">No user found</h3>  
 
-
-    <h3 class="t-center c-grey">Loading users ...</h3>  
-
-
-    </div>
-
-</div>
-
-
-
-
-<section ng-if="vm.loadingStatus == false">
-
-    <h2 class="t-red t-center">Opp! something went wrong please check internet connections</h2>
+  </div>
     
 </section>
 
@@ -107,7 +92,9 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th><a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a></th>
+                        <th><a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a>
+
+                        </th>
                         <th><a href="#" ng-click="vm.selectSortfield('name')">Firstname</a>
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'name'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
 
@@ -121,12 +108,8 @@
 
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'role'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
-                        <th><a href="#" ng-click="vm.selectSortfield('locked')">Locked</a>
-                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'locked'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
-                        </th>
-                        <th><a href="#" ng-click="vm.selectSortfield('loginAttempts')">loginAttempts</a>
-                          <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'loginAttempts'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
-                        </th>
+                        
+                        
                         <th><a href="#" ng-click="vm.selectSortfield('status')">Status</a>
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'status'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'">
                           
@@ -137,21 +120,19 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in vm.dataList | filter:vm.searchQuery | orderBy:sortType:sortReverse">
-                        <td>{{$index + 1}}</td>
+                        <td>{{$index + 1}} <span ng-if="item.isLocked == 1" class="icon-lock c-red"></span></td>
                         <td>{{item.name}}</td>
                         <td>{{item.email}}</td>
-                        <td>{{item.role}}</td>
-                        <td><span ng-if="item.isLocked == 1" class="icon-lock c-red"></span>
-                            
-                        </td>
-                        <td>{{item.loginAttempts}}</td>
+                        <td>{{vm.roleLabel(item.role)}}</td>
+                        
+                        
                         
                         <td>
 
-
                             <span ng-if="item.role != 'admin'" class="kt-switch kt-switch--icon">
                               <label>
-                                <input type="checkbox" checked="checked" name="" ng-model="item.status" ng-true-value="'1'" ng-false-value="'0'"
+
+                                <input ng-disabled="item.isOwnedBy != 1" type="checkbox" checked="checked" name="" ng-model="item.status" ng-true-value="'1'" ng-false-value="'0'"
                                      ng-checked="item.status == '1'" ng-change="vm.statustoggle(item.id, item.status)">
                                 <span></span>
                               </label>
@@ -163,9 +144,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Details</a></li>
                                     <li ng-if="item.status == 0"><a href="#">Send Registration Email</a></li>
-                                    <li><a href="#" ng-click="vm.launchModal(item.id)">Change Password</a></li>
-                                    <li><a href="#" ng-click="vm.loadPermissions(item.id)">Permissions</a></li>
-                                    <li><a href="#" ng-click="vm.resetUserPermissions(item.id, item.role_id)">Reset Permissions</a></li>
+                                    <li><a href="#" ng-click="vm.launchModal(item.id)" ng-if="item.isOwnedBy == 1">Change Password</a></li>
                                     <li permissions="['user-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete User</span></a></li>
                                     
                                 </ul>
@@ -278,8 +257,8 @@
         <div class="cst-modal-container" ng-show="vm.permssionModal">
     <div class="cst-modal-window large">
       <div class="cst-modal-header">
-        <span style="font-weight: 300">Permissions : {{vm.modalData.name}} </span>
-        <i class="fal fa-times icon-2x pull-right" ng-click="vm.permssionModal = false"></i>
+        <span style="font-weight: 600">Permissions : {{vm.modalData.name}} </span>
+        <i class="fas fa-times icon-2x pull-right" ng-click="vm.permssionModal = false"></i>
       </div>
       <div class="cst-modal-body" style="max-height: 500px; overflow: auto">
 
@@ -315,7 +294,7 @@
 
                 <div class="span3">
 
-                    <div ng-click="vm.addNewUserPermission(vm.modalData.id)" class="btn btn-success ng-scope" title="Permission"><span class="fas fa-plus"></span> Add</div>
+                    <div ng-click="vm.addNewUserPermission(vm.modalData.id)" class="btn btn-icon btn-success fas fa-plus ng-scope" title="Permission">Add</div>
                     
                 </div>
 

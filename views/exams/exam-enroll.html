@@ -42,7 +42,7 @@
         <form method="post" id="stenroll" name="stenroll" class="floatable" ng-submit="vm.quizEnroll()" novalidate>
                     <div class="grid12Col gap10">
 
-                        <div class="gc-first-remain-quater">
+                        <div class="gc2-full">
 
                             <div class="field-wrap">   
 
@@ -54,9 +54,23 @@
                             
                         </div>
 
-                        <div class="gc-last-quater">
+                        <div class="gc1-half">
+
+
+                        <div class="field-wrap" ng-hide="stenroll.$invalid">
+
+                    <label>
+                        <input type="checkbox" ng-model="vm.nenroll.sendInviteEmail">
+                            Send Invitation Email
+                        </label>
+              
+                       </div>
+                            
+                        </div> 
+
+                        <div class="gc2-half">
                             <div class="field-wrap">    
-                            <input ng-hide="stenroll.$invalid" type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success">
+                            <input ng-hide="stenroll.$invalid" type="submit" id="sub-new-quiz" value="Enroll" class="btn btn-success pull-right">
 
                             </div>  
                         </div> 
@@ -145,6 +159,8 @@
                                     <li><a href="#" class="static-link c-red" ng-click="vm.removeEnroll(item.id)"> <i class="fal fa-times-circle vam"></i> Remove</a></li>
                                     <li><a href="#" class="static-link c-blue" ng-click="vm.resetEnroll(item.id)"> <i class="fal fa-recycle vam"></i> Reset</a></li>
 
+                                    <li><a href="#" permissions="['enroll-intercept']" class="static-link c-yellow" ng-click="vm.activateIntercept(item.id)"> <i class="fal fa-anchor vam"></i> Intercept </a></li>
+
                                     
                                 </ul>
                             </div>
@@ -170,3 +186,95 @@
         </aside>
 
         </section>
+
+
+
+        <div class="cst-modal-container" ng-if="vm.interceptModal">
+    <div class="cst-modal-window">
+      <div class="cst-modal-header grid12Col">
+
+        <div class="gc1-half">
+            <h3 class="c-grey">Intercept Scheme</h3>  
+        </div>
+        
+        <div class="gc2-half">
+          <i class="fal fa-times fa-2x pull-right c-grey" ng-click="vm.deactivateintercept()"></i> 
+        </div>
+
+      </div>
+      <div class="cst-modal-body">
+
+
+        
+        
+          <form class="floatable" name="intercept" novalidate>
+
+        
+        <div class="grid12Col gap10">
+
+            
+
+            <div class="gc1-half">
+
+                <div class="field-wrap">
+
+                    <span>Intercept</span>
+
+                    <span class="kt-switch kt-switch--icon">
+                              <label>
+                                <input type="checkbox" checked="checked" name="" ng-model="vm.interceptItem.intercept" ng-true-value="'1'" ng-false-value="'0'"
+                                     ng-checked="vm.interceptItem.intercept == '1'">
+                                <span></span>
+                              </label>
+                            </span>
+                    
+                </div>
+
+            </div>
+
+            <div class="gc2-half">
+                <div class="field-wrap">
+
+                    <select name="direction" class="w-100 float-field" ng-model="vm.interceptItem.direction">
+                        <option ng-disabled="1 == 1">Select Direction</option>
+                        <option ng-value="Pass" ng-selected="{{vm.interceptItem.direction == 'Pass'}}">Pass</option>
+                        <option ng-value="Fail" ng-selected="{{vm.interceptItem.direction == 'Fail'}}">Fail</option>
+                    </select>
+
+                    <label class="placeholder">Direction : {{vm.interceptItem.direction}}</label>
+
+
+                        
+                </div>
+                
+            </div>
+
+            <div class="gc1-half">
+
+                <div class="field-wrap">            
+                         <input type="text" name="optc" id="optc" class="float-field w-100" ng-model="vm.interceptItem.lastLimit" required>
+                         <label class="placeholder">Score Limit in %</label>
+                    </div>
+                
+            </div>
+
+            <div class="gc2-half">
+
+                <div class="field-wrap">
+                    <button class="btn btn-success btn-block" ng-click="vm.udpateIntercept(vm.interceptItem.id)">Save</button>    
+                </div>
+
+                
+                
+            </div>
+
+
+          
+          
+
+          </form>  
+        </div>
+        
+      </div>
+      
+    </div>

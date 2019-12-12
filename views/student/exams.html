@@ -82,7 +82,7 @@
 
 			</tr>
 		</thead>
-		<tbody>
+		<tbody ng-if="vm.hasPendingQuiz">
 
 
 			<tr style="border-bottom: 1px solid var(--greenLight) !important">
@@ -134,6 +134,10 @@
 				</td>
 
 			</tr>
+
+    </tbody>
+
+    <tbody> 
 
 
 			<tr ng-if="vm.hasAttemptedQuiz" style="border-bottom: 1px solid var(--greenLight) !important">

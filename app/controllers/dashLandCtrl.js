@@ -52,6 +52,17 @@
 
           }
 
+          else if (UserRole == 'proctor' || UserRole == 'invigilator')
+          {
+            
+              $state.go('mob.activity');
+
+              
+
+          }
+
+          
+
        		else {
 
        			// if there no role specified then route to the logout

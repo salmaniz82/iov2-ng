@@ -85,7 +85,7 @@ img.img-resp{
 .c-blue {
     color: #00ACEE !important;
 }
-.txt-black {
+.txt-black, .c-black {
     color: #333 !important;
 }
 
@@ -2027,4 +2027,40 @@ i.floatcons {
   top: 35px;
 
 }
+
+
+#mobile-layout-wrapper {
+  padding: 5px;
+}
+
+#mobile-layout-wrapper .icon-wrapper {
+  width: 40px;
+  display: inline-block;
+}
+
+
+#mobile-layout-wrapper .mobileLogoWrapper {
+  display: inline-block;
+  width: calc(100% - 60px);
+  
+}
+
+#mobile-layout-wrapper .slideMenu {
+  transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  width: 80%;
+  min-height: 100vh;
+  transform: translateX(-125%);
+}
+
+
+#mobile-layout-wrapper.slideMenuActive .slideMenu{
+  
+
+  transform: translateX(0%);
+  
+}
+
 

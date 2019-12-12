@@ -11,6 +11,11 @@
         $scope.pageHeading = "";
 
 
+        console.log('exam abstract is activated');
+
+        $scope.$parent.base.updateDashboardLogo();
+
+
     }]);
 
 })();

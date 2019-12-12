@@ -63,11 +63,6 @@ angular.module('io2v3')
 		{
 
 
-
-				
-
-
-
 				if(!self.isLoggedIn()){
 	            		return false;
 	        	}

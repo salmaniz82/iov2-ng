@@ -1,0 +1,60 @@
+<div class="gridItems five">
+
+
+		<div class="grid12Col">
+
+			<div class="gc-first-remain-quater"><h3>Current Activity</h3></div>
+
+
+			<div class="gc-last-quater align-self-end">
+				<i id="actIndicator" class="far fa-lightbulb" ng-class="{'c-warning': currentactivity == false, 'c-blue': currentactivity == true }" style="font-size: 1.3rem"></i>
+			</div>
+			
+		</div>
+		
+		
+		
+
+		
+
+		<div ng-if="currentactivity ==  false">There are no active candiate activities</div>
+
+		<table class="fixed_header" ng-if="currentactivity == true">
+
+			<thead>	
+				<th>Candidates</th>
+				<th title="Total questions required to attempt in quiz">Que.</th>
+				<th>Ends In</th>
+				<th>Marked</th>
+				<th>Answered</th>
+				<th>Position</th>
+				<th>Status</th>
+			</thead>
+
+			<tbody style="height: 500px">
+
+				<tr ng-repeat="act in activeCandidates">
+				<td ng-attr-title="{{act.title}}">{{act.name}}</td>
+				
+				<td>{{act.noQues}}</td>
+				<td>{{act.remainingTime}} mins</td>
+				
+				<td>{{act.marked}}</td>
+				<td>{{act.answered}}</td>
+				<td>{{act.position}}</td>
+				
+				<td><span class="status working">Progress</span> 
+
+
+					<a href="#" class="static-link" ng-click="vm.clearActivity(act.attemptID)">&nbsp;<i class="fal fa-times-circle c-red vam"></i></a>
+
+					
+				</td>
+
+				</tr>
+			</tbody>
+			
+		</table>
+
+
+	</div>

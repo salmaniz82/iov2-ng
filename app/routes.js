@@ -96,8 +96,6 @@
             
         })
 
-        
-
 
         .state('exm.enroll', {
 
@@ -149,9 +147,6 @@
             controller : 'quizScoreCardCtrl as vm'           
         })
 
-
-        
-
         .state('exm.quizWeightDistro', {
 
             url : '/quiz-weight-distro/:examID',
@@ -159,8 +154,6 @@
             controller : 'quizWeightDistroCtrl as vm'
             
         })
-
-
 
         .state('exm.quizEvaluate', {
 
@@ -192,7 +185,7 @@
             templateUrl: 'views/dash-landing.html',
             controller : 'dashLandCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity', 'contributor', 'content developer', 'students']
+            roles : ['admin', 'entity', 'contributor', 'content developer', 'students', 'invigilator', 'proctor']
         })
 
         .state('dash.profile', {
@@ -217,6 +210,7 @@
 
             url : '/dashboard',
             template : '<h1>Admin dashboard is under  contruction please login with : abf@domain.com to view entity dashboard</h1>'
+
 
         })
 
@@ -251,7 +245,7 @@
             template: '<h2> Dashboard settings for candiates are not yet not available. </h2>',
             controller : 'studentDashboardCtrl as vm',
             authenticate: true,
-            roles : ['students', 'candiate']
+            roles : ['students', 'candidate']
         })
 
 
@@ -262,17 +256,9 @@
             templateUrl: 'views/dash/dash-quizzes.html',
             controller : 'dashQuizzesCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity']
+            roles : ['admin', 'entity', 'invigilator']
         })
 
-
-        .state('dash.addQuiz', {
-
-            url : '/quiz-add',
-            templateUrl : 'views/dash/quiz-add.html',
-            controller : 'addquizCtrl as vm'
-  
-        })
 
         .state('dash.cats', {
             url : '/categories',
@@ -288,10 +274,7 @@
             controller : 'catTreeCtrl as vm'
         })
 
-        .state('dash.newExam', {
-            url : '/new-exam',
-            templateUrl: 'views/dash/exam-add.html'
-        })
+        
 
 
         .state('dash.quePool', {
@@ -349,7 +332,16 @@
             templateUrl: 'views/dash/users.html',
             controller : 'usersCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity']
+            roles : ['admin']
+        })
+
+
+        .state('dash.myusers', {
+            url : '/my-users',
+            templateUrl: 'views/dash/my-users.html',
+            controller : 'myusersCtrl as vm',
+            authenticate: true,
+            roles : ['entity']
         })
 
 
@@ -379,8 +371,6 @@
             roles : ['admin']
         })
 
-
-        
 
         .state('dash.library', {
 
@@ -464,8 +454,6 @@
             controller : 'quizcomplitedCtrl as vm'
 
         })
-
-
 
 
         .state('std', {
@@ -576,13 +564,29 @@
                 templateUrl : 'views/message.html',
                 controller : 'messageCtrl as vm'
         })
-
-
+        
 
         .state('quizui', {
 
             url : '/quizui',
             templateUrl: 'views/student/quizui.html'
+
+        })
+
+        .state('mob', {
+            templateUrl: 'views/templates/tab.mobile.layout.html',
+            controller : 'mobileAbstractCtrl as vm',
+            abstract: true
+        })
+
+
+        .state('mob.activity', {
+
+            url : '/activity',
+            templateUrl: 'views/mobile/activity.html',
+            controller: 'mobileActivityCtrl as vm',
+            authenticate: true,
+            permission: 'activity-monitor'
 
         })
 

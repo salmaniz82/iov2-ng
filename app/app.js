@@ -50,13 +50,12 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
             {
 
                 e.preventDefault();
-                
-                $state.go('ua.login');
+                $state.go('logout');
 
               /*
                 toState, toParams
                 these two params can be attached to $rootScope 
-                redirect to login
+                redirect to login 
                 login success we can simply redirect user when from which protected route they were redirected to login
                 suppose user click at quiz:42 it requires login we can catch these values redirect to login
                 when done we can redirect back to that quiz with corresponing ids.
@@ -66,13 +65,11 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
 
 
-            else if(toState.roles != undefined)
+            if(toState.roles != undefined)
             {
                 
                 
                 var userRole = auth.getUser().role;
-
-                
 
                 if(toState.roles.indexOf(userRole) != -1)
                 {
@@ -80,11 +77,23 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
                 }
                 else {
                     e.preventDefault();
-                    $state.go('pub.home');
+                    $state.go('logout');
                     
                 }
-
             }
+
+            if (toState.permission != undefined)
+            {
+              
+                if(auth.userHasPermission(toState.permission) == false)
+                {
+                    e.preventDefault();
+                    $state.go('logout');
+                }
+                
+              
+            }
+
 
         }
 
@@ -94,9 +103,6 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
 
     $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
-
-     
-
 
                 
           /*  

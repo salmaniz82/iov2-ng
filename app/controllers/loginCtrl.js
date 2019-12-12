@@ -78,12 +78,15 @@
 
 
 		var success = function(response){
-			console.log('success ran');
+			
 
 			vm.loginStatus = true;
 			vm.wrongCreds = false;
 
 			// console.log(response.data.token[0].token);
+
+
+			
 
             var auth_token = null;
 

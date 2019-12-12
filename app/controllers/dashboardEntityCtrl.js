@@ -13,12 +13,6 @@
        $scope.currentactivity = false;
 
 
-
-
-       
-
-
-
         $http.get(API_URL+'dashboard').then(
 
         	function(res) {
@@ -26,7 +20,8 @@
         		if(res.data.logo != undefined)
         		{
 
-        		//	$scope.$parent.entityLogo = API_URL+res.data.logo;
+
+        			$scope.$parent.base.updateDashboardLogo();
 
         		}
 

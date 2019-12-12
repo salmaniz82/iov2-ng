@@ -17,7 +17,10 @@
         $scope.lang = langSer.init();
 
 
-        $scope.entityLogo = 'assets/images/demo-logo.jpg'
+        $scope.entityLogo = 'assets/images/demo-logo.jpg';
+
+
+
 
 
         vm.slugify = function(string) {
@@ -105,7 +108,20 @@
 
                  var fetchedLogo = res.data.logo;
 
-                 $scope.entityLogo = API_URL+fetchedLogo;               
+                 if(res.data.logo == undefined && res.data.logo == null)
+                 {
+                     $scope.entityLogo = 'assets/images/demo-logo.jpg';    
+                 }
+
+                 else {
+
+                    $scope.entityLogo = API_URL+fetchedLogo;
+
+                 }
+
+                 
+
+                 
 
             };        
 
@@ -113,13 +129,15 @@
             {
 
 
+                $scope.entityLogo = 'assets/images/demo-logo.jpg';
+
             };
 
             
             if(auth.isLoggedIn())
             {
            
-            var roleName = auth.getUser().role;
+                var roleName = auth.getUser().role;
 
                 if(roleName == 'entity')
                 {
@@ -137,7 +155,7 @@
 
 
 
-        vm.updateDashboardLogo();    
+        
 
         
 

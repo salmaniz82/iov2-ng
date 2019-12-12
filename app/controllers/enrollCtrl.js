@@ -14,6 +14,8 @@
 
         $scope.$parent.exAbs.pageHeading = "Enrollment";
 
+        vm.interceptModal = false;
+
 
         vm.nenroll = {};
 
@@ -332,12 +334,80 @@
                 data : {'payload' : 'empty'}
             }).then(resetSuccess, resetError); 
 
-            
+
+        };
 
 
-            
+        vm.activateIntercept = function(itemId)
+        {          
 
-            
+            var idx = $scope.$parent.base.getIndex(vm.dataList, 'id', itemId);
+            vm.interceptItem =  vm.dataList[idx];
+            vm.interceptModal = true;
+
+        };
+
+
+        vm.deactivateintercept = function()
+        {
+
+            vm.interceptItem = null;
+            vm.interceptModal = false;
+
+        };
+
+
+        vm.udpateIntercept = function(enrollId)
+        {
+
+            vm.updatePayload = {
+
+                intercept: vm.interceptItem.intercept,
+                direction: vm.interceptItem.direction,
+                lastLimit : vm.interceptItem.lastLimit
+
+            };
+
+            var successIntercept = function(res) 
+            {
+
+                var notify = {
+                        type: 'info',
+                        title: 'Operation Successfull',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    
+                    $scope.$emit('notify', notify);
+
+                    vm.deactivateintercept();
+
+
+            };
+
+            var errorIntercept = function(res)
+            {
+
+                var notify = {
+                        type: 'error',
+                        title: 'Operation Failed',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    
+                    $scope.$emit('notify', notify);
+
+
+            };
+
+        
+            $http({
+
+                url : API_URL+'intercept/'+enrollId+'/'+vm.interceptItem.quiz_id,
+                method: 'PUT',
+                data : vm.updatePayload
+
+            }).then(successIntercept, errorIntercept);    
 
         };
 

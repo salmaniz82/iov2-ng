@@ -1,0 +1,50 @@
+<div id="mobile-layout-wrapper" ng-class="{'slideMenuActive': vm.slideMenuActive == true}">
+
+	<header>
+
+		<div class="icon-wrapper" ng-click="vm.toggleSlideMenu()">
+			<i ng-if="vm.slideMenuActive == false" class="c-black fal fa-bars icon-2x"></i>
+			<i ng-if="vm.slideMenuActive == true" class="c-black fal fa-times icon-2x"></i>
+		</div>
+
+		<div class="mobileLogoWrapper">
+			<img ng-src="http://api.io2v3.dvp/uploads/logo/80sq-logo.png" width="150" height="88" class="ng-scope" src="http://api.io2v3.dvp/uploads/logo/80sq-logo.png">
+		</div>
+		
+	</header>
+
+
+
+	<div class="slideMenu bg-white border-all">
+		<ul id="top-menu">
+
+
+			<!--
+			<li>
+				<a ui-sref="dash.land()"><i class="fal fa-desktop vam"></i> Desktop</a>
+			</li>
+
+			<li>
+				<a href="#"><i class="fal fa-mobile vam"></i> Mobile</a>
+			</li>
+
+			<li>
+				<a href="#"><i class="fal fa-desktop vam"></i> Activity</a>
+			</li>
+
+			-->
+
+			<li>
+				<a ui-sref="logout()" ><i class="fal fa-power-off vam"></i> Log Out</a>
+			</li>
+
+						
+		</ul>
+	</div>
+
+
+	<ui-view></ui-view>		
+
+
+</div><!-- mobile-layout-wrapper -->
+

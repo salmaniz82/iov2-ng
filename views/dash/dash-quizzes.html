@@ -175,12 +175,12 @@
                                     <li><a ui-sref="exm.exam({'examID': item.id})"> - Details </a>
                                     <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
                                     <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
-                                    <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - Modify Date/Time</a>
-                                    
+                                    <li class=""><a ui-sref="exm.register({'examID': item.id})"> - Register </a></li>
+                                    <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - Modify Date/Time</a>                                   
                                     <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
                                     <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
-
-                                    <li><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete</span></a></li>
+                                    
+                                    <li permissions="['quiz-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete</span></a></li>
 
 
                                 </ul>
