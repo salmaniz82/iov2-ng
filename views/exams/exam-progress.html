@@ -99,6 +99,7 @@
                                 <ul class="dropdown-menu">
                                     
                                     <li ng-if="item.score != null"><a href="#" class="static-link" ng-click="vm.activateScoreCard(item.attemptId)"> - Score Sheet </a></li>
+                                    <li ng-if="item.score != null"><a href="#" class="static-link" ng-click="vm.generatePDF(item.attemptId)"> <i class="far fa-file-pdf c-pink vam"></i>  Generate PDF </a></li>
                                     <li ng-if="item.score != null"><a href="#" class="static-link" ng-click="vm.activateAnswers(item.attemptId)"> - Inpsect Answers </a></li>
                                     <li ng-if="item.score != null"><a ui-sref="exm.consent({'examID': item.quizId, 'attemptID': item.attemptId})"> - Consent </a></li> 
 

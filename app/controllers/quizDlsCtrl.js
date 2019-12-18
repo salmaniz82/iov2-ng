@@ -18,6 +18,22 @@
 
         vm.quizData = quizPlayData.data;
 
+        vm.entityLogo = function()
+        {
+
+
+            if(vm.quizData.entityLogo[0].logo)
+            {
+                return API_URL+vm.quizData.entityLogo[0].logo;
+            }
+
+            else {
+                return 'assets/images/iSkillMetrics-logo.svg';
+            }
+
+
+        };
+
 
         /*
 

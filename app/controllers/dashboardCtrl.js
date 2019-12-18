@@ -3,22 +3,14 @@
 
 	.controller('dashboardCtrl', dashboardCtrl);
 
-	function dashboardCtrl($scope){
+	function dashboardCtrl($scope, auth){
 		var vm = this;
-
 		vm.name = 'salman ahmed';
-
-
 		console.log('dashboard abract controller is activated');
-
-
 		$scope.pageHeading = "";
 
 	}
 
-
-	dashboardCtrl.$inject = ['$scope'];
-
-
+	dashboardCtrl.$inject = ['$scope', 'auth'];
 
 })();

@@ -8,6 +8,24 @@
         vm.timeexpiration = false;
 
 
+
+        vm.entityLogo = function()
+        {
+
+
+            if(vm.quizData.entityLogo[0].logo)
+            {
+                return API_URL+vm.quizData.entityLogo[0].logo;
+            }
+
+            else {
+                return 'assets/images/iSkillMetrics-logo.svg';
+            }
+
+
+        };
+
+        
         /*    
         terminate broadcast api not working in safari
         const channel = new BroadcastChannel('sw-idxsaved');

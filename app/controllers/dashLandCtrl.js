@@ -16,9 +16,9 @@
        if(auth.isLoggedIn())
        {
 
-			var UserRole = auth.getUser().role;     		
+			   var authenticatedUser = auth.getUser();     		
+			   UserRole = authenticatedUser.role;
 
-			console.log(UserRole);				
 
        		if(UserRole == 'admin')
        		{
@@ -27,7 +27,21 @@
 
        		else if (UserRole == 'entity')
        		{
-       			$state.go('dash.entityDashbaord');		
+
+            if(authenticatedUser.profileLogo)
+            {
+              $state.go('dash.entityDashbaord');  
+            }
+
+            else {
+
+              console.log(authenticatedUser);
+
+             $state.go('dash.profile');
+
+            }
+
+       			
        		}
 
        		else if (UserRole == 'contributor')

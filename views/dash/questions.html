@@ -411,9 +411,20 @@
 
 					<td ng-if="fields[4].desc">
 
-						<p ng-bind-html="que.queDesc">
+						<p ng-if="que.hasExcerpt == 0" ng-bind-html="que.queDesc">
 							
 						</p>
+
+						<p ng-else-if="que.hasExcerpt == 1 && !que.showAll" ng-bind-html="que.excerptDesc">
+							
+							
+						</p>
+
+						<span ng-if="que.hasExcerpt == 1"><a href="#" ng-click="que.hasExcerpt = !que.hasExcerpt; que.hasToggle = 1">{{ 'Read more...' }}</a></span>
+
+						<span ng-if="que.hasToggle == 1"><a href="#" ng-click="que.hasExcerpt = !que.hasExcerpt; que.hasToggle = 0">{{ '<-- compact' }}</a></span>
+
+					</td>	
 
 					
 					<td ng-if="fields[5].answer">{{que.answer}}</td>

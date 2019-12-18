@@ -184,8 +184,8 @@
             url : '/dashboard',
             templateUrl: 'views/dash-landing.html',
             controller : 'dashLandCtrl as vm',
-            authenticate: true,
-            roles : ['admin', 'entity', 'contributor', 'content developer', 'students', 'invigilator', 'proctor']
+            authenticate: true
+            
         })
 
         .state('dash.profile', {
@@ -390,11 +390,11 @@
 
         .state('dash.batches', {
 
-            url : '/batches',
+            url : '/groups',
             templateUrl: 'views/dash/batches.html',
             controller : 'batchesCtrl as vm',
             authenticate: true,
-            roles : ['admin', 'entity']
+            permission : ['batch-list']
         })
 
 

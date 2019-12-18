@@ -76,9 +76,6 @@
             vm.answerDataList = null;
 
 
-
-
-
             vm.enableScoreCard = true;
 
             vm.scoreLoading = null;
@@ -375,8 +372,95 @@
 
             });
 
+          };
 
 
+          vm.generatePDF = function(attemptId)
+          {
+
+
+            /*
+            window.open(API_URL+'scorecard-pdf/'+vm.examID+'/'+attemptId, '_blank', '');
+            */
+            
+            
+            /*
+            scorecard-pdf/156/706
+            */
+
+            function showFile(blob){
+              // It is necessary to create a new blob object with mime-type explicitly set
+              // otherwise only Chrome works like it should
+              var newBlob = new Blob([blob], {type: "application/pdf"})
+
+              // IE doesn't allow using a blob object directly as link href
+              // instead it is necessary to use msSaveOrOpenBlob
+              if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(newBlob);
+                return;
+              } 
+
+              // For other browsers: 
+              // Create a link pointing to the ObjectURL containing the blob.
+              const data = window.URL.createObjectURL(newBlob);
+              var link = document.createElement('a');
+              link.href = data;
+
+              var filename = 'scorecard-'+vm.examID+'-'+attemptId+'.pdf';
+
+              link.download=filename;
+              link.click();
+              setTimeout(function(){
+                // For Firefox it is necessary to delay revoking the ObjectURL
+                window.URL.revokeObjectURL(data);
+              }, 100);
+}
+
+
+            var successPDF = function(res)
+            {
+
+                res.data.blob();
+
+                showFile();
+
+            };
+
+            var errorPDF = function(res)
+            {
+
+            };
+
+            /*
+
+            $http({
+                url : API_URL+'scorecard-pdf/'+vm.examID+'/'+attemptId,
+                method : 'GET',
+                responsetype: 'arraybuffer',
+                headers: {'content-type': 'application/pdf; charset=utf-8'}
+            }).then(successPDF, errorPDF);
+
+            */
+
+            var authToken = 'ddx';
+
+
+            if(localStorage.auth_token)
+            {
+               authToken = localStorage.auth_token;
+            }
+
+             
+            var url = API_URL+'scorecard-pdf/'+vm.examID+'/'+attemptId;
+            var options = {
+            method: 'POST',
+            headers: new Headers({'content-type': 'application/pdf; charset=utf-8', 'token': authToken}),
+            };
+
+
+            fetch(url, options)
+            .then(r => r.blob())
+            .then(showFile)
 
 
           };
