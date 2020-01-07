@@ -1,5 +1,5 @@
 angular.module('io2v3')
-	.factory('authInterceptor', [function() {
+	.factory('authInterceptor', ['$injector', '$q', '$location', function($injector, $q, $location) {
 
 		oAuthIntercept = {};
 
@@ -26,6 +26,38 @@ angular.module('io2v3')
 			return config;
 
 		};
+
+
+
+		oAuthIntercept.responseError = function(response) {
+
+        	
+
+        	if (response.status == 401){
+
+
+        		 console.log('throw it out');
+
+	       		 /*
+        		if (!$state) { 
+        			$state = $injector.get('$state'); 
+        		}
+        		$state.go('logout');
+				*/
+
+
+				 $location.path('/logout');
+
+		    	 
+            	
+        	}
+        	
+        	return $q.reject(response);	
+
+        	
+        	
+    	};
+
 
 		return oAuthIntercept;
 

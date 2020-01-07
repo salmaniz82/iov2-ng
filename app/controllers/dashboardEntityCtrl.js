@@ -6,11 +6,18 @@
         var vm = this;
 
 
+        $scope.stage = 1;
+
+
        $scope.$parent.base.pageUrl = $state.current.url; 
 
        vm.loadingStatus = null;
        vm.hasWeekSchedule = false;
        $scope.currentactivity = false;
+
+       vm.topPerformer = false;
+
+       vm.hasRecentFinished = false;
 
 
         $http.get(API_URL+'dashboard').then(
@@ -40,6 +47,23 @@
         			vm.hasWeekSchedule = true;
         			vm.weekSchedule = res.data.weekSchedule;		
         		}
+
+        		if(res.data.recentFinished != undefined || res.data.recentFinished != false)
+        		{
+        			vm.hasRecentFinished = true;
+
+        			vm.recentFinished = res.data.recentFinished;
+        		}
+
+        		if(res.data.topPerformer != undefined || res.data.topPerformer != false)
+        		{
+        			vm.topPerformer = true;
+
+        			vm.topScorerList = res.data.topPerformer;
+        		}
+
+
+        		
 
 
         	}, function(res) {

@@ -7,7 +7,65 @@
         vm.quizData = quizPlayData.data;
         vm.timeexpiration = false;
 
+        $scope.cachedImages = [];
 
+
+
+        if(vm.quizData.imagesPreload.length != false)
+        {
+
+            $scope.imageLocations = vm.quizData.imagesPreload;
+
+            var absoluteUrlPattern = new RegExp("^(http|https)://", "i");
+
+            $scope.imageLocations.forEach(function(imageUrl) {
+
+
+
+                imageUrl = decodeURIComponent(imageUrl);
+
+                
+                
+
+
+                
+
+                if(!absoluteUrlPattern.test(imageUrl))
+                {
+
+                   console.log(imageUrl + 'is absolute');
+                   imageUrl = API_URL+imageUrl;
+                }
+
+                
+                let imageUrlRequest = new Request(imageUrl);
+
+                
+
+                fetch(imageUrlRequest, {mode: 'no-cors'}).then(function(res) {
+
+
+                        caches.open('quizImageCache').then(function(cache) {
+
+                            cache.put(imageUrlRequest, res.clone());
+
+                        });
+
+
+                }).catch(function(erro) {
+
+                    console.log(error);
+
+                });
+
+
+            });    
+         
+        }
+    
+
+    
+        
 
         vm.entityLogo = function()
         {

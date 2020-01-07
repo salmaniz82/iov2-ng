@@ -334,6 +334,32 @@
 
 
 
+let cacheName = 'iskill-static-v1';
+
+self.addEventListener('install', function(event) {
+
+  event.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      return cache.addAll(
+        [
+          'assets/css/unminify.css',
+          'assets/css/custom.css',
+          'assets/css/rtl.css',
+          'assets/css/table-layout.css'
+          
+        ]
+      );
+    })
+  );
+});
+
+
+self.addEventListener('activate', event => {
+  
+  console.log('Service worker activating...');
+  
+});
+
 
 self.addEventListener('message', function (event) {
 
@@ -378,6 +404,45 @@ self.addEventListener('message', function (event) {
 
 
   }
+
+
+});
+
+
+
+self.addEventListener('fetch', function(event) {
+
+    
+    var request = event.request;
+
+    var quizUrlPattern = new RegExp('\/quiz-assement');
+
+
+    if(request.destination == 'image')
+    {
+      
+    }
+
+
+
+
+    if(request.method == 'GET' && quizUrlPattern.test(request.referrer) && request.destination == 'image')
+    {
+
+            console.log('check cache or else continue from network');
+            event.respondWith(
+            caches.open('quizImageCache').then(function(cache) {
+              return cache.match(event.request).then(function (response) {
+                return response || fetch(event.request).then(function(response) {
+                  cache.put(event.request, response.clone());
+                  return response;
+                });
+              });
+            })
+          );
+                
+
+    }
 
 
 });

@@ -306,6 +306,22 @@
             }
         })
 
+
+        .state('dash.queupload', {
+            url : '/question-upload',
+            templateUrl: 'views/dash/questions-upload.html',
+            controller : 'questionUploadCtrl as vm',
+            resolve : {
+
+                queGlobalData : function(quizDataService)
+                {
+
+                   return quizDataService.queGlobalFetch();
+                }
+
+            }
+        })
+
         .state('dash.questionedit', {
             url : '/question-edit/:queID',
             templateUrl: 'views/dash/que-edit.html',

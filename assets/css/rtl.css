@@ -82,6 +82,11 @@ h1.c-profile, h2.c-profile, h3.c-profile, h4.c-profile, h5.c-profile, h6.c-profi
 }
 
 
+.checkbox-custom + .checkbox-custom-label:before, .radio-custom + .radio-custom-label:before {
+    float: right;
+}
+
+
 .queDesc p {
     font-size: 18px;
     font-family: 'AlJazeraRegular', sans-serif;

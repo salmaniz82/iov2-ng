@@ -1,0 +1,285 @@
+<section class="hbox">
+
+    <aside>
+
+
+
+        <div> 
+
+
+
+            <form method="post" id="qzques" name="qzques" class="floatable" novalidate>
+
+            <div class="grid12Col gap10" ng-if="vm.examID">
+
+                <div class="gc1-half">
+
+                    <div class="bg-white border-all" style="padding: 10px">
+
+                    <quiz-info-component param="vm.examID"></quiz-info-component>
+
+
+                    </div>
+                    
+                </div>
+
+                <div class="gc2-half">
+    
+                    
+                    
+                </div>
+                
+            </div>
+
+
+
+
+            <div class="grid12Col gap10">
+
+
+                <div class="gc1-half">
+
+
+                    <div class="queLeftWRapper bg-white border-all" style="padding: 10px 20px">
+
+
+                    <div class="row pb-20">
+
+
+                        <div class="span4">
+                            <div class="field-wrap">
+                                <h4 class="c-green">Categorize</h4>    
+                            </div>
+                            
+                        </div>
+
+                        <div class="span4" ng-if="!vm.QuizPrivate && !vm.bindTopCategory">
+
+                            <div class="field-wrap">
+
+                                <select name="topCategory" id="exmlist" class="w-100 float-field" ng-model="vm.queCategory" ng-pattern="/^[0-9]{1,7}$/" required>
+                                
+                                <option ng-if="cat.pcat_id == null" ng-repeat="cat in vm.globalList.cat" ng-value="cat.id">{{cat.tree}}</option>
+                            </select>
+
+                            <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.topCategory.$invalid}">Select Category</label>
+
+                            <span ng-show="qzques.$dirty && qzques.topCategory.$invalid" class="float-error" style="left: 0; text-align: left;">Category is required</span>
+                                
+                            </div>
+                            
+                        </div>
+
+
+
+                        
+
+
+                    </div>
+
+
+                    <div ng-if="!vm.QuizPrivate">
+
+
+                    <div class="row">
+
+
+                        <div class="span4">
+
+                            <div class="field-wrap">
+                                
+                            
+
+                            <select name="decipline" id="decipline" class="w-100 float-field"  ng-model="vm.queDecipline" ng-pattern="/^[0-9]{1,7}$/" required>
+                                
+                                <option ng-repeat="cat in vm.globalList.cat" ng-if="vm.queCategory == cat.pcat_id" ng-value="cat.id">{{cat.tree}}</option>
+                            </select>
+
+                            
+
+
+                            <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.decipline.$invalid}">Select Sub Decipline</label>
+
+                            <span ng-show="qzques.$dirty && qzques.decipline.$invalid" class="float-error" style="left: 0; text-align: left;">Sub Descipline is required</span>
+
+                            </div>
+
+                            
+                        </div>
+
+
+                        
+
+
+
+                        <div class="span4">
+
+                            <div class="field-wrap">                               
+                            
+                            <select class="w-100 float-field" id="courseCat" name="courseCata"  ng-model="vm.queSection" ng-pattern="/^[0-9]{1,7}$/" required>
+                                    
+                                    <option ng-repeat="section in vm.globalList.sections" ng-value="section.id" 
+                                    ng-if="section.pcat_id == vm.queDecipline && vm.queDecipline != null">{{section.category}}</option>
+                                </select>
+
+
+                                <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.courseCata.$invalid}">Subject</label>
+
+
+                            <span ng-show="qzques.$dirty && qzques.courseCata.$invalid" class="float-error" style="left: 0; text-align: left;">Subject is required</span>
+
+
+                            
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    </div> <!-- quiz private -->
+
+                    <div ng-if="vm.QuizPrivate" class="row">
+
+                        <div class="span4">
+
+                            <div class="field-wrap">
+                                
+                            
+
+                            <select class="w-100 float-field" id="courseCatp" name="courseCatp" ng-model="vm.queSection" ng-pattern="/^[0-9]{1,7}$/" required>
+                                    
+                                    <option ng-repeat="section in vm.quizData.quizBaseDistro" ng-value="section.subject_id">{{section.subjects}}</option>
+                                </select>
+
+
+                                <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.courseCatp.$invalid}">Subject</label>
+
+
+                                <span ng-show="qzques.$dirty && qzques.courseCatp.$invalid" class="float-error" style="left: 0; text-align: left;">Subject is required</span>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row pb-20">
+                        <div class="span8 bbr-light">
+                            <h4 class="c-green">Classification</h4>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="span4">
+
+                            <div class="field-wrap">
+                                
+                            <select name="queType" id="queType" class="w-100 float-field" ng-model="vm.queType" ng-pattern="/^[0-9]{1,7}$/" required>
+                                
+                                <option ng-repeat="type in vm.globalList.types" ng-value="type.id">{{type.typeEN}}</option>
+                            </select>
+
+                            <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.queType.$invalid}">Type of question</label>
+
+                            <span ng-show="qzques.level.$dirty && qzques.queType.$invalid" class="float-error" style="left: 0; text-align: left;">Set question type</span>
+
+                            </div>
+                        </div>
+
+
+                        <div class="span4">
+
+                            <div class="field-wrap">
+                                
+                            
+                            <select name="level" id="level" class="w-100 float-field" ng-model="vm.queLevel" ng-pattern="/^[0-9]{1,7}$/" required>
+                                <option ng-repeat="level in vm.globalList.levels" ng-value="level.id">{{level.levelEN}}</option>
+                            </select>
+
+                            <label class="placeholder" ng-class="{'invalidSelectPlaceholder': qzques.level.$invalid}">Difficulty Level</label>
+
+                            <span ng-show="qzques.level.$dirty && qzques.level.$invalid" class="float-error" style="left: 0; text-align: left;">Set Difficulty</span>
+
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+
+
+                    </div><!-- queLeftWRapper -->
+                    
+
+                </div> <!-- GRids left -->
+
+                <div class="gc2-half">
+
+
+                    
+
+
+
+                <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px">
+
+
+                    <div class="upload-btn-wrapper">
+                        <button class="custom-upload-btn">
+                            Attach CSV File:{{vm.selectedFile}}</button>
+                            <input type="file" name="file" file-input="photo">
+                        </div>
+
+                </div>
+
+
+                <div class="queRightWRapper bg-white border-all mt-10" style="padding: 10px 20px">
+
+
+                    <div class="row">
+                        <div class="span4">
+                            
+                            <div id="que-save" ng-hide="qzques.$invalid"  class="btn btn-success btn-block" ng-click="vm.sendUploadRequest()"> Upload </div>
+                            
+                        </div>
+
+                    </div>
+
+        
+
+                </div><!-- queRightWRapper -->
+
+
+                </div> <!-- GRids Right -->
+                
+
+            </div>
+
+
+                    </form>
+
+
+                  </div>
+
+        </aside>
+
+
+            
+
+        </section>
+
+
+
+
+
+  </div><!-- colright -->
+
+
+</section>
+
+
