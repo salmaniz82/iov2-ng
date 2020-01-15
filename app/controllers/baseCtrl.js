@@ -17,12 +17,149 @@
         $scope.lang = langSer.init();
 
 
+        $scope.soundObject = null;
+
+
+        $scope.isPlaying = false;
+
+
         $scope.entityLogo = 'assets/images/demo-logo.jpg';
 
 
 
 
+        $scope.soundWavListCollection = [
 
+        API_URL+'assets/audio/notify-success.wav',
+        API_URL+'assets/audio/notify-error.wav',
+        API_URL+'assets/audio/notify-info.wav',
+        API_URL+'assets/audio/notify-warning.wav',
+        API_URL+'assets/audio/quiz-next.wav',
+        API_URL+'assets/audio/quiz-prev.wav',
+        API_URL+'assets/audio/quiz-timeout.wav',
+        API_URL+'assets/audio/quiz-end.wav',
+        API_URL+'assets/audio/modal-open.wav',
+
+        ];
+
+
+
+        $scope.soundWavListCollection.forEach(function(soundLinkUrl) {
+
+          console.log(soundLinkUrl);
+
+
+        });
+
+
+
+        $scope.$on('playSound', function (event, args) {
+
+             $scope.message = args.message;
+
+             var audioUrl = null;
+
+             if($scope.isPlaying === true)
+             {
+                console.log('stop previous audio'); 
+                $scope.soundObject.pause();
+                $scope.soundObject.currentTime = 0;
+             }
+
+             
+             if($scope.message === 'success')
+             {
+
+                audioUrl= API_URL+"assets/audio/notify-success.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+
+
+             } 
+             else if ($scope.message === 'error')
+             {
+                audioUrl= API_URL+"assets/audio/notify-error.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'warning')
+             {
+                audioUrl= API_URL+"assets/audio/notify-warning.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'info')
+             {
+                audioUrl= API_URL+"assets/audio/notify-info.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'modal-open')
+             {
+                audioUrl= API_URL+"assets/audio/modal-open.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'quiz-next')
+             {
+                audioUrl= API_URL+"assets/audio/quiz-next.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'quiz-prev')
+             {
+                audioUrl= API_URL+"assets/audio/quiz-prev.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'quiz-timeout')
+             {
+                audioUrl= API_URL+"/assets/audio/quiz-timeout.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+             else if ($scope.message === 'quiz-end')
+             {
+                audioUrl= API_URL+"assets/audio/quiz-end.wav";
+                $scope.soundObject = new Audio();
+                $scope.soundObject.src = audioUrl;
+             }
+
+
+             console.log($scope.message);
+
+
+             $scope.soundObject.play().then(function(res){
+                    
+
+                    console.log($scope.soundObject);
+
+                    $scope.isPlaying = true;
+
+
+             });
+
+
+             $scope.soundObject.addEventListener('ended', (event) => {
+
+                    $scope.isPlaying = false;
+                        
+            });
+
+
+
+
+
+
+
+        });
 
 
 

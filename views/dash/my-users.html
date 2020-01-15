@@ -49,15 +49,15 @@
 
         </div>
 
-        <div class="gc-last-quater bg-white border-all dfx-center-xy">
+        <div class="gc-last-quater bg-white border-all dfx-center-xy" ng-if="vm.dualColumn == false">
 
           
-            <div class="btn btn-success" ng-click="vm.activateAddUser()" style="width: 200px"> <span class="fas fa-plus"></span> User </div>  
+            <div class="btn btn-success" ng-click="vm.activateAddUser()" style="width: 200px"> <span class="fas fa-plus"></span> User </div>
+                &nbsp;
+          <a class="btn btn-warning" ng-click="vm.activateUserUpload()" style="width: 200px"> <span class="fas fa-anchor"></span> Upload </a>
           
         </div>
 
-
-        
 
 </div>  
 
@@ -386,13 +386,18 @@
         
         <section class="bg-white border-all" style="padding: 20px; margin-left: 10px; margin-right: 5px;">
 
-            <div class="row-fluid"> 
+            <div class="grid12Col"> 
 
-                <div class="span12">
-                    <h2 class="form-heading">USER DETAILS</h2>
-                </div>
+            <div class="gc-first-remain-quater">
+            <h2 class="form-heading">User Details</h2>
+        </div>
+        
+        <div class="gc-last-quater">
+          <i class="fal fa-times fa-2x pull-right c-grey" ng-click="vm.deactivateAddUser()"></i> 
+        </div>
 
-            </div>
+
+      </div>
 
                 <form name="registerall" id="registerall" class="floatable" novalidate>
 
@@ -496,12 +501,10 @@
 
           <div class="row-fluid">
 
-                    <div class="span6">
-                        <div class="btn btn-warning btn-block" ng-click="vm.deactivateAddUser()"><span class="fas fa-times"></span> Cancle</div>
-                    </div>   
+                    
 
                     <div class="span6">
-                        <button type="submit" ng-hide="registerall.$invalid" class="btn btn-twitter btn-block" ng-click="vm.addNewUser()"> <span class="fal fa-save"></span> Save </div>
+                        <button type="submit" ng-hide="registerall.$invalid" class="btn btn-success btn-block" ng-click="vm.addNewUser()"> <span class="fal fa-save"></span> Save </div>
                     </div>   
                    
                 </div>
@@ -515,6 +518,55 @@
             
         </section>
         
+    </aside>
+
+
+    <aside ng-show="vm.uploadUser == true" style="width: 600px;"> 
+
+      
+      <section class="bg-white border-all" style="padding: 20px; margin-left: 10px; margin-right: 5px;">
+
+            <div class="grid12Col"> 
+
+            <div class="gc-first-remain-quater">
+            <h2 class="form-heading">Upload Candidates</h2>
+        </div>
+        
+        <div class="gc-last-quater">
+          <i class="fal fa-times fa-2x pull-right c-grey" ng-click="vm.deactivateUserUpload()"></i> 
+        </div>
+
+
+        </div>
+
+        <form class="floatable" name="userUplodform" method="post" id="userupload" novalidate>
+          
+        <div class="grid12Col">
+
+          <div class="gc2-full">
+            
+                <div class="upload-btn-wrapper">
+                        <button class="custom-upload-btn">
+                            Select file</button>
+                            <input type="file" name="file" file-input="photo">
+                    </div>
+            
+          </div>  
+
+
+          <div class="gc2-full">
+            <button class="btn btn-success btn-std" ng-click="vm.processUserUPload()">Upload</button>
+          </div>
+          
+        </div>
+
+        </form>
+
+    </section>
+
+
+
+
     </aside>
 
 

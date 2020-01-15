@@ -111,9 +111,9 @@
 
                                 
 
-                                <p ng-if="item.hasExcerpt == 0" ng-bind-html="item.queDesc"></p>
+                                <p ng-if="item.hasExcerpt == '0'" ng-bind-html="item.queDesc"></p>
 
-                                <p ng-else-if="item.hasExcerpt == 1 && !item.showAll" ng-bind-html="item.excerptDesc"></p>
+                                <p ng-if="item.hasExcerpt == '1' && !item.showAll" ng-bind-html="item.excerptDesc"></p>
 
                                 <span ng-if="item.hasExcerpt == 1"><a href="#" ng-click="item.hasExcerpt = !item.hasExcerpt; item.hasToggle = 1">{{ 'Read more...' }}</a></span>
 

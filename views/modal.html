@@ -31,6 +31,65 @@
     </div>
   </div> <!-- quiz modal container -->
 
+
+
+  <p> Testing Sound Events</p>  
+
+  <table> 
+    <thead> 
+      <tr>  
+        <td>Event Name</td>
+        <td>Trigger Element</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td>Nofiy Success</td>
+        <td><button class="btn btn-mini btn-success" ng-click="vm.triggetEmit('success')">Emit Succcess</button></td>
+      </tr>
+
+      <tr> 
+        <td>Nofiy Error</td>
+        <td><button class="btn btn-mini btn-danger" ng-click="vm.triggetEmit('error')">Emit Error</button></td>
+      </tr>
+
+      <tr> 
+        <td>Nofiy Warning</td>
+        <td><button class="btn btn-mini btn-warning" ng-click="vm.triggetEmit('warning')">Emit Warning</button></td>
+      </tr>
+
+      <tr> 
+        <td>Nofiy Info</td>
+        <td><button class="btn btn-mini btn-info" ng-click="vm.triggetEmit('info')">Emit Info</button></td>
+      </tr>
+
+      <tr> 
+        <td>Modal Open</td>
+        <td><button class="btn btn-mini btn-default" ng-click="vm.triggetEmit('modal-open')">Modal Open</button></td>
+      </tr>
+
+      <tr> 
+        <td>Quiz Next</td>
+        <td><button class="btn btn-mini btn-default" ng-click="vm.triggetEmit('quiz-next')">Quiz Next</button></td>
+      </tr>
+
+      <tr> 
+        <td>Quiz Previous</td>
+        <td><button class="btn btn-mini btn-default" ng-click="vm.triggetEmit('quiz-prev')">Quiz Previous</button></td>
+      </tr>
+
+      <tr> 
+        <td>Quiz Timeout</td>
+        <td><button class="btn btn-mini btn-default" ng-click="vm.triggetEmit('quiz-timeout')">Quiz Timeout</button></td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+  
+
   <hr>
 
   <h3>Start Expermentiong with GRIDS : <i class="fas fa-check"></i></h3>

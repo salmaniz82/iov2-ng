@@ -19,6 +19,16 @@
 		$scope.$parent.base.pageUrl = $state.current.url; 
 
 
+		vm.triggetEmit = function(soundEventType)
+		{
+
+			var msg = 'this is triggered from modalCtrl and function is reponding from baseCtrl';
+
+			$scope.$emit('playSound', { message: soundEventType });
+
+		};
+
+
 
 
 		vm.dataList = [

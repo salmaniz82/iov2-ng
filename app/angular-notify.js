@@ -44,15 +44,19 @@ AngularNotifyModule.directive('notifybar', [
 					switch(notifyData.type){
 						case 'success':
 							notifyContainer.className += (' angular-notify' + '-success');
+							scope.$emit('playSound', { message: notifyData.type });
 							break;
 						case 'info':
 							notifyContainer.className += (' angular-notify' + '-info');
+							scope.$emit('playSound', { message: notifyData.type });
 							break;
 						case 'warning':
 							notifyContainer.className += (' angular-notify' + '-warning');
+							scope.$emit('playSound', { message: notifyData.type });
 							break;
 						case 'error':
 							notifyContainer.className += (' angular-notify' + '-error');
+							scope.$emit('playSound', { message: notifyData.type });
 							break;
 					}
 					notifyContainer.className += ' angular-notify-enter';

@@ -346,7 +346,6 @@ self.addEventListener('install', function(event) {
           'assets/css/custom.css',
           'assets/css/rtl.css',
           'assets/css/table-layout.css'
-          
         ]
       );
     })

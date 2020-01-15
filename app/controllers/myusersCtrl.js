@@ -11,6 +11,9 @@
         $scope.sortReverse  = false;
 
 
+        vm.dualColumn = false;
+
+
         vm.roleLabel = function(role)
         {
 
@@ -133,6 +136,7 @@
             vm.generatedPassword = "";
             vm.nUser = "";
             vm.addUser = true;
+            vm.dualColumn = true;
 
         };
 
@@ -141,7 +145,8 @@
 
             vm.generatedPassword = "";
             vm.nUser = "";
-            vm.addUser = false;            
+            vm.addUser = false;
+            vm.dualColumn = false;         
 
         };
 
@@ -716,6 +721,117 @@
 
 
             });
+
+
+        };
+
+        vm.activateUserUpload = function()
+        {
+
+            vm.uploadUser = true;
+            vm.dualColumn = true;
+
+        };
+
+
+
+        vm.deactivateUserUpload = function()
+        {
+
+            vm.uploadUser = false;
+            vm.dualColumn = false;
+
+        };
+
+
+        vm.processUserUPload = function()
+        {
+
+            
+
+             var file = $scope.photo;
+
+
+            if(file == undefined)
+            {
+
+
+                var notify = {
+                        type: 'error',
+                        title: 'Validation Error',
+                        content: 'Please attach CSV file',
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);
+
+                    return false;
+
+            }
+
+
+
+            var form_data = new FormData();
+            angular.forEach(file, function(file){
+
+                form_data.append('file', file);
+
+
+
+
+                
+            });
+
+
+            var uploadUrl = API_URL+'my-users/upload';
+
+
+            var successUserUpload = function(res) {
+
+                console.log(res);
+
+
+                   vm.uploadUser = false;
+                   vm.dualColumn = false;
+                   $scope.photo = undefined;
+
+                   var notify = {
+                        type: 'success',
+                        title: 'Upload Successfull',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+
+                    $scope.$emit('notify', notify);
+
+                    /*
+                    catch info payload and do something with it.
+                    */
+
+              
+
+            };
+
+            var errorUserUpload = function(res) {
+
+                 var notify = {
+                        type: 'error',
+                        title: 'Upload Error',
+                        content: res.data.message,
+                        timeout: 3000 //time in ms
+                    };
+                    $scope.$emit('notify', notify);   
+
+            };
+
+
+            
+            $http.post(uploadUrl, form_data,
+                {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined, 'Process-Data': false}
+            }).then(successUserUpload, errorUserUpload);
+
+            
 
 
         };

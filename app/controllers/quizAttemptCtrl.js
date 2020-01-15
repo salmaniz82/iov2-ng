@@ -192,6 +192,9 @@
                 function(res){
 
                  //   $state.go('std.exams');
+
+
+                 $scope.$emit('playSound', { message: 'quiz-end' });
                        
                        vm.closeCurrentWindow();
 
@@ -226,6 +229,7 @@
 
                         vm.closeCurrentWindow();
                         
+                        $scope.$emit('playSound', { message: 'quiz-end' });
 
                     }, 2000)
 
@@ -424,8 +428,10 @@
                 vm.pushActivity(vm.questionIndex);
                 vm.questionIndex += 1;
                 vm.activeQuestion = vm.markedQuestions[vm.questionIndex];
+                $scope.$emit('playSound', { message: 'quiz-next' });
             }
             else {
+
                 return false;
             }
 
@@ -462,7 +468,9 @@
              if(!vm.validAnswer() && (vm.activeQuestion.marked == undefined || vm.activeQuestion.marked == false) )
              {
 
-               vm.ShowPulse = true;     
+               vm.ShowPulse = true;
+
+               $scope.$emit('playSound', { message: 'error' });
 
                 return false;
 
@@ -516,12 +524,14 @@
 	   		    vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
     			vm.checkNextPre();
 
+                $scope.$emit('playSound', { message: 'quiz-next' });
+
         }
 
 
         vm.preQuestion = function()
         {
-
+            $scope.$emit('playSound', { message: 'quiz-prev' });
 			vm.questionIndex -=1;
 			vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
 			vm.checkNextPre();       	
@@ -694,6 +704,8 @@
 
             vm.timeexpiration = true;
 
+
+            $scope.$emit('playSound', { message: 'quiz-timeout' });
 
 
             /*
