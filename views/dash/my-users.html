@@ -539,7 +539,7 @@
 
         </div>
 
-        <form class="floatable" name="userUplodform" method="post" id="userupload" novalidate>
+        <form class="floatable" name="userUplodform" method="post" id="userupload" novalidate ng-show="!vm.uploadSuccessFull">
           
         <div class="grid12Col">
 
@@ -561,6 +561,39 @@
         </div>
 
         </form>
+
+        <div ng-if="vm.uploadSuccessFull == true">
+
+          <div class="grid12Col">
+            <div class="gc2-full">
+              <h4 class="c-green">Uploaded Users</h4>
+            </div>
+          </div>
+
+          <table class="w-100">
+            <thead>
+              <tr>
+                <td>S.NO</td>
+                <td>Email</td>
+                <th>Password</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr ng-repeat="item in vm.uploadedUsersList">
+                <td>{{$index + 1}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.password}}</td>
+              </tr>
+            </tbody>
+
+
+          </table>
+          
+        </div>
+
+
+
 
     </section>
 

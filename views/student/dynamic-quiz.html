@@ -83,16 +83,19 @@
 
                     <section class="span12">
 
-                        <figure class="quiz-figure" ng-repeat="media in item.media" ng-if="media.type == 'image'">
-                            <img ng-src="{{baseUrl + media.filepathurl}}">
-                            <figcaption>{{media.title}}</figcaption>
-                        </figure>
+                        <h5 class="c-grey t-center c-blue">Click on image to view in full size</h5>
+
+                        <section id="photos" ng-repeat="media in item.media" ng-if="media.type == 'image'">
+                            <img ng-src="{{baseUrl+media.filepathurl}}" width="200" height="auto" ng-click="vm.launchLightbox(baseUrl+media.filepathurl, media.title)">
+                        </section>
 
 
-                        <div class="video-wrapper" ng-repeat="media in item.media" ng-if="media.type == 'video'">
+
+
+                        <div class="video-wrapper" ng-if="media.type == 'video'" ng-repeat="media in item.media" >
                             
                             <video width="640" height="360" controls>
-                              <source src="{{baseUrl + media.filepathurl | trustUrl}}" type="video/mp4">
+                              <source src="{{baseUrl+media.filepathurl | trustUrl}}" type="video/mp4">
                                Your browser does not support the video tag.
                             </video>
 
@@ -366,3 +369,34 @@
 
 </div><!-- end col right-->
 </div><!-- end container-->
+
+
+<div class="cst-modal-container" ng-if="vm.lightBoxEnabled">
+
+    <div class="cst-modal-window fullSize">
+
+      
+      <div class="grid12Col">
+
+        <div class="gc1-half">
+            <h3 class="c-grey">{{vm.fullImageTitle}}</h3>  
+        </div>
+        
+        <div class="gc2-half">
+          <i class="fal fa-times fa-2x pull-right c-white" ng-click="vm.closeLightBox()"></i> 
+        </div>
+          
+      </div>
+
+
+      <div class="cst-modal-body no-pad">
+
+        <img ng-src="{{vm.fullImageSourceLink}}">
+
+      </div>
+        
+      
+      
+    </div>
+
+</div>

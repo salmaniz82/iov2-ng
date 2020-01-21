@@ -8,7 +8,7 @@
 
 	
 
-
+	modalCtrl.$inject = ['$state', '$scope', '$http'];
 
 	function modalCtrl($state, $scope, $http)
 	{
@@ -49,7 +49,7 @@
 
 
 
-		$http.get('http://api.io2v3.dvp/test-enc-data').then(
+		$http.get(API_URL+'test-enc-data').then(
 		function(res){
 			
 
@@ -116,9 +116,6 @@
 	}
 
 
-	modalCtrl.$inject = ['$state', '$scope', '$http'];
 	
-
-
-
+	
 })();

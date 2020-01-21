@@ -200,11 +200,13 @@
 
             $http.get(synCheckUrl).then(function(res){
 
-                console.log(res);
+                
 
-                if(res.data.noQues != 0)
+                if(res.status == 200)
                 {
                     
+                    console.log('matched matched mated');
+
                     vm.enableSynchronize = true;
 
 
@@ -226,7 +228,21 @@
 
                 }
 
-            });
+            }, function(res) {
+
+
+                var notify = {
+                    type: 'error',
+                    title: 'Synchronize Error',
+                    content: res.data.message,
+                    timeout: 5000 //time in ms
+                    };
+            
+                 $scope.$emit('notify', notify);
+
+
+
+            } );
 
 
         };

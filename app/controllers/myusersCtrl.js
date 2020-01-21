@@ -739,7 +739,13 @@
         {
 
             vm.uploadUser = false;
+            
             vm.dualColumn = false;
+
+
+            vm.uploadSuccessFull = false;
+
+            vm.uploadedUsersList = undefined;
 
         };
 
@@ -784,15 +790,22 @@
 
             var uploadUrl = API_URL+'my-users/upload';
 
+            vm.uploadSuccessFull = false;
+
 
             var successUserUpload = function(res) {
 
-                console.log(res);
+                
+
+                    if(res.data.info != undefined && res.data.info.length != 0)
+                    {
+                        vm.uploadSuccessFull = true;
+
+                        vm.uploadedUsersList = res.data.info;
+                    }
 
 
-                   vm.uploadUser = false;
-                   vm.dualColumn = false;
-                   $scope.photo = undefined;
+                   
 
                    var notify = {
                         type: 'success',

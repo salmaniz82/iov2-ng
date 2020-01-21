@@ -8,6 +8,70 @@
 
         vm.timeexpiration = false;
 
+        $scope.cachedImages = [];
+
+        vm.quizData = quizPlayData.data;
+
+
+        vm.lightBoxEnabled  = false;
+
+
+
+        if(vm.quizData.imagesPreload.length != false)
+        {
+
+            $scope.imageLocations = vm.quizData.imagesPreload;
+
+            var absoluteUrlPattern = new RegExp("^(http|https)://", "i");
+
+            $scope.imageLocations.forEach(function(imageUrl) {
+
+
+
+                imageUrl = decodeURIComponent(imageUrl);
+
+                
+                
+
+
+                
+
+                if(!absoluteUrlPattern.test(imageUrl))
+                {
+
+                   console.log(imageUrl + 'is absolute');
+                   imageUrl = API_URL+imageUrl;
+                }
+
+                
+                let imageUrlRequest = new Request(imageUrl);
+
+                
+
+                fetch(imageUrlRequest, {mode: 'no-cors'}).then(function(res) {
+
+
+                        caches.open('quizImageCache').then(function(cache) {
+
+                            cache.put(imageUrlRequest, res.clone());
+
+                        });
+
+
+                }).catch(function(erro) {
+
+                    console.log(error);
+
+                });
+
+
+            });    
+         
+        }
+
+
+
+
         vm.optionhasImage = function(optionsSTring)
         {
             myRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i
@@ -16,7 +80,7 @@
 
 
 
-        vm.quizData = quizPlayData.data;
+        
 
         vm.entityLogo = function()
         {
@@ -1121,6 +1185,27 @@
         {
              
              vm.triggerProcessEndQuiz();        
+
+        };
+
+        vm.launchLightbox = function(imgPath, imgCaption)
+        {
+
+            vm.lightBoxEnabled = true;
+
+            console.log(imgPath);
+
+            vm.fullImageSourceLink = imgPath;
+            
+            vm.fullImageTitle = imgCaption;
+
+        };
+
+
+        vm.closeLightBox = function()
+        {
+
+            vm.lightBoxEnabled = false;
 
         };
 

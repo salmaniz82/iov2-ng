@@ -113,13 +113,8 @@
                         </section>
 
 
-                        <figure ng-if="1 == 2" class="quiz-figure" ng-repeat="media in item.media" ng-if="media.type == 'image'">
-                            <img ng-src="{{baseUrl+media.filepathurl}}">
-                            <figcaption>{{media.title}}</figcaption>
-                        </figure>
-
-
-                        <div class="video-wrapper" ng-repeat="media in item.media" ng-if="media.type == 'video'">
+                        
+                        <div class="video-wrapper" ng-if="media.type == 'video'" ng-repeat="media in item.media" >
                             
                             <video width="640" height="360" controls>
                               <source src="{{baseUrl+media.filepathurl | trustUrl}}" type="video/mp4">
@@ -477,3 +472,5 @@
       
       
     </div>
+
+</div>

@@ -484,9 +484,9 @@ self.addEventListener('sync', function(event) {
 
         }).then(function(data) {
 
-          console.log(data);
+          console.log(data.status);
 
-          if (data.result === 'success') {
+          if (data.status == true) {
 
             return store.exams('readwrite').then(function(exams) {
 
