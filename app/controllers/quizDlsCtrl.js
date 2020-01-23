@@ -257,6 +257,8 @@
               vm.pushAnswerToActivity();
               vm.questionIndex += 1;   
 
+              $scope.$emit('playSound', { message: 'quiz-next' });
+
 
            }
 
@@ -266,6 +268,7 @@
             vm.triggerProcessEndQuiz();
 
            }
+
 
 
         };
@@ -622,7 +625,7 @@
                     vm.questionIndex += 1;
 
 
-                    
+                    $scope.$emit('playSound', { message: 'quiz-next' });
 
                 }
 

@@ -1,8 +1,8 @@
 angular.module('loadingStatus', [])
  
-.config(function($httpProvider) {
+.config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('loadingStatusInterceptor');
-})
+}])
  
 .directive('loadingStatusMessage', [function() {
   return {

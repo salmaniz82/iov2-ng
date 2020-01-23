@@ -342,10 +342,10 @@ self.addEventListener('install', function(event) {
     caches.open(cacheName).then(function(cache) {
       return cache.addAll(
         [
-          'assets/css/unminify.css',
-          'assets/css/custom.css',
-          'assets/css/rtl.css',
-          'assets/css/table-layout.css'
+          'assets/css/bundleapp.min.css',
+          'dist/bundle.min.js',
+          'assets/css/rtl.css'
+          
         ]
       );
     })

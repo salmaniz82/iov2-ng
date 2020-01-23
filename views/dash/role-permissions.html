@@ -12,7 +12,123 @@
 
             </div> 
 
-        </div>    
+        </div> 
+
+
+
+        <div class="grid12Col gap5 mb-10" ng-if="vm.pageMode != null">
+
+
+            <div class="gc-first-remain-quater bg-white border-all">
+
+
+                <form class="floatable" novalidate style="padding-left: 10px; padding-right: 10px" ng-if="vm.pageMode != 'add'">
+
+              <div class="field-wrap hasflatCons">
+                    <span class="fal fa-search quiztitlefilter"></span>
+                    <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.searchQuery">
+                    <label for="title-filter" class="placeholder">Filter permissions</label>
+                </div>
+            
+              </form>
+
+
+              <div class="grid12Col gap5 mb-10" ng-if="vm.pageMode == 'add'" >
+    
+
+                    
+
+                    <div class="gc-first-remain-quater">
+
+                        <form class="floatable" novalidate name="rolePermissions" id="rolePermissions" novalidate>    
+
+                        <div class="grid12Col gap5">
+
+                            <div class="gc1-half">
+                                <div class="field-wrap">
+
+                                <select class="float-field w-100" name="perRole" ng-init="vm.ndata.role_id = '-- Select Role'" ng-model="vm.ndata.role_id" required ng-pattern="/^[0-9]{1,7}$/">
+                                    <option ng-disabled="1 == 1">-- Select Role</option>
+                                    <option ng-repeat="r in vm.dataList.allRoles" ng-value="r.id">{{r.role}}</option>
+                                </select>
+                                </div>
+                                    
+                                    
+                            </div>
+                            <div class="gc2-half">
+
+                                <div class="field-wrap">
+
+                            <select class="float-field w-100" name="perPEr" ng-init="vm.ndata.permission_id = '-- Select Permission'" ng-model="vm.ndata.permission_id" required ng-pattern="/^[0-9]{1,7}$/">
+                            <option ng-disabled="1 == 1">-- Select Permission</option>
+                            <option ng-repeat="per in vm.dataList.allPermissions" ng-value="per.id">{{per.name}}</option>
+                        </select>
+                            
+                        </div>
+                                
+                            </div>
+                        </div>
+
+                        </form>
+                        
+                    </div>
+
+                    <div class="gc-last-quater">
+                        
+                    </div>
+
+                    
+                </div>
+
+
+
+                
+            </div>
+
+
+
+            <div class="gc-last-quater dfx-center-xy bg-white border-all">
+
+                <div style="padding: 20px 30px;">
+                    
+                
+
+                <div ng-if="vm.pageMode == 'list' || vm.pageMode == 'error' && vm.pageMode != 'add'" ng-click="vm.pageMode = 'add'" class="btn pull-right btn-success" title="Permission">
+
+                    <span class="fas fa-plus"></span>
+
+                Role Permissions</div>
+
+
+
+                <div ng-if="vm.pageMode == 'add'">
+
+                    
+                        
+                        <button 
+
+                            ng-hide="rolePermissions.$invalid" 
+
+                            class="btn pull-right btn-success" 
+
+                            ng-click="vm.savePermission()">
+
+                            Save 
+                            
+                        </button>
+
+                </div>
+
+
+
+
+                </div>
+
+
+            </div> 
+
+            
+        </div>
         
     
 
@@ -22,35 +138,7 @@
                     <p class="c-red">Permission cannot be loaded </p>
                 </div>
 
-                <div class="row-fluid">
-                    <div ng-if="vm.pageMode == 'list' || vm.pageMode == 'error'" ng-click="vm.pageMode = 'add'" class="btn pull-right btn-icon btn-success graphic-plus" title="Permission">Role Permissions</div>
-                </div>
 
-                <div class="row" ng-show="vm.pageMode == 'add'">
-
-                    <form class="form">
-                    
-                    <div class="span4" >
-                        <select class="w-100" ng-init="vm.ndata.role_id = '-- Select Role'" ng-model="vm.ndata.role_id">
-                            <option ng-disabled="1 == 1">-- Select Role</option>
-                            <option ng-repeat="r in vm.dataList.allRoles" ng-value="r.id">{{r.role}}</option>
-                        </select>
-                    </div>
-
-                    <div class="span4">
-                        
-                        <select class="w-100" ng-init="vm.ndata.permission_id = '-- Select Permission'" ng-model="vm.ndata.permission_id">
-                            <option ng-disabled="1 == 1">-- Select Permission</option>
-                            <option ng-repeat="per in vm.dataList.allPermissions" ng-value="per.id">{{per.name}}</option>
-                        </select>
-                    </div>
-
-                    <div class="span1">
-                        <button class="btn btn-success btn-block" ng-click="vm.savePermission()">Save</button>
-                    </div>
-
-                    </form>
-                </div>
 
                 <table class="table" ng-if="vm.pageMode == 'list' || vm.pageMode == 'add'">
                     <thead>
@@ -63,7 +151,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in vm.dataList.permissions">
+                    <tr ng-repeat="item in vm.dataList.permissions | filter:vm.searchQuery">
                         <td>{{$index + 1}}</td>
                         <td>{{item.role}}</td>
                         <td>{{item.permission}}</td>

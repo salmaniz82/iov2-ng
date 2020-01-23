@@ -5,7 +5,7 @@
 
     .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+    
 
     function stateConfig($stateProvider, $urlRouterProvider, $locationProvider){
 
@@ -78,11 +78,12 @@
 
             resolve : {
 
-                queGlobalData : function(quizDataService)
+                queGlobalData : ['quizDataService', function(quizDataService)
                 {
 
                    return quizDataService.queGlobalFetch();
-                }
+
+                }]
 
             }
 
@@ -297,11 +298,11 @@
             controller : 'queAddCtrl as vm',
             resolve : {
 
-                queGlobalData : function(quizDataService)
+                queGlobalData : ['quizDataService', function(quizDataService)
                 {
 
                    return quizDataService.queGlobalFetch();
-                }
+                }]
 
             }
         })
@@ -313,11 +314,11 @@
             controller : 'questionUploadCtrl as vm',
             resolve : {
 
-                queGlobalData : function(quizDataService)
+                queGlobalData : ['quizDataService', function(quizDataService)
                 {
 
                    return quizDataService.queGlobalFetch();
-                }
+                }]
 
             }
         })
@@ -328,10 +329,10 @@
             controller : 'questionEditCtrl as vm',
             resolve : {
                 
-                queGlobalData : function(quizDataService)
+                queGlobalData : ['quizDataService', function(quizDataService)
                 {
                    return quizDataService.queGlobalFetch();
-                }
+                }]
 
 
             },
@@ -501,12 +502,12 @@
             controller : 'quizAttemptCtrl as vm',
             resolve : {
 
-                quizPlayData : function(quizPlay, $stateParams)
+                quizPlayData : ['quizPlay', '$stateParams', function(quizPlay, $stateParams)
                 {
                     var attempt_id = $stateParams.attempt_id;
                     var quiz_id = $stateParams.quiz_id;
                     return quizPlay.prepQuizQuestion(quiz_id, attempt_id);
-                }
+                }]
 
             },
             authenticate : true,
@@ -564,11 +565,11 @@
 
             resolve : {
 
-                wizardPreset : function(quizWizardService)
+                wizardPreset : ['quizWizardService', function(quizWizardService)
                 {
 
                    return quizWizardService.getPresetValues();     
-                }
+                }]
 
             }
 
@@ -613,6 +614,8 @@
         });
 
  };
+
+ stateConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
  })();
 

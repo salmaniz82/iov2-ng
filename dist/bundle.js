@@ -231,9 +231,9 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
 angular.module('loadingStatus', [])
  
-.config(function($httpProvider) {
+.config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('loadingStatusInterceptor');
-})
+}])
  
 .directive('loadingStatusMessage', [function() {
   return {
@@ -287,7 +287,7 @@ angular.module('loadingStatus', [])
 
     .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+    
 
     function stateConfig($stateProvider, $urlRouterProvider, $locationProvider){
 
@@ -896,6 +896,9 @@ angular.module('loadingStatus', [])
 
  };
 
+
+ stateConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+
  })();
 
 
@@ -927,422 +930,80 @@ angular.module('io2v3').component('quizInfoComponent', {
                 param: '='
             }
         });
-  angular.module('io2v3')
+angular.module('io2v3')
+	.factory('authInterceptor', ['$injector', '$q', '$location', function($injector, $q, $location) {
 
-    .directive('backButton', [function() {
+		oAuthIntercept = {};
 
-    return {
-        restrict : 'A',
-        link : function(scope, ele, attr, ngModel){
-            ele.on('click', function(e) {
+		oAuthIntercept.request = function(config) {
 
-                history.back();
-
-                e.preventDefault();
-
-
-            });     
-        }
-    };
-
-
-}])
-angular.module('io2v3').directive('ckeditor', [function () {
-  return {
-    require: '?ngModel',
-    link: function ($scope, elm, attr, ngModel) {
-
-
-        /*
-
-        var ck = CKEDITOR.replace(elm[0]);
-
-        */
-
-        
-       var ck = CKEDITOR.replace(elm[0],
-            {
-                on :
-                {
-                    instanceReady : function( ev )
-                    {
-                        
-
-                        this.focus();
-
-                         $('iframe.cke_wysiwyg_frame', ev.editor.container.$).contents().on('click', function() {
-                            ev.editor.focus();
-                        });
-
-                        
-                    }
-                }
-            });
-
-
-       
-
-       ck.on('pasteState', function () {
-            
-            $scope.$apply(function () {
-                ngModel.$setViewValue(ck.getData());
-            });
+			config.headers = config.headers || {};
 
 
 
-        });
+			function getLocalTimeOffset() {
+    			var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+    			return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+			}
 
-        
 
-        ngModel.$render = function (value) {
-            ck.setData(ngModel.$modelValue);
-        };
-    }
-  };
-}]);
-        
+			if(localStorage.auth_token)
+			{
+				config.headers.token = localStorage.auth_token;
+			}
+
+			config.headers.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			config.headers.timeOffset = getLocalTimeOffset();
+
+			return config;
+
+		};
+
+
+
+		oAuthIntercept.responseError = function(response) {
+
+        	
+
+        	if (response.status == 401){
+
+
+        		 console.log('throw it out');
+
+	       		 /*
+        		if (!$state) { 
+        			$state = $injector.get('$state'); 
+        		}
+        		$state.go('logout');
+				*/
+
+
+				 $location.path('/logout');
+
+		    	 
+            	
+        	}
+        	
+        	return $q.reject(response);	
+
+        	
+        	
+    	};
+
+
+		return oAuthIntercept;
+
+
+	}])
+
+	.config(['$httpProvider', function($httpProvider) {
+
+    	$httpProvider.interceptors.push('authInterceptor');
+
+    }]);
 
     
-        
-
-
-    angular.module('io2v3')
-
-    .directive('pickDt', [function() {
-
-        return {
-
-            restrict: 'C',
-            require: 'ngModel',
-
-            link: function(scope, ele, attr, ngModel)
-            {
-                ele.datetimepicker({
-                format: 'yyyy-MM-dd hh:mm',
-                pickDate: true,
-                pickTime: true,
-                pick12HourFormat: false,   
-                pickSeconds: false,
-                language: 'en',
-                
-                    onSelect: function(dateText) {
-                      scope.$apply(function() {
-                        ngModel.$setViewValue(dateText);
-
-                    });
-                 }
-                
-
-                });
-            }
-
-        };
-
-    }]);
-
-/**
- * An AngularJS directive for Dropzone.js, http://www.dropzonejs.com/
- * https://gist.github.com/compact/8118670#file-dropzone-directive-js
- * Usage:
- * 
- * <div ng-app="app" ng-controller="SomeCtrl">
- *   <button dropzone="dropzoneConfig">
- *     Drag and drop files here or click to upload
- *   </button>
- * </div>
- */
-
-
-angular.module('io2v3').directive('dropzone', [function () {
-  return function (scope, element, attrs) {
-
-    element.addClass('dropzone');
-
-    var config, dropzone;
-
-    config = scope[attrs.dropzone];
-
-    // create a Dropzone for the element with the given options
-    dropzone = new Dropzone(element[0], config.options);
-
-    // bind the given event handlers
-    angular.forEach(config.eventHandlers, function (handler, event) {
-      dropzone.on(event, handler);
-    });
-  };
-}]);
-
-
-
-
-/**
- * An AngularJS directive for Dropzone.js, http://www.dropzonejs.com/
- * https://gist.github.com/compact/8118670#file-dropzone-directive-js
- * Usage:
- * 
- * <div ng-app="app" ng-controller="SomeCtrl">
- *   <button dropzone="dropzoneConfig">
- *     Drag and drop files here or click to upload
- *   </button>
- * </div>
- */
-
-
- angular.module('hdtest', [])
-
-
- .controller('dzCtrl', ['$scope', function ($scope) {
-
-  
-  $scope.dropzoneConfig = {
-    'options': { 
-      'url': 'http://api.haladrive.local/uploadslides/69'
-    },
-    'eventHandlers': {
-      'sending': function (file, xhr, formData) {
-
-      },
-      'success': function (file, response) {
-        console.log('file is sent');
-      }
-    }
-  };
-}])
-.directive('dropzone', [function () {
-  return function (scope, element, attrs) {
-
-    element.addClass('dropzone');
-
-    var config, dropzone;
-
-    config = scope[attrs.dropzone];
-
-    // create a Dropzone for the element with the given options
-    dropzone = new Dropzone(element[0], config.options);
-
-    // bind the given event handlers
-    angular.forEach(config.eventHandlers, function (handler, event) {
-      dropzone.on(event, handler);
-    });
-  };
-}]);
-
-
-angular.module('io2v3').directive("fileInput", ['$parse', function($parse){
-    return{
-        link: function($scope, element, attrs){
-            element.on("change", function(event){
-                var files = event.target.files;
-                /*
-                console.log(files[0].name);
-                */
-                $parse(attrs.fileInput).assign($scope, element[0].files);
-                $scope.$apply();
-            });
-        }
-    }
-}]);
-
-(function(){
-    angular.module('io2v3')
-
-    .directive('modalTrigger', [function() {
-
-        return {
-
-            restrict: 'C',
-            link: function(scope, ele, attr, ngModel)
-            {
-                ele.bind('click', function(e) {
-
-                    console.log(attr.href);
-
-                    var targetModel = angular.element( document.querySelector( attr.href ) );
-                    targetModel.modal();
-
-                    e.preventDefault();
-
-                });
-            }
-
-        };
-
-
-
-
-
-    }]);
-
-})();
-angular.module('io2v3').directive('permissions', permissionDirective);
-
-permissionDirective.$inject = ['auth'];
-
-function permissionDirective(auth)
-{
-  return {
-       restrict: 'A',
-       scope: {
-          permissions: '='
-       },
- 
-       link: function (scope, elem, attrs) {
-
-         
-            scope.$watch(auth.isLoggedIn(), function() {
-                if (auth.userHasPermission(scope.permissions)) {
-
-                     elem.show();
-
-                    
-                  
-                } else {
-                  
-                    elem.remove();
-
-
-                    
-
-                }
-              });          
-       }
-   }
-
-
-}
-(function(){
-    
-    angular.module('io2v3')
-
-    .directive('staticLink', [function() {
-
-    vm = this;
-
-    return {
-        restrict : 'C',
-        link : function(scope, ele, attr, ngModel){
-            ele.on('click', function(e) {
-            e.preventDefault();
-            });     
-        }
-    };
-
-
-}])
-    .directive('dropdownButton', [function() {
-
-
-        vm = this;
-
-    return {
-        restrict : 'C',
-        link : function(scope, ele, attr, ngModel){
-        ele.on('click', function(e) {
-        e.preventDefault();
-        });
-        }
-    };
-}])
-
-
-
-    .directive('ngEnter', [function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if (event.which === 13) {
-                scope.$apply(function () {
-                    scope.$eval(attrs.ngEnter);
-                });
-
-                event.preventDefault();
-            }
-        });
-    };
-}]);
-
-
-
-})();
-
-
-
-
-angular.module('io2v3').directive('stringToNumber', [function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, element, attrs, ngModel) {
-      ngModel.$parsers.push(function(value) {
-        return '' + value;
-      });
-      ngModel.$formatters.push(function(value) {
-        return parseFloat(value);
-      });
-    }
-  };
-}]);
-(function(){
-    angular.module('io2v3')
-
-    .directive('timePicker', [function() {
-
-        return {
-
-            restrict: 'C',
-            link: function(scope, ele, attr, ngModel)
-            {
-                ele.pickatime({
-                    default: 'now',
-                    fromnow: 3000,       // set default time to * milliseconds from now (using with default = 'now')
-                    twelvehour: true, // Use AM/PM or 24-hour format
-                    donetext: 'OK', // text for done-button
-                    cleartext: 'Clear', // text for clear-button
-                    canceltext: 'Cancel', // Text for cancel-button
-                    autoclose: true, // automatic close timepicker
-                    ampmclickable: true, // make AM PM clickable
-                    aftershow: function(){} //Function for after opening timepicker
-                });
-            }
-
-        };
-
-
-
-
-
-    }]);
-
-})();
-angular.module('io2v3').directive('passwordVerify', passwordVerify);
-
-
-function passwordVerify() {
-    return {
-      restrict: 'A', // only activate on element attribute
-      require: '?ngModel', // get a hold of NgModelController
-      link: function(scope, elem, attrs, ngModel) {
-        if (!ngModel) return; // do nothing if no ng-model
-
-        // watch own value and re-validate on change
-        scope.$watch(attrs.ngModel, function() {
-          validate();
-        });
-
-        // observe the other value and re-validate on change
-        attrs.$observe('passwordVerify', function(val) {
-          validate();
-        });
-
-        var validate = function() {
-          // values
-          var val1 = ngModel.$viewValue;
-          var val2 = attrs.passwordVerify;
-
-          // set validity
-          ngModel.$setValidity('passwordVerify', val1 === val2);
-        };
-      }
-    }
-  }
+	
 
 (function(){
 	angular.module('io2v3')
@@ -13755,6 +13416,423 @@ calculate weight percentate via allocated points
 
 })();
 
+  angular.module('io2v3')
+
+    .directive('backButton', [function() {
+
+    return {
+        restrict : 'A',
+        link : function(scope, ele, attr, ngModel){
+            ele.on('click', function(e) {
+
+                history.back();
+
+                e.preventDefault();
+
+
+            });     
+        }
+    };
+
+
+}])
+angular.module('io2v3').directive('ckeditor', [function () {
+  return {
+    require: '?ngModel',
+    link: function ($scope, elm, attr, ngModel) {
+
+
+        /*
+
+        var ck = CKEDITOR.replace(elm[0]);
+
+        */
+
+        
+       var ck = CKEDITOR.replace(elm[0],
+            {
+                on :
+                {
+                    instanceReady : function( ev )
+                    {
+                        
+
+                        this.focus();
+
+                         $('iframe.cke_wysiwyg_frame', ev.editor.container.$).contents().on('click', function() {
+                            ev.editor.focus();
+                        });
+
+                        
+                    }
+                }
+            });
+
+
+       
+
+       ck.on('pasteState', function () {
+            
+            $scope.$apply(function () {
+                ngModel.$setViewValue(ck.getData());
+            });
+
+
+
+        });
+
+        
+
+        ngModel.$render = function (value) {
+            ck.setData(ngModel.$modelValue);
+        };
+    }
+  };
+}]);
+        
+
+    
+        
+
+
+    angular.module('io2v3')
+
+    .directive('pickDt', [function() {
+
+        return {
+
+            restrict: 'C',
+            require: 'ngModel',
+
+            link: function(scope, ele, attr, ngModel)
+            {
+                ele.datetimepicker({
+                format: 'yyyy-MM-dd hh:mm',
+                pickDate: true,
+                pickTime: true,
+                pick12HourFormat: false,   
+                pickSeconds: false,
+                language: 'en',
+                
+                    onSelect: function(dateText) {
+                      scope.$apply(function() {
+                        ngModel.$setViewValue(dateText);
+
+                    });
+                 }
+                
+
+                });
+            }
+
+        };
+
+    }]);
+
+/**
+ * An AngularJS directive for Dropzone.js, http://www.dropzonejs.com/
+ * https://gist.github.com/compact/8118670#file-dropzone-directive-js
+ * Usage:
+ * 
+ * <div ng-app="app" ng-controller="SomeCtrl">
+ *   <button dropzone="dropzoneConfig">
+ *     Drag and drop files here or click to upload
+ *   </button>
+ * </div>
+ */
+
+
+angular.module('io2v3').directive('dropzone', [function () {
+  return function (scope, element, attrs) {
+
+    element.addClass('dropzone');
+
+    var config, dropzone;
+
+    config = scope[attrs.dropzone];
+
+    // create a Dropzone for the element with the given options
+    dropzone = new Dropzone(element[0], config.options);
+
+    // bind the given event handlers
+    angular.forEach(config.eventHandlers, function (handler, event) {
+      dropzone.on(event, handler);
+    });
+  };
+}]);
+
+
+
+
+/**
+ * An AngularJS directive for Dropzone.js, http://www.dropzonejs.com/
+ * https://gist.github.com/compact/8118670#file-dropzone-directive-js
+ * Usage:
+ * 
+ * <div ng-app="app" ng-controller="SomeCtrl">
+ *   <button dropzone="dropzoneConfig">
+ *     Drag and drop files here or click to upload
+ *   </button>
+ * </div>
+ */
+
+
+ angular.module('hdtest', [])
+
+
+ .controller('dzCtrl', ['$scope', function ($scope) {
+
+  
+  $scope.dropzoneConfig = {
+    'options': { 
+      'url': 'http://api.haladrive.local/uploadslides/69'
+    },
+    'eventHandlers': {
+      'sending': function (file, xhr, formData) {
+
+      },
+      'success': function (file, response) {
+        console.log('file is sent');
+      }
+    }
+  };
+}])
+.directive('dropzone', [function () {
+  return function (scope, element, attrs) {
+
+    element.addClass('dropzone');
+
+    var config, dropzone;
+
+    config = scope[attrs.dropzone];
+
+    // create a Dropzone for the element with the given options
+    dropzone = new Dropzone(element[0], config.options);
+
+    // bind the given event handlers
+    angular.forEach(config.eventHandlers, function (handler, event) {
+      dropzone.on(event, handler);
+    });
+  };
+}]);
+
+
+angular.module('io2v3').directive("fileInput", ['$parse', function($parse){
+    return{
+        link: function($scope, element, attrs){
+            element.on("change", function(event){
+                var files = event.target.files;
+                /*
+                console.log(files[0].name);
+                */
+                $parse(attrs.fileInput).assign($scope, element[0].files);
+                $scope.$apply();
+            });
+        }
+    }
+}]);
+
+(function(){
+    angular.module('io2v3')
+
+    .directive('modalTrigger', [function() {
+
+        return {
+
+            restrict: 'C',
+            link: function(scope, ele, attr, ngModel)
+            {
+                ele.bind('click', function(e) {
+
+                    console.log(attr.href);
+
+                    var targetModel = angular.element( document.querySelector( attr.href ) );
+                    targetModel.modal();
+
+                    e.preventDefault();
+
+                });
+            }
+
+        };
+
+
+
+
+
+    }]);
+
+})();
+angular.module('io2v3').directive('permissions', permissionDirective);
+
+permissionDirective.$inject = ['auth'];
+
+function permissionDirective(auth)
+{
+  return {
+       restrict: 'A',
+       scope: {
+          permissions: '='
+       },
+ 
+       link: function (scope, elem, attrs) {
+
+         
+            scope.$watch(auth.isLoggedIn(), function() {
+                if (auth.userHasPermission(scope.permissions)) {
+
+                     elem.show();
+
+                    
+                  
+                } else {
+                  
+                    elem.remove();
+
+
+                    
+
+                }
+              });          
+       }
+   }
+
+
+}
+(function(){
+    
+    angular.module('io2v3')
+
+    .directive('staticLink', [function() {
+
+    vm = this;
+
+    return {
+        restrict : 'C',
+        link : function(scope, ele, attr, ngModel){
+            ele.on('click', function(e) {
+            e.preventDefault();
+            });     
+        }
+    };
+
+
+}])
+    .directive('dropdownButton', [function() {
+
+
+        vm = this;
+
+    return {
+        restrict : 'C',
+        link : function(scope, ele, attr, ngModel){
+        ele.on('click', function(e) {
+        e.preventDefault();
+        });
+        }
+    };
+}])
+
+
+
+    .directive('ngEnter', [function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+}]);
+
+
+
+})();
+
+
+
+
+angular.module('io2v3').directive('stringToNumber', [function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      ngModel.$parsers.push(function(value) {
+        return '' + value;
+      });
+      ngModel.$formatters.push(function(value) {
+        return parseFloat(value);
+      });
+    }
+  };
+}]);
+(function(){
+    angular.module('io2v3')
+
+    .directive('timePicker', [function() {
+
+        return {
+
+            restrict: 'C',
+            link: function(scope, ele, attr, ngModel)
+            {
+                ele.pickatime({
+                    default: 'now',
+                    fromnow: 3000,       // set default time to * milliseconds from now (using with default = 'now')
+                    twelvehour: true, // Use AM/PM or 24-hour format
+                    donetext: 'OK', // text for done-button
+                    cleartext: 'Clear', // text for clear-button
+                    canceltext: 'Cancel', // Text for cancel-button
+                    autoclose: true, // automatic close timepicker
+                    ampmclickable: true, // make AM PM clickable
+                    aftershow: function(){} //Function for after opening timepicker
+                });
+            }
+
+        };
+
+
+
+
+
+    }]);
+
+})();
+angular.module('io2v3').directive('passwordVerify', passwordVerify);
+
+
+function passwordVerify() {
+    return {
+      restrict: 'A', // only activate on element attribute
+      require: '?ngModel', // get a hold of NgModelController
+      link: function(scope, elem, attrs, ngModel) {
+        if (!ngModel) return; // do nothing if no ng-model
+
+        // watch own value and re-validate on change
+        scope.$watch(attrs.ngModel, function() {
+          validate();
+        });
+
+        // observe the other value and re-validate on change
+        attrs.$observe('passwordVerify', function(val) {
+          validate();
+        });
+
+        var validate = function() {
+          // values
+          var val1 = ngModel.$viewValue;
+          var val2 = attrs.passwordVerify;
+
+          // set validity
+          ngModel.$setValidity('passwordVerify', val1 === val2);
+        };
+      }
+    }
+  }
+
 angular.module('io2v3').filter('contains', [function() {
   return function (array, needle) {
     return array.indexOf(needle) >= 0;
@@ -13839,81 +13917,6 @@ angular.module('io2v3')
 
         }
     }]);
-angular.module('io2v3')
-	.factory('authInterceptor', ['$injector', '$q', '$location', function($injector, $q, $location) {
-
-		oAuthIntercept = {};
-
-		oAuthIntercept.request = function(config) {
-
-			config.headers = config.headers || {};
-
-
-
-			function getLocalTimeOffset() {
-    			var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
-    			return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-			}
-
-
-			if(localStorage.auth_token)
-			{
-				config.headers.token = localStorage.auth_token;
-			}
-
-			config.headers.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-			config.headers.timeOffset = getLocalTimeOffset();
-
-			return config;
-
-		};
-
-
-
-		oAuthIntercept.responseError = function(response) {
-
-        	
-
-        	if (response.status == 401){
-
-
-        		 console.log('throw it out');
-
-	       		 /*
-        		if (!$state) { 
-        			$state = $injector.get('$state'); 
-        		}
-        		$state.go('logout');
-				*/
-
-
-				 $location.path('/logout');
-
-		    	 
-            	
-        	}
-        	
-        	return $q.reject(response);	
-
-        	
-        	
-    	};
-
-
-		return oAuthIntercept;
-
-
-	}])
-
-	.config(['$httpProvider', function($httpProvider) {
-
-    	$httpProvider.interceptors.push('authInterceptor');
-
-    }]);
-
-    
-	
-
 angular.module('io2v3')
 	.service('auth', ['$http', 'API_URL', '$cacheFactory', function($http, API_URL, $cacheFactory) {
 
