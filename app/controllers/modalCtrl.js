@@ -8,9 +8,9 @@
 
 	
 
-	modalCtrl.$inject = ['$state', '$scope', '$http'];
+	modalCtrl.$inject = ['$state', '$scope', '$http', 'API_URL'];
 
-	function modalCtrl($state, $scope, $http)
+	function modalCtrl($state, $scope, $http, API_URL)
 	{
 		var vm = this;
 

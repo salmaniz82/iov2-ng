@@ -254,10 +254,13 @@
            
            if(vm.questionIndex + 1 < vm.quiz.noques)
            {
+              
+              $scope.$emit('playSound', { message: 'quiz-next' });
+
               vm.pushAnswerToActivity();
               vm.questionIndex += 1;   
 
-              $scope.$emit('playSound', { message: 'quiz-next' });
+              
 
 
            }
@@ -643,6 +646,8 @@
                     
 
                     console.log('invalid attempt');
+
+                    $scope.$emit('playSound', { message: 'error' });
 
            }
 
@@ -1055,7 +1060,11 @@
                     $state.go('std.exams');
                     */
 
+                    $scope.$emit('playSound', { message: 'quiz-end' });
+
                     vm.closeCurrentWindow();
+
+
 
 
                 }, 
@@ -1071,6 +1080,8 @@
                   }
 
                     vm.closeCurrentWindow();  
+
+                    $scope.$emit('playSound', { message: 'quiz-end' });
 
 
                 });
@@ -1165,6 +1176,8 @@
                 if (diff <= 0) {
 
                   vm.timeexpiration = true;
+
+                  $scope.$emit('playSound', { message: 'quiz-timeout' });
 
                   vm.manageTimeOutSubmission();
 

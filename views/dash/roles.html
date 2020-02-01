@@ -11,7 +11,7 @@
     <div class="bg-white border-all mb-5" ng-if="vm.loading === null">
 
         <div class="pd-10"> 
-                <h3 class="t-center c-grey">Loading roles ...</h3>  
+                <h3 class="t-center c-grey">{{gval.loading[langIndex()]}}</h3>  
         </div>
 
         
@@ -22,7 +22,7 @@
     <div class="bg-white border-all mb-5" ng-if="vm.loading === false">
 
         <div class="pd-10"> 
-            <h3 class="t-center t-pink">Failed no roles found ...</h3>      
+            <h3 class="t-center t-pink">{{gval.norecords[langIndex()]}}</h3>      
         </div>   
 
     </div>

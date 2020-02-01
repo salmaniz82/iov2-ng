@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('questionsCtrl', ['API_URL', '$scope', '$http', '$stateParams', '$window', '$state', function(API_URL, $scope, $http, $stateParams, $window, $state){
+    angular.module('io2v3').controller('questionsCtrl', ['API_URL', '$scope', '$http', '$stateParams', '$window', '$state', 'SITE_URL', function(API_URL, $scope, $http, $stateParams, $window, $state, SITE_URL){
 
 
         var vm = this;
@@ -19,6 +19,32 @@
         {
 
             $scope.sortType = fieldName;
+
+        };
+
+
+
+        vm.launchQuestionPreviewWindow = function(questionId)
+        {
+
+            var popupUrl = SITE_URL+'questionpreview/'+questionId;
+
+
+            console.log(popupUrl);
+
+            
+
+            window.quizWindow = window.open(popupUrl, "Question Preview", 
+
+                'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
+                   screen.availHeight 
+                    );
+
+                    
+
+
+                    
+
 
         };
 

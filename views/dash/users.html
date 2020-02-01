@@ -20,7 +20,7 @@
 
             <div ng-if="vm.loadingStatus == 'no contents'">
 
-              <h3 class="t-center c-grey">No users created</h3>  
+              <h3 class="t-center c-grey">{{gval.norecords[langIndex()]}}</h3>  
 
             </div>
 
@@ -81,7 +81,7 @@
 
 
 
-    <h3 class="t-center c-grey">Loading users ...</h3>  
+    <h3 class="t-center c-grey">{{gval.loading[langIndex()]}}</h3>  
 
 
     </div>

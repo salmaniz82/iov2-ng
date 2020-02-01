@@ -187,11 +187,11 @@
 
 
     <div ng-if="vm.hasQuizEnrolled == null">
-    	<p class="c-orange">Loading enrolled quiz ...</p>
+    	<p class="c-orange">{{gval.loading[langIndex()]}}</p>
     </div>
 
     <div ng-if="vm.hasQuizEnrolled == false">
-    	<p class="c-red">You are not enrolled in any quiz</p>
+    	<p class="c-red">{{gval.norecords[langIndex()]}}</p>
     </div>
 
 

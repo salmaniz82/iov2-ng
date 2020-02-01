@@ -11,7 +11,7 @@
           <div class="customInner" style="margin: 10px; padding-right: 20px;">
 
             <div ng-if="vm.loadingStatus == 'no contents'">
-              <h3 class="t-center c-grey">No users created</h3>  
+              <h3 class="t-center c-grey">{{gval.norecords[langIndex()]}}</h3>  
             </div>
 
 
@@ -25,7 +25,7 @@
               <div class="field-wrap hasflatCons">
                     <span class="fal fa-search quiztitlefilter"></span>
                     <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.searchQuery[sortType]">
-                    <label for="title-filter" class="placeholder">Filter By selected field</label>
+                    <label for="title-filter" class="placeholder">{{gval.filter[langIndex()]}}</label>
                 </div>
             
               </form>
@@ -35,7 +35,7 @@
               <div class="gc-last-column dfx-center-xy">
 
 
-                <a href="#" class="c-pink" ng-click="vm.clearFilters()">Clear Filters <span class="fal fa-times-circle"></span> </a>
+                <a href="#" class="c-pink" ng-click="vm.clearFilters()">{{gval.filter[langIndex()]}} <span class="fal fa-times-circle"></span> </a>
                 
               </div>
 
@@ -52,9 +52,9 @@
         <div class="gc-last-quater bg-white border-all dfx-center-xy" ng-if="vm.dualColumn == false">
 
           
-            <div class="btn btn-success" ng-click="vm.activateAddUser()" style="width: 200px"> <span class="fas fa-plus"></span> User </div>
+            <div class="btn btn-success" ng-click="vm.activateAddUser()" style="width: 200px"> <span class="fas fa-plus"></span> {{gval.user[langIndex()]}} </div>
                 &nbsp;
-          <a class="btn btn-warning" ng-click="vm.activateUserUpload()" style="width: 200px"> <span class="fas fa-anchor"></span> Upload </a>
+          <a class="btn btn-warning" ng-click="vm.activateUserUpload()" style="width: 200px"> <span class="fas fa-anchor"></span> {{gval.upload[langIndex()]}} </a>
           
         </div>
 
@@ -66,7 +66,7 @@
 
 <div ng-if="vm.loadingStatus == null" class="bg-white border-all">
   <div class="pd-10"> 
-    <h3 class="t-center c-grey">Loading users ...</h3>  
+    <h3 class="t-center c-grey">{{gval.loading[langIndex()]}}</h3>  
     </div>
 </div>
 
@@ -76,7 +76,7 @@
 
   <div class="pd-10"> 
 
-    <h3 class="t-center c-grey">No user found</h3>  
+    <h3 class="t-center c-grey">{{gval.norecords[langIndex()]}}</h3>  
 
   </div>
     
@@ -92,29 +92,29 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th><a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a>
+                        <th><a href="#" ng-click="vm.selectSortfield('$')">{{gval.sno[langIndex()]}} *</a>
 
                         </th>
-                        <th><a href="#" ng-click="vm.selectSortfield('name')">Firstname</a>
+                        <th><a href="#" ng-click="vm.selectSortfield('name')">{{gval.name[langIndex()]}}</a>
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'name'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
 
                         </th>
-                        <th><a href="#" ng-click="vm.selectSortfield('email')">Email</a>
+                        <th><a href="#" ng-click="vm.selectSortfield('email')">{{gval.email[langIndex()]}}</a>
 
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'email'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
 
                         </th>
-                        <th><a href="#" ng-click="vm.selectSortfield('role')">Role</a>
+                        <th><a href="#" ng-click="vm.selectSortfield('role')">{{gval.roles[langIndex()]}}</a>
 
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'role'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
                         
                         
-                        <th><a href="#" ng-click="vm.selectSortfield('status')">Status</a>
+                        <th><a href="#" ng-click="vm.selectSortfield('status')">{{gval.status[langIndex()]}}</a>
                           <span ng-click="sortReverse = !sortReverse" ng-show="sortType == 'status'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'">
                           
                         </th>
-                        <th>Actions</th>
+                        <th>&nbsp;</th>
                         
                     </tr>
                     </thead>
@@ -142,10 +142,10 @@
                                 <div class="btn-group btn-more">
                                 <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Details</a></li>
-                                    <li ng-if="item.status == 0"><a href="#">Send Registration Email</a></li>
-                                    <li><a href="#" ng-click="vm.launchModal(item.id)" ng-if="item.isOwnedBy == 1">Change Password</a></li>
-                                    <li permissions="['user-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete User</span></a></li>
+                                    <li><a href="#">{{gval.details[langIndex()]}}</a></li>
+                                    <li ng-if="item.status == 0"><a href="#">{{gval.sendRegistrationEmail[langIndex()]}}</a></li>
+                                    <li><a href="#" ng-click="vm.launchModal(item.id)" ng-if="item.isOwnedBy == 1">{{gval.changePassword[langIndex()]}}</a></li>
+                                    <li permissions="['user-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">{{gval.delete[langIndex()]}}</span></a></li>
                                     
                                 </ul>
                             </div>
@@ -428,8 +428,20 @@
                                 <option ng-selected="vm.nUser.topCategory == '-- Select Category'" ng-disabled="1 == 1">-- Select Category</option>
                                 <option ng-repeat="cat in vm.topCategories" ng-value="cat.id">{{cat.name}}</option>     
                          </select>
-                         <span ng-show="registerall.$dirty && registerall.topCategory.$invalid" class="float-error" style="left: 0; text-align: left;">Please Top Level Category</span>
+                         <span ng-show="registerall.$dirty && registerall.topCategory.$invalid" class="float-error" style="left: 0; text-align: left;">Top Level Category</span>
                     </div>
+
+
+                    <div class="field-wrap" ng-if="vm.nUser.role_id == 4">
+
+                        
+                    <div  class="btn btn-twitter btn-std pull-right" ng-click="vm.userAutoGenerate()"><span class="fal fa-save"></span> {{gval.autoGenerate[langIndex()]}} </div>
+
+                      
+                    </div> <!-- Auto USEr Generage -->
+
+
+
 
                         </div>
 
@@ -599,6 +611,62 @@
 
 
 
+
+    </aside>
+
+
+
+    <aside ng-if="vm.autoGeneratedStatus == true" style="width: 600px;">
+
+  
+
+      <section class="bg-white border-all" style="padding: 20px; margin-left: 10px; margin-right: 5px;">
+
+        <div class="grid12Col"> 
+
+            <div class="gc-first-remain-quater">
+            <h2 class="form-heading">Generated Users</h2>
+        </div>
+        
+        <div class="gc-last-quater">
+          <i class="fal fa-times fa-2x pull-right c-grey" ng-click="vm.deactivateInfoGenerated()"></i> 
+        </div>
+
+
+        </div>
+
+        <div>
+
+          <table class="w-100">
+            <thead>
+              <tr>
+                <td>S.NO</td>
+                <td>Email</td>
+                <th>Password</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr ng-repeat="item in vm.generatedUsersList">
+                <td>{{$index + 1}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.password}}</td>
+              </tr>
+            </tbody>
+
+
+          </table>
+          
+        </div>
+
+
+
+        
+
+      </section>
+
+    
+      
 
     </aside>
 

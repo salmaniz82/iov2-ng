@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('io2v3').controller('quizQuestionsCtrl', ['API_URL', '$scope', '$http', '$stateParams', function(API_URL, $scope, $http, $stateParams){
+    angular.module('io2v3').controller('quizQuestionsCtrl', ['API_URL', 'SITE_URL', '$scope', '$http', '$stateParams', function(API_URL, SITE_URL, $scope, $http, $stateParams){
 
 
         var vm = this;
@@ -21,6 +21,23 @@
         vm.examID = $stateParams.examID;
         $scope.$parent.absExamId = $stateParams.examID;
         var Questionsurl = API_URL+'quiz-questions/'+vm.examID;
+
+
+
+
+        vm.launchQuestionPreviewWindow = function(questionId)
+        {
+
+            var popupUrl = SITE_URL+'questionpreview/'+questionId;
+
+            window.quizWindow = window.open(popupUrl, "Question Preview", 
+
+                'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
+                   screen.availHeight 
+                    );
+
+
+        };
 
 
 

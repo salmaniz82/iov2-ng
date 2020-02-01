@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="io2v3" lang="{{lang}}" dir="{{ (lang == 'en') ? 'ltr' : 'rtl'}}" ng-controller="baseCtrl as base">
+<html ng-app="io2v3" lang="{{lang}}" dir="{{ (lang == 'ar') ? 'rtl' : 'ltr'}}" ng-controller="baseCtrl as base">
 <head>
     <base href="/">
     <meta charset="utf-8">
@@ -72,25 +72,18 @@
     <!-- io2 css -->
 
 
-     <link rel="stylesheet" href="assets/css/bundleapp.min.css">   
-
-
+    <link rel="stylesheet" href="assets/css/bundleapp.min.css">   
     <link rel="stylesheet" href="assets/css/font-awesome-pro/css/fontawesome-all.min.css">
 
+    <link ng-if="lang == 'ar'" type="text/css" rel="stylesheet" id="langStyles" ng-href="assets/css/rtl.css"
+          media="screen,projection"/>
 
-    <script>if (typeof module === 'object') {
-        window.module = module;
-        module = undefined;
-    }</script>
 
+
+<!--
     <script src="assets/js/libs/jquery.min.js"></script>
+
     <script src="assets/js/libs/jquery.easing.js"></script>
-
-    <script>if (window.module) module = window.module;</script>
-
-
-    <!-- Angular Libraries  -->
-
         
     <script type="text/javascript" src="assets/js/libs/angular1.5.0.js"></script>   
     <script type="text/javascript" src="assets/js/libs/angular-sanitize1.5.0.min.js"></script>
@@ -106,12 +99,18 @@
     <script type="text/javascript" src="assets/js/libs/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="assets/js/libs/dropzone.min.js"></script>
 
-    <script type="text/javascript" src="dist/bundle.min.js"></script>
+-->
+
+    <script defer type="text/javascript" src="assets/js/libs/vendor.min.js"></script>
+
+    <script defer type="text/javascript" src="dist/bundle.min.js"></script>
 
 
 
-    <link ng-if="lang == 'ar'" type="text/css" rel="stylesheet" id="langStyles" ng-href="assets/css/rtl.css"
-          media="screen,projection"/>
+
+
+
+    
 
 </head>
 
@@ -216,23 +215,6 @@ L146.48,87.02z"/>
 
     });
 </script>
-
-<!--
-	<script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
--->
-
-
-<script type="text/javascript" src="assets/js/libs/moment.js"></script>
-<script type="text/javascript" src="plugins/chartjs/Chart.bundle.min.js"></script>
-
-
-<script type="text/javascript" src="assets/js/libs/modernizr.js"></script>
-<script type="text/javascript" src="assets/js/libs/bootstrap.js"></script>
-
-
-<script type="text/javascript" src="assets/js/libs/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="assets/js/libs/bootstrap-datetimepicker.pt-BR.js"></script>
-<script type="text/javascript" src="plugins/ckeditor/ckeditor.js"></script>
 
 </body>
 </html>

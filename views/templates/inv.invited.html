@@ -31,8 +31,19 @@
                 <div class="flexTabHeader__InnerRightWrapper">
                      
                     <div>&nbsp;</div>   
-                    <div class="langCont">
-                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
+                    <div class="langCont" ng-class="{ 'langDropActive' : langDropOPen}">
+                     
+                        <a href="#" class="langText" role="button" ng-click="langDropToggle()">{{lang}}</a>
+
+                        <span class="fal fa-arrow-down"></span>
+
+                        <ul id="langDrop">
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('ar')">AR</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('en')">EN</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('fr')">FR</a></li>
+                        </ul>
+
+                    </div>
                     <div>
 
                         <div class="btn-group topUserDrop">

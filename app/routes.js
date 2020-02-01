@@ -539,6 +539,15 @@
         })
 
 
+        .state('questionPreview', {
+
+            url : '/questionpreview/:questionId',
+            templateUrl : 'views/question-preview.html',
+            controller: 'questionPreviewCtrl as vm'
+
+        })
+
+
 
         .state('inv', {
 

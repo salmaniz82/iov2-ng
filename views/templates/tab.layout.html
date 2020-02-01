@@ -15,23 +15,23 @@
             
             <li ng-class="{'active': base.pageUrl == '/dashboard'}">
 
-                <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte vam"></i> Dashboard</a></li>
-            <li ui-sref-active="active" permissions="['quiz-list']"><a ui-sref="dash.quizzes()"><i class="fal fa-brain vam"></i> Quizes</a></li>
+                <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte vam"></i> {{gval.dashboard[langIndex()]}} </a></li>
+            <li ui-sref-active="active" permissions="['quiz-list']"><a ui-sref="dash.quizzes()"><i class="fal fa-brain vam"></i> {{gval.quizes[langIndex()]}} </a></li>
             
-            <li ui-sref-active="active"><a ui-sref="dash.questions()"><i class="fal fa-database vam"></i> Questions</a></li>
-            <li ui-sref-active="active"><a ui-sref="dash.quePool()"><i class="fal fa-calculator vam"></i> Stats </a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.questions()"><i class="fal fa-database vam"></i> {{gval.questions[langIndex()]}}</a></li>
+            <li ui-sref-active="active"><a ui-sref="dash.quePool()"><i class="fal fa-calculator vam"></i> {{gval.stats[langIndex()]}} </a></li>
 
-            <li ui-sref-active="active" permissions="['batch-list']"><a ui-sref="dash.batches()"><i class="fal fa-ball-pile vam"></i> Groups </a></li>
+            <li ui-sref-active="active" permissions="['batch-list']"><a ui-sref="dash.batches()"><i class="fal fa-ball-pile vam"></i> {{gval.groups[langIndex()]}} </a></li>
 
-            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.roles()"><i class="fal fa-users vam"></i> Roles</a></li>
-            <li ui-sref-active="active" permissions="['user-global-list']"><a ui-sref="dash.users()"><i class="fal fa-user-tie vam"></i> Users</a></li>
-            <li ui-sref-active="active" permissions="['user-local-list']"><a ui-sref="dash.myusers()"><i class="fal fa-user-tie vam"></i> My Users</a></li>
-            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.permission()"><i class="fal fa-shield-alt vam"></i> Permissions</a></li>
-            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.rolePermissions()"><i class="fal fa-user-shield vam"></i> Role Permissions</a></li>
-            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.cats()"><i class="fal fa-sitemap vam"></i> Categories</a></li>
-            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.library()"><i class="fa fa-palette vam"></i> Media Library</a></li>
-            <li ui-sref-active="active" permissions="['test-navs']"><a ui-sref="dash.modal()"> Modal Test</a></li>
-            <li ui-sref-active="active"><a ui-sref="mob.activity()"><i class="fal fa-mobile vam"></i> Activity</a></li>
+            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.roles()"><i class="fal fa-users vam"></i> {{gval.roles[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['user-global-list']"><a ui-sref="dash.users()"><i class="fal fa-user-tie vam"></i> {{gval.users[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['user-local-list']"><a ui-sref="dash.myusers()"><i class="fal fa-user-tie vam"></i> {{gval.myusers[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.permission()"><i class="fal fa-shield-alt vam"></i> {{gval.permissions[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.rolePermissions()"><i class="fal fa-user-shield vam"></i> {{gval.rolepermissions[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.cats()"><i class="fal fa-sitemap vam"></i> {{gval.categories[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.library()"><i class="fa fa-palette vam"></i> {{gval.medialibraray[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['test-navs']"><a ui-sref="dash.modal()"> {{gval.modaltest[langIndex()]}}</a></li>
+            <li ui-sref-active="active"><a ui-sref="mob.activity()"><i class="fal fa-mobile vam"></i> {{gval.activity[langIndex()]}}</a></li>
 
            
       </ul>
@@ -55,8 +55,21 @@
                 <div class="flexTabHeader__InnerRightWrapper">
                      
                     <div>&nbsp;</div>   
-                    <div class="langCont">
-                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
+                    <div class="langCont" ng-class="{ 'langDropActive' : langDropOPen}">
+                     
+                        <a href="#" class="langText" role="button" ng-click="langDropToggle()">{{lang}}</a>
+
+                        <span class="fal fa-arrow-down"></span>
+
+                        <ul id="langDrop">
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('ar')">AR</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('en')">EN</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('fr')">FR</a></li>
+                        </ul>
+
+                    </div>
+
+
                     <div>
 
                         <div class="btn-group topUserDrop">
@@ -69,18 +82,22 @@
 
                                     <li>
                                             <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte vam"></i>
-                                                Dashboard
+                                                
+
+                                                {{gval.dashboard[langIndex()]}}
+
+
                                             </a></li>
                                         <li>
 
                                             <a ui-sref="dash.profile()"><i class="far fa-user vam"></i>
-                                                My Profile
+                                                {{gval.profile[langIndex()]}}
                                             </a></li>
 
                                         <li>
 
                                             <a ui-sref="logout()"><i class="fas fa-power-off vam c-red"></i>
-                                                Logout
+                                                {{gval.logout[langIndex()]}}
                                             </a></li>
                                     
                                     

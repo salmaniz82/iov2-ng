@@ -17,12 +17,12 @@
 
       <ul id="top-menu"> 
             
-            <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})"><i class="fas fa-street-view"></i> Overview</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-chart-bar"></i> Progress</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})"><i class="fas fa-table"></i> Questions</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})"><i class="fas fa-balance-scale"></i> Weight Distribution</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})"><i class="fas fa-clipboard-check"></i> Enroll</a></li>
-            <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})"><i class="fas fa-clipboard-list"></i> Register</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})"><i class="fas fa-street-view"></i> {{ gval.overview[langIndex()] }} </a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-chart-bar"></i> {{ gval.progress[langIndex()] }} </a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizQuestions({'examID': absExamId})"><i class="fas fa-table"></i> {{ gval.questions[langIndex()] }}</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})"><i class="fas fa-balance-scale"></i> {{ gval.weightDistribution[langIndex()] }}</a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})"><i class="fas fa-clipboard-check"></i> {{ gval.enroll[langIndex()] }} </a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})"><i class="fas fa-clipboard-list"></i>{{gval.register[langIndex()]}}  </a></li>
             
             
       </ul>
@@ -49,9 +49,19 @@
                 <div class="flexTabHeader__InnerRightWrapper">
                      
                     <div>&nbsp;</div>   
-                    <div class="langCont">
-                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
-                    <div>
+                    <div class="langCont" ng-class="{ 'langDropActive' : langDropOPen}">
+                     
+                        <a href="#" class="langText" role="button" ng-click="langDropToggle()">{{lang}}</a>
+
+                        <span class="fal fa-arrow-down"></span>
+
+                        <ul id="langDrop">
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('ar')">AR</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('en')">EN</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('fr')">FR</a></li>
+                        </ul>
+
+                    </div>
 
                         <div class="btn-group topUserDrop">
                                 <a class="btn" href="#" data-toggle="dropdown">

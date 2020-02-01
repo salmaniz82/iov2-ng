@@ -6,7 +6,7 @@
     
         <div ng-if="vm.loadingStatus == false" class="bg-white border-all mb-20" style="padding: 10px;">
 
-            <h3 class="t-center">No quiz added yet, please add one to proceed</h3>
+            <h3 class="t-center">{{gval.norecords[langIndex()]}}</h3>
 
             <div class="dfx-center-xy">
                     <a class="btn btn-success" style="width: 200px;" ui-sref="dash.quizWizard()"> <span class="fas fa-plus"></span> Add Quiz </a>
@@ -36,7 +36,7 @@
                 <div class="field-wrap hasflatCons">
                     <span class="fal fa-search quiztitlefilter"></span>
                     <input type="text" name="titlefilter" id="title-filter" class="float-field w-100" required ng-model="vm.searchQuery[sortType]">
-                    <label for="title-filter" class="placeholder">Filter By Title</label>
+                    <label for="title-filter" class="placeholder">{{gval.filterTitle[langIndex()]}}</label>
                 </div>
                 
             </form>
@@ -46,7 +46,7 @@
 
                 <div class="gc-last-column dfx-center-xy">
 
-                    <a href="#" class="c-pink" ng-click="vm.clearFilters()"> Filters <span class="fal fa-times-circle"></span> </a>
+                    <a href="#" class="c-pink" ng-click="vm.clearFilters()"> {{gval.filter[langIndex()]}} <span class="fal fa-times-circle"></span> </a>
                     
                 </div>
 
@@ -59,7 +59,7 @@
 
         <div class="gc-9-12 bg-white border-all dfx-center-xy">
 
-                <a class="btn btn-success" style="width: 200px;" ui-sref="dash.quizWizard()"> <span class="fas fa-plus"></span> Add Quiz </a>
+                <a class="btn btn-success" style="width: 200px;" ui-sref="dash.quizWizard()"> <span class="fas fa-plus"></span> {{gval.quiz[langIndex()]}} </a>
 
         </div>
 
@@ -76,7 +76,7 @@
 
 <div ng-if="vm.loadingStatus == null" class="bg-white border-all">
 
-    <div class="pd-10">   <h3 class="t-center c-grey">Loading quizes ...</h3>  </div>
+    <div class="pd-10">   <h3 class="t-center c-grey"> {{gval.loading[langIndex()]}} </h3>  </div>
 
         
 
@@ -99,31 +99,31 @@
                         <th>
                         
 
-                        <a href="#" ng-click="vm.selectSortfield('$')">S.NO *</a>
+                        <a href="#" ng-click="vm.selectSortfield('$')">{{gval.sno[langIndex()]}} *</a>
                         <span ng-click="vm.toggleSort()" ng-show="sortType == '$'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
                         <th>
-                            <a href="#" ng-click="vm.selectSortfield('title')">Quiz Title</a>
+                            <a href="#" ng-click="vm.selectSortfield('title')">{{gval.title[langIndex()]}}</a>
                             <span ng-click="vm.toggleSort()" ng-show="sortType == 'title'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
                         <th>
                             
-                            <a href="#" ng-click="vm.selectSortfield('minScore')">Min / Max </a>
+                            <a href="#" ng-click="vm.selectSortfield('minScore')">{{gval.min[langIndex()]}} / {{gval.max[langIndex()]}} </a>
                             <span ng-click="vm.toggleSort()" ng-show="sortType == 'minScore'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
                         <th>
-                            <a href="#" ng-click="vm.selectSortfield('duration')">Duration</a>
+                            <a href="#" ng-click="vm.selectSortfield('duration')">{{gval.duration[langIndex()]}}</a>
                             <span ng-click="vm.toggleSort()" ng-show="sortType == 'duration'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
                         <th>
-                            <a href="#" ng-click="vm.selectSortfield('enrollment')">Enrollment</a>
+                            <a href="#" ng-click="vm.selectSortfield('enrollment')">{{gval.enroll[langIndex()]}}</a>
                             <span ng-click="vm.toggleSort()" ng-show="sortType == 'enrollment'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
                         <th>
-                            <a href="#" ng-click="vm.selectSortfield('status')">Status</a>
+                            <a href="#" ng-click="vm.selectSortfield('status')">{{gval.status[langIndex()]}}</a>
                             <span ng-click="vm.toggleSort()" ng-show="sortType == 'status'" ng-class="(sortReverse) ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
                         </th>
-                        <th>Actions</th>
+                        <th>&nbsp;</th>
 
                     </tr>
                     </thead>
@@ -172,15 +172,15 @@
                                    data-toggle="dropdown">&nbsp;</a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a ui-sref="exm.exam({'examID': item.id})"> - Details </a>
-                                    <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - Questions</a></li>
-                                    <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - Enrollment </a></li>
-                                    <li class=""><a ui-sref="exm.register({'examID': item.id})"> - Register </a></li>
-                                    <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - Modify Date/Time</a>                                   
-                                    <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - Weight Distribution</a></li>
-                                    <li><a ui-sref="exm.progress({'examID': item.id})"> - Progress Inspect</a></li>
+                                    <li><a ui-sref="exm.exam({'examID': item.id})"> - {{ gval.details[langIndex()] }} </a>
+                                    <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - {{ gval.questions[langIndex()] }}</a></li>
+                                    <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - {{ gval.enroll[langIndex()] }} </a></li>
+                                    <li class=""><a ui-sref="exm.register({'examID': item.id})"> - {{ gval.register[langIndex()] }} </a></li>
+                                    <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - {{ gval.modifyDateTime[langIndex()] }} </a>                                   
+                                    <li><a ui-sref="exm.quizWeightDistro({'examID': item.id})"> - {{ gval.weightDistribution[langIndex()] }}</a></li>
+                                    <li><a ui-sref="exm.progress({'examID': item.id})"> - {{ gval.progress[langIndex()] }} </a></li>
                                     
-                                    <li permissions="['quiz-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red">Delete</span></a></li>
+                                    <li permissions="['quiz-delete']"><a href="#" ng-click="vm.launchDeleteConfirmation(item.id)"><span class="c-red far fa-exclamation-triangle"></span> <span class="c-red"> - {{ gval.delete[langIndex()] }}</span></a></li>
 
 
                                 </ul>

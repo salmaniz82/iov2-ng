@@ -4,26 +4,26 @@
 
 	<aside class="bg-white border-all mb-20" ng-if="vm.loading == null">
 		<div style="padding: 10px;">
-			<h3 class="t-center c-grey">Loading questions ...</h3>
+			<h3 class="t-center c-grey">{{gval.loading[langIndex()]}}</h3>
 		</div>	
 	</aside>
 
 	<aside class="bg-white border-all mb-20" ng-if="vm.loading == false">
 		<div style="padding: 10px;">
-			<h3 class="c-red t-center">Cannot load questions</h3>
+			<h3 class="c-red t-center">{{gval.norecords[langIndex()]}}</h3>
 		</div>	
 	</aside>
 
 	<aside class="grid12Col bg-white border-all mb-20" ng-if="vm.loading == 'no contents'">
 		<div style="padding: 10px;">
 
-			<h3 class="t-center gc-full c-grey">You have not added any questions yet</h3>
+			<h3 class="t-center gc-full c-grey">{{gval.norecords[langIndex()]}}</h3>
 
 			<div class="dfx-center-xy">
-					<a class="btn btn-success gc-full" ui-sref="dash.queadd()" style="width: 200px"> <span class="fas fa-plus"></span> Questions </a>
+					<a class="btn btn-success gc-full" ui-sref="dash.queadd()" style="width: 200px"> <span class="fas fa-plus"></span> {{gval.questions[langIndex()]}} </a>
 
 					&nbsp;
-			<a class="btn btn-warning" ui-sref="dash.queupload()" style="width: 200px"> <span class="fas fa-anchor"></span> Upload </a>
+			<a class="btn btn-warning" ui-sref="dash.queupload()" style="width: 200px"> <span class="fas fa-anchor"></span> {{gval.upload[langIndex()]}} </a>
 			</div>
 
 		</div>	
@@ -72,9 +72,9 @@
 
 
 		<div class="gc-9-12 bg-white border-all dfx-center-xy">
-			<a class="btn btn-success" ui-sref="dash.queadd()" style="width: 200px"> <span class="fas fa-plus"></span> Questions </a>
+			<a class="btn btn-success" ui-sref="dash.queadd()" style="width: 200px"> <span class="fas fa-plus"></span> {{gval.questions[langIndex()]}} </a>
 			&nbsp;
-			<a class="btn btn-warning" ui-sref="dash.queupload()" style="width: 200px"> <span class="fas fa-anchor"></span> Upload </a>
+			<a class="btn btn-warning" ui-sref="dash.queupload()" style="width: 200px"> <span class="fas fa-anchor"></span> {{gval.upload[langIndex()]}} </a>
 		</div>
 
 	</div>
@@ -459,7 +459,7 @@
 						<div class="btn-group btn-more">
                                 <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Preview</a></li>
+                                    <li><a href="#" ng-click="vm.launchQuestionPreviewWindow(que.question_id)">Preview</a></li>
 
 									<li><a ui-sref="dash.questionedit({'queID': que.question_id})">Edit</a></li>
                                     

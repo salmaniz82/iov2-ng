@@ -10,9 +10,9 @@
       <ul id="top-menu"> 
             
             <li ui-sref-active="active">
-              <a ui-sref="std.studentDashbaord()"><i class="fab fa-buromobelexperte"></i> Dashboard</a>
+              <a ui-sref="std.studentDashbaord()"><i class="fab fa-buromobelexperte"></i> {{gval.dashboard[langIndex()]}}</a>
             </li>
-            <li ui-sref-active="active"><a ui-sref="std.exams()"><i class="fas fa-brain"></i> Quizes</a></li>
+            <li ui-sref-active="active"><a ui-sref="std.exams()"><i class="fas fa-brain"></i> {{gval.quizes[langIndex()]}}</a></li>
             
       </ul>
     </aside>
@@ -35,8 +35,21 @@
                 <div class="flexTabHeader__InnerRightWrapper">
                      
                     <div>&nbsp;</div>   
-                    <div class="langCont">
-                        <a href="#" class="langText" role="button" ng-click="switchLang()">{{lang}}</a></div>
+
+                    <div class="langCont" ng-class="{ 'langDropActive' : langDropOPen}">
+                     
+                        <a href="#" class="langText" role="button" ng-click="langDropToggle()">{{lang}}</a>
+
+                        <span class="fal fa-arrow-down"></span>
+
+                        <ul id="langDrop">
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('ar')">AR</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('en')">EN</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('fr')">FR</a></li>
+                        </ul>
+
+                    </div>
+
                     <div>
 
                         <div class="btn-group topUserDrop">
@@ -49,16 +62,18 @@
 
                                     <li>
                                             <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte vam"></i>
-                                                Dashboard
+                                                
+
+                                                {{gval.dashboard[langIndex()]}}
                                             </a></li>
                                         <li>
                                             <a ui-sref="std.profile()"><i class="far fa-user vam"></i>
-                                                My Profile
+                                                {{gval.profile[langIndex()]}}
                                             </a></li>
 
                                         <li>
                                             <a ui-sref="logout()"><i class="fas fa-power-off vam"></i>
-                                                Logout
+                                                {{gval.logout[langIndex()]}}
                                             </a></li>
                                     
                                 </ul>
@@ -95,7 +110,7 @@
 
 
             <div class="gc1-half">
-              <div style="padding-left: 10px"> Privacy Policy | About | Terms of Service  </div>
+              <div style="padding-left: 10px"> {{gval.privacy[langIndex()]}} | {{gval.about[langIndex()]}} | {{gval.terms[langIndex()]}}  </div>
             </div>
 
 

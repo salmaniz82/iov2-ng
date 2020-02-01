@@ -1,6 +1,9 @@
 angular.module('io2v3')
 	.service('langSer', [function() {
 
+
+		this.languages = ['en', 'ar', 'fr'];
+
 		this.init = function()
 		{
 
@@ -33,17 +36,28 @@ angular.module('io2v3')
 
 		this.langIndex = function()
 		{
-			if( localStorage.getItem('hdrLang') == 'en' )
+			
+			if(localStorage.hasOwnProperty('hdrLang'))
 			{
-				return 0;
+                
+                var lang = localStorage.getItem('hdrLang');
+                return this.languages.indexOf(lang);
+
 			}
-			else if (localStorage.getItem('hdrLang') == 'ar')
+
+
+		};
+
+
+		this.changeLanguage = function(prefix)
+		{
+
+			if(this.languages.indexOf(prefix) != -1)
 			{
-				return 1;
+				localStorage.setItem('hdrLang', prefix);
+				return this.init();
 			}
-			else {
-				return 2;
-			}
+
 		};
 
 	}]);

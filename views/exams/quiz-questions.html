@@ -3,7 +3,7 @@
 
   <aside class="bg-white" ng-if="vm.loading == null">
     <div style="padding: 10px;">
-      <h3 class="t-center c-grey">Loading questions ...</h3>
+      <h3 class="t-center c-grey">{{gval.loading[langIndex()]}}</h3>
     </div>  
   </aside>
 
@@ -13,7 +13,7 @@
 
   <aside class="bg-white border-all" ng-if="vm.loading == false">
     <div style="padding: 10px;">
-      <h3 class="c-red t-center">Cannot load questions</h3>
+      <h3 class="c-red t-center">{{gval.norecords[langIndex()]}}</h3>
     </div>  
   </aside>
 
@@ -98,6 +98,7 @@
                         <th>Status</th>
                         <th>Scope</th>
                         <th title="x times appeared in exams"># Hits</th>
+                        <th>&nbsp;</th>
                     </thead>
 
                     <tbody>
@@ -150,6 +151,11 @@
                             <span ng-class="{'c-red': item.hits > threshold}">
                             {{item.hits}}
                             </span>
+                          </td>
+
+
+                          <td>
+                            <span class="fal fa-eye c-green" ng-click="vm.launchQuestionPreviewWindow(item.questionId)"></span>
                           </td>
 
                             

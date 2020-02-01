@@ -174,11 +174,11 @@
                 </table>
 
                 <div ng-if="vm.dataList == undefined">
-                    <p>Loading Enrollments ... </p>
+                    <p>{{gval.loading[langIndex()]}} </p>
                 </div>
 
                 <div ng-if="vm.dataList === false">
-                    <p>No candidates are enrolled for this quiz  ... </p>
+                    <p>{{gval.norecords[langIndex()]}} </p>
                 </div>
 
             </div>

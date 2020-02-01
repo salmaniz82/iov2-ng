@@ -12,9 +12,12 @@
 		$scope.baseUrl = API_URL;
 
 
+        $scope.langDropOPen = false;
+
+
         $scope.masterData = null;
 
-		//$scope.lang = 'en';
+		
 
         $scope.lang = langSer.init();
 
@@ -28,6 +31,35 @@
         $scope.entityLogo = 'assets/images/demo-logo.jpg';
 
 
+
+
+
+
+        $scope.switchLang = function()
+        {
+
+            $scope.lang = langSer.switchLang();
+
+        };
+
+
+        $scope.langLabel = function()
+        {
+            if($scope.lang == 'en')
+            {
+                return 'English';
+            }
+            else {
+                return 'Arabic';
+            }
+        };
+
+
+        $scope.langIndex = function()
+        {
+            return langSer.langIndex();
+
+        };
 
 
         $scope.soundWavListCollection = [
@@ -45,15 +77,24 @@
         ];
 
 
+                $scope.soundWavListCollection.forEach(function(soundLinkUrl) {
 
-        $scope.soundWavListCollection.forEach(function(soundLinkUrl) {
+                    /*
+          
+                var preLoadAudioObject = new Audio();
 
-          console.log(soundLinkUrl);
+                preLoadAudioObject.src =  soundLinkUrl;
 
+                preLoadAudioObject.volume = 0;
+
+                preLoadAudioObject.play();                                
+
+                */
 
         });
 
 
+        
 
         $scope.$on('playSound', function (event, args) {
 
@@ -206,40 +247,125 @@
 
 		$scope.gval = {
 
-                "exams": ['Exams', 'الامتحانات'],
-                "about" : ['About', 'حول'],
-                "terms" : ['Terms', 'شروط'],
-                "privacy" : ['Privacy Policy', 'سياسة خاصة'],
+                "exams": ['Exams', 'الامتحانات' , 'Examens'],
+                "about" : ['About', 'حول' , 'Sur'],
+                "terms" : ['Terms', 'شروط' , 'termes'],
+                "privacy" : ['Privacy Policy', 'سياسة خاصة' , 'Intimité'],
                 
 
-                'details': ['Details', 'تفاصيل'],
+                'details': ['Details', 'تفاصيل', 'Détails' ],
 
 
 
-                'status': ['Status', 'الحالة'],
-                'available' : ['Available', 'متوفر'],
+                'status': ['Status', 'الحالة' , 'Statut'],
+                'available' : ['Available', 'متوفر', 'Disponible'],
 
-                'options': ['Actions', 'خيارات'],
-                'details': ['Details', 'تفاصيل'],
+                'options': ['Actions', 'خيارات' , 'les options'],
+                'details': ['Details', 'تفاصيل', 'détails' ],
                 
 
-                'addnew': ['Add New', 'اضف جديد'],
-                'update': ['Update', 'تحديث'],
-                'save': ['Save', 'حفظ'],
-                'cancel': ['Cancel', 'حذف'],
-                'edit': ['Edit', 'تصحيح'],
-                'remove': ['Remove', 'حذف'],
-                'next' : ['Next', 'تالي'],
-                'previous' : ['Previous', 'السابق'],
+                'addnew': ['Add New', 'اضف جديد', 'addnew'],
+                'update': ['Update', 'تحديث' , 'Mise à jour'],
+                'save': ['Save', 'حفظ' , 'Enregistrer'],
+                'cancel': ['Cancel', 'حذف' , 'Annuler'] ,
+                'edit': ['Edit', 'تصحيح', 'Éditer'],
+                'remove': ['Remove', 'حذف' , 'retirer'],
+                'delete' : ['Delete', 'حذف', 'Supprimer'],
+                'next' : ['Next', 'تالي' , 'suivant'] ,
+                'previous' : ['Previous', 'السابق' , 'précédent'],
 
 
-                'back': ['Back', 'الى الخلف'],
+                'back': ['Back', 'الى الخلف' , 'retour'],
 
-                'profile': ['Profile', 'الملف الشخصي'],
-                'setting': ['Setting', 'ضبط'],
-                'logout': ['Logout', 'الخروج']
+                'profile': ['Profile', 'الملف الشخصي' , 'profil'],
+                'setting': ['Setting', 'ضبط' , 'réglage'],
+                'logout': ['Logout', 'الخروج', 'Se déconnecter'],
+                'login' : ['Login', 'تسجيل الدخول', "s'identifier"],
+                'register' : ['Register', 'تسجيل', "S'inscrire"],
+
+
+                'hello' : ['hello', 'مرحبا', 'Bonjour'],
+
+                'dashboard':['Dashboard', 'لوحة القيادة', 'Tableau de bord'],
+
+                'questions':['Questions', 'الأسئلة', 'Des questions'],
+
+                'quizes' : ['Quizzes', 'الإختبارات', 'Quiz'],
+
+                'quiz' : ['Quiz', 'اختبار', 'Quiz'],
+                'stats': ['Stats', 'احصائيات', 'Statistiques'],
+                'roles' : ['Roles', 'الأدوار', 'rôles'],
+                'users': ['Users', 'المستخدمين', 'Utilisateurs'],
+                'user' : ['User', 'المستعمل', 'Utilisateur'],
+
+                'myusers': ['My Users', 'بلدي المستخدمين', 'Mes-utilisateurs'],
+
+
+                'permissions': ['Permissions', 'أذونات', 'Autorisations'],
+                'rolepermissions': ['Role Permissions', 'أذونات الدور', 'Autorisations de rôle'],
+                'categories' : ['Categories', 'التصنيفات', 'catégories'],
+                'medialibraray': ['Media Libraray', 'مكتبة الوسائط', 'Médiathèque'],
+                'modaltest': ['Modal Test', 'اختبار مشروط', 'Test modal'],
+                'activity' : ['Activity', 'نشاط', 'activité'],
+                'groups' : ['Groups', 'مجموعات', 'groupes'],
+
+                'overview': ['Overview', 'نظرة عامة', 'Aperçu'],
+                'progress' : ['Progress', 'تقدم', 'Le progrès'],
+                'weightDistribution' : ['Weight Distribution', 'توزيع الوزن', 'La répartition du poids'],
+                'enroll' : ['Enroll', 'يتسجل، يلتحق', 'Inscrire'],
+
+                'modifyDateTime' : ['Modify Date/Time', 'تعديل وقت', 'Modifier datetime'],
+
+                'title' : ['Title', 'عنوان', 'Titre'],
+                'sno': ["S.NO", "فهرس", "Indice"],
+                'min' : ['Min.', 'الحد الأدنى' , 'le minimum'],
+                'max' : ['Max.', 'أقصى', 'Le Maximum'],
+
+                'duration' : ['Duration', 'المدة الزمنية', 'Durée'],
+
+                'filter' : ['Filter', 'منقي', 'Filtre'],
+                'filterTitle': ['Fitler by title', 'تصفية حسب العنوان', 'Filtrer par titre'],
+
+                'email': ['Email', 'البريد الإلكتروني', 'Email'],
+                'name' : ['Name', 'اسم', 'Nom'],
+
+                'changePassword': ['Change Password', 'تغيير كلمة السر', 'changer le mot de passe'],
+                'sendRegistrationEmail' : ['Send Registration Email', 'إرسال تسجيل البريد الإلكتروني', "Envoyer un e-mail d'inscription"],
+
+                'upload': ['Upload', 'رفع', 'Télécharger'],
+
+                'autoGenerate' : ['Auto Generate', 'توليد السيارات', "Génération automatique"],
+
+                'loading' : ['loading data please wait...', 'تحميل البيانات يرجى الانتظار', "Chargement des données veuillez patienter"],
+                'norecords' : ['No records were found', 'لم يتم العثور على سجلات', "Aucun enregistrement n'a été trouvé"]
+
+
+
+
+
 
         };
+
+
+        console.log('updated with lang drop');
+
+        $scope.langDropToggle = function()
+        {
+
+            $scope.langDropOPen = !$scope.langDropOPen;
+            
+
+        };
+
+
+        $scope.changeLanguage = function(prefix)
+        {
+            $scope.lang = langSer.changeLanguage(prefix);
+
+            $scope.langDropToggle();
+
+            
+        }
 
 
         vm.updateDashboardLogo = function()
@@ -356,16 +482,7 @@
 
 
 
-		$scope.langLabel = function()
-		{
-			if($scope.lang == 'en')
-			{
-				return 'English';
-			}
-			else {
-				return 'Arabic';
-			}
-		};
+		
 
 
         vm.getIndex = function(array, attr, value) {
@@ -378,27 +495,10 @@
         };
 
 		
-
-
-		$scope.switchLang = function()
-        {
-
-            $scope.lang = langSer.switchLang();
-
-        };
+        
 
         $scope.authUser = vm.authUser();
 
-        $scope.langIndex = function()
-        {
-            if($scope.lang == 'en')
-            {
-                return 0;
-            }
-            else {
-                return 1;
-            }
-        };
 
         /*
             return decoded string

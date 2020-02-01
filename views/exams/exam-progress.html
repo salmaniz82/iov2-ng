@@ -2,7 +2,7 @@
 
 
     <aside class="bg-white border-all mb-20" ng-if="vm.loadStatus === null">
-        <h3 class="t-center c-grey"> Loading progress please wait ...</h3>  
+        <h3 class="t-center c-grey"> {{gval.loading[langIndex()]}}</h3>  
     </aside>
 
 </section>
@@ -19,7 +19,7 @@
 
     	<div class="bg-white border-all mt-10" ng-if="vm.loadStatus === false">
 
-    		<h3 class="t-center c-pink"> No progress available yet for this quiz </h3>  
+    		<h3 class="t-center c-pink"> {{gval.norecords[langIndex()]}} </h3>  
     		
     	</div>
 

@@ -8,7 +8,7 @@
 
         <div class="pd-10">
                         
-            <h3 class="c-grey t-center">Loading role permissions ... </h3>
+            <h3 class="c-grey t-center">{{gval.loading[langIndex()]}} </h3>
 
             </div> 
 
@@ -135,7 +135,7 @@
             <div class="bg-white border-all">
 
                 <div class="span9" ng-if="vm.pageMode == 'error'">
-                    <p class="c-red">Permission cannot be loaded </p>
+                    <p class="c-red">{{gval.norecords[langIndex()]}} </p>
                 </div>
 
 

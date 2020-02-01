@@ -356,17 +356,19 @@ form.floatable .field-wrap.hasflatCons .placeholder{
 }
 
 
-.flexTabHeader__InnerRightWrapper .langCont {
+.flexTabHeader__InnerRightWrapper .langCont, .langCont {
     position: relative;
+    transition: all 0.8 ease-in;
+    
 }
 
-.flexTabHeader__InnerRightWrapper .langCont a {
+.flexTabHeader__InnerRightWrapper .langCont a, .langCont a {
   font-size: 18px;
   color: var(--grey);
 }
 
 
-.flexTabHeader__InnerRightWrapper .langCont::after {
+.flexTabHeader__InnerRightWrapper .langCont::after, .langCont::after {
   content: "";
   position: absolute;
   width: 1px;
@@ -375,6 +377,39 @@ form.floatable .field-wrap.hasflatCons .placeholder{
   right: -10px;
   border-right: 1px solid #c1c0c0;
 }
+
+
+.flexTabHeader__InnerRightWrapper .langCont #langDrop, .langCont #langDrop{
+  position: absolute;
+    z-index: 1000;
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    left: -20px;
+    top: 29px;
+    display: none;  
+    opacity: 0;
+    visibility: none;
+    list-style-type: none;
+}
+
+
+.flexTabHeader__InnerRightWrapper .langCont.langDropActive #langDrop, .langCont.langDropActive #langDrop {
+ 
+  opacity: 1;
+  display: block;
+  transform: translate3d(-11px,-1px,0px);
+  visibility: visible;
+  
+}
+
+
+.flexTabHeader__InnerRightWrapper .langCont #langDrop ul li a, .langCont #langDrop ul li a{
+  font-size: 13px !important;
+  color: blue !important;
+}
+
+
 
 
 
