@@ -7,10 +7,7 @@
 
         $scope.$parent.std.pageHeading = "Main";	
 
-
-
-
-        /*
+        console.log('protected console');
 
 
         setTimeout(function() {
@@ -18,11 +15,11 @@
 
         $(document).keydown(function (event) {
 
-    		if (event.keyCode == 123 ||event.keyCode == 85) { // Prevent F12
+    		if (event.keyCode == 123 ||event.keyCode == 85) { 
 
         return false;
 
-    		} else if (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 85) { // Prevent Ctrl+Shift+I        
+    		} else if (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 85) {         
 
         		return false;
 
@@ -42,7 +39,7 @@
 
         });
 
-    */
+    
 
 
 

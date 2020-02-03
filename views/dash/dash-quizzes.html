@@ -173,7 +173,7 @@
 
                                 <ul class="dropdown-menu">
                                     <li><a ui-sref="exm.exam({'examID': item.id})"> - {{ gval.details[langIndex()] }} </a>
-                                    <li class=""><a ui-sref="exm.quizQuestions({'examID': item.id})"> - {{ gval.questions[langIndex()] }}</a></li>
+                                    <li class="" permissions="['quiz-questions-list']"><a ui-sref="exm.quizQuestions({'examID': item.id})"> - {{ gval.questions[langIndex()] }}</a></li>
                                     <li class=""><a ui-sref="exm.enroll({'examID': item.id})"> - {{ gval.enroll[langIndex()] }} </a></li>
                                     <li class=""><a ui-sref="exm.register({'examID': item.id})"> - {{ gval.register[langIndex()] }} </a></li>
                                     <li><a href="#" ng-click="vm.launchDateTimeModal(item.id)"> - {{ gval.modifyDateTime[langIndex()] }} </a>                                   

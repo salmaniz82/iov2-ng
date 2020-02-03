@@ -18,15 +18,15 @@
                 <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte vam"></i> {{gval.dashboard[langIndex()]}} </a></li>
             <li ui-sref-active="active" permissions="['quiz-list']"><a ui-sref="dash.quizzes()"><i class="fal fa-brain vam"></i> {{gval.quizes[langIndex()]}} </a></li>
             
-            <li ui-sref-active="active"><a ui-sref="dash.questions()"><i class="fal fa-database vam"></i> {{gval.questions[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['dashboard-questions']"><a ui-sref="dash.questions()"><i class="fal fa-database vam"></i> {{gval.questions[langIndex()]}}</a></li>
             <li ui-sref-active="active"><a ui-sref="dash.quePool()"><i class="fal fa-calculator vam"></i> {{gval.stats[langIndex()]}} </a></li>
 
-            <li ui-sref-active="active" permissions="['batch-list']"><a ui-sref="dash.batches()"><i class="fal fa-ball-pile vam"></i> {{gval.groups[langIndex()]}} </a></li>
+            <li ui-sref-active="active" ><a ui-sref="dash.batches()"><i class="fal fa-ball-pile vam"></i> {{gval.groups[langIndex()]}} </a></li>
 
             <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.roles()"><i class="fal fa-users vam"></i> {{gval.roles[langIndex()]}}</a></li>
             <li ui-sref-active="active" permissions="['user-global-list']"><a ui-sref="dash.users()"><i class="fal fa-user-tie vam"></i> {{gval.users[langIndex()]}}</a></li>
             <li ui-sref-active="active" permissions="['user-local-list']"><a ui-sref="dash.myusers()"><i class="fal fa-user-tie vam"></i> {{gval.myusers[langIndex()]}}</a></li>
-            <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.permission()"><i class="fal fa-shield-alt vam"></i> {{gval.permissions[langIndex()]}}</a></li>
+            <li ui-sref-active="active" permissions="['permission-list']"><a ui-sref="dash.permission()"><i class="fal fa-shield-alt vam"></i> {{gval.permissions[langIndex()]}}</a></li>
             <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.rolePermissions()"><i class="fal fa-user-shield vam"></i> {{gval.rolepermissions[langIndex()]}}</a></li>
             <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.cats()"><i class="fal fa-sitemap vam"></i> {{gval.categories[langIndex()]}}</a></li>
             <li ui-sref-active="active" permissions="['secure-navs']"><a ui-sref="dash.library()"><i class="fa fa-palette vam"></i> {{gval.medialibraray[langIndex()]}}</a></li>
