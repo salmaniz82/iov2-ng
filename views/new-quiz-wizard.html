@@ -165,12 +165,13 @@
 
 						<div class="gc1-half">
 							<div class="field-wrap">
-            					<input type="text" name="code" class="float-field w-100" ng-model="vm.nQuiz.code" required ng-maxlength="6">
+            					<input type="text" name="code" class="float-field w-100" ng-model="vm.nQuiz.code" required ng-minlength="3" ng-maxlength="12">
             					<label class="placeholder">Quiz Code</label>
 
             					<span ng-show="particulars.code.$touched && particulars.code.$error.required" class="float-error">Quiz Code is required</span>
             					
-            					<span ng-show="particulars.code.$touched && particulars.code.$error.maxlength" class="float-error">Minimum 6 characters required</span>
+            					<span ng-show="particulars.code.$touched && particulars.code.$error.minlength" class="float-error">Min. 6 characters required</span>
+                      <span ng-show="particulars.code.$touched && particulars.code.$error.maxlength" class="float-error">Max. 12 characters allowed</span>
           					</div>
 						</div>		
 						

@@ -37,6 +37,16 @@
 		vm.handleRedirect = function()
 		{
 
+
+			if(auth.isLoggedIn() && auth.getUser().role != 'admin')
+			{
+
+
+				auth.secureProtectUI();			
+
+			}
+
+
 			if(!localStorage.getItem('auth_token'))
 			{			
 				return false;
@@ -83,7 +93,7 @@
 			vm.loginStatus = true;
 			vm.wrongCreds = false;
 
-			// console.log(response.data.token[0].token);
+			
 
 
 			
@@ -104,9 +114,8 @@
                 hdAuthUser = btoa(hdAuthUser);
                 localStorage.setItem('hdauEn', hdAuthUser);
 
-				
+			
 				auth.getUser();
-
 
 				vm.handleRedirect();
 
@@ -118,7 +127,8 @@
 
 		};
 		var error = function(response){
-			console.log('error ran');
+
+			
 
 			vm.loginStatus = false;
 			vm.wrongCreds = true;

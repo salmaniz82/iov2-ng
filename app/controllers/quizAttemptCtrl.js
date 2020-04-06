@@ -10,7 +10,6 @@
         $scope.cachedImages = [];
 
 
-
         if(vm.quizData.imagesPreload.length != false)
         {
 
@@ -24,32 +23,32 @@
 
                 imageUrl = decodeURIComponent(imageUrl);
 
-                
-                
 
 
-                
+
+
+
 
                 if(!absoluteUrlPattern.test(imageUrl))
                 {
 
-                   console.log(imageUrl + 'is absolute');
-                   imageUrl = API_URL+imageUrl;
+                    console.log(imageUrl + 'is absolute');
+                    imageUrl = API_URL+imageUrl;
                 }
 
-                
+
                 let imageUrlRequest = new Request(imageUrl);
 
-                
+
 
                 fetch(imageUrlRequest, {mode: 'no-cors'}).then(function(res) {
 
 
-                        caches.open('quizImageCache').then(function(cache) {
+                    caches.open('quizImageCache').then(function(cache) {
 
-                            cache.put(imageUrlRequest, res.clone());
+                        cache.put(imageUrlRequest, res.clone());
 
-                        });
+                    });
 
 
                 }).catch(function(erro) {
@@ -59,13 +58,13 @@
                 });
 
 
-            });    
-         
-        }
-    
+            });
 
-    
-        
+        }
+
+
+
+
 
         vm.entityLogo = function()
         {
@@ -83,8 +82,8 @@
 
         };
 
-        
-        /*    
+
+        /*
         terminate broadcast api not working in safari
         const channel = new BroadcastChannel('sw-idxsaved');
         */
@@ -92,12 +91,12 @@
         vm.lightBoxEnabled  = false;
 
 
-        /*
+
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
         {
-          return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
+            return $state.go('onExamRefresh', {'quiz_id': $stateParams.quiz_id, 'attempt_id': $stateParams.attempt_id});
         }
-        */
+
 
         vm.optionhasImage = function(optionsSTring)
         {
@@ -106,8 +105,8 @@
             return myRegex.test(optionsSTring);
         };
 
-        
-        
+
+
 
         vm.closeCurrentWindow = function() {
 
@@ -118,27 +117,27 @@
 
             if(window.quizWindow != undefined)
             {
-               console.log('quiz window attached to root');
-               window.quizWindow.close();
+                console.log('quiz window attached to root');
+                window.quizWindow.close();
             }
 
             else {
 
                 console.log('redirect compilted page');
-                    
+
                 $state.go('quizcomplited');
 
             }
-            
+
         };
 
-        
+
 
         vm.questionIndex = 0;
 
-        // new line added for decoding strings of object 
+        // new line added for decoding strings of object
 
-       // vm.quizData.questions = $scope.$parent.base.inboundDecode(vm.quizData.questions);
+        // vm.quizData.questions = $scope.$parent.base.inboundDecode(vm.quizData.questions);
 
         vm.endActivated = false;
 
@@ -171,7 +170,7 @@
             var answerSaveUrl = API_URL+'std-patch-answers';
 
             $timeout.cancel(vm.quizTimeInterval);
-            
+
 
             var timeLeft = localStorage.getItem('lastStoredDurationSeconds');
 
@@ -182,59 +181,59 @@
 
 
             vm.idbPayload = {
-            "url" : answerSaveUrl,
-            "method": 'POST',
-            "data" : {'answers' : vm.payloadAnswers, 'quizMeta' : vm.quizMeta}
+                "url" : answerSaveUrl,
+                "method": 'POST',
+                "data" : {'answers' : vm.payloadAnswers, 'quizMeta' : vm.quizMeta}
             };
 
             $http(vm.idbPayload).then(
 
                 function(res){
 
-                 //   $state.go('std.exams');
+                    //   $state.go('std.exams');
 
 
-                 $scope.$emit('playSound', { message: 'quiz-end' });
-                       
-                       vm.closeCurrentWindow();
+                    $scope.$emit('playSound', { message: 'quiz-end' });
+
+                    vm.closeCurrentWindow();
 
 
-                }, 
+                },
 
                 function(res){
-                if(res.status < 1)
-                {
-                    
-                    console.log('LOST IC Trigger BackgroundSync');
+                    if(res.status < 1)
+                    {
+
+                        console.log('LOST IC Trigger BackgroundSync');
 
 
-                    vm.idbPayload.data.quizMeta.endState = 'Network Lost';
-
-
-
-                    vm.triggerBackgroundSync(vm.idbPayload);
-
-
-                    var notify = {
-                        type: 'warning',
-                        title: 'Internet Disconnected',
-                        content: 'Progress has been saved and pushed to server as connection resumes',
-                        timeout: 3000 //time in ms
-                    };
-                    $scope.$emit('notify', notify);
+                        vm.idbPayload.data.quizMeta.endState = 'Network Lost';
 
 
 
-                    setTimeout(function() {
+                        vm.triggerBackgroundSync(vm.idbPayload);
 
-                        vm.closeCurrentWindow();
-                        
-                        $scope.$emit('playSound', { message: 'quiz-end' });
 
-                    }, 2000)
+                        var notify = {
+                            type: 'warning',
+                            title: 'Internet Disconnected',
+                            content: 'Progress has been saved and pushed to server as connection resumes',
+                            timeout: 3000 //time in ms
+                        };
+                        $scope.$emit('notify', notify);
 
-                }      
-                 
+
+
+                        setTimeout(function() {
+
+                            vm.closeCurrentWindow();
+
+                            $scope.$emit('playSound', { message: 'quiz-end' });
+
+                        }, 2000)
+
+                    }
+
 
                 });
 
@@ -248,13 +247,13 @@
         {
 
             var swPost = {
-                 'form_data': payload
-              };
-      
+                'form_data': payload
+            };
+
             navigator.serviceWorker.controller.postMessage(swPost);
 
 
-            /*    
+            /*
             channel.addEventListener('message', event => {
 
             if(event.data.status == 1 && window.cachedRegisterSW != undefined)
@@ -268,37 +267,37 @@
 
             navigator.serviceWorker.addEventListener('message', event => {
 
-            if(event.data.status == 1 && window.cachedRegisterSW != undefined)
+                if(event.data.status == 1 && window.cachedRegisterSW != undefined)
                 {
                     window.cachedRegisterSW.sync.register('exam');
                 }
-                        
+
             });
 
 
         };
 
 
-         vm.validAnswer = function()
-         {
+        vm.validAnswer = function()
+        {
 
 
             if(vm.activeQuestion.answer == undefined)
-            {                   
-                
+            {
+
                 return false;
             }
 
             else if (typeof(vm.activeQuestion.answer) === 'object')
             {
-                
+
                 for(var key in vm.activeQuestion.answer)
                 {
                     if(vm.activeQuestion.answer.hasOwnProperty(key))
                     {
                         if(vm.activeQuestion.answer[key] == true)
                         {
-                            return true;   
+                            return true;
                         }
                     }
                 }
@@ -314,20 +313,20 @@
                 return true;
             }
 
-         };
+        };
 
 
         vm.ansPrep = function()
         {
-            
+
             vm.answerAvailable = true;
             vm.payloadAnswers = [];
 
             vm.endActivated = true;
 
             for(var key in vm.providedAnswers)
-            {             
-                
+            {
+
                 var answer = vm.providedAnswers[key].answer;
                 if(typeof(answer) == "object")
                 {
@@ -346,11 +345,11 @@
                     tempArrOPtions.sort();
                     answer = tempArrOPtions.join(",");
                 }
-                
+
                 var tempObj = {
-                        "attempt_id" : attempt_id,
-                        "question_id" : vm.providedAnswers[key].questionId,
-                        "answer" : answer
+                    "attempt_id" : attempt_id,
+                    "question_id" : vm.providedAnswers[key].questionId,
+                    "answer" : answer
                 }
                 vm.payloadAnswers.push(tempObj);
 
@@ -374,14 +373,14 @@
 
             vm.startReviewWizard = true;
             vm.quizData.questions = vm.markedQuestions;
-            vm.questionIndex = 0;            
+            vm.questionIndex = 0;
             vm.activeQuestion = vm.markedQuestions[vm.questionIndex];
-       
-       };
+
+        };
 
 
-       vm.startReviewAll = function()
-       {
+        vm.startReviewAll = function()
+        {
 
 
             vm.quizData.questions = vm.providedAnswers;
@@ -391,32 +390,30 @@
 
                 if (vm.quizData.questions.hasOwnProperty(key)) {
 
-                        if(vm.quizData.questions[key]['marked'] != undefined)
-                        {
-                            delete vm.quizData.questions[key]['marked'];
-                        }
-
+                    if(vm.quizData.questions[key]['marked'] != undefined)
+                    {
+                        delete vm.quizData.questions[key]['marked'];
                     }
+
+                }
             }
 
 
 
-            vm.questionIndex = 0;            
+            vm.questionIndex = 0;
             vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
             vm.reviewAll = true;
-
+            vm.hasPre = false;
             vm.startReviewWizard = false;
-
             vm.markedQuestions = [];
-
             vm.isLastQue = false;
 
 
-            
 
 
 
-       };
+
+        };
 
 
         vm.revNext = function()
@@ -461,70 +458,70 @@
 
 
 
-             var answerIndex = parseInt($scope.$parent.base.getIndex(vm.providedAnswers, 'id', vm.activeQuestion.id));
-             var markedIndex = parseInt($scope.$parent.base.getIndex(vm.markedQuestions, 'id', vm.activeQuestion.id));
+            var answerIndex = parseInt($scope.$parent.base.getIndex(vm.providedAnswers, 'id', vm.activeQuestion.id));
+            var markedIndex = parseInt($scope.$parent.base.getIndex(vm.markedQuestions, 'id', vm.activeQuestion.id));
 
 
-             if(!vm.validAnswer() && (vm.activeQuestion.marked == undefined || vm.activeQuestion.marked == false) )
-             {
+            if(!vm.validAnswer() && (vm.activeQuestion.marked == undefined || vm.activeQuestion.marked == false) )
+            {
 
-               vm.ShowPulse = true;
+                vm.ShowPulse = true;
 
-               $scope.$emit('playSound', { message: 'error' });
+                $scope.$emit('playSound', { message: 'error' });
 
                 return false;
 
-             }
-             else if (vm.activeQuestion.marked == true)
-             {
+            }
+            else if (vm.activeQuestion.marked == true)
+            {
                 // add to mark
-                
+
                 if(markedIndex == -1 && vm.reviewAll == false)
                 {
-                    vm.markedQuestions.push(vm.activeQuestion); 
+                    vm.markedQuestions.push(vm.activeQuestion);
 
 
-                    
+
                     vm.ShowPulse = false;
-                } 
+                }
 
 
                 if(answerIndex != -1)
                 {
                     vm.providedAnswers.splice(answerIndex, 1);
                     vm.ShowPulse = false;
-                    
+
                 }
 
-             }
+            }
 
-             else if ( (vm.validAnswer() ) && (vm.activeQuestion.marked == undefined || vm.activeQuestion.marked == false) )
-             {
-                          
-               if(answerIndex == -1)
-               {
+            else if ( (vm.validAnswer() ) && (vm.activeQuestion.marked == undefined || vm.activeQuestion.marked == false) )
+            {
+
+                if(answerIndex == -1)
+                {
                     vm.providedAnswers.push(vm.activeQuestion);
                     vm.ShowPulse = false;
-                    
-               }
 
-               if(markedIndex != -1)
-               {
-                    
+                }
+
+                if(markedIndex != -1)
+                {
+
                     vm.markedQuestions.splice(markedIndex, 1);
                     vm.ShowPulse = false;
-               }
+                }
 
-             }
+            }
 
 
-                vm.pushActivity(vm.questionIndex);
+            vm.pushActivity(vm.questionIndex);
 
-    			vm.questionIndex +=1;
-	   		    vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
-    			vm.checkNextPre();
+            vm.questionIndex +=1;
+            vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
+            vm.checkNextPre();
 
-                $scope.$emit('playSound', { message: 'quiz-next' });
+            $scope.$emit('playSound', { message: 'quiz-next' });
 
         }
 
@@ -532,44 +529,44 @@
         vm.preQuestion = function()
         {
             $scope.$emit('playSound', { message: 'quiz-prev' });
-			vm.questionIndex -=1;
-			vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
-			vm.checkNextPre();       	
+            vm.questionIndex -=1;
+            vm.activeQuestion = vm.quizData.questions[vm.questionIndex];
+            vm.checkNextPre();
         }
 
-     	vm.checkNextPre = function()
+        vm.checkNextPre = function()
         {
 
             if(vm.questionIndex == 0)
-        	{
-        		vm.hasPre = false;
-        		vm.isLastQue = false;
-        		vm.hasMore = true;
-        	}
-        	
-        	else if( vm.questionIndex + 1 >= vm.quizData.questions.length + 1)
-        	{
-        		vm.hasMore = false;
+            {
+                vm.hasPre = false;
+                vm.isLastQue = false;
+                vm.hasMore = true;
+            }
+
+            else if( vm.questionIndex + 1 >= vm.quizData.questions.length + 1)
+            {
+                vm.hasMore = false;
                 if(vm.markedQuestions.length == 0)
                 {
-                    vm.isLastQue = true;    
+                    vm.isLastQue = true;
                 }
-        	}
+            }
 
-        	else if (vm.questionIndex != 0)
-        	{
-        		vm.hasPre = true;		
-        	}
+            else if (vm.questionIndex != 0)
+            {
+                vm.hasPre = true;
+            }
 
-        	else {
+            else {
 
-        	}
+            }
 
-        	if (vm.questionIndex + 1 < vm.quizData.questions.length + 1)
-        	{
-        		vm.hasMore = true;
-        		vm.isLastQue = false;
-        	}
+            if (vm.questionIndex + 1 < vm.quizData.questions.length + 1)
+            {
+                vm.hasMore = true;
+                vm.isLastQue = false;
+            }
 
 
         };
@@ -583,19 +580,19 @@
 
             if(localStorage.hasOwnProperty('lastStoredDurationSeconds') && !isNaN(localStorage.getItem('lastStoredDurationSeconds')))
             {
-                 
-                 return localStorage.getItem('lastStoredDurationSeconds');
+
+                return localStorage.getItem('lastStoredDurationSeconds');
 
             }
 
-             return parseInt(vm.quizData.quiz[0].duration) * 60;
+            return parseInt(vm.quizData.quiz[0].duration) * 60;
 
 
         };
 
 
-        
-       
+
+
 
 
         //vm.durationMins = parseInt(vm.quizData.quiz[0].duration);
@@ -608,34 +605,34 @@
         $scope.timeLeft = startMinutes+':'+startSeconds;
 
 
-        
+
 
 
         vm.startTimer = function (duration) {
 
-		// converting minutes to seconds
-        /*
-		duration =  duration * 60;       	
-        */
-
-
-        
+            // converting minutes to seconds
+            /*
+            duration =  duration * 60;
+            */
 
 
 
-	    var start = Date.now(),
-	        diff,
-	        minutes,
-	        seconds;
 
-		    function timer() {
-		        // get the number of seconds that have elapsed since 
-		        // startTimer() was called
-		        diff = duration - (((Date.now() - start) / 1000) | 0);
 
-		        // does the same job as parseInt truncates the float
-		        minutes = (diff / 60) | 0;
-		        seconds = (diff % 60) | 0;
+
+            var start = Date.now(),
+                diff,
+                minutes,
+                seconds;
+
+            function timer() {
+                // get the number of seconds that have elapsed since
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
 
 
                 var leftDurationSec = (minutes * 60) + seconds;
@@ -660,47 +657,47 @@
 
 
 
-		        minutes = minutes < 10 ? "0" + minutes : minutes;
-		        seconds = seconds < 10 ? "0" + seconds : seconds;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-		        $scope.timeLeft = minutes + ":" + seconds; 
-
-
-                
-                
-
-		       
-
-		        if (diff <= 0) {
-
-			      vm.timeexpiration = true;
-
-			      vm.manageTimeOutSubmission();
+                $scope.timeLeft = minutes + ":" + seconds;
 
 
 
-			      return false;
 
-		        }else {
 
-		        vm.quizTimeInterval = $timeout(timer, 1000);
 
-		        }
-		    };
 
-	    timer();
-	    	 
-		};
+                if (diff <= 0) {
 
-		    
-		vm.startTimer(durationSeconds);
+                    vm.timeexpiration = true;
+
+                    vm.manageTimeOutSubmission();
+
+
+
+                    return false;
+
+                }else {
+
+                    vm.quizTimeInterval = $timeout(timer, 1000);
+
+                }
+            };
+
+            timer();
+
+        };
+
+
+        vm.startTimer(durationSeconds);
 
 
 
         vm.manageTimeOutSubmission = function()
         {
 
-            
+
 
             vm.timeexpiration = true;
 
@@ -713,22 +710,22 @@
             2. marked length is present
                 2.a retian provided answer
                 2.b set u/a for not attempted
-            3   what if  
+            3   what if
 
             */
 
             if(vm.markedQuestions.length == 0 && vm.providedAnswers.length == vm.quizData.quiz[0].noques)
             {
                 /*
-                
+
                 ALL ATTEMPTED ZERO MARKED
 
                 */
                 vm.ansPrep();
             }
             else if(vm.markedQuestions.length == (vm.quizData.quiz[0].noques - vm.providedAnswers.length) && vm.providedAnswers.length != 0)
-            {               
-                
+            {
+
                 /*
                 SOME ATTEMPTED REMAINDER IN MARKED
                 */
@@ -745,9 +742,9 @@
 
             else if (vm.markedQuestions.length == 0 && vm.providedAnswers.length ==0)
             {
-                
+
                 /*
-                
+
                 ZERO ACTIVITY
                 NOT MARKED
                 NOT ASNWER
@@ -759,9 +756,9 @@
 
             else if (vm.markedQuestions.length == 0 && vm.providedAnswers.length != vm.quizData.quiz[0].noques)
             {
-                /*                   
+                /*
                     NO MARKED
-                    SOME ANSWERED 
+                    SOME ANSWERED
                     SOME PENDING
                 */
                 vm.managePartiallyAnsweredNoMarked();
@@ -786,7 +783,7 @@
             else {
 
 
-               
+
             }
 
             vm.endActivated = true;
@@ -796,21 +793,21 @@
 
         vm.manageMarkedOnTimeOut = function()
         {
-         
+
             for(var key in vm.markedQuestions)
             {
-                    var item = vm.markedQuestions[key];
-                    
-                    if(item.answer == undefined)
-                    {
-                        // item property is set
-                        item.answer = 'u/a';
-                    }
+                var item = vm.markedQuestions[key];
 
-                    vm.providedAnswers.push(item);
-              
+                if(item.answer == undefined)
+                {
+                    // item property is set
+                    item.answer = 'u/a';
+                }
+
+                vm.providedAnswers.push(item);
+
             }
-            vm.ansPrep();      
+            vm.ansPrep();
 
         };
 
@@ -825,7 +822,7 @@
                 var item = vm.quizData.questions[key];
                 item.answer = 'u/a';
                 vm.providedAnswers.push(item);
-                
+
 
             }
 
@@ -851,7 +848,7 @@
                 answerQuestionIDCollection.push(item.questionId);
             }
 
-            
+
 
             for(var key in vm.quizData.questions)
             {
@@ -861,7 +858,7 @@
                     /*
                     if already in answers than we don't need to include them again
                     */
-                    if(item.answer == undefined) 
+                    if(item.answer == undefined)
                     {
                         item.answer = 'u/a'
                     }
@@ -870,7 +867,7 @@
                     vm.providedAnswers.push(item);
                 }
 
-                
+
             }
 
             vm.ansPrep();
@@ -885,16 +882,16 @@
 
             for(var key in vm.markedQuestions)
             {
-                    var item = vm.markedQuestions[key];
-                    
-                    if(item.answer == undefined)
-                    {
-                        // item property is set
-                        item.answer = 'u/a';
-                    }
+                var item = vm.markedQuestions[key];
 
-                    vm.providedAnswers.push(item);
-              
+                if(item.answer == undefined)
+                {
+                    // item property is set
+                    item.answer = 'u/a';
+                }
+
+                vm.providedAnswers.push(item);
+
             }
 
             var answerQuestionIDCollection = [];
@@ -919,7 +916,7 @@
                     /*
                     if already in answers than we don't need to include them again
                     */
-                    if(item.answer == undefined) 
+                    if(item.answer == undefined)
                     {
                         item.answer = 'u/a';
                     }
@@ -928,7 +925,7 @@
                     vm.providedAnswers.push(item);
                 }
 
-                
+
             }
 
             vm.ansPrep();
@@ -939,31 +936,31 @@
         vm.implodeSingleAnswer = function(answer)
         {
             if(typeof(answer) == "object")
-                {
+            {
 
-                    var tempArrOPtions = [];
-                    for(var k in answer)
+                var tempArrOPtions = [];
+                for(var k in answer)
+                {
+                    if(answer.hasOwnProperty(k))
                     {
-                        if(answer.hasOwnProperty(k))
+                        if(answer[k] == true)
                         {
-                            if(answer[k] == true)
-                            {
-                                tempArrOPtions.push(k);
-                            }
+                            tempArrOPtions.push(k);
                         }
                     }
-                    tempArrOPtions.sort();
-                  return answer = tempArrOPtions.join(",");
                 }
+                tempArrOPtions.sort();
+                return answer = tempArrOPtions.join(",");
+            }
 
-                return answer;
+            return answer;
         }
 
 
         vm.pushActivity = function(lastIndex)
         {
 
-             var tarQue = vm.quizData.questions[lastIndex] ;
+            var tarQue = vm.quizData.questions[lastIndex] ;
 
             var pushPayload = {
                 attempt_id : $stateParams.attempt_id,
@@ -974,21 +971,21 @@
             };
 
 
-         
 
-         var pushUrl = API_URL+'recordActivity'; 
 
-          $.ajax({
-              type: "POST",
-              url: pushUrl,
-              data: pushPayload,
-              dataType: 'json',
-              success: function(res)
-              {
-                console.log('acivity pushed to server');
-              }
-              
-         });
+            var pushUrl = API_URL+'recordActivity';
+
+            $.ajax({
+                type: "POST",
+                url: pushUrl,
+                data: pushPayload,
+                dataType: 'json',
+                success: function(res)
+                {
+                    console.log('acivity pushed to server');
+                }
+
+            });
 
 
         };
@@ -1002,7 +999,7 @@
             console.log(imgPath);
 
             vm.fullImageSourceLink = imgPath;
-            
+
             vm.fullImageTitle = imgCaption;
 
         };

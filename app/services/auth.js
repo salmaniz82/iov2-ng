@@ -112,7 +112,7 @@ angular.module('io2v3')
 			{
 				$httpDefaultCache.remove(cachedUrl[key]);
 
-				console.log('cleared : ' + cachedUrl[key])
+				
 			}
 
 
@@ -123,8 +123,42 @@ angular.module('io2v3')
 		};
 
 
-		
 
-		
+		this.secureProtectUI = function()
+        {
+
+
+            setTimeout(function() {
+
+
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+
+        $(document).keydown(function (event) {
+
+            if (event.keyCode == 123 ||event.keyCode == 85) { 
+
+        return false;
+
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 85) {         
+
+                return false;
+
+            }
+        });
+
+
+
+         $('body').bind('cut copy', function (e) {
+         	
+                    e.preventDefault();
+                    return false;
+
+        });
+
+        });
+
+        };
+
 		
 	}]);

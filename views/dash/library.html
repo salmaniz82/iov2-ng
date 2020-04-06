@@ -78,7 +78,11 @@
                         <tr ng-repeat="item in vm.dataList">
 
                             <td>{{item.id}}</td>
-                            <td>{{item.filepathurl}}</td>
+                            <td>
+
+                            <img ng-if="item.type == 'image'" ng-src="{{apiUrl+item.filepathurl}}" width="200" height="auto">
+
+                        </td>
                             <td>{{item.title}}</td>
                             <td>{{item.category}}</td>
                             <td>{{item.type}}</td>

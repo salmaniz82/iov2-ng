@@ -104,7 +104,8 @@ angular.module('io2v3').run(['$rootScope','$state', '$stateParams', '$window', '
 
     $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
 
-                
+      $rootScope.pageTitle = $state.current.data.pageTitle;
+
           /*  
 
         setTimeout(function() {

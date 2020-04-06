@@ -7,6 +7,9 @@
         vm.token = localStorage.getItem('auth_token');
 
 
+        $scope.apiUrl = API_URL;
+
+
         vm.showMediaLibrary = false;
         vm.mediaLoaded = null;
 

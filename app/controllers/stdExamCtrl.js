@@ -81,7 +81,7 @@
               window.quizWindow = window.open(popupUrl, "Quiz", 
 
                         'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
-                        screen.availHeight 
+                        window.innerHeight 
                         );
 
                  //   $state.go('quizPlay', stateargs);
@@ -112,7 +112,7 @@
               window.quizWindow = window.open(dlsPopupUrl, "Quiz", 
 
                         'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0,fullscreen=yes,width='+screen.availWidth+',height='+
-                        screen.availHeight 
+                        window.innerHeight 
                         );                        
 
 

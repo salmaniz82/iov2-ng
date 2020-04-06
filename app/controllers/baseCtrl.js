@@ -4,6 +4,10 @@
 
 		var vm = this;
 
+
+
+        vm.pageTitle = "This is from base";
+
         
 
 
@@ -29,6 +33,19 @@
 
 
         $scope.entityLogo = 'assets/images/demo-logo.jpg';
+
+
+
+        if( auth.isLoggedIn() && auth.getUser().role != 'admin' ) 
+        {
+
+            
+            auth.secureProtectUI();
+            
+
+            
+
+        }
 
 
 
@@ -104,7 +121,7 @@
 
              if($scope.isPlaying === true)
              {
-                console.log('stop previous audio'); 
+                
                 $scope.soundObject.pause();
                 $scope.soundObject.currentTime = 0;
              }
@@ -176,13 +193,13 @@
              }
 
 
-             console.log($scope.message);
+             
 
 
              $scope.soundObject.play().then(function(res){
                     
 
-                    console.log($scope.soundObject);
+                    
 
                     $scope.isPlaying = true;
 
@@ -347,7 +364,7 @@
         };
 
 
-        console.log('updated with lang drop');
+        
 
         $scope.langDropToggle = function()
         {

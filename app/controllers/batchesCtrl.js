@@ -130,8 +130,13 @@
         vm.triggerEnroll = function(batch_id)
         {
 
-            vm.showEnrollment = true;
+            
 
+
+            vm.showProgress = false;      
+            vm.showEnrollment = false;
+            vm.showBatchDetails  = false;
+            vm.revealCandProgress = false;
 
             vm.activeBatchId = batch_id;
 
@@ -140,6 +145,9 @@
             $http.get(API_URL+'batches/tagged/canidates/'+batch_id).then(
 
             function(res) {
+
+
+                vm.showEnrollment = true;
 
 
                 if(res.status == 206)
@@ -395,9 +403,18 @@
             
             function(res){
 
-                vm.showProgress = true;
+                
 
                 vm.progressData = res.data.batchProgress;
+
+
+                  vm.showProgress = true;      
+                  vm.showEnrollment = false;
+                  vm.showBatchDetails  = false;
+                  
+
+
+
     
             }, 
 
@@ -427,13 +444,18 @@
           
             vm.showEnrollment = false;
 
+            /*    
             vm.activeBatchId = null;
+            */
 
         }
 
 
         vm.activateCanidateProgress = function(candiateId)
         {
+
+
+            
 
             /*
                 
@@ -452,9 +474,22 @@
 
                   vm.candSummary = res.data.summary;     
 
-                  vm.showProgress = false;
 
+                  vm.showProgress = false;      
+                  vm.showEnrollment = false;
+                  vm.showBatchDetails  = false;
+
+                  
+                  
                   vm.revealCandProgress = true;
+
+
+
+                    
+
+
+
+
 
                 }, 
 
@@ -471,6 +506,8 @@
         vm.activateDetails = function(batchId)
         {
          
+
+
             vm.activeBatchId = batchId;
 
             $http.get(API_URL+'batch/details/'+batchId).then(
@@ -479,9 +516,16 @@
                 function(res){
 
                     vm.batchMasterDetails = res.data;
+                    
+
+
+                    vm.showProgress = false;
+                    vm.revealCandProgress = false;
+                    vm.showEnrollment = false;
+
+
                     vm.showBatchDetails  = true;
 
-                    console.log(res.data);
 
                     vm.proceedToX = false;
 
@@ -512,8 +556,9 @@
 
         vm.closeBatchDetails = function()
         {
-            
+            /*
             vm.activeBatchId = null;
+            */
             vm.showBatchDetails  = false;
             vm.proceedToX = false;
 

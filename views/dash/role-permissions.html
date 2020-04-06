@@ -173,7 +173,7 @@
                                 <a class="btn" href="#" data-toggle="dropdown">&nbsp;</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="vm.edit(item.id, item.role_id, item.permission_id)">Edit</a></li>
-                                    <li><a href="#" ng-click="vm.remove(item.id, item.role_id, item.permission_id)">Remove</a></li>
+                                    <li permissions="['rolepermission-delete']"><a href="#" ng-click="vm.remove(item.id, item.role_id, item.permission_id)">Remove</a></li>
                                 </ul>
                             </div>
                         </td>

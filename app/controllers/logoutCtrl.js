@@ -5,11 +5,6 @@
 		
 		var vm = this;
 
-
-
-		auth.clearAllhttpCache();
-
-
 		localStorage.removeItem('auth_token');
        	localStorage.removeItem('hdauEn');	
 		$state.go('ua.login');

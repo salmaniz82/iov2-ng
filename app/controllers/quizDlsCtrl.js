@@ -99,7 +99,7 @@
         };
 
 
-        /*
+        
 
         if(vm.quizData.action != undefined && vm.quizData.action == 'redirect')
         {
@@ -108,7 +108,7 @@
 
         }
 
-        */
+        
 
 
 

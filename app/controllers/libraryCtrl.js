@@ -13,6 +13,9 @@
         $scope.$parent.dash.pageHeading = "Media Libraray";
 
 
+        $scope.apiUrl = API_URL;
+
+
         vm.myFormData = {
 
             category_id : 'Select Category'
