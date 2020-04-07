@@ -14,19 +14,14 @@
 
                
 
-                    <div class="row">
-                        <div class="span8">
                             <div class="field-wrap">                                   
                                     <input type="text" class="float-field w-100" id="name" name="name" ng-model="vm.re.name" required ng-minlength="6">
                                     <label class="placeholder">Full Name</label>
                                     <span ng-show="stregister.$dirty && stregister.name.$error.required" class="float-error">Full Name is required</span>
                                     <span ng-show="stregister.name.$touched && stregister.name.$error.minlength" class="float-error">Full Name must be at least 6 characters</span>
                             </div>
-                        </div>                       
-                    </div>
+                        
 
-                    <div class="row">
-                        <div class="span8">
                             <div class="field-wrap">
                                 
                             <input type="email" class="float-field w-100" id="email" name="email" ng-model="vm.re.email" required>
@@ -37,11 +32,10 @@
 
 
                             </div>
-                        </div>
-                    </div>
+                        
 
-                    <div class="row">
-                        <div class="span4">
+                    
+                        
                             <div class="field-wrap">
                                     <input type="password" class="float-field w-100" id="password" name="fpass" ng-model="vm.re.password" ng-minlength="6" required
 
@@ -54,8 +48,8 @@
 
                             </div>
                             
-                        </div>
-                        <div class="span4">
+                        
+                        
                             <div class="field-wrap">
 
                             <input type="password" class="float-field w-100" id="cpass" name="cpass" ng-model="vm.nPass" required password-verify="{{vm.re.password}}">
@@ -64,28 +58,24 @@
 
                             <span ng-show="stregister.cpass.$touched && stregister.cpass.$error.passwordVerify" class="float-error">Confirm Password Mismatched</span>   
                                 
-                            </div>  
-
-                            
-                        </div>
-                    </div>
+                            </div>
 
 
+                            <div class="field-wrap">
 
-                    <div class="row">
-              
-              <div class="span4">
-                  <div class="btn btn-default btn-mini" ng-click="vm.generateFromRandom()">Generate Password</div>
-              </div> 
+                                <div class="grid12Col gap10">
+                                    <div class="gc1-half">
+                                        <div class="btn btn-default btn-mini" ng-click="vm.generateFromRandom()">Generate Password</div>                      
+                                    </div>
 
-              <div class="span4">
-
-                <p class="genAutoPass" ng-if="vm.generatedPassword">{{vm.generatedPassword}}</p>
-                <small class="c-red" ng-if="vm.generatedPassword">currently used as password</small>
-              </div>
-
-                </div>
-
+                                    <div class="gc2-half">
+                                        <p class="genAutoPass" ng-if="vm.generatedPassword">{{vm.generatedPassword}}</p>
+                                        <small class="c-red" ng-if="vm.generatedPassword">currently used as password</small>
+                                    </div>          
+                                    
+                                </div>
+                                
+                            </div> 
 
                 <div class="row">
 
@@ -135,4 +125,12 @@
             </div>
 
             </aside>
+
+
+            <aside>
+                
+            </aside>
+
+
+
         </section>

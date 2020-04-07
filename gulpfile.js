@@ -32,6 +32,25 @@ gulp.task('app-styles', function(){
 
 
 
+gulp.task('app', function(){
+
+    return gulp.src([
+        'app/*.js',
+        'app/components/*.js',
+        'app/directives/*.js',
+        'app/factory/*.js',
+        'app/filters/*.js',
+        'app/services/*.js',
+        'app/controllers/*.js'
+        ])
+        .pipe(terser())         
+        .pipe(concat('bundle.min.js'))
+        .pipe(gulp.dest('dist'));
+
+});
+
+
+
 gulp.task('default', function() {
    // watch for CSS changes
    gulp.watch(styleSrc, function() {

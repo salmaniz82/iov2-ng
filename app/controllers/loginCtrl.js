@@ -41,8 +41,9 @@
 			if(auth.isLoggedIn() && auth.getUser().role != 'admin')
 			{
 
-
+				/*
 				auth.secureProtectUI();			
+				*/
 
 			}
 

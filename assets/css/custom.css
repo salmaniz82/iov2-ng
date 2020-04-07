@@ -1052,6 +1052,13 @@ button.custom-upload-btn {
         left: 2px; } }
 
 
+
+.roleRadio {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+
 .btn-group.btn-more {
     
     outline: none;

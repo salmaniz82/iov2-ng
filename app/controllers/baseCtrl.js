@@ -40,7 +40,7 @@
         {
 
             
-            auth.secureProtectUI();
+          //  auth.secureProtectUI();
             
 
             
