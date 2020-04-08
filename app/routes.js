@@ -55,12 +55,28 @@
             
         })
 
+        /*
+
         .state('exm', {
             abstract: true,
             templateUrl : 'views/templates/tab.exam.layout.html',
             controller : 'examMgmtAbstractCtrl as exAbs'
             
         })
+        */
+        
+
+        
+
+        .state('exm', {
+            abstract: true,
+            templateUrl : 'views/templates/tab.layout.html',
+            controller : 'examMgmtAbstractCtrl as exAbs'
+            
+        })
+        
+
+
 
         .state('exm.exam', {
             url : '/exam-overview/:examID',

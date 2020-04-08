@@ -2101,3 +2101,27 @@ ul#tabController li.active h3 {
 ul#tabController li.active {
   background-color: var(--greenLight);
 }
+
+ul#quizTabNavigation {
+            list-style: none;
+            margin: 0;
+        }
+
+        ul#quizTabNavigation li {
+            display: inline-block;
+            padding: 20px;
+            background-color: #fff;
+            user-select: none;
+        }
+
+        ul#quizTabNavigation li a {
+            color: #ccc;    
+            outline: none;
+        }
+
+        ul#quizTabNavigation li.active a {
+
+            color: var(--green);
+            text-decoration: none;
+
+        }
