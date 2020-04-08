@@ -122,7 +122,7 @@
             <section class="hbox pageContentWrapper">
 
 
-            <ul id="quizTabNavigation"> 
+            <ul id="quizTabNavigation" ng-if="exAbs.activateQuizTabNavigation"> 
             
             <li ui-sref-active="active"><a ui-sref="exm.exam({'examID': absExamId})"><i class="fas fa-street-view"></i> {{ gval.overview[langIndex()] }}</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.progress({'examID': absExamId})"><i class="fas fa-chart-bar"></i> {{ gval.progress[langIndex()] }} </a></li>

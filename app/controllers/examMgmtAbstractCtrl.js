@@ -10,8 +10,10 @@
 
         $scope.pageHeading = "";
 
+        vm.activateQuizTabNavigation = true;
 
-        console.log('exam abstract is activated');
+        vm.absMessage = "this message is from exmabstract";
+        
 
         $scope.$parent.base.updateDashboardLogo();
 
