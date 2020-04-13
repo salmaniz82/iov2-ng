@@ -19,14 +19,9 @@
 
             $scope.imageLocations.forEach(function(imageUrl) {
 
-
+                
 
                 imageUrl = decodeURIComponent(imageUrl);
-
-
-
-
-
 
 
                 if(!absoluteUrlPattern.test(imageUrl))

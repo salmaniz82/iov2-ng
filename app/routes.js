@@ -563,10 +563,23 @@
 
         })
 
+        /*
+        demoQuizData
+        */
+
         .state('quizDemo', {
             url : '/quiz-demo',
             controller : 'demoQuizCtrl as vm',
             templateUrl : 'views/quizdemo.html',
+            resolve : {
+
+                quizPlayData : ['quizPlay', function(quizPlay)
+                {
+
+                    return quizPlay.demoQuizData();
+                }]
+
+            },
             data : {'pageTitle' :  '-  Demo Quiz'}
         })
 

@@ -16,7 +16,16 @@ angular.module('io2v3')
 			var dlsQuizUrl = API_URL+'std-quiz-play/dls/'+quiz_id+'/attempt_id/'+attempt_id;
 			return $http.get(dlsQuizUrl);
 
-		}
+		};
+
+
+		this.demoQuizData = function()
+		{
+
+			var demoQuizUrlRoute = API_URL+'demoquizplay'
+			return $http.get(demoQuizUrlRoute);
+
+		};	
 
 		
 	}]);

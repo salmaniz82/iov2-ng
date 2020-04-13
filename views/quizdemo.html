@@ -1,1 +1,496 @@
-<h1>DEMO QUIZ IS HERE</h1>
+<div class="quizPlayWrapper">
+
+
+    <div id="quizPGWrapper">
+
+
+    <div class="grid12Col" style="grid-template-rows: 40px;" ng-if="1 == 1">
+
+        
+
+        <div class="gc-first-remain-quater align-self-center">        
+                <a href="#" class="brand static-link">  <img alt="Logo" ng-src="{{vm.entityLogo()}}"
+
+                    style="width: auto; height: 50px"
+                    ></a>
+        </div>  
+
+        <div class="gc-last-quater" style="align-self: end;
+    justify-self: end;">
+
+    <div class="langCont" ng-class="{ 'langDropActive' : langDropOPen}">
+                     
+                        <a href="#" class="langText" role="button" ng-click="langDropToggle()">{{lang}}</a>
+
+                        <span class="fal fa-arrow-down"></span>
+
+                        <ul id="langDrop">
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('ar')">AR</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('en')">EN</a></li>
+                            <li><a href="#" class="static-link" ng-click="changeLanguage('fr')">FR</a></li>
+                        </ul>
+
+                    </div>
+        
+
+    </div>  
+
+        
+
+    </div>    
+
+
+
+    <div class="grid12Col bbr-grey">
+    
+        <div class="gc-first-quater align-self-center">
+            <p class="t-left">
+                <span class="t-left newTimer" style="font-size: 30px;" ng-class="{'high' : vm.TimeStatus == 'high', 'med': vm.TimeStatus == 'med', 'low' : vm.TimeStatus == 'low' }">{{timeLeft}}</span>    
+                <span>Time Remaining </span>
+            </p>  
+
+        </div>
+
+        <div class="gc-last-remain-quater align-self-center">
+            <h2 class="t-right c-grey quizTitleHeading">{{vm.quizData.quiz[0].title | titleCase}}</h2>           
+        </div>  
+    </div>
+
+
+
+    <div class="grid12Col mt-10">
+
+        <div class="gc-first-remain-quater">
+
+            <span ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques && !vm.startReviewWizard">Question : {{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}}</span>
+            <span ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques && vm.startReviewWizard && vm.questionIndex + 1 <= vm.markedQuestions.length">Marked Question :  {{vm.questionIndex + 1}} of {{vm.markedQuestions.length}}</span>
+
+
+            <div class="queDesc noselect" style="padding-top: 10px; padding-bottom: 20px;">    
+
+                <div ng-bind-html="vm.activeQuestion.queDesc"></div>
+
+            </div>
+            
+        </div>
+
+
+
+                <div class="gc-last-quater align-self-end t-right quizPlayMeta" ng-if="!vm.reviewAll">
+
+                    <p class="c-grey">{{vm.activeQuestion.subDecipline}}</p>
+
+                    <p ng-if="!vm.startReviewWizard" class="c-blue ">Marked : {{vm.markedQuestions.length}}</p>
+
+                    <p ng-if="vm.startReviewWizard" class="c-blue">Marked  : {{vm.quizData.quiz[0].noques - vm.providedAnswers.length}}</p>
+
+                    <p class="c-green ">Answered : {{vm.providedAnswers.length}}</p>
+        
+                    <p class="c-warning " ng-if="!vm.startReviewWizard">Next : {{(vm.quizData.quiz[0].noques) - (vm.markedQuestions.length + vm.providedAnswers.length ) }}</p>
+
+                    <div class="c-yellow" ng-if="vm.startReviewWizard">Next : {{vm.quizData.quiz[0].noques - vm.providedAnswers.length}} </div>
+
+                </div>
+
+
+                <div class="gc-last-quater align-self-end t-right mt-20 mb-20" ng-if="vm.reviewAll">
+
+                    <p class="c-grey ">Marked : 0</p>
+
+                    <p class="c-green">Answered : {{vm.quizData.quiz[0].noques}}</p>
+        
+                    <div class="c-yellow t-bold" ng-if="vm.questionIndex + 1 <= vm.quizData.quiz[0].noques">Reviewing : {{vm.questionIndex + 1}} of {{vm.quizData.quiz[0].noques}} </div>
+
+                </div>
+
+
+            </div>
+
+
+    <div id="canvasScrollArea">
+        
+    
+
+
+    <div ng-repeat="item in vm.quizData.questions" class="canvasItem">
+
+
+        <div ng-if="$index == vm.questionIndex">
+
+
+
+            <div class="row" ng-if="item.media != undefined">
+
+
+
+                    <section class="span12">
+
+                        <h5 class="c-grey t-center c-blue">Click on image to view in full size</h5>
+
+
+                        <section id="photos" ng-repeat="media in item.media" ng-if="media.type == 'image'">
+                            <img ng-src="{{baseUrl+media.filepathurl}}" width="200" height="auto" ng-click="vm.launchLightbox(baseUrl+media.filepathurl, media.title)">
+                        </section>
+
+
+                        
+                        <div class="video-wrapper" ng-if="media.type == 'video'" ng-repeat="media in item.media" >
+                            
+                            <video width="640" height="360" controls>
+                              <source src="{{baseUrl+media.filepathurl | trustUrl}}" type="video/mp4">
+                               Your browser does not support the video tag.
+                            </video>
+
+                        </div>
+
+
+                    </section>
+                    
+                </div>
+
+            
+
+
+            <div class="grid12Col" style="margin-bottom: 20px;">
+                    <div class="gc2-full">
+                        <p class="txt-highlight">
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 1">Select correct option answers</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 2">Select valid option</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 3">Choose all which applies</span>
+                            <span style="border-bottom: 1px solid #ccc" ng-if="item.type_id == 4">Provide your answer in text box</span>
+                        </p>
+                    </div>
+            </div>
+
+
+            <div class="grid12Col" ng-if="item.type_id == 4">
+                <div class="gc2-full">
+
+                    <input type="text" autocomplete="off" autocorrect="off" name="answer" class="form-control w-100" ng-model="vm.quizData.questions[$index].answer">    
+                </div>
+                
+            </div>
+        
+            <div class="grid12Col" ng-if="item.type_id == 1 || item.type_id == 2"> 
+
+             
+
+                <div class="gc2-full que-line">
+                    <input type="radio" id="radio-1" class="radio-custom" name="answer" value="a" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-1" class="radio-custom-label noselect">
+
+                    <span ng-if="!vm.optionhasImage(item.optionA)">{{item.optionA}}</span> 
+
+                    <img ng-if="vm.optionhasImage(item.optionA)" ng-src="{{item.optionA}}">   
+
+
+                </label>    
+                </div>
+
+            
+
+                <div class="gc2-full que-line noselect">
+                    <input type="radio" id="radio-2" class="radio-custom" name="answer" value="b" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-2" class="radio-custom-label">
+                        
+                        <span ng-if="!vm.optionhasImage(item.optionB)">{{item.optionB}}</span>
+                        <img ng-if="vm.optionhasImage(item.optionB)" ng-src="{{item.optionB}}">   
+                        
+                    </label>    
+                </div>
+
+            
+                <div class="gc2-full que-line noselect" ng-if="vm.activeQuestion.optionC != null && item.type_id != 2">
+                    <input type="radio" id="radio-3" class="radio-custom" name="answer" value="c" ng-model="vm.quizData.questions[$index].answer">
+                    <label for="radio-3" class="radio-custom-label">
+
+                        <span ng-if="!vm.optionhasImage(item.optionC)">{{item.optionC}}</span>
+                        <img ng-if="vm.optionhasImage(item.optionC)" ng-src="{{item.optionC}}">
+                        
+                    </label>    
+                </div>
+
+
+
+                <div class="gc2-full que-line noselect" ng-if="vm.activeQuestion.optionD != null && item.type_id != 2">
+
+                    <input type="radio" id="radio-4" class="radio-custom" name="answer" value="d" ng-model="vm.quizData.questions[$index].answer">
+
+                    <label for="radio-4" class="radio-custom-label">
+
+                    <span ng-if="!vm.optionhasImage(item.optionD)">{{item.optionD}}</span>  
+
+                    <img ng-if="vm.optionhasImage(item.optionD)" ng-src="{{item.optionD}}">     
+                </label>    
+
+
+                </div>
+            
+
+            </div> <!-- radion single select -->
+
+
+
+             <div class="grid12Col" ng-if="item.type_id == 3"> 
+
+            
+
+                <div class="gc2-full que-line">
+                    <input type="checkbox" name="answer[]" id="checkbox-1" class="checkbox-custom" name="answer" value="a" ng-model="vm.quizData.questions[$index].answer.a">
+
+                    <label for="checkbox-1" class="checkbox-custom-label noselect"> 
+
+
+                        <span ng-if="!vm.optionhasImage(item.optionA)">{{item.optionA}}</span> 
+
+                        <img ng-if="vm.optionhasImage(item.optionA)" ng-src="{{item.optionA}}">   
+
+
+                    </label>    
+                </div>
+
+
+                <div class="gc2-full que-line">
+                    
+                        <input type="checkbox" name="answer[]" id="checkbox-2" class="checkbox-custom" name="answer" value="b" ng-model="vm.quizData.questions[$index].answer.b">
+                        <label for="checkbox-2" class="checkbox-custom-label noselect"> 
+
+                            <span ng-if="!vm.optionhasImage(item.optionB)">{{item.optionB}}</span> 
+
+                            <img ng-if="vm.optionhasImage(item.optionB)" ng-src="{{item.optionB}}">
+
+
+                         </label>    
+                    
+                </div>
+            
+            
+            
+
+                <div class="gc2-full que-line" ng-if="vm.activeQuestion.optionC != null">
+
+                        <input type="checkbox" name="answer[]" id="checkbox-3" class="checkbox-custom" name="answer" value="c" ng-model="vm.quizData.questions[$index].answer.c">
+                        <label for="checkbox-3" class="checkbox-custom-label noselect"> 
+
+                            <span ng-if="!vm.optionhasImage(item.optionC)">{{item.optionC}}</span> 
+
+                            <img ng-if="vm.optionhasImage(item.optionC)" ng-src="{{item.optionC}}">
+
+
+                        </label>    
+
+                </div>
+            
+            
+            
+                <div class="gc2-full que-line" ng-if="vm.activeQuestion.optionD != null">
+
+                    <input type="checkbox" name="answer[]" id="checkbox-4" class="checkbox-custom" name="answer" value="d" ng-model="vm.quizData.questions[$index].answer.d">
+                    <label for="checkbox-4" class="checkbox-custom-label noselect"> 
+
+                        <span ng-if="!vm.optionhasImage(item.optionD)">{{item.optionD}}</span> 
+
+                        <img ng-if="vm.optionhasImage(item.optionD)" ng-src="{{item.optionD}}">
+
+                    </label>    
+
+                </div>
+            
+
+            </div> <!-- multiple checkbox wrapper -->
+
+
+
+            <!-- marker previous position -->
+            
+
+
+        </div> <!-- ng-if $index == questions index -->
+
+    </div> <!-- end question repeater -->
+
+
+
+    <div ng-if="vm.answerAvailable" style="width: 600px; margin: 0 auto; padding-top: 200px;" class="bg-white border-all">
+
+            
+            <h3 class="c-green">Please wait while your performance is being evaluated</h3>
+            
+
+    </div>
+
+
+    <div ng-if="vm.isReviewEnabled() && !vm.startReviewWizard && !vm.reviewAll">
+
+        <h3 class="reviewWarningBLock">You have <span class="c-blue">  {{vm.markedQuestions.length}} </span> marked questions please Start Review to answer. </h3>
+
+
+        <div class="t-center">
+            <a href="#" class="btn btn-success startRewieBigButton" ng-click="vm.startReview()"> Start Review </a>
+        </div>
+        
+    </div>
+
+    
+    <div ng-if="!vm.endActivated">
+
+        
+    <section ng-if="(vm.startReviewWizard && (vm.questionIndex + 1 > vm.markedQuestions.length)) || (!vm.startReviewWizard && vm.isLastQue)" class="t-center">
+
+        <h3>You are about to end quiz this evalaute all your answers as final step</h3>
+        <a href="#" class="btn btn-success startRewieBigButton" ng-click="vm.ansPrep()">End Quiz</a>
+        <a ng-if="!vm.reviewAll" href="#" class="btn btn-warning startRewieBigButton" ng-click="vm.startReviewAll()">Review All</a>
+
+    </section>
+
+    </div>
+
+
+
+
+    </div><!-- canvasScrollArea -->
+
+
+</div> <!-- quizPGWrapper -->
+
+
+
+    <div id="controllingArea__main">
+
+
+        <div class="grid12Col" ng-if="!vm.startReviewWizard && !vm.isReviewEnabled() && vm.reviewAll == false && vm.hasMore">
+                <div class="gc1-half">
+                        <label class="checkbox pull-left kt-pulse">
+                            <input type="checkbox" name="review" value="1" ng-model="vm.quizData.questions[vm.questionIndex].marked">
+                            <strong> Mark for Review : <span class="c-red"> Marked ( {{vm.markedQuestions.length}} ) </span> | <span class="c-green">Answered ( {{vm.providedAnswers.length}} )</span> 
+                            </strong>
+                            <span class="kt-pulse__ring" ng-if="vm.ShowPulse == true"></span>
+                        </label>
+                    </div>
+            </div>
+        
+    
+
+
+        <div class="grid12Col cbf" style="margin-top: 20px;" ng-if="!vm.startReviewWizard">
+
+
+            
+
+            <div class="g_nested gc-auto-half">
+
+                <div ng-if="vm.hasPre && vm.hasMore">
+                    <a href="#" class="btn btn-warning stdx" ng-click="vm.preQuestion($index)" > 
+
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-right"></span>
+
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-left"></span>
+
+                        <span lang="{{lang}}">{{gval.previous[langIndex()]}}</span>
+                       
+                        
+                        
+
+
+                    </a>
+                </div>
+
+                <div ng-if="(vm.hasMore || vm.reviewAll == true) && !vm.isLastQue">
+                    <button ng-enter="vm.nextQuestion($index)" type="submit" href="#" class="btn btn-success stdx" ng-class="{'pull-right': vm.hasPre == true}" ng-click="vm.nextQuestion($index)" >
+
+
+
+                        <span lang="{{lang}}">{{gval.next[langIndex()]}}</span>
+                       
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-right"></span>
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-left"></span>
+
+
+                     </button>
+                </div>
+
+                <div ng-if="vm.isLastQue">
+                    <!--
+                        <a href="#" class="btn btn-success stdx pull-right"  ng-click="vm.ansPrep()">End Quiz</a>               
+                    -->
+                </div>
+
+            </div> 
+
+        </div>
+
+
+        <div class="grid12Col cbf"  ng-if="vm.startReviewWizard">
+
+
+            <div class="g_nested gc-auto-half">
+
+            
+            <div>
+                <a href="#" class="btn btn-success stdx pull-left" ng-if="vm.questionIndex + 1 <= vm.markedQuestions.length" ng-click="vm.revNext()">
+
+
+                    <span lang="{{lang}}">{{gval.next[langIndex()]}}</span>
+                       
+                        <span ng-if="lang == 'en'" class="fas fa-chevron-right"></span>
+                        <span ng-if="lang == 'ar'" class="fas fa-chevron-left"></span>
+
+
+                </a>
+            </div>
+
+
+            <div>
+                <!--
+                    <a href="#" class="btn btn-success stdx pull-right" ng-if="vm.questionIndex + 1 > vm.markedQuestions.length" ng-click="vm.ansPrep()">End Quiz</a>
+                -->
+            </div>
+                
+            </div> 
+
+            
+
+
+        </div>
+
+
+        </div> <!-- controllingArea__main -->
+
+        
+
+
+    </div><!-- end row-->
+
+
+</div><!-- end col right-->
+</div><!-- end container-->
+
+
+
+<div class="cst-modal-container" ng-if="vm.lightBoxEnabled">
+
+    <div class="cst-modal-window fullSize">
+
+      
+      <div class="grid12Col">
+
+        <div class="gc1-half">
+            <h3 class="c-grey">{{vm.fullImageTitle}}</h3>  
+        </div>
+        
+        <div class="gc2-half">
+          <i class="fal fa-times fa-2x pull-right c-white" ng-click="vm.closeLightBox()"></i> 
+        </div>
+          
+      </div>
+
+
+      <div class="cst-modal-body no-pad">
+
+        <img ng-src="{{vm.fullImageSourceLink}}">
+
+      </div>
+      
+    </div>
+
+</div>
