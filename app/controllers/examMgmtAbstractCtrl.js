@@ -13,6 +13,10 @@
         vm.activateQuizTabNavigation = true;
 
         vm.absMessage = "this message is from exmabstract";
+
+        
+
+        $scope.$emit('activeQuiz', {status : true});
         
 
         $scope.$parent.base.updateDashboardLogo();

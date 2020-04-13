@@ -8,6 +8,19 @@
 
         vm.pageTitle = "This is from base";
 
+        vm.isQuizActivated = false;
+
+
+        $scope.$on('activeQuiz', function (event, args) {
+
+            vm.isQuizActivated = args.status;
+
+            vm.isQuizActivated = args.status;
+
+            
+
+         });
+
         
 
 
@@ -214,12 +227,10 @@
             });
 
 
-
-
-
-
-
         });
+
+
+
 
 
 
@@ -268,6 +279,7 @@
                 "about" : ['About', 'حول' , 'Sur'],
                 "terms" : ['Terms', 'شروط' , 'termes'],
                 "privacy" : ['Privacy Policy', 'سياسة خاصة' , 'Intimité'],
+                "url" : ['url', 'url', 'url'],
                 
 
                 'details': ['Details', 'تفاصيل', 'Détails' ],

@@ -64,9 +64,9 @@
 
 
 
-	<h3> &nbsp;Invited : </h3>
+	<h3> &nbsp;Quiz : </h3>
 	
-	<table class="table" ng-if="vm.hasPendingQuiz || vm.hasAttemptedQuiz">
+	<table class="table" ng-if="vm.hasPendingQuiz || vm.hasAttemptedQuiz" ng-if="vm.dataList.quiz.length !=0">
 		<thead>
 			<tr>	
 				<th>S.NO</th>

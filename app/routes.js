@@ -55,19 +55,6 @@
             
         })
 
-        /*
-
-        .state('exm', {
-            abstract: true,
-            templateUrl : 'views/templates/tab.exam.layout.html',
-            controller : 'examMgmtAbstractCtrl as exAbs'
-            
-        })
-        */
-        
-
-        
-
         .state('exm', {
             abstract: true,
             templateUrl : 'views/templates/tab.layout.html',
@@ -146,6 +133,15 @@
             url : '/exam-progress/:examID',
             templateUrl : 'views/exams/exam-progress.html',
             controller : 'quizProgressCtrl as vm',
+            data : {'pageTitle' :  '- Quiz progress'}
+            
+        })
+
+        .state('exm.directurl', {
+
+            url : '/quizurl/:examID',
+            templateUrl : 'views/exams/quizdirecturl.html',
+            controller : 'quizDirectUrlCtrl as vm',
             data : {'pageTitle' :  '- Quiz progress'}
             
         })
@@ -518,15 +514,19 @@
             data : {'pageTitle' :  '- Logout'}
         })
 
-
-        
+        .state('ua.directalpha', {
+            url : '/d/:alphaID',
+            templateUrl: 'views/directaccessui.html',
+            controller: 'alphaDirectAceessCtrl as vm',
+            data : {'pageTitle' :  '- Direct Quiz'}
+        })
 
         .state('onExamRefresh', {
             url : '/examrefreshed/:attempt_id/:quiz_id',
             templateUrl: 'views/student/onexamrefresh.html',
             controller : 'examRefreshedCtrl as vm',
             data : {'pageTitle' :  '- Quiz Terminated'}
-            
+           
             
         })
 
@@ -559,8 +559,15 @@
             url : '/quiz',
             controller : 'stdQuizCtrl as vm',
             templateUrl : 'views/student/quiz.html',
-            data : {'pageTitle' :  '- Canidates Quizzes'}
+            data : {'pageTitle' :  '-  Canidates Quizzes'}
 
+        })
+
+        .state('quizDemo', {
+            url : '/quiz-demo',
+            controller : 'demoQuizCtrl as vm',
+            templateUrl : 'views/quizdemo.html',
+            data : {'pageTitle' :  '-  Demo Quiz'}
         })
 
 
@@ -619,8 +626,6 @@
             data : {'pageTitle' :  '- Question Preview'}
 
         })
-
-
 
         .state('inv', {
 

@@ -1,4 +1,14 @@
-<div id="dashGrid">
+<div class="bg-white border-all mb-10" ng-if="vm.loadingStatus === null">
+
+    <h3 class="t-center c-grey">Loading data please wait...</h3>  
+
+</div>
+
+
+
+
+
+<div id="dashGrid" ng-show="vm.loadingStatus">
 
 	<div class="gridItems one">
 		<h3>Indicator</h3>

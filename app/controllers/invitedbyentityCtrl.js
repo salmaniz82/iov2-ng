@@ -21,6 +21,24 @@
         vm.interceptRedirect = false;
 
 
+
+        if(!localStorage.getItem('auth_token'))
+        {           
+                
+
+              /*
+              redirect to login with action token
+              */
+
+              console.log('user is not logged ini');
+
+        }
+
+
+
+
+
+
         localStorage.removeItem('lastStoredDurationSeconds');
 
 
@@ -135,9 +153,22 @@
 
             };
             
-            var enroll_id = vm.decodedUriObj.enroll_id;
             
-            $http.get(API_URL+'invitation-quizzes/'+enroll_id)
+
+            if(vm.decodedUriObj.action == 'quizInvitation')
+            {
+
+                var enroll_id = vm.decodedUriObj.enroll_id;    
+                var routeUrl = API_URL+'invitation-quizzes/'+enroll_id;
+            }
+            else if (vm.decodedUriObj.action == 'directQuiz')
+            {
+                var quiz_id = vm.decodedUriObj.quiz_id;
+                var routeUrl = API_URL+'direct-access-quiz/'+quiz_id;
+                
+            }
+            
+            $http.get(routeUrl)
             .then(successFetchQuizList, errorFetchQuizList);
 
         };

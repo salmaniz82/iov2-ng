@@ -2110,13 +2110,17 @@ ul#quizTabNavigation {
         ul#quizTabNavigation li {
             display: inline-block;
             padding: 20px;
-            background-color: #fff;
+            
             user-select: none;
         }
 
         ul#quizTabNavigation li a {
             color: #ccc;    
             outline: none;
+        }
+
+        ul#quizTabNavigation li.active {
+          background-color: #fff;
         }
 
         ul#quizTabNavigation li.active a {

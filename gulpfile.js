@@ -6,8 +6,6 @@ var plumber = require('gulp-plumber');
 var concat = require('gulp-concat');
 
 
-
-
 var styleSrc = [
         'assets/css/unminify.css', 
         'assets/css/dropzone.min.css',
@@ -43,7 +41,7 @@ gulp.task('app', function(){
         'app/services/*.js',
         'app/controllers/*.js'
         ])
-        .pipe(terser())         
+        .pipe(terser())
         .pipe(concat('bundle.min.js'))
         .pipe(gulp.dest('dist'));
 

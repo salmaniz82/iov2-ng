@@ -20,6 +20,9 @@
        vm.hasRecentFinished = false;
 
 
+
+
+
         $http.get(API_URL+'dashboard').then(
 
         	function(res) {
@@ -62,13 +65,18 @@
         			vm.topScorerList = res.data.topPerformer;
         		}
 
+        		
 
+        		if(res.data != undefined){
+        		vm.loadingStatus = true;
+        		}
         		
 
 
         	}, function(res) {
 
         		$scope.currentactivity = false;
+        		
 
         	});
 
@@ -220,13 +228,20 @@
 		};
 		
 
-		var ctx = document.getElementById('myChart').getContext('2d');
+		if(vm.loadingStatus)
+		{
+
+			var ctx = document.getElementById('myChart').getContext('2d');
 
 		ctx.canvas.parentNode.style.height = '240px';
 		ctx.canvas.parentNode.style.width = '420px';
 
 
 		var myDoughnutChart = new Chart(ctx, config);
+
+		}
+
+		
 
 
 

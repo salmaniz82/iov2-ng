@@ -27,6 +27,8 @@
 			{
 				vm.actionTokenObj = decodedUriObj;	
 				vm.interceptDefaultRedirect = true;
+
+				console.log(vm.actionTokenObj);
 			}
 
 
@@ -58,11 +60,21 @@
 			if(!vm.interceptDefaultRedirect)
 			{
 				$state.go('dash.land');
+				console.log('default no intercept from login redirect');
 			}
 
 			else if(vm.actionTokenObj.action == 'quizInvitation') {
 
 				$state.go('inv.invited', {'entityslug': vm.actionTokenObj.entitySlug, 'invitetoken': $stateParams.actiontoken});
+			}
+
+			else if(vm.actionTokenObj.action == 'directQuiz')
+			{
+
+				console.log('navigate to direct quiz');
+
+				$state.go('inv.invited', {'entityslug': vm.actionTokenObj.entitySlug, 'invitetoken': $stateParams.actiontoken});
+
 			}
 
 			else {

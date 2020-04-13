@@ -12,11 +12,11 @@
 
 
       <ul id="top-menu"> 
-            
+
             <li ng-class="{'active': base.pageUrl == '/dashboard'}">
 
                 <a ui-sref="dash.land()"><i class="fab fa-buromobelexperte vam"></i> {{gval.dashboard[langIndex()]}} </a></li>
-            <li ui-sref-active="active" permissions="['quiz-list']"><a ui-sref="dash.quizzes()"><i class="fal fa-brain vam"></i> {{gval.quizes[langIndex()]}} </a></li>
+            <li  ng-class="{'active': base.isQuizActivated || base.pageUrl == '/quizzes'}" permissions="['quiz-list']"><a ui-sref="dash.quizzes()"><i class="fal fa-brain vam"></i> {{gval.quizes[langIndex()]}} </a></li>
             
             <li ui-sref-active="active" permissions="['dashboard-questions']"><a ui-sref="dash.questions()"><i class="fal fa-database vam"></i> {{gval.questions[langIndex()]}}</a></li>
             <li ui-sref-active="active"><a ui-sref="dash.quePool()"><i class="fal fa-calculator vam"></i> {{gval.stats[langIndex()]}} </a></li>
@@ -47,7 +47,7 @@
             <div class="flexTabHeader">
                 <div>
                     <a class="fas fa-home icon-2x c-green" ui-sref="dash.land()"></a>
-                    <span class="tabHeading"> <span class="c-green">Dashboard</span> / <span class="c-yellow">{{dash.pageHeading}} </span></span>
+                    <span class="tabHeading"> <span class="c-green">Dashboard</span> / <a ui-sref="dash.quizzes()" ng-if="base.isQuizActivated" class="c-blue">Quizzes / <a> <span class="c-yellow">{{dash.pageHeading || exAbs.pageHeading}} </span></span>
 
 
                 </div>
@@ -130,6 +130,7 @@
             <li ui-sref-active="active"><a ui-sref="exm.quizWeightDistro({'examID': absExamId})"><i class="fas fa-balance-scale"></i> {{ gval.weightDistribution[langIndex()] }}</a></li>
             <li ui-sref-active="active"><a ui-sref="exm.enroll({'examID': absExamId})"><i class="fas fa-clipboard-check"></i> {{ gval.enroll[langIndex()] }} </a></li>
             <li ui-sref-active="active"><a ui-sref="exm.register({'examID': absExamId})"><i class="fas fa-clipboard-list"></i> {{ gval.register[langIndex()]}}  </a></li>
+            <li ui-sref-active="active"><a ui-sref="exm.directurl({'examID': absExamId})"><i class="fas fa-link"></i> {{ gval.url[langIndex()]}}  </a></li>
             
             
             </ul>
