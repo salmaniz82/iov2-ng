@@ -713,6 +713,14 @@
         })
 
 
+        .state('useragreement', {
+            url : '/user-agreement',
+            templateUrl : 'views/user-agreement.html',
+            controller : 'userAgreementCtrl as vm',
+            data : {'pageTitle' :  '- User Agreement'}
+        })
+
+
         .state('notfound', {
             url: '/notfound',
             templateUrl: 'views/404.html',

@@ -1,0 +1,513 @@
+<div id="userAgreement__root">
+
+	<ul class="uaNavigation">
+
+		<li ng-class="{'active': ua_stages == 1}"><a href="#" ng-click="ua_stages = 1">User Agreement</a></li>
+		<li ng-class="{'active': ua_stages == 2}"><a href="#" ng-click="ua_stages = 2">Photo Verification</a></li>
+		<li ng-class="{'active': ua_stages == 3}"> <a href="#" ng-click="ua_stages = 3">ID Verification</a></li>
+		
+		
+	</ul>
+
+	
+
+	<div class="ua_stages ua_ngswitch__root" ng-switch on="ua_stages">
+
+
+		<div class="w-100" ng-switch-when="1">
+
+			
+
+
+
+			<div ng-switch on="ua_one">
+
+				<ul class="innerNavigation">
+
+				<li ng-class="{'active': ua_one == 1}"><a href="#" ng-click="ua_one = 1">Terms</a></li>
+				<li ng-class="{'active': ua_one == 2}"><a href="#" ng-click="ua_one = 2">Permissions</a></li>
+				<li ng-class="{'active': ua_one == 3}"><a href="#" ng-click="ua_one = 3">Location</a></li>
+				
+			</ul>
+
+
+			<div class="w-100" ng-switch-when="1">
+
+
+				<div class="termContentBox agreeInnerContents">
+
+
+				<p>Please <a href="#">click here to open</a> to open in a new tab and view or print this agreement </p>
+
+
+				<p>
+					<input type="checkbox" name="ua_agree" id="checkbox-1" class="checkbox-custom" value="1" ng-model="vm.ua.agreePolicy">
+
+                    <label for="checkbox-1" class="checkbox-custom-label noselect">
+
+
+                    	<span>By clicking </span> <strong>Agree and continue,</strong><span>I hereby</span>
+
+                    </label> 
+				</p>
+
+
+				<p class="gutterLeft">- Agree and Consent to <a href="#">Data Collection Policy</a> and <a href="#">Privacy Policy</a></p>
+
+				<p class="gutterLeft">- Agree and Consent to <a href="#">Terms and Conditions</a> </p>
+
+				<p class="gutterLeft">- Agree and Consent to above user agreement </p>
+
+
+
+				<div>
+					<input type="text" name="ua_name" placeholder="Enter you name" value="John Doe" disabled>
+				</div>
+
+				
+	
+				</div>
+
+
+				<div class="field-wrap">
+					<a class="btn btn-success btd-std" ng-click="vm.switchInnerState('ua_stages', 'ua_one', 1)">Agree and Continue</a>	
+				</div>
+
+
+				
+
+				
+			
+			</div> <!-- user agreement terms -->
+
+			<div class="w-100" ng-switch-when="2">
+
+				<div class="agreeInnerContents" id="uaOne_permissions">
+
+					<p>
+					<input type="checkbox" name="ua_p1" id="ua_p1" class="checkbox-custom" value="1" ng-model="vm.ua.location" ng-change="vm.askGeolocation()">
+
+                    <label for="ua_p1" class="checkbox-custom-label noselect">
+
+
+                    	<span>I</span> <strong>Agree</strong> <span> to allow my location.</span>
+
+                    </label> 
+				</p>
+
+				<p>
+					<input type="checkbox" name="ua_p2" id="ua_p2" class="checkbox-custom" value="1" ng-model="vm.ua.camera" ng-change="vm.askCameraPermission()">
+
+                    <label for="ua_p2" class="checkbox-custom-label noselect">
+
+
+                    	<span>I</span> <strong>Agree</strong> <span> to allow my camera for Photo and ID upload.</span>
+
+                    </label> 
+				</p>
+
+
+				<p>
+					<input type="checkbox" name="ua_p3" id="ua_p3" class="checkbox-custom" value="1" ng-model="vm.ua.microphone" ng-change="vm.askMicrophonePermission()">
+
+                    <label for="ua_p3" class="checkbox-custom-label noselect">
+
+
+                    	<span>I</span> <strong>Agree</strong> <span> my microphone for background noise.</span>
+
+                    </label> 
+				</p>
+
+
+				<p>
+					<input type="checkbox" name="ua_p4" id="ua_p4" class="checkbox-custom" value="1" ng-model="vm.ua.otherPolicies">
+
+                    <label for="ua_p4" class="checkbox-custom-label noselect">
+
+
+                    	<span>I</span> <strong>Agree</strong> <span> any other policies laid out on website in any other shape or form.</span>
+
+                    </label> 
+				</p>
+					
+				</div>
+
+				<div class="field-wrap">
+					<a class="btn btn-success btd-std" ng-click="vm.switchInnerState('ua_stages', 'ua_one', 2)">Continue</a>	
+				</div>
+			
+			</div> <!-- user agreement Permissions -->
+
+			<div class="w-100" ng-switch-when="3">
+
+				<div class="agreeInnerContents">
+
+					<div class="grid12Col gap10" style="margin-top: 100px">
+
+						<div class="gc1-half">
+
+							<div style="width: 600px; margin: 0 auto">
+
+								<p class="t-md">
+								iSkillmetrics application requires access to your location to verify LOG your IP
+								and location Details as requested by Demo Inc.
+							</p>
+
+
+							<div style="height: 30px"></div>
+
+
+							<p class="t-md">
+								Firefox and safari typically ask you to enable permissions for each session. if you've accidentaly clicked on Don't Allow or dismissed the popup without allowing access, you can simply close and re-open the Telehealth session.
+							</p>
+
+							<div style="height: 100px"></div>
+
+
+							<div class="field-wrap">
+								<a class="btn btn-success btd-std" ng-click="vm.changeParent(1)">Continue</a>	
+								</div>
+								
+							</div>
+
+							
+							
+						</div>
+
+						<div class="gc2-half">
+
+							<div style="width: 600px; margin: 0 auto">
+								<p><strong>Click Allow when you see the following popup</strong></p>
+
+
+								<img ng-src="assets/images/locationWindow.png">
+
+
+							</div>
+
+								
+
+						</div>
+						
+
+
+
+					</div>
+					
+				</div>
+			
+			</div> <!-- user agreement Location -->
+
+	
+				
+			</div>
+
+
+
+
+
+			
+		</div>
+
+		<div class="w-100" ng-switch-when="2">
+
+			
+
+
+
+			<div ng-switch on="ua_two">
+
+
+			<ul class="innerNavigation">
+
+				<li ng-class="{'active': ua_two == 1}"><a href="#" ng-click="ua_two = 1">Permissions</a></li>
+				<li ng-class="{'active': ua_two == 2}"><a href="#" ng-click="ua_two = 2">Face Snapshot</a></li>
+				<li ng-class="{'active': ua_two == 3}"><a href="#" ng-click="ua_two = 3">Upload</a></li>
+				
+			</ul>
+
+
+			<div class="w-100" ng-switch-when="1">
+
+				<div class="agreeInnerContents">
+
+					<div class="grid12Col gap10" style="margin-top: 100px">
+
+						<div class="gc1-half">
+
+							<div style="width: 600px; margin: 0 auto">
+
+								<p class="t-md">
+								iSkillmetrics application requires access to your Camera and microphone to verify Photo and ID using your camera. In some cases if requested by Demo Inc. out AI engine might collect voice printing to dedect cheating.
+								</p>
+
+
+							<div style="height: 30px"></div>
+
+
+							<p class="t-md">
+								Firefox and safari typically ask you to enable permissions for each session. if you've accidentaly clicked on Don't Allow or dismissed the popup without allowing access, you can simply close and re-open the Telehealth session.
+							</p>
+
+							<div style="height: 100px"></div>
+
+
+							<div class="field-wrap">
+								<a class="btn btn-success btd-std" ng-click="vm.switchInnerState('ua_stages', 'ua_two', 1)">Access Microphone and Camera</a>
+							</div>
+								
+							</div>
+
+							
+							
+						</div>
+
+						<div class="gc2-half">
+
+							<div style="width: 600px; margin: 0 auto">
+								<p><strong>Click Allow when you see the following popup</strong></p>
+
+
+								<img ng-src="assets/images/cameramicrophone_permission.png">
+
+
+							</div>
+
+								
+
+						</div>
+						
+
+
+
+					</div>
+					
+				</div>
+			
+			</div> <!-- photo capture permissions -->
+
+			<div class="w-100" ng-switch-when="2">
+
+				<div class="agreeInnerContents" style="width: 1000px; margin: 0 auto">
+
+					<div class="grid12Col 10gap">
+
+						<div class="gc1-half">
+							<img ng-src="assets/images/photocapture.png">		
+						</div>
+
+
+						<div class="gc2-half" style="align-self: center;">						
+
+
+						</div>
+
+					
+							<a class="btn btn-success" style="width: 150px" ng-click="vm.switchInnerState('ua_stages', 'ua_two', 2)" style="margin-left: 50px"><i class="fal fa-camera" style="font-size: 18px; vertical-align: middle;"></i> Capture</a>
+						
+					</div>
+
+					
+				</div>
+			
+			</div>
+
+			<div class="w-100" ng-switch-when="3">
+
+				<div class="agreeInnerContents" style="width: 1000px; margin: 0 auto">
+
+					<div class="grid12Col 10gap">
+
+						<div class="gc1-half">
+							<img ng-src="assets/images/photocapture.png">		
+						</div>
+
+
+						<div class="gc2-half" style="align-self: center;">						
+
+							<img ng-src="assets/images/photocapture.png">
+
+						</div>
+
+						<a class="btn btn-success" style="width: 150px" ng-click="vm.changeParent(2)" style="margin-left: 50px"><i class="fal fa-camera" style="font-size: 18px; vertical-align: middle;"></i> Capture</a>
+						
+					</div>
+
+					
+				</div>
+			
+			</div>
+
+
+
+				
+			</div>
+
+
+
+
+			
+		</div>
+
+		<div class="w-100" ng-switch-when="3">
+
+			<div ng-switch on="ua_three">
+
+
+			<ul class="innerNavigation">
+
+				<li ng-class="{'active': ua_three == 1}"><a href="#" ng-click="ua_three = 1">Permissions</a></li>
+				<li ng-class="{'active': ua_three == 2}"><a href="#" ng-click="ua_three = 2">ID Snapshots</a></li>
+				<li ng-class="{'active': ua_three == 3}"><a href="#" ng-click="ua_three = 3">Upload</a></li>
+				
+			</ul>
+
+
+			<div class="w-100" ng-switch-when="1">
+
+				<div class="grid12Col gap10" style="margin-top: 100px">
+
+						<div class="gc1-half">
+
+							<div style="width: 600px; margin: 0 auto">
+
+								<p class="t-md">
+								iSkillmetrics application requires access to your Camera and microphone to verify Photo and ID using your camera. In some cases if requested by Demo Inc. out AI engine might collect voice printing to dedect cheating.
+								</p>
+
+
+							<div style="height: 30px"></div>
+
+
+							<p class="t-md">
+								Firefox and safari typically ask you to enable permissions for each session. if you've accidentaly clicked on Don't Allow or dismissed the popup without allowing access, you can simply close and re-open the Telehealth session.
+							</p>
+
+							<div style="height: 100px"></div>
+
+
+							<div class="field-wrap">
+								<a class="btn btn-success btd-std" ng-click="vm.switchInnerState('ua_stages', 'ua_three', 1)">Access Microphone and Camera</a>
+							</div>
+								
+							</div>
+
+							
+							
+						</div>
+
+						<div class="gc2-half">
+
+							<div style="width: 600px; margin: 0 auto">
+								<p><strong>Click Allow when you see the following popup</strong></p>
+
+
+								<img ng-src="assets/images/cameramicrophone_permission.png">
+
+
+							</div>
+
+								
+
+						</div>
+						
+
+
+
+					</div>
+			
+			</div>
+
+			<div class="w-100" ng-switch-when="2">
+
+				<div class="grid12Col gap10" style="margin-top: 100px">
+
+						<div class="gc1-half">
+
+							<div style="width: 600px; margin: 0 auto">
+								<img ng-src="assets/images/id_capture.png">
+
+
+
+							<div style="height: 50px"></div>
+
+
+							<div class="field-wrap">
+								<a class="btn btn-success" style="width: 150px" ng-click="vm.switchInnerState('ua_stages', 'ua_three', 2)" style="margin-left: 50px"><i class="fal fa-camera" style="font-size: 18px; vertical-align: middle;"></i> Capture</a>
+							</div>
+							</div>
+
+							
+							
+						</div>
+
+						<div class="gc2-half">
+
+							<div style="width: 600px; margin: 0 auto">
+																
+							</div>
+
+								
+
+						</div>
+
+					</div>
+			
+			</div>
+
+			<div class="w-100" ng-switch-when="3">
+
+				<div class="grid12Col gap10" style="margin-top: 100px">
+
+						<div class="gc1-half">
+
+							<div style="width: 600px; margin: 0 auto">
+								<img ng-src="assets/images/id_capture.png">
+
+
+
+							<div style="height: 50px"></div>
+
+
+							<div class="field-wrap">
+								<a class="btn btn-success" style="width: 150px" ng-click="vm.switchInnerState('ua_stages', 'ua_three', 2)" style="margin-left: 50px"><i class="fal fa-camera" style="font-size: 18px; vertical-align: middle;"></i> Upload</a>
+							</div>
+							</div>
+
+							
+							
+						</div>
+
+						<div class="gc2-half">
+
+							<div style="width: 600px; margin: 0 auto">
+								<img ng-src="assets/images/id_upload.png">								
+							</div>
+
+								
+
+						</div>
+
+					</div>
+			
+			</div>
+
+
+
+				
+			</div>
+
+
+
+
+
+
+			
+		</div>
+
+
+	</div>
+
+
+	
+</div>
